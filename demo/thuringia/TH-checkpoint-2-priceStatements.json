@@ -1,0 +1,138 @@
+[
+  {
+    "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/priceStatement/v1",
+    "roamingNetworkId": "TH",
+    "entityType": "EVSE",
+    "entityId": "DE*XAB*E1*1",
+    "priceStatus": {
+      "prices": [
+        {
+          "chargingTariffId": "DE*XAB*T_AC",
+          "elements": [
+            {
+              "priceComponents": [
+                {
+                  "type": "ENERGY",
+                  "price": 0.44,
+                  "stepSize": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "validFrom": "2026-09-15T20:07:40.800Z",
+    "validUntil": "2026-09-16T20:07:40.800Z",
+    "sequence": 0,
+    "after": "075151f73b443c2c36ada8cfb23a7980efed8a02c81d567c56971d7bdfde87ec",
+    "role": "chargingStationOperator",
+    "signer": "DE*XAB",
+    "signedAt": "2026-09-15T20:07:40.800Z",
+    "algorithm": "ES256",
+    "keyId": "b6c082951d3a34b411bacb2c6dfc588d3d4644bb58ac0bf99d2230871b483889",
+    "value": "O8UwnPzkDf6DxIe2QltM5tvu3Mui1VAgNj3rXbPbT/M0UpGeo4cBamCO5jEXBNRNH1yqT6BPRfl/ukRenPN3hg=="
+  },
+  {
+    "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/priceStatement/v1",
+    "roamingNetworkId": "TH",
+    "entityType": "EVSE",
+    "entityId": "DE*XAB*E19*1",
+    "priceStatus": {
+      "prices": [
+        {
+          "chargingTariffId": "DE*XAB*T_DC",
+          "elements": [
+            {
+              "priceComponents": [
+                {
+                  "type": "ENERGY",
+                  "price": 0.54,
+                  "stepSize": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "validFrom": "2026-09-15T20:12:40.800Z",
+    "validUntil": "2026-09-16T20:12:40.800Z",
+    "sequence": 0,
+    "after": "075151f73b443c2c36ada8cfb23a7980efed8a02c81d567c56971d7bdfde87ec",
+    "role": "chargingStationOperator",
+    "signer": "DE*XAB",
+    "signedAt": "2026-09-15T20:12:40.800Z",
+    "algorithm": "ES256",
+    "keyId": "b6c082951d3a34b411bacb2c6dfc588d3d4644bb58ac0bf99d2230871b483889",
+    "value": "Sy8uxPZyhnnrNKk2UfapizZ/2VYYkdjxQRXs2sA9y5sP18SEIojeyDLZOGqBCwYr7F4x9h9EMA5acGdoeVNYdw=="
+  },
+  {
+    "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/priceStatement/v1",
+    "roamingNetworkId": "TH",
+    "entityType": "EVSE",
+    "entityId": "DE*XAA*E1*1",
+    "priceStatus": {
+      "prices": [
+        {
+          "chargingTariffId": "DE*XAA*T_AC",
+          "elements": [
+            {
+              "priceComponents": [
+                {
+                  "type": "ENERGY",
+                  "price": 0.44,
+                  "stepSize": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "validFrom": "2026-09-15T20:17:40.800Z",
+    "validUntil": "2026-09-16T20:17:40.800Z",
+    "sequence": 0,
+    "after": "075151f73b443c2c36ada8cfb23a7980efed8a02c81d567c56971d7bdfde87ec",
+    "role": "chargingStationOperator",
+    "signer": "DE*XAA",
+    "signedAt": "2026-09-15T20:17:40.800Z",
+    "algorithm": "ES256",
+    "keyId": "5f515929c05dae35527ea9446561aa1702be0da8b172c5ab231da3018ab4770f",
+    "value": "DTfZmvQP7gQ5qJf/mxz1mzcN30B1eqqeLxYlfHTn/0uiRVCj67I0EMlP3kvXu8W65Za7r5UEPHLyCBwfG/3zWw=="
+  },
+  {
+    "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/priceStatement/v1",
+    "roamingNetworkId": "TH",
+    "entityType": "EVSE",
+    "entityId": "DE*XAE*E18*1",
+    "priceStatus": {
+      "prices": [
+        {
+          "chargingTariffId": "DE*XAE*T_AC",
+          "elements": [
+            {
+              "priceComponents": [
+                {
+                  "type": "ENERGY",
+                  "price": 0.44,
+                  "stepSize": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "validFrom": "2026-09-15T20:22:40.800Z",
+    "validUntil": "2026-09-16T20:22:40.800Z",
+    "sequence": 0,
+    "after": "075151f73b443c2c36ada8cfb23a7980efed8a02c81d567c56971d7bdfde87ec",
+    "role": "chargingStationOperator",
+    "signer": "DE*XAE",
+    "signedAt": "2026-09-15T20:22:40.800Z",
+    "algorithm": "ES256",
+    "keyId": "b9668021d9a3e7955a41eb0fc777664460cf0d81957c87f701d1d04531466481",
+    "value": "NbGlj7sFoQ2q3w9RwVtTLzC7Mpp3PmBVGhuDX+8yDeO+m4vrqEGfRu3xeRpWwpoZu4e5OWkKZx1G8y46JfBl/A=="
+  }
+]

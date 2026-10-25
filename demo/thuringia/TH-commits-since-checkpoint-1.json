@@ -1,0 +1,1790 @@
+[
+  {
+    "@id": "57eadbb5e9ac40e56aa0d49b317a516837730c715d94bbb5e79e484f74e612b8",
+    "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
+    "roamingNetworkId": "TH",
+    "revision": 16,
+    "eTags": [
+      [
+        "json",
+        "sha256",
+        "hex",
+        "8bbc67343dd354e88ada8caac835106563d57fc6fc7633074c505969ed2523c9"
+      ],
+      [
+        "cbor",
+        "sha256",
+        "hex",
+        "9c0e7d484a693ed3320984b78379fb679001117cc23d11fc0977a55da626c03f"
+      ],
+      [
+        "effectiveTree",
+        "sha256",
+        "hex",
+        "7a867afde1eaf0efc52649e732992b7878a56a09bcae20df485c03a098c76c8f"
+      ]
+    ],
+    "parentIds": [
+      "5e90647edba28cd6d008bf1c55829785d85121737e4ce26c8eef7863eb97e348"
+    ],
+    "changeSet": {
+      "@id": "TH-0016",
+      "roamingNetworkId": "TH",
+      "createdAt": "2026-09-13T12:01:05.400Z",
+      "description": {
+        "en": "Saale Charge (test): DC charging at 0.64 EUR/kWh"
+      },
+      "changes": [
+        {
+          "kind": "UpdateProperty",
+          "entityType": "ChargingTariff",
+          "entityId": "DE*XAB*T_DC",
+          "propertyName": "elements",
+          "oldValue": [
+            {
+              "priceComponents": [
+                {
+                  "type": "ENERGY",
+                  "price": 0.5912,
+                  "stepSize": 1
+                }
+              ]
+            }
+          ],
+          "newValue": [
+            {
+              "priceComponents": [
+                {
+                  "type": "ENERGY",
+                  "price": 0.64,
+                  "stepSize": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "beforeETags": [
+        [
+          "json",
+          "sha256",
+          "hex",
+          "b547d09c45c8f1a806cd770c3dd5537e341fd7f7f8cbc5dd5ca683bf553a19ca"
+        ],
+        [
+          "cbor",
+          "sha256",
+          "hex",
+          "bb8facb8eaf8d5600371f57615cf9ed351e794ddc0fb2a5058542a69809f79a0"
+        ]
+      ],
+      "afterETags": [
+        [
+          "json",
+          "sha256",
+          "hex",
+          "8bbc67343dd354e88ada8caac835106563d57fc6fc7633074c505969ed2523c9"
+        ],
+        [
+          "cbor",
+          "sha256",
+          "hex",
+          "9c0e7d484a693ed3320984b78379fb679001117cc23d11fc0977a55da626c03f"
+        ]
+      ],
+      "signatures": [
+        {
+          "algorithm": "ES256",
+          "keyId": "b6c082951d3a34b411bacb2c6dfc588d3d4644bb58ac0bf99d2230871b483889",
+          "value": "qlMjKaqhM4LrOGRWPTRdHxuFpXFYtfpE/REBxQKYOltCbSeka9/Ex4n2SVcVDJVOEuKuygEl3csIRfA6YIFgZQ=="
+        }
+      ]
+    },
+    "signatures": [
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-13T12:01:36.000Z",
+        "algorithm": "ES256",
+        "keyId": "0b5a6fc3bb3ff0d07b75895466c933c99065b45ffc24d9a5e539b4b18f4dbbc4",
+        "value": "i/faRnVIDPq9/0L18N+bd4hRp1hSiWzwn5MjdPWZz9Jp8rTZkeqvT2TsIwShVi4cOPZZm7RLjFUrWNtr3F3yqQ=="
+      },
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-13T12:01:36.600Z",
+        "algorithm": "ES256",
+        "keyId": "45cc7c4c3bfbd2985a9f9384998b41b0caecceecf4f521a2f0d856a5e776ed14",
+        "value": "jQHoiCUpesSu7H+c07HW2zRmNvgNnfu+Nf8orJbizQMZx7HuM1KErB73Y1O6ygIVBkVeeHosNQgoPmKzcz+uVA=="
+      },
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-13T12:01:37.200Z",
+        "algorithm": "ES256",
+        "keyId": "dffa220da4a30fc3cc51f13896900a42155df4143f3981d84706ef09de6b69b1",
+        "value": "5dKzZnJjGfc8k23zpu0gMt4xZZ0/l7lDalWfdi8FOqQbGK7SHdRLDeVbAFgw1gpVZPNaC/oXx4vZknp2yP39Sg=="
+      }
+    ]
+  },
+  {
+    "@id": "912fd764e4cd932c7724ed19628e11394866d37a78f16c7b2dab27b4e1a16212",
+    "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
+    "roamingNetworkId": "TH",
+    "revision": 17,
+    "eTags": [
+      [
+        "json",
+        "sha256",
+        "hex",
+        "313f45a3f2e9454662013b1236ec026b431e64d964e9325076c6df367f80e745"
+      ],
+      [
+        "cbor",
+        "sha256",
+        "hex",
+        "08c70d1c530dafc5082689ded7ed9845fd7dd5c3ff77272875442ba29a0605cf"
+      ],
+      [
+        "effectiveTree",
+        "sha256",
+        "hex",
+        "852bf01219e4aa54187cb9b5f987e0ae7d58776416cdce3fe3ae743147d974c5"
+      ]
+    ],
+    "parentIds": [
+      "57eadbb5e9ac40e56aa0d49b317a516837730c715d94bbb5e79e484f74e612b8"
+    ],
+    "changeSet": {
+      "@id": "TH-0017",
+      "roamingNetworkId": "TH",
+      "createdAt": "2026-09-14T14:01:37.200Z",
+      "description": {
+        "en": "Rennsteig Energie (test): three AC EVSEs limited to 11 kW by their grid connection"
+      },
+      "changes": [
+        {
+          "kind": "UpdateProperty",
+          "entityType": "EVSE",
+          "entityId": "DE*XAE*E1*1",
+          "propertyName": "maxPower",
+          "oldValue": null,
+          "newValue": 11000
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "EVSE",
+          "entityId": "DE*XAE*E1*2",
+          "propertyName": "maxPower",
+          "oldValue": null,
+          "newValue": 11000
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "EVSE",
+          "entityId": "DE*XAE*E18*1",
+          "propertyName": "maxPower",
+          "oldValue": null,
+          "newValue": 11000
+        }
+      ],
+      "beforeETags": [
+        [
+          "json",
+          "sha256",
+          "hex",
+          "8bbc67343dd354e88ada8caac835106563d57fc6fc7633074c505969ed2523c9"
+        ],
+        [
+          "cbor",
+          "sha256",
+          "hex",
+          "9c0e7d484a693ed3320984b78379fb679001117cc23d11fc0977a55da626c03f"
+        ]
+      ],
+      "afterETags": [
+        [
+          "json",
+          "sha256",
+          "hex",
+          "313f45a3f2e9454662013b1236ec026b431e64d964e9325076c6df367f80e745"
+        ],
+        [
+          "cbor",
+          "sha256",
+          "hex",
+          "08c70d1c530dafc5082689ded7ed9845fd7dd5c3ff77272875442ba29a0605cf"
+        ]
+      ],
+      "signatures": [
+        {
+          "algorithm": "ES256",
+          "keyId": "d084dc7973c08ac6741d3a9dd873b15d5f5d32269c26ed6b7f24a10c2b6e0b9d",
+          "value": "EAOknsQc0iNujvtcIY6F4Rl4IbKNHVeaE1Kj0WjALtocjZH2gSQW7f80GT6YjoGM53e9d/JuF9McOD6ZzkrDuw=="
+        }
+      ]
+    },
+    "signatures": [
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-14T14:02:07.800Z",
+        "algorithm": "ES256",
+        "keyId": "0b5a6fc3bb3ff0d07b75895466c933c99065b45ffc24d9a5e539b4b18f4dbbc4",
+        "value": "47+gjMlPAgmTKrq+yYU+atZqijosHG1+3kJSrnnLGrqizmG1Gqme9NPwblbejyuZbMSx97MWuTPX4SuNwm1usA=="
+      },
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-14T14:02:08.400Z",
+        "algorithm": "ES256",
+        "keyId": "45cc7c4c3bfbd2985a9f9384998b41b0caecceecf4f521a2f0d856a5e776ed14",
+        "value": "q1WQay9o1n+HozDmCpKbF9lT3rnPtZydNI9AdBCfoMktYcWWahRAo6cDdrfZGbZSWwpPYmzMupwQDQj3zN2CrA=="
+      },
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-14T14:02:09.000Z",
+        "algorithm": "ES256",
+        "keyId": "dffa220da4a30fc3cc51f13896900a42155df4143f3981d84706ef09de6b69b1",
+        "value": "95gP24SyF32fQnziiQ87a/UVQqveuAITZ/nRlnEv/8Zg8N56wDb8gWQSCfBvnFizJ4f89hqKBWIIvSg3Znu2Tg=="
+      }
+    ]
+  },
+  {
+    "@id": "cdc2d922557f5c52f7bdfe827499331bc23c47dd871280b3930fd0f2291aa8c4",
+    "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
+    "roamingNetworkId": "TH",
+    "revision": 18,
+    "eTags": [
+      [
+        "json",
+        "sha256",
+        "hex",
+        "bfd1b8918e4f8ce34f201cefda695d472ffd8267105f5ccc210b9942e3158475"
+      ],
+      [
+        "cbor",
+        "sha256",
+        "hex",
+        "65057dab5ad9e19f3d42083662644edd9aee3fb529646864e80151ada28c54fd"
+      ],
+      [
+        "effectiveTree",
+        "sha256",
+        "hex",
+        "0a079a41b69bb2be9e9d7e96b6105ba8019f4aa9a7c4a1cf2f3dc13e781cd6b6"
+      ]
+    ],
+    "parentIds": [
+      "912fd764e4cd932c7724ed19628e11394866d37a78f16c7b2dab27b4e1a16212"
+    ],
+    "changeSet": {
+      "@id": "TH-0018",
+      "roamingNetworkId": "TH",
+      "createdAt": "2026-09-15T20:02:09.000Z",
+      "description": {
+        "en": "Ostthueringen Mobil (test): the charging pool Ronneburg Sporthalle closes"
+      },
+      "changes": [
+        {
+          "kind": "Remove",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAC*P12",
+          "oldValue": {
+            "@id": "DE*XAC*P12",
+            "name": {
+              "en": "Ronneburg Sporthalle"
+            },
+            "geoLocation": {
+              "lat": 50.8515,
+              "lng": 12.189
+            },
+            "chargingStations": [
+              {
+                "@id": "DE*XAC*S25",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAC*E25*1",
+                    "templateIds": [
+                      "DE*XAC*ET_AC"
+                    ],
+                    "created": "2026-09-04T23:03:40.800Z",
+                    "lastChange": "2026-09-04T23:03:40.800Z",
+                    "maxPower": 11000
+                  },
+                  {
+                    "@id": "DE*XAC*E25*2",
+                    "templateIds": [
+                      "DE*XAC*ET_AC"
+                    ],
+                    "created": "2026-09-04T23:03:40.800Z",
+                    "lastChange": "2026-09-04T23:03:40.800Z"
+                  }
+                ],
+                "created": "2026-09-04T23:03:40.800Z",
+                "lastChange": "2026-09-04T23:03:40.800Z"
+              }
+            ],
+            "created": "2026-09-04T23:03:40.800Z",
+            "lastChange": "2026-09-05T07:03:40.800Z"
+          }
+        }
+      ],
+      "beforeETags": [
+        [
+          "json",
+          "sha256",
+          "hex",
+          "313f45a3f2e9454662013b1236ec026b431e64d964e9325076c6df367f80e745"
+        ],
+        [
+          "cbor",
+          "sha256",
+          "hex",
+          "08c70d1c530dafc5082689ded7ed9845fd7dd5c3ff77272875442ba29a0605cf"
+        ]
+      ],
+      "afterETags": [
+        [
+          "json",
+          "sha256",
+          "hex",
+          "bfd1b8918e4f8ce34f201cefda695d472ffd8267105f5ccc210b9942e3158475"
+        ],
+        [
+          "cbor",
+          "sha256",
+          "hex",
+          "65057dab5ad9e19f3d42083662644edd9aee3fb529646864e80151ada28c54fd"
+        ]
+      ],
+      "signatures": [
+        {
+          "algorithm": "ES256",
+          "keyId": "f7d7dd559aec3fab38f836c3063eb102c1554cb1148014fcc2e54ac19b5252dc",
+          "value": "aeB29RK0DbVqfdVQs2qhloCpJU8Y6NNpHRrMViPHEPNXuJu2yby2GZCRK+EizOQz7qEvtHskoGQqfS99PJqHIQ=="
+        }
+      ]
+    },
+    "signatures": [
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-15T20:02:39.600Z",
+        "algorithm": "ES256",
+        "keyId": "0b5a6fc3bb3ff0d07b75895466c933c99065b45ffc24d9a5e539b4b18f4dbbc4",
+        "value": "/DSXLTFv43KubUJwS+XZ/N6YoRGy45ysG3nYBwRlfzW73nJaywa9MkFvZFnro3Vh/2W4nDD7d7NbXyUxxmkYdQ=="
+      },
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-15T20:02:40.200Z",
+        "algorithm": "ES256",
+        "keyId": "45cc7c4c3bfbd2985a9f9384998b41b0caecceecf4f521a2f0d856a5e776ed14",
+        "value": "S9Fd8asqQC8o1p/0QeSC+2u9Z5ENcGoPpwLBTQKPHQr3KwuqRotTkdoViscQyeCW6ml+pf1yy+CnHae3F/jNZQ=="
+      },
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-15T20:02:40.800Z",
+        "algorithm": "ES256",
+        "keyId": "dffa220da4a30fc3cc51f13896900a42155df4143f3981d84706ef09de6b69b1",
+        "value": "YjTa94Hq0Np8ICBSGHikd4Jx2xOOcRAN52CYLf8M5ZhZM9QN9zjR1A9vEspPgCClxVrEivt+/HTyxhkL58ve4w=="
+      }
+    ]
+  },
+  {
+    "@id": "46fefb2399d32694039cd76cd72d96e668079e3f924b32c42151d102eac913b5",
+    "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
+    "roamingNetworkId": "TH",
+    "revision": 19,
+    "eTags": [
+      [
+        "json",
+        "sha256",
+        "hex",
+        "9b935ed1f22eba4ec6aaffc0f02f8df43639b368a7a2cc47c3a36cd43beeb8b9"
+      ],
+      [
+        "cbor",
+        "sha256",
+        "hex",
+        "2c34c5469eabbc8b8a0f620a8bbbd30ab640b22c6a055cab3735592529486cd2"
+      ],
+      [
+        "effectiveTree",
+        "sha256",
+        "hex",
+        "eac04ef422374f6ebc563c5fc9b19640395bd31e724a2496077bd0ab80b742fd"
+      ]
+    ],
+    "parentIds": [
+      "cdc2d922557f5c52f7bdfe827499331bc23c47dd871280b3930fd0f2291aa8c4"
+    ],
+    "changeSet": {
+      "@id": "TH-0019",
+      "roamingNetworkId": "TH",
+      "createdAt": "2026-09-17T22:22:40.800Z",
+      "description": {
+        "en": "Highway HPC (test) joins the network"
+      },
+      "changes": [
+        {
+          "kind": "Add",
+          "entityType": "ChargingStationOperator",
+          "entityId": "DE*XAG",
+          "newValue": {
+            "@id": "DE*XAG",
+            "name": {
+              "en": "Highway HPC (test)"
+            },
+            "description": {
+              "en": "A generated charging station operator of the Thuringia test network, around Hermsdorf, Eisenach, Erfurt."
+            },
+            "signingKeys": [
+              {
+                "@id": "042ab65984dc91b507a21b2121f509f7c2eb2ca8ee0ce73878da2c1d20733278",
+                "key": "pAECIAEhWCDeHhbRBggoTvk9DO6Tj2JwJHDzdTUqKAmrZmakKHEX0iJYIA6Zl5sM1/waWb1SSLXwgVr9DmTyiiXwPbc2Yvx71PZQ",
+                "notAfter": "2028-09-01T00:00:00.000Z",
+                "usages": [
+                  "priceStatements",
+                  "tariffs"
+                ]
+              },
+              {
+                "@id": "87d7a0f8d7c18d01caa8142a640293826c05b41660837b9c04562d0d1afd9c45",
+                "key": "pAECIAEhWCDKm6c4ZcyKA+b0XTDQ4oGwr0CDdHPEHC0jN0qbO9BrpSJYIANH9GZUMr42Gj7xBUe39MTvDG2WXjHBUAhhAWsIJLCO",
+                "notAfter": "2028-09-01T00:00:00.000Z",
+                "usages": [
+                  "infrastructure"
+                ]
+              }
+            ],
+            "identityKeys": [
+              {
+                "@id": "ef36e1ae08338d30adf73ae32733546e4c2b806abda72009a734e271a97cb667",
+                "key": "owEBIAYhWCD1neqFlerqM2AK1sqlxg49Nrt3tMMzvAnGokyfV3fu6g=="
+              }
+            ],
+            "created": "2026-09-15T20:22:40.800Z",
+            "lastChange": "2026-09-15T20:22:40.800Z"
+          }
+        }
+      ],
+      "beforeETags": [
+        [
+          "json",
+          "sha256",
+          "hex",
+          "bfd1b8918e4f8ce34f201cefda695d472ffd8267105f5ccc210b9942e3158475"
+        ],
+        [
+          "cbor",
+          "sha256",
+          "hex",
+          "65057dab5ad9e19f3d42083662644edd9aee3fb529646864e80151ada28c54fd"
+        ]
+      ],
+      "afterETags": [
+        [
+          "json",
+          "sha256",
+          "hex",
+          "9b935ed1f22eba4ec6aaffc0f02f8df43639b368a7a2cc47c3a36cd43beeb8b9"
+        ],
+        [
+          "cbor",
+          "sha256",
+          "hex",
+          "2c34c5469eabbc8b8a0f620a8bbbd30ab640b22c6a055cab3735592529486cd2"
+        ]
+      ],
+      "signatures": [
+        {
+          "algorithm": "ES256",
+          "keyId": "0b5a6fc3bb3ff0d07b75895466c933c99065b45ffc24d9a5e539b4b18f4dbbc4",
+          "value": "kUZrc/SNzsMU0PIHPNvU0Lx6+1YR7I1mIEyL5yAVx9TFOPmBuJtqcwofdOyrZja+Qlru2tEvMA7RwW8K3VmK6Q=="
+        },
+        {
+          "algorithm": "ES256",
+          "keyId": "dffa220da4a30fc3cc51f13896900a42155df4143f3981d84706ef09de6b69b1",
+          "value": "5Lp+aFrBYjNBhmPud+5LeYf0pk0JZSiKiTmZbRddTVfTfQEQ66c0PeFcACj1a16PgdQ8mWMpb6AOjMAS0QThZQ=="
+        },
+        {
+          "algorithm": "Ed25519",
+          "keyId": "ef36e1ae08338d30adf73ae32733546e4c2b806abda72009a734e271a97cb667",
+          "value": "GNbCxpBinefPbtyZ+dFMxZyeXY27brYnPbXFCXvEV2H2jIuZYXIrI9p4VLUhW2+3Bmsp4MPO3iywCSOfr+P7Ag=="
+        }
+      ]
+    },
+    "signatures": [
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-17T22:23:11.400Z",
+        "algorithm": "ES256",
+        "keyId": "0b5a6fc3bb3ff0d07b75895466c933c99065b45ffc24d9a5e539b4b18f4dbbc4",
+        "value": "zmLDvfKbGwZs+cvsXCkzLEa5Mw6SiigURbfVUnFCAp6D/nGIyLnnolvH+8wgEwUpTcacCDRHONSo8bVEBLj2wg=="
+      },
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-17T22:23:12.000Z",
+        "algorithm": "ES256",
+        "keyId": "45cc7c4c3bfbd2985a9f9384998b41b0caecceecf4f521a2f0d856a5e776ed14",
+        "value": "C2S6cu9WFK0oO8iFSFfOZ07+3a9aat/wU9DMPvA0AWk46tPSp3B4a62UR5TRuwAXwmfOsaj1Zfc6X4iloaLAOg=="
+      },
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-17T22:23:12.600Z",
+        "algorithm": "ES256",
+        "keyId": "dffa220da4a30fc3cc51f13896900a42155df4143f3981d84706ef09de6b69b1",
+        "value": "cvLCv6gs8EOYkquzjo4qxd1/B0x4Z5K3P8kcxoFgCLNZNM7GQEwy2thQ3saJ+DKYLki27BYYiIgKbOyHjuCE+g=="
+      }
+    ]
+  },
+  {
+    "@id": "d9dfa765f97362c820f5f467f86a64d12bf0c89a52e992a6a83112f479736e07",
+    "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
+    "roamingNetworkId": "TH",
+    "revision": 20,
+    "eTags": [
+      [
+        "json",
+        "sha256",
+        "hex",
+        "8a9e64062fe7aa0ddd69982135e169b4204a19b6aceffaf95f80f07456a48888"
+      ],
+      [
+        "cbor",
+        "sha256",
+        "hex",
+        "d4790d766a7c3f584d0c931623f1d704f0538a4eea9f5c0a225080bf5038254f"
+      ],
+      [
+        "effectiveTree",
+        "sha256",
+        "hex",
+        "bef5039336e9df7d0590fd8231cd920a62c18a217c463a6d5e3ed4aecb76aaaa"
+      ]
+    ],
+    "parentIds": [
+      "46fefb2399d32694039cd76cd72d96e668079e3f924b32c42151d102eac913b5"
+    ],
+    "changeSet": {
+      "@id": "TH-0020",
+      "roamingNetworkId": "TH",
+      "createdAt": "2026-09-18T02:23:12.600Z",
+      "description": {
+        "en": "Highway HPC (test): its tariff and its EVSE template"
+      },
+      "changes": [
+        {
+          "kind": "Add",
+          "entityType": "ChargingTariff",
+          "entityId": "DE*XAG*T_HPC",
+          "newValue": {
+            "@id": "DE*XAG*T_HPC",
+            "name": {
+              "en": "High power charging"
+            },
+            "currency": "EUR",
+            "elements": [
+              {
+                "priceComponents": [
+                  {
+                    "type": "ENERGY",
+                    "price": 0.69,
+                    "stepSize": 1
+                  }
+                ]
+              }
+            ],
+            "created": "2026-09-17T22:23:12.600Z",
+            "lastChange": "2026-09-17T22:23:12.600Z"
+          }
+        },
+        {
+          "kind": "Add",
+          "entityType": "EVSETemplate",
+          "entityId": "DE*XAG*ET_HPC",
+          "newValue": {
+            "@id": "DE*XAG*ET_HPC",
+            "name": {
+              "en": "HPC EVSE, 300 kW"
+            },
+            "chargingTariffId": "DE*XAG*T_HPC",
+            "currentTypes": [
+              "DC"
+            ],
+            "maxPower": 300000,
+            "chargingConnectors": [
+              {
+                "@id": "1",
+                "format": "CABLE",
+                "type": "IEC_62196_T2_COMBO"
+              }
+            ],
+            "created": "2026-09-17T22:23:12.600Z",
+            "lastChange": "2026-09-17T22:23:12.600Z"
+          }
+        }
+      ],
+      "beforeETags": [
+        [
+          "json",
+          "sha256",
+          "hex",
+          "9b935ed1f22eba4ec6aaffc0f02f8df43639b368a7a2cc47c3a36cd43beeb8b9"
+        ],
+        [
+          "cbor",
+          "sha256",
+          "hex",
+          "2c34c5469eabbc8b8a0f620a8bbbd30ab640b22c6a055cab3735592529486cd2"
+        ]
+      ],
+      "afterETags": [
+        [
+          "json",
+          "sha256",
+          "hex",
+          "8a9e64062fe7aa0ddd69982135e169b4204a19b6aceffaf95f80f07456a48888"
+        ],
+        [
+          "cbor",
+          "sha256",
+          "hex",
+          "d4790d766a7c3f584d0c931623f1d704f0538a4eea9f5c0a225080bf5038254f"
+        ]
+      ],
+      "signatures": [
+        {
+          "algorithm": "ES256",
+          "keyId": "042ab65984dc91b507a21b2121f509f7c2eb2ca8ee0ce73878da2c1d20733278",
+          "value": "yO659yBgyGAdElImItOc6O0Sjzi2c7YB1afmDYHscchp1cz/LMOAOqyU/LQZHWBqWUlW2NCDe0EfakeResmu6A=="
+        },
+        {
+          "algorithm": "ES256",
+          "keyId": "87d7a0f8d7c18d01caa8142a640293826c05b41660837b9c04562d0d1afd9c45",
+          "value": "ZXXwAu2ujdzabUdciJbo/8biU1Oi6IOf4A613qmPxqSRM9TEt5jIREHm3+nrXAF6rB2VdXC0PwuouoyVZhIorA=="
+        }
+      ]
+    },
+    "signatures": [
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-18T02:23:43.200Z",
+        "algorithm": "ES256",
+        "keyId": "0b5a6fc3bb3ff0d07b75895466c933c99065b45ffc24d9a5e539b4b18f4dbbc4",
+        "value": "pZuwl91N9gdTWytI/AAvP8WWggI5Cc1D3VSdnRYcn6t59IXTbPPuuDyXpZf5sj6RZdVfz+fVw2S7D/kwl96oCg=="
+      },
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-18T02:23:43.800Z",
+        "algorithm": "ES256",
+        "keyId": "45cc7c4c3bfbd2985a9f9384998b41b0caecceecf4f521a2f0d856a5e776ed14",
+        "value": "UMtCVRyY2zaif30Q/squRtNZoUIuKlx4u7c+2iIT/Wogks7B8qvD9qVhI9F7lKhIMZt4qiuT1UQa+PesOZ6tNQ=="
+      },
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-18T02:23:44.400Z",
+        "algorithm": "ES256",
+        "keyId": "dffa220da4a30fc3cc51f13896900a42155df4143f3981d84706ef09de6b69b1",
+        "value": "Aw47HUSZ/4F2A6+aHSp233kaUpISnVJFLCLWVsHYt62af82ac9vzqOEt0L2zTJXh7UQyhTu4vsQ3myKcoGljJw=="
+      }
+    ]
+  },
+  {
+    "@id": "14e2dd4b81e767dde333ebb5dc01fcaaf91c9f74e5b1bb479ae2aa077f68bc65",
+    "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
+    "roamingNetworkId": "TH",
+    "revision": 21,
+    "eTags": [
+      [
+        "json",
+        "sha256",
+        "hex",
+        "5cddeca07a29f4007a459fa40135805646fa96c82a3d7ec886c54d823c01fcd4"
+      ],
+      [
+        "cbor",
+        "sha256",
+        "hex",
+        "fc7dd058405c7be3fbc8aaa61c4423cd0313b97702188ce50e177bcf2c5b35d7"
+      ],
+      [
+        "effectiveTree",
+        "sha256",
+        "hex",
+        "c9c053810aab2b2e976a025d88f5b35987d6f2ed0a6c6e94e0cc2d73f5c952af"
+      ]
+    ],
+    "parentIds": [
+      "d9dfa765f97362c820f5f467f86a64d12bf0c89a52e992a6a83112f479736e07"
+    ],
+    "changeSet": {
+      "@id": "TH-0021",
+      "roamingNetworkId": "TH",
+      "createdAt": "2026-09-19T02:23:44.400Z",
+      "description": {
+        "en": "Highway HPC (test): 12 high power charging parks along the A4, A9, A38 and A71"
+      },
+      "changes": [
+        {
+          "kind": "Add",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P1",
+          "newValue": {
+            "@id": "DE*XAG*P1",
+            "name": {
+              "en": "Hermsdorf Autobahnkreuz"
+            },
+            "geoLocation": {
+              "lat": 50.9015,
+              "lng": 11.8785
+            },
+            "chargingStations": [
+              {
+                "@id": "DE*XAG*S1",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E1*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E1*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              },
+              {
+                "@id": "DE*XAG*S2",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E2*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E2*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              },
+              {
+                "@id": "DE*XAG*S3",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E3*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E3*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              }
+            ],
+            "created": "2026-09-18T02:23:44.400Z",
+            "lastChange": "2026-09-18T02:23:44.400Z"
+          }
+        },
+        {
+          "kind": "Add",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P2",
+          "newValue": {
+            "@id": "DE*XAG*P2",
+            "name": {
+              "en": "Eisenach Schnellladepark"
+            },
+            "geoLocation": {
+              "lat": 50.9511,
+              "lng": 10.3575
+            },
+            "chargingStations": [
+              {
+                "@id": "DE*XAG*S4",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E4*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E4*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              },
+              {
+                "@id": "DE*XAG*S5",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E5*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E5*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              },
+              {
+                "@id": "DE*XAG*S6",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E6*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E6*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              }
+            ],
+            "created": "2026-09-18T02:23:44.400Z",
+            "lastChange": "2026-09-18T02:23:44.400Z"
+          }
+        },
+        {
+          "kind": "Add",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P3",
+          "newValue": {
+            "@id": "DE*XAG*P3",
+            "name": {
+              "en": "Erfurt Schnellladepark"
+            },
+            "geoLocation": {
+              "lat": 50.9636,
+              "lng": 11.0474
+            },
+            "chargingStations": [
+              {
+                "@id": "DE*XAG*S10",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E10*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E10*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              },
+              {
+                "@id": "DE*XAG*S7",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E7*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E7*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              },
+              {
+                "@id": "DE*XAG*S8",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E8*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E8*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              },
+              {
+                "@id": "DE*XAG*S9",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E9*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E9*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              }
+            ],
+            "created": "2026-09-18T02:23:44.400Z",
+            "lastChange": "2026-09-18T02:23:44.400Z"
+          }
+        },
+        {
+          "kind": "Add",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P4",
+          "newValue": {
+            "@id": "DE*XAG*P4",
+            "name": {
+              "en": "Gotha Autobahnkreuz"
+            },
+            "geoLocation": {
+              "lat": 50.959,
+              "lng": 10.6654
+            },
+            "chargingStations": [
+              {
+                "@id": "DE*XAG*S11",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E11*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E11*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              },
+              {
+                "@id": "DE*XAG*S12",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E12*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E12*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              }
+            ],
+            "created": "2026-09-18T02:23:44.400Z",
+            "lastChange": "2026-09-18T02:23:44.400Z"
+          }
+        },
+        {
+          "kind": "Add",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P5",
+          "newValue": {
+            "@id": "DE*XAG*P5",
+            "name": {
+              "en": "Jena Schnellladepark"
+            },
+            "geoLocation": {
+              "lat": 50.9369,
+              "lng": 11.6184
+            },
+            "chargingStations": [
+              {
+                "@id": "DE*XAG*S13",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E13*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E13*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              },
+              {
+                "@id": "DE*XAG*S14",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E14*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E14*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              },
+              {
+                "@id": "DE*XAG*S15",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E15*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E15*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              }
+            ],
+            "created": "2026-09-18T02:23:44.400Z",
+            "lastChange": "2026-09-18T02:23:44.400Z"
+          }
+        },
+        {
+          "kind": "Add",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P6",
+          "newValue": {
+            "@id": "DE*XAG*P6",
+            "name": {
+              "en": "Schleiz Autobahnkreuz"
+            },
+            "geoLocation": {
+              "lat": 50.5986,
+              "lng": 11.7789
+            },
+            "chargingStations": [
+              {
+                "@id": "DE*XAG*S16",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E16*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E16*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              },
+              {
+                "@id": "DE*XAG*S17",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E17*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E17*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              }
+            ],
+            "created": "2026-09-18T02:23:44.400Z",
+            "lastChange": "2026-09-18T02:23:44.400Z"
+          }
+        },
+        {
+          "kind": "Add",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P7",
+          "newValue": {
+            "@id": "DE*XAG*P7",
+            "name": {
+              "en": "Ilmenau Rastanlage"
+            },
+            "geoLocation": {
+              "lat": 50.6794,
+              "lng": 10.887
+            },
+            "chargingStations": [
+              {
+                "@id": "DE*XAG*S18",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E18*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E18*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              },
+              {
+                "@id": "DE*XAG*S19",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E19*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E19*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              },
+              {
+                "@id": "DE*XAG*S20",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E20*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E20*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              },
+              {
+                "@id": "DE*XAG*S21",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E21*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E21*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              }
+            ],
+            "created": "2026-09-18T02:23:44.400Z",
+            "lastChange": "2026-09-18T02:23:44.400Z"
+          }
+        },
+        {
+          "kind": "Add",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P8",
+          "newValue": {
+            "@id": "DE*XAG*P8",
+            "name": {
+              "en": "Suhl Autobahnkreuz"
+            },
+            "geoLocation": {
+              "lat": 50.5982,
+              "lng": 10.7286
+            },
+            "chargingStations": [
+              {
+                "@id": "DE*XAG*S22",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E22*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E22*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              },
+              {
+                "@id": "DE*XAG*S23",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E23*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E23*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              }
+            ],
+            "created": "2026-09-18T02:23:44.400Z",
+            "lastChange": "2026-09-18T02:23:44.400Z"
+          }
+        },
+        {
+          "kind": "Add",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P9",
+          "newValue": {
+            "@id": "DE*XAG*P9",
+            "name": {
+              "en": "Weimar Gewerbepark A4"
+            },
+            "geoLocation": {
+              "lat": 50.9783,
+              "lng": 11.2843
+            },
+            "chargingStations": [
+              {
+                "@id": "DE*XAG*S24",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E24*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E24*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              },
+              {
+                "@id": "DE*XAG*S25",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E25*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E25*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              }
+            ],
+            "created": "2026-09-18T02:23:44.400Z",
+            "lastChange": "2026-09-18T02:23:44.400Z"
+          }
+        },
+        {
+          "kind": "Add",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P10",
+          "newValue": {
+            "@id": "DE*XAG*P10",
+            "name": {
+              "en": "Gera Schnellladepark"
+            },
+            "geoLocation": {
+              "lat": 50.9034,
+              "lng": 12.0786
+            },
+            "chargingStations": [
+              {
+                "@id": "DE*XAG*S26",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E26*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E26*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              },
+              {
+                "@id": "DE*XAG*S27",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E27*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E27*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              },
+              {
+                "@id": "DE*XAG*S28",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E28*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E28*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              },
+              {
+                "@id": "DE*XAG*S29",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E29*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E29*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              }
+            ],
+            "created": "2026-09-18T02:23:44.400Z",
+            "lastChange": "2026-09-18T02:23:44.400Z"
+          }
+        },
+        {
+          "kind": "Add",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P11",
+          "newValue": {
+            "@id": "DE*XAG*P11",
+            "name": {
+              "en": "Meiningen Gewerbepark A4"
+            },
+            "geoLocation": {
+              "lat": 50.5832,
+              "lng": 10.4294
+            },
+            "chargingStations": [
+              {
+                "@id": "DE*XAG*S30",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E30*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E30*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              },
+              {
+                "@id": "DE*XAG*S31",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E31*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E31*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              }
+            ],
+            "created": "2026-09-18T02:23:44.400Z",
+            "lastChange": "2026-09-18T02:23:44.400Z"
+          }
+        },
+        {
+          "kind": "Add",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P12",
+          "newValue": {
+            "@id": "DE*XAG*P12",
+            "name": {
+              "en": "Nordhausen Autobahnkreuz"
+            },
+            "geoLocation": {
+              "lat": 51.5288,
+              "lng": 10.7818
+            },
+            "chargingStations": [
+              {
+                "@id": "DE*XAG*S32",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E32*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E32*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              },
+              {
+                "@id": "DE*XAG*S33",
+                "EVSEs": [
+                  {
+                    "@id": "DE*XAG*E33*1",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  },
+                  {
+                    "@id": "DE*XAG*E33*2",
+                    "templateIds": [
+                      "DE*XAG*ET_HPC"
+                    ],
+                    "created": "2026-09-18T02:23:44.400Z",
+                    "lastChange": "2026-09-18T02:23:44.400Z"
+                  }
+                ],
+                "created": "2026-09-18T02:23:44.400Z",
+                "lastChange": "2026-09-18T02:23:44.400Z"
+              }
+            ],
+            "created": "2026-09-18T02:23:44.400Z",
+            "lastChange": "2026-09-18T02:23:44.400Z"
+          }
+        }
+      ],
+      "beforeETags": [
+        [
+          "json",
+          "sha256",
+          "hex",
+          "8a9e64062fe7aa0ddd69982135e169b4204a19b6aceffaf95f80f07456a48888"
+        ],
+        [
+          "cbor",
+          "sha256",
+          "hex",
+          "d4790d766a7c3f584d0c931623f1d704f0538a4eea9f5c0a225080bf5038254f"
+        ]
+      ],
+      "afterETags": [
+        [
+          "json",
+          "sha256",
+          "hex",
+          "5cddeca07a29f4007a459fa40135805646fa96c82a3d7ec886c54d823c01fcd4"
+        ],
+        [
+          "cbor",
+          "sha256",
+          "hex",
+          "fc7dd058405c7be3fbc8aaa61c4423cd0313b97702188ce50e177bcf2c5b35d7"
+        ]
+      ],
+      "signatures": [
+        {
+          "algorithm": "ES256",
+          "keyId": "87d7a0f8d7c18d01caa8142a640293826c05b41660837b9c04562d0d1afd9c45",
+          "value": "u6upZlwcI0bh0Dex0B1GurdiGuo7EbobC/gFDjtpuNhmvHp/5lHFZULHTNL1WiqQn86b6z3opbrF8XMdzdW83g=="
+        }
+      ]
+    },
+    "signatures": [
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-19T02:24:15.000Z",
+        "algorithm": "ES256",
+        "keyId": "0b5a6fc3bb3ff0d07b75895466c933c99065b45ffc24d9a5e539b4b18f4dbbc4",
+        "value": "jjKACr3V8K6N1lSuqN8d8PpUpCv7CjZFuWNH3/BkCgT7pcMgKuXMIQ+t5BLptRQoHDyTU2xPRRvKBm/czSP7JA=="
+      },
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-19T02:24:15.600Z",
+        "algorithm": "ES256",
+        "keyId": "45cc7c4c3bfbd2985a9f9384998b41b0caecceecf4f521a2f0d856a5e776ed14",
+        "value": "t7EdXXiub6/343znA4dXZTTW4pFe9s1OG/33J4c8AEz+sPTVLi3EzjvAWOtYxjGODeeNk7NUpt2fD256hGjwFA=="
+      },
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-19T02:24:16.200Z",
+        "algorithm": "ES256",
+        "keyId": "dffa220da4a30fc3cc51f13896900a42155df4143f3981d84706ef09de6b69b1",
+        "value": "CleJucyZmfRnMG/UzIpxdCERVC7dODHFueqIv8aIKcToV+2UVFfFayPjLQBk9WKUgkA3PJo7eW3Nofyx/e5Olw=="
+      }
+    ]
+  }
+]

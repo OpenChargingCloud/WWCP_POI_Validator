@@ -1,0 +1,363 @@
+{
+  "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/proof/v1",
+  "hashAlgorithm": "sha256",
+  "commitId": "e2332e4c19d7ac05a9854d7e4106625b102fb081183b2d3c686b582602e73ea6",
+  "revision": 25,
+  "roamingNetwork": {
+    "@id": "TH",
+    "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/v1",
+    "name": {
+      "en": "Thuringia Test Network"
+    },
+    "description": {
+      "en": "A generated test network of WWCP POI 3: seven charging station operators across Thuringia, some hundred charging stations, signed with test keys."
+    },
+    "operator": {
+      "@id": "THNO",
+      "name": {
+        "en": "Thuringia Network Operator (test)"
+      },
+      "minConsensus": 2,
+      "keyStatement": {
+        "roamingNetworkId": "TH",
+        "roamingNetworkOperatorId": "THNO",
+        "identityKeys": [
+          {
+            "@id": "6fe746c144c23fc718340e7adefdb98535a7d3891e4ef4ee24a517e3456ab210",
+            "key": "pAECIAIhWDAnTeIJLsZYMZ1wZI7HjPUqlXmDkisSorQ8gjlxVnv1xTpYAkReNaHAwpd5B2YMFVQiWDALTIJZczuKV+pAqapsmvHi4ujbBKs+bvPog4KpCYW6hv7QIYWuFqEvpgMAA4Ke74Q=",
+            "holder": "Wartburg Trust"
+          },
+          {
+            "@id": "933d6618a113bee4fce2a2d0082f0dc416e2afb6c3c70e7d5b62cc67c76249ed",
+            "key": "pAECIAIhWDCCk5DtHzjgcEUR1XNVahJQausPpuiSldLWfxXfT/qj5QKGaseHLw60KXbo061eKGAiWDDoFnRkDhVsUMyO+em37n/UTX5dnIoRro1JdVk4XtEq5QDzZR8xPr8jPAUPUvvOAN0=",
+            "holder": "Kyffhaeuser Trust"
+          },
+          {
+            "@id": "d6ea7eaddc2ea9d5d1f49ebd0c98e6c87a9359086a5df19699acc4d66be13363",
+            "key": "owEBIAYhWCCB3vnA7a4j+MKTNTVxiVwS+ueZGjytXmqXpGFONMkAFA==",
+            "holder": "Rennsteig Trust"
+          }
+        ],
+        "minConsensus": 2,
+        "signedAt": "2026-09-01T08:00:00.000Z",
+        "validUntil": "2028-08-31T00:00:00.000Z",
+        "signatures": [
+          {
+            "algorithm": "ES384",
+            "keyId": "933d6618a113bee4fce2a2d0082f0dc416e2afb6c3c70e7d5b62cc67c76249ed",
+            "value": "f3YhcuJFQX2or244l/WFGiY29EXgSq/8f2bmgNDVi/mYuHHzIzKQG5wQ86N4biNiQo3BcEwVyYqR7av9ysZnuNSgdEPKj9ovkYj47dsMeET7nWsdKCDV2iu4Xom+3m/J"
+          },
+          {
+            "algorithm": "Ed25519",
+            "keyId": "d6ea7eaddc2ea9d5d1f49ebd0c98e6c87a9359086a5df19699acc4d66be13363",
+            "value": "4ORuOgCjR4a720PO8PQzSxbae3jMC0hdIymx+j49ecfJxaxQlSLQk1QDd12dq6D8rvkWOOyReC6eZDS5q2ocAA=="
+          },
+          {
+            "algorithm": "ES384",
+            "keyId": "6fe746c144c23fc718340e7adefdb98535a7d3891e4ef4ee24a517e3456ab210",
+            "value": "dJD9sYzS1MmLFS0ypuzKwT6jZlGYY25SMNezXFDu3PMOHKu++YJMh2fDV0FlKYHyCCtURepGJ+19IKYOoI3g3BcXZm9/DKgHQGA1MadFwzEDL9tkzIz8qcnpFWeSSnMK"
+          }
+        ]
+      },
+      "signingKeyCertificates": [
+        {
+          "roamingNetworkOperatorId": "THNO",
+          "signingKey": {
+            "@id": "0b5a6fc3bb3ff0d07b75895466c933c99065b45ffc24d9a5e539b4b18f4dbbc4",
+            "key": "pAECIAEhWCC3tFiJOsWfD6hxC+UZAi+rjZGSiLhPx6cwScq6o/8xYSJYIGh+2X6WVa/7aI5fr1iE4ESQUaXNm9JIpZkBxfFJ1XwT",
+            "notAfter": "2028-09-01T00:00:00.000Z",
+            "holder": "Kyffhaeuser Trust",
+            "usages": [
+              "party"
+            ]
+          },
+          "signedAt": "2026-09-01T08:00:00.000Z",
+          "algorithm": "ES384",
+          "keyId": "933d6618a113bee4fce2a2d0082f0dc416e2afb6c3c70e7d5b62cc67c76249ed",
+          "value": "G0RD8EirIv4lgAPoIX2yRzr9v2kVpUIgKzVROZKPfzj3IpBr4BqXMYkJ4C/b4StHjeuUFnm4UzLgG3CRynjZuna2N7ADXTm5kSFM4jnRJvmSj8dWJQO7QA9KwxrxibbG"
+        },
+        {
+          "roamingNetworkOperatorId": "THNO",
+          "signingKey": {
+            "@id": "45cc7c4c3bfbd2985a9f9384998b41b0caecceecf4f521a2f0d856a5e776ed14",
+            "key": "pAECIAEhWCC//on/WRhBev1kM5KGsGXfaVgC4HTbVBE99izRs+yBriJYIAuYm1nfMUE9mwGn10eg1EytmG8dfTG5rwc1b/VV38c5",
+            "notAfter": "2028-09-01T00:00:00.000Z",
+            "holder": "Rennsteig Trust",
+            "usages": [
+              "party"
+            ]
+          },
+          "signedAt": "2026-09-01T08:00:00.000Z",
+          "algorithm": "Ed25519",
+          "keyId": "d6ea7eaddc2ea9d5d1f49ebd0c98e6c87a9359086a5df19699acc4d66be13363",
+          "value": "78heCvF+VjLPbROX/zNhomdBUUHHiLkDYTAAXLaL1VL2AbZkc+5OK5G78Czeq2NgCt//+tymbZXQO5UFVKBNDA=="
+        },
+        {
+          "roamingNetworkOperatorId": "THNO",
+          "signingKey": {
+            "@id": "dffa220da4a30fc3cc51f13896900a42155df4143f3981d84706ef09de6b69b1",
+            "key": "pAECIAEhWCCqOxP0kt9h39j6ZI7VcPZqmjyruKFYAG0Hy7a5Qr0NGCJYIGp5n5aOL7l8L3sU4aMSKreR3gzR+td+yaWIaAGcm5Gg",
+            "notAfter": "2028-09-01T00:00:00.000Z",
+            "holder": "Wartburg Trust",
+            "usages": [
+              "party"
+            ]
+          },
+          "signedAt": "2026-09-01T08:00:00.000Z",
+          "algorithm": "ES384",
+          "keyId": "6fe746c144c23fc718340e7adefdb98535a7d3891e4ef4ee24a517e3456ab210",
+          "value": "yytkVQ5nNoQkNrSc08LWTE49bfTxLOYHDTo1/5COddc3ltvRx/hbA4GXCxUClyO/CP/OlicOVIVZR6yODxqx+Jxt9K0SbH01UmrMLbN356NmU8qsMgbdfF0ruMDmjB9M"
+        }
+      ],
+      "identityKeys": [
+        {
+          "@id": "6fe746c144c23fc718340e7adefdb98535a7d3891e4ef4ee24a517e3456ab210",
+          "key": "pAECIAIhWDAnTeIJLsZYMZ1wZI7HjPUqlXmDkisSorQ8gjlxVnv1xTpYAkReNaHAwpd5B2YMFVQiWDALTIJZczuKV+pAqapsmvHi4ujbBKs+bvPog4KpCYW6hv7QIYWuFqEvpgMAA4Ke74Q=",
+          "holder": "Wartburg Trust"
+        },
+        {
+          "@id": "933d6618a113bee4fce2a2d0082f0dc416e2afb6c3c70e7d5b62cc67c76249ed",
+          "key": "pAECIAIhWDCCk5DtHzjgcEUR1XNVahJQausPpuiSldLWfxXfT/qj5QKGaseHLw60KXbo061eKGAiWDDoFnRkDhVsUMyO+em37n/UTX5dnIoRro1JdVk4XtEq5QDzZR8xPr8jPAUPUvvOAN0=",
+          "holder": "Kyffhaeuser Trust"
+        },
+        {
+          "@id": "d6ea7eaddc2ea9d5d1f49ebd0c98e6c87a9359086a5df19699acc4d66be13363",
+          "key": "owEBIAYhWCCB3vnA7a4j+MKTNTVxiVwS+ueZGjytXmqXpGFONMkAFA==",
+          "holder": "Rennsteig Trust"
+        }
+      ],
+      "created": "2026-09-01T08:00:00.000Z",
+      "lastChange": "2026-09-01T08:00:00.000Z"
+    },
+    "created": "2026-09-01T08:00:00.000Z",
+    "lastChange": "2026-09-24T09:51:55.200Z",
+    "chargingStationOperators": {
+      "@size": 7,
+      "@leaves": [
+        {
+          "@index": 0,
+          "@auditPath": [
+            "c91189ce6d47599c8d45b0f97e649dfc36a523ea36d51e00145d1c700635a9f4",
+            "254876dff6329f507d28c80b02883e514420418eef1e7d102013325c3e38588d",
+            "b7c2c923a5014f6b18aa61fb0ca6a64ccb5e756d2f2fe1d19b23a81d8972175a"
+          ],
+          "@entity": {
+            "@id": "DE*XAA",
+            "name": {
+              "en": "Thuringian E-Charging (test)"
+            },
+            "description": {
+              "en": "A generated charging station operator of the Thuringia test network, around Erfurt, Weimar, Arnstadt."
+            },
+            "signingKeys": [
+              {
+                "@id": "5f515929c05dae35527ea9446561aa1702be0da8b172c5ab231da3018ab4770f",
+                "key": "pAECIAEhWCB/PZs6sj7oTqX9jhhzzRZlgjoM9DglrODMCBmqT8H7yCJYILSE6YRBD1pfQTyPrsv/2uqxDx1kGZOlU+LWpRBldy0R",
+                "notAfter": "2028-09-01T00:00:00.000Z",
+                "usages": [
+                  "priceStatements",
+                  "tariffs"
+                ]
+              },
+              {
+                "@id": "f6f1fe05adf3c4756073dc063764cd4ed1a8f93fbb9350876e47dc159b255285",
+                "key": "pAECIAEhWCDrcUJwFrtnaFsSRpMAwR8NCWxExN9l9opwy4/mmCGJ1SJYIMEz4O/Ja3xUopT+MzpWtCcCG+VkihAIHP/x4JXXVjLB",
+                "notAfter": "2028-09-01T00:00:00.000Z",
+                "usages": [
+                  "infrastructure"
+                ]
+              }
+            ],
+            "identityKeys": [
+              {
+                "@id": "25374fa6c0435b6ff1118c94384297d341fff541a071131f1c02014eefc99e54",
+                "key": "owEBIAYhWCD2Xe/YKdvgSbGwMWAjkTzxl0/xF7mF87jNOyQy96WASg=="
+              }
+            ],
+            "created": "2026-09-01T08:01:01.800Z",
+            "lastChange": "2026-09-22T22:50:51.600Z",
+            "chargingTariffs": {
+              "@size": 2,
+              "@leaves": [
+                {
+                  "@index": 0,
+                  "@auditPath": [
+                    "1000ea42620fa7356687980095cf0da88b3309cf39891ad5f9e4d05b681921a4"
+                  ],
+                  "@entity": {
+                    "@id": "DE*XAA*T_AC",
+                    "name": {
+                      "en": "AC charging"
+                    },
+                    "currency": "EUR",
+                    "elements": [
+                      {
+                        "priceComponents": [
+                          {
+                            "type": "ENERGY",
+                            "price": 0.4711,
+                            "stepSize": 1
+                          }
+                        ]
+                      }
+                    ],
+                    "created": "2026-09-02T08:01:33.600Z",
+                    "lastChange": "2026-09-03T04:01:33.600Z"
+                  }
+                }
+              ]
+            },
+            "EVSETemplates": {
+              "@merkleRoot": "bd71670217142d9d916459e3ed995e6009d9a7ab3b04f077d691f60009b6216e",
+              "@size": 2
+            },
+            "chargingPools": {
+              "@size": 38,
+              "@leaves": [
+                {
+                  "@index": 0,
+                  "@auditPath": [
+                    "e3d1a6919b41ba70c03ca531fde4f02d16054ab9cc880476b97c15243364c653",
+                    "5b7a8aa1cb6482cd72a10b5fea0452d02cf3af9c4df231580975a5568269e3a3",
+                    "5b96bb5c50cc153190a4647af4c2a9ef0f1e4a8d2ce081cdbe871cda43af62d3",
+                    "5ab5ed79eb55c85fe1a229ca1b8957d91c777cc2832165a5592554541f7c2357",
+                    "5a114c744943e6b7d62641f28d7c29dd5ff2b468a2aed3055eb900c83757e1d9",
+                    "00744a577e254f673c5a9d45e2b5ab91ff9771b1aa58a17fda347c2a9436040e"
+                  ],
+                  "@entity": {
+                    "@id": "DE*XAA*P1",
+                    "name": {
+                      "en": "Erfurt Theater"
+                    },
+                    "geoLocation": {
+                      "lat": 50.9646,
+                      "lng": 11.0529
+                    },
+                    "created": "2026-09-03T10:02:37.200Z",
+                    "lastChange": "2026-09-04T07:02:37.200Z",
+                    "chargingStations": {
+                      "@size": 1,
+                      "@leaves": [
+                        {
+                          "@index": 0,
+                          "@auditPath": [],
+                          "@entity": {
+                            "@id": "DE*XAA*S1",
+                            "EVSEs": [
+                              {
+                                "@id": "DE*XAA*E1*1",
+                                "templateIds": [
+                                  "DE*XAA*ET_AC"
+                                ],
+                                "created": "2026-09-03T10:02:37.200Z",
+                                "lastChange": "2026-09-03T10:02:37.200Z",
+                                "currentTypes": [
+                                  "AC_ThreePhases"
+                                ],
+                                "maxPower": 22000,
+                                "chargingConnectors": [
+                                  {
+                                    "@id": "1",
+                                    "format": "SOCKET",
+                                    "type": "IEC_62196_T2"
+                                  }
+                                ],
+                                "chargingTariffIds": [
+                                  "DE*XAA*T_AC"
+                                ]
+                              },
+                              {
+                                "@id": "DE*XAA*E1*2",
+                                "templateIds": [
+                                  "DE*XAA*ET_AC"
+                                ],
+                                "created": "2026-09-03T10:02:37.200Z",
+                                "lastChange": "2026-09-03T10:02:37.200Z",
+                                "maxPower": 11000,
+                                "currentTypes": [
+                                  "AC_ThreePhases"
+                                ],
+                                "chargingConnectors": [
+                                  {
+                                    "@id": "1",
+                                    "format": "SOCKET",
+                                    "type": "IEC_62196_T2"
+                                  }
+                                ],
+                                "chargingTariffIds": [
+                                  "DE*XAA*T_AC"
+                                ]
+                              }
+                            ],
+                            "created": "2026-09-03T10:02:37.200Z",
+                            "lastChange": "2026-09-03T10:02:37.200Z"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "attestations": [
+    {
+      "roamingNetworkId": "TH",
+      "commitId": "e2332e4c19d7ac05a9854d7e4106625b102fb081183b2d3c686b582602e73ea6",
+      "revision": 25,
+      "eTag": [
+        "effectiveTree",
+        "sha256",
+        "hex",
+        "683743dc31227f6be74678c435561a588ca06aca7fd4885b809ee50b0709998b"
+      ],
+      "role": "roamingNetworkOperator",
+      "signer": "THNO",
+      "signedAt": "2026-09-24T10:58:30.600Z",
+      "validUntil": "2026-09-24T11:13:30.600Z",
+      "algorithm": "ES256",
+      "keyId": "0b5a6fc3bb3ff0d07b75895466c933c99065b45ffc24d9a5e539b4b18f4dbbc4",
+      "value": "XKEdmLmrlizRc2l4Ofd2t2IdufY+MZGu8wUheV+0X0ppB0SMyHUxm6KGtmCdKdH5yRewfFe2LgaRRNLY1SUdKw=="
+    },
+    {
+      "roamingNetworkId": "TH",
+      "commitId": "e2332e4c19d7ac05a9854d7e4106625b102fb081183b2d3c686b582602e73ea6",
+      "revision": 25,
+      "eTag": [
+        "effectiveTree",
+        "sha256",
+        "hex",
+        "683743dc31227f6be74678c435561a588ca06aca7fd4885b809ee50b0709998b"
+      ],
+      "role": "roamingNetworkOperator",
+      "signer": "THNO",
+      "signedAt": "2026-09-24T10:58:30.600Z",
+      "validUntil": "2026-09-24T11:13:30.600Z",
+      "algorithm": "ES256",
+      "keyId": "45cc7c4c3bfbd2985a9f9384998b41b0caecceecf4f521a2f0d856a5e776ed14",
+      "value": "622qglX6j9hUO/ARZ50HhWVOkk1kZmTA8RjmdqL8A5vlefHJkRvahdrLyCmLwWNVnsE5514tW3y9/UZx7i0kHQ=="
+    },
+    {
+      "roamingNetworkId": "TH",
+      "commitId": "e2332e4c19d7ac05a9854d7e4106625b102fb081183b2d3c686b582602e73ea6",
+      "revision": 25,
+      "eTag": [
+        "effectiveTree",
+        "sha256",
+        "hex",
+        "683743dc31227f6be74678c435561a588ca06aca7fd4885b809ee50b0709998b"
+      ],
+      "role": "roamingNetworkOperator",
+      "signer": "THNO",
+      "signedAt": "2026-09-24T10:58:30.600Z",
+      "validUntil": "2026-09-24T11:13:30.600Z",
+      "algorithm": "ES256",
+      "keyId": "dffa220da4a30fc3cc51f13896900a42155df4143f3981d84706ef09de6b69b1",
+      "value": "3C1FODvgoNJqUEbFnJbxvEYOu2R/GveEganVMc10eejWvoTgtTUp1AhKPXM68WNdJNDuwrpqOinhDCddQgXjfQ=="
+    }
+  ]
+}

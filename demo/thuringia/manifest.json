@@ -1,0 +1,91 @@
+{
+  "id": "thuringia",
+  "title": "Thuringia, a generated test network",
+  "description": "A roaming network of medium size, generated and signed with test keys: 7 charging station operators, 195 charging pools, 417 charging stations and 834 EVSEs across Thuringia; 25 commits with change sets of several owners, a key rotation, a removed pool, a latecomer; 4 checkpoints signed by two witnesses, price statements and station proofs.",
+  "source": "tools/generate-demo-network.mjs",
+  "recordedAt": "2026-09-24T10:58:30.600Z",
+  "trustAnchor": "WWCP/TA-2:P1LJ683VCLTACVCC$C6REF6BSRI +CFGK/5OS/VAQKP11EX18+2R9MYXOJ$1*OB$$PC9PPF9F6BS7RT0GQ$R7LLIOQ23KTQ1+7TEMFMBB4KDGOUAJJZ*OWSDFM6F6BR6EN.87V8$28V23G$1P8SIKNAZ6IXQI$3H/ULS4+03+Y8:MMFVCBEC7%CYJCI/D8UA6%EZEDD3DOCC5UA QEZ347$CK4F-KEMVC.KE4REB8FA9DIWENPEJ/5S9EGDDB$CBECP9ESZCAIACPELTA38DUPCG/DB$CQWEA19MWEW9E0G7%:5I9E -DNPCGECD3D3/D+%5*VD$$EQ:5-3E7WEBAFCPES4FVPC-:5S3EJ$D3/D:+9PWE04EYODKWE7%EGVE:.D59DQJEI.E$VDZEDSN8F/D1$C$QECOE",
+  "witnesses": [
+    {
+      "witness": "witness.erfurt.example",
+      "key": {
+        "@id": "a5dd6d2f2da95350aee14190ecbd3f6d5bc9c89dd1951babbe11b1bd3e4fd074",
+        "key": "owEBIAYhWCAtZujc0RbutmQmNP8ibe2YnDA8uBbfIMdMgTbSVkrvxg=="
+      }
+    },
+    {
+      "witness": "witness.ilmenau.example",
+      "key": {
+        "@id": "a9c1d57cf76d764280fae579dc7c4c46ca03beca02059b9e511b0109e2fda712",
+        "key": "pAECIAEhWCA/r+yLmEtOhzhk9Cx5hyMM8TfWKiz+rmJjngkW2vGleiJYIOdYJb9XS94PBWkeBnmwgYn+JBKfOQ3M/s+N1AX/T6Pa"
+      }
+    }
+  ],
+  "requiredWitnesses": 2,
+  "files": [
+    {
+      "path": "TH-genesis.json",
+      "description": "Snapshot of the genesis: revision 0, the roaming network TH, its operator THNO and the key statement of its three holders"
+    },
+    {
+      "path": "TH-commits-since-genesis.json",
+      "description": "Commits 1 to 6"
+    },
+    {
+      "path": "TH-commits-since-checkpoint-0.json",
+      "description": "Commits 7 to 15"
+    },
+    {
+      "path": "TH-commits-since-checkpoint-1.json",
+      "description": "Commits 16 to 21"
+    },
+    {
+      "path": "TH-commits-since-checkpoint-2.json",
+      "description": "Commits 22 to 25"
+    },
+    {
+      "path": "TH-checkpoint-0.json",
+      "description": "Checkpoint 0, revision 6, signed by the operator and two witnesses"
+    },
+    {
+      "path": "TH-checkpoint-1.json",
+      "description": "Checkpoint 1, revision 15, signed by the operator and two witnesses"
+    },
+    {
+      "path": "TH-checkpoint-2.json",
+      "description": "Checkpoint 2, revision 21, signed by the operator and two witnesses, naming 4 price statements"
+    },
+    {
+      "path": "TH-checkpoint-2-priceStatements.json",
+      "description": "The price statements checkpoint 2 names"
+    },
+    {
+      "path": "TH-checkpoint-3.json",
+      "description": "Checkpoint 3, revision 25, signed by the operator and two witnesses, naming 2 price statements"
+    },
+    {
+      "path": "TH-checkpoint-3-priceStatements.json",
+      "description": "The price statements checkpoint 3 names"
+    },
+    {
+      "path": "TH-proof-DE_XAB_S1.json",
+      "description": "Proof of the charging station DE*XAB*S1 at the head, attested by the three holders"
+    },
+    {
+      "path": "TH-proof-DE_XAG_S1.json",
+      "description": "Proof of the charging station DE*XAG*S1 at the head, attested by the three holders"
+    },
+    {
+      "path": "TH-proof-DE_XAA_S1.json",
+      "description": "Proof of the charging station DE*XAA*S1 at the head, attested by the three holders"
+    },
+    {
+      "path": "TH-priceStatements-current.json",
+      "description": "The price statements of the EVSEs, as the operators signed them"
+    },
+    {
+      "path": "TH-head-snapshot.json",
+      "description": "Snapshot of the head with the runtime status of every EVSE (unsigned, random)"
+    }
+  ]
+}

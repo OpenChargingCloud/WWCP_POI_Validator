@@ -1,0 +1,28 @@
+{
+  "name": "wwcp-poi-validator",
+  "version": "0.1.0",
+  "description": "A static single-page validator and explorer for WWCP POI 3: from the trust anchor of a roaming network to its commits, their signers, the checkpoints witnesses signed and the effective charging infrastructure of every version, verified in the browser by WWCP_POI.TS.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "webpack --config webpack.config.cjs",
+    "watch": "webpack --config webpack.config.cjs --watch",
+    "vendor:qa": "node tools/vendor-qa-demo.mjs",
+    "generate:thuringia": "node tools/generate-demo-network.mjs",
+    "mock-server": "node tools/mock-poi-server.mjs"
+  },
+  "author": "GraphDefined GmbH <achim.friedland@graphdefined.com>",
+  "license": "AGPL-3.0-only",
+  "dependencies": {
+    "@open-charging-cloud/wwcp-poi": "file:../WWCP_POI.TS",
+    "leaflet": "^1.9.4",
+    "qrcode-generator": "^2.0.4"
+  },
+  "devDependencies": {
+    "@vanaheimr/cose": "^0.9.0",
+    "copy-webpack-plugin": "^14.0.0",
+    "terser-webpack-plugin": "^5.6.1",
+    "webpack": "^5.112.2",
+    "webpack-cli": "^7.2.3"
+  }
+}

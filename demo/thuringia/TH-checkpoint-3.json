@@ -1,0 +1,81 @@
+{
+  "@id": "4e3b8e5f5942d297cf859768f5c94d3f2c456a25286b55c98f5ccc1ef61edb15",
+  "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/checkpoint/v1",
+  "roamingNetworkId": "TH",
+  "epoch": 1,
+  "sequence": 3,
+  "previousId": "8078a43b2c9acfd620e602f60a1d4eb9298212cd30269b85bd7aa07eb0db9ac8",
+  "commitId": "e2332e4c19d7ac05a9854d7e4106625b102fb081183b2d3c686b582602e73ea6",
+  "revision": 25,
+  "eTags": [
+    [
+      "json",
+      "sha256",
+      "hex",
+      "8efa45864e1e9f2b3f1471b14d9cff42fe772e0c12cc799968987d722846da79"
+    ],
+    [
+      "cbor",
+      "sha256",
+      "hex",
+      "a900bafd524fcf3e5753ecfd5388352094eeca06a7e15fd3fa61726cc42ee996"
+    ],
+    [
+      "effectiveTree",
+      "sha256",
+      "hex",
+      "683743dc31227f6be74678c435561a588ca06aca7fd4885b809ee50b0709998b"
+    ]
+  ],
+  "commits": {
+    "@merkleRoot": "daccfeaf4ddad31278a629bd9913ba6bb0886de6a7131c94c4320f0f3c306de0",
+    "@size": 4
+  },
+  "priceStatements": {
+    "@merkleRoot": "d18717c1561bed146a7741d1de85422b9a676f1de13f70d4394d0b19c49a01f9",
+    "@size": 2
+  },
+  "createdAt": "2026-09-24T10:22:27.000Z",
+  "signatures": [
+    {
+      "role": "roamingNetworkOperator",
+      "signer": "THNO",
+      "signedAt": "2026-09-24T10:22:28.200Z",
+      "algorithm": "ES256",
+      "keyId": "0b5a6fc3bb3ff0d07b75895466c933c99065b45ffc24d9a5e539b4b18f4dbbc4",
+      "value": "d7NVE4r8fqHLaE28CQUxDX3cTkFDopb0QBd8us/9DC+7Qy7ZwmeHISUnnhavOQO+LC+ZPdCwfhyFqpEqENqBpg=="
+    },
+    {
+      "role": "roamingNetworkOperator",
+      "signer": "THNO",
+      "signedAt": "2026-09-24T10:22:29.400Z",
+      "algorithm": "ES256",
+      "keyId": "45cc7c4c3bfbd2985a9f9384998b41b0caecceecf4f521a2f0d856a5e776ed14",
+      "value": "z6nGDLeQ1HGvToGHKVupV+uN6yKxdNBANc/1VUazMV++vA+SbJ+vp4XjaEh8uX9X2vbcVS3PjQ+N21PnLjLf3g=="
+    },
+    {
+      "role": "roamingNetworkOperator",
+      "signer": "THNO",
+      "signedAt": "2026-09-24T10:22:30.600Z",
+      "algorithm": "ES256",
+      "keyId": "dffa220da4a30fc3cc51f13896900a42155df4143f3981d84706ef09de6b69b1",
+      "value": "AjwuhvMzWlDthqhABDj+QzIbwOgPIVZXL1HcLITKdYii+HEkoLvtOuSd4wERgALI5TAXp5/A2J5JyZbaT2lQRg=="
+    },
+    {
+      "role": "witness",
+      "signer": "witness.erfurt.example",
+      "signedAt": "2026-09-24T10:25:30.600Z",
+      "algorithm": "Ed25519",
+      "keyId": "a5dd6d2f2da95350aee14190ecbd3f6d5bc9c89dd1951babbe11b1bd3e4fd074",
+      "value": "XnAAvP/XUGuvQeUSnyMQI3eKGMUkNX9nZhZjApe/66X2UZDduareO6jnvJlq7+BYCybdD+SD/2x8R6oCk4x2BQ=="
+    },
+    {
+      "role": "witness",
+      "signer": "witness.ilmenau.example",
+      "signedAt": "2026-09-24T10:28:30.600Z",
+      "algorithm": "ES256",
+      "keyId": "a9c1d57cf76d764280fae579dc7c4c46ca03beca02059b9e511b0109e2fda712",
+      "value": "WTSGaAcY1f6q8ZzuZDbP8Y8CYIE0SModt+xvq+y2JZsR4HksH1HrlUVVpRp2dLHBlpCrYBDe9CncbkzTQ+Nrjw=="
+    }
+  ]
+}

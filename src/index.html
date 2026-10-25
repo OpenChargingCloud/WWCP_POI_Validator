@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="description" content="Verify and explore a WWCP POI 3 roaming network from its trust anchor: commits, their signers, checkpoints and witnesses, the effective charging infrastructure of every version, station proofs and price statements. Runs entirely in your browser.">
+
+    <title>WWCP POI Validator</title>
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23157a6e'/%3E%3Cpath d='M36 8 18 36h12l-4 20 20-30H34z' fill='white'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="leaflet.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="validator.js" defer></script>
+
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="wrap">
+            <h1>WWCP POI <span class="thin">Validator</span></h1>
+            <p class="tagline">
+                Follow a <a href="https://github.com/OpenChargingCloud/WWCP_POI" rel="noopener">WWCP&nbsp;POI&nbsp;3</a> roaming network
+                from its trust anchor: who signed which commit, which checkpoints the witnesses saw, and what the charging
+                infrastructure is in every version — verified by
+                <a href="https://github.com/OpenChargingCloud/WWCP_POI.TS" rel="noopener">WWCP_POI.TS</a> in your browser.
+                Nothing is uploaded.
+            </p>
+        </div>
+    </header>
+
+    <main class="wrap">
+
+        <section class="panel source">
+
+            <div class="source-grid">
+
+                <div class="source-col">
+                    <div class="source-head">
+                        <h2><span class="step">1</span> Trust anchor</h2>
+                        <span class="hint">what an app pins: the text of the QR code, its URL or its JSON</span>
+                    </div>
+                    <textarea id="trustAnchor" rows="4" spellcheck="false" autocomplete="off" autocapitalize="off"
+                              placeholder="WWCP/TA-2:B7LJ683VC…&#10;https://hub.example/poi/RNs/rn1?keys=…&amp;minConsensus=2&#10;{ &quot;@id&quot;: &quot;rn1&quot;, &quot;urls&quot;: [ … ], &quot;keys&quot;: [ … ] }"></textarea>
+                    <div class="row">
+                        <button id="loadServers" type="button" class="primary">Load from its servers</button>
+                        <input id="stationIds" type="text" spellcheck="false" placeholder="optional: EVSE or station ids for proofs, e.g. DE*GEF*E1*1">
+                    </div>
+                    <p class="note">The servers are asked what POI_API serves: epochs, checkpoints, snapshots, commits, the archive, attestations and price statements. They must allow this page to read their answers (CORS).</p>
+                </div>
+
+                <div class="source-col">
+                    <div class="source-head">
+                        <h2><span class="step">2</span> Documents</h2>
+                        <span class="hint">or check what you have as files</span>
+                    </div>
+                    <label id="dropZone" class="drop-zone" for="fileInput">
+                        <strong>Drop POI documents here</strong>, or click to choose them:
+                        snapshots, commits, checkpoints, archive segments, station proofs, price statements, attestations,
+                        the evidence of a charging session, a list of trusted witnesses …
+                        <input type="file" id="fileInput" multiple accept=".json,.txt,application/json,text/plain" hidden>
+                    </label>
+                    <div class="demos">
+                        <span class="demos-label">Demos:</span>
+                        <span id="demoButtons"></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <details class="settings" id="settings">
+                <summary>Verification settings <span id="settingsSummary" class="hint"></span></summary>
+                <div class="settings-grid">
+                    <div class="setting">
+                        <label for="atMode">Verify as of</label>
+                        <div class="row">
+                            <select id="atMode">
+                                <option value="now">now</option>
+                                <option value="recorded">the time of the recording</option>
+                                <option value="custom">a time of my choice</option>
+                            </select>
+                            <input id="atCustom" type="datetime-local" step="1">
+                        </div>
+                        <p class="note">Key statements, attestations and price statements are valid for a time. Attestations of a recorded run were valid for 15 minutes back then.</p>
+                    </div>
+                    <div class="setting">
+                        <label for="requiredWitnesses">Witnesses a checkpoint needs</label>
+                        <input id="requiredWitnesses" type="number" min="0" max="16" value="0">
+                        <p class="note">Witnesses are trusted by configuration, never by what the network says about them (10.2).</p>
+                    </div>
+                    <div class="setting wide">
+                        <label for="witnesses">Trusted witnesses <span class="hint">[ { "witness": "…", "key": { "@id": "…", "key": "…" } } ]</span></label>
+                        <textarea id="witnesses" rows="3" spellcheck="false" placeholder="[]"></textarea>
+                    </div>
+                </div>
+            </details>
+
+            <div class="actions">
+                <button id="verifyButton" type="button" class="primary">Verify again</button>
+                <button id="clearButton" type="button" class="ghost">Clear</button>
+                <div id="status" class="status idle" role="status">Pick a demo, give a trust anchor, or drop documents.</div>
+            </div>
+            <div class="progress" id="progress" hidden><div id="progressBar"></div></div>
+
+        </section>
+
+        <nav class="tabs" id="tabs" role="tablist" aria-label="Views">
+            <button type="button" role="tab" data-tab="primer"   class="active">How it works</button>
+            <button type="button" role="tab" data-tab="overview" disabled>Overview</button>
+            <button type="button" role="tab" data-tab="trust"    disabled>Trust</button>
+            <button type="button" role="tab" data-tab="history"  disabled>History</button>
+            <button type="button" role="tab" data-tab="network"  disabled>Network</button>
+            <button type="button" role="tab" data-tab="proofs"   disabled>Proofs &amp; prices</button>
+            <button type="button" role="tab" data-tab="documents" disabled>Documents</button>
+        </nav>
+
+        <section id="primer" class="primer">
+
+            <div class="panel">
+                <div class="panel-head"><h2>WWCP POI in five minutes</h2></div>
+                <div class="panel-body prose">
+
+                    <p class="lead">
+                        Roaming protocols pass lists of charging stations and tariffs from server to server. Nobody can prove
+                        later what was published when, and an app shows whatever some server tells it. <strong>WWCP POI</strong>
+                        turns the slowly changing data of e-mobility — charging pools, stations, EVSEs, connectors, energy meters
+                        with their public keys, tariffs, manufacturers, transparency software — into a <strong>signed, versioned
+                        history</strong>: an app checks a charging station and its price before charging begins, from one QR code,
+                        and can still prove it months later.
+                    </p>
+
+                    <figure class="diagram">
+                        <svg viewBox="0 0 1040 470" role="img" aria-labelledby="diagramTitle">
+                            <title id="diagramTitle">How trust, history and proofs fit together in WWCP POI</title>
+                            <defs>
+                                <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                                    <path d="M0,0 L10,5 L0,10 z" class="d-arrowhead"/>
+                                </marker>
+                            </defs>
+
+                            <text x="14" y="24" class="d-lane">TRUST</text>
+                            <text x="14" y="190" class="d-lane">HISTORY</text>
+                            <text x="14" y="362" class="d-lane">APP</text>
+
+                            <!-- Trust lane -->
+                            <g class="d-box d-trust"><rect x="14" y="36" width="210" height="96" rx="10"/>
+                                <text x="28" y="60" class="d-title">Trust anchor (QR code)</text>
+                                <text x="28" y="82">network id, server URLs,</text>
+                                <text x="28" y="100">@ids of the operator's</text>
+                                <text x="28" y="118">identity keys, minConsensus</text></g>
+                            <g class="d-box d-trust"><rect x="268" y="36" width="230" height="96" rx="10"/>
+                                <text x="282" y="60" class="d-title">Key statement</text>
+                                <text x="282" y="82">identity keys of the holders</text>
+                                <text x="282" y="100">of the operator, its quorum,</text>
+                                <text x="282" y="118">signed by that quorum</text></g>
+                            <g class="d-box d-trust"><rect x="542" y="36" width="230" height="96" rx="10"/>
+                                <text x="556" y="60" class="d-title">Signing key certificates</text>
+                                <text x="556" y="82">each holder certifies its</text>
+                                <text x="556" y="100">own signing keys with one</text>
+                                <text x="556" y="118">of its identity keys</text></g>
+                            <g class="d-box d-key"><rect x="816" y="36" width="210" height="96" rx="10"/>
+                                <text x="830" y="60" class="d-title">Signing keys</text>
+                                <text x="830" y="82">sign commits, checkpoints</text>
+                                <text x="830" y="100">and attestations — one</text>
+                                <text x="830" y="118">voice per holder</text></g>
+                            <path d="M224 84 H264" class="d-line" marker-end="url(#arrow)"/>
+                            <path d="M498 84 H538" class="d-line" marker-end="url(#arrow)"/>
+                            <path d="M772 84 H812" class="d-line" marker-end="url(#arrow)"/>
+
+                            <!-- History lane -->
+                            <g class="d-box"><rect x="14" y="204" width="120" height="104" rx="10"/>
+                                <text x="28" y="228" class="d-title">Genesis</text>
+                                <text x="28" y="250">revision 0</text>
+                                <text x="28" y="268">the network,</text>
+                                <text x="28" y="286">its operator</text></g>
+                            <g class="d-box"><rect x="170" y="204" width="200" height="104" rx="10"/>
+                                <text x="184" y="228" class="d-title">Commit, revision n</text>
+                                <text x="184" y="250">change set, signed by the</text>
+                                <text x="184" y="268">owners of what it changes;</text>
+                                <text x="184" y="286">ETags of the new version</text></g>
+                            <g class="d-box"><rect x="406" y="204" width="110" height="104" rx="10"/>
+                                <text x="420" y="228" class="d-title">…</text>
+                                <text x="420" y="250">each one</text>
+                                <text x="420" y="268">applied and</text>
+                                <text x="420" y="286">checked again</text></g>
+                            <g class="d-box d-witness"><rect x="552" y="204" width="214" height="104" rx="10"/>
+                                <text x="566" y="228" class="d-title">Checkpoint</text>
+                                <text x="566" y="250">tree of the commits since</text>
+                                <text x="566" y="268">the last one, signed by the</text>
+                                <text x="566" y="286">operator and by witnesses</text></g>
+                            <g class="d-box d-epoch"><rect x="802" y="204" width="224" height="104" rx="10"/>
+                                <text x="816" y="228" class="d-title">Final checkpoint</text>
+                                <text x="816" y="250">closes the epoch, names the</text>
+                                <text x="816" y="268">next profiles: e.g. SHA-512</text>
+                                <text x="816" y="286">and ML-DSA from then on</text></g>
+                            <path d="M134 256 H166" class="d-line" marker-end="url(#arrow)"/>
+                            <path d="M370 256 H402" class="d-line" marker-end="url(#arrow)"/>
+                            <path d="M516 256 H548" class="d-line" marker-end="url(#arrow)"/>
+                            <path d="M766 256 H798" class="d-line" marker-end="url(#arrow)"/>
+                            <path d="M880 132 C 880 170, 300 160, 290 200" class="d-line d-dashed" marker-end="url(#arrow)"/>
+                            <path d="M900 132 C 900 170, 660 170, 660 200" class="d-line d-dashed" marker-end="url(#arrow)"/>
+
+                            <!-- App lane -->
+                            <g class="d-box d-app"><rect x="14" y="376" width="300" height="80" rx="10"/>
+                                <text x="28" y="400" class="d-title">Station proof</text>
+                                <text x="28" y="422">the effective network, pruned to one</text>
+                                <text x="28" y="440">station: audit paths up to the root</text></g>
+                            <g class="d-box d-app"><rect x="350" y="376" width="300" height="80" rx="10"/>
+                                <text x="364" y="400" class="d-title">Attestations</text>
+                                <text x="364" y="422">the operator's quorum signs the root</text>
+                                <text x="364" y="440">of the head, valid for minutes</text></g>
+                            <g class="d-box d-app"><rect x="686" y="376" width="340" height="80" rx="10"/>
+                                <text x="700" y="400" class="d-title">Price statements</text>
+                                <text x="700" y="422">ad hoc prices, signed by the charging</text>
+                                <text x="700" y="440">station operator, chained, in checkpoints</text></g>
+                            <path d="M260 308 C 260 340, 164 340, 164 372" class="d-line d-dashed" marker-end="url(#arrow)"/>
+                            <path d="M960 132 C 1036 200, 1036 300, 560 372" class="d-line d-dashed" marker-end="url(#arrow)"/>
+                            <path d="M314 416 H346" class="d-line" marker-end="url(#arrow)"/>
+                        </svg>
+                        <figcaption>Solid arrows: what leads to what. Dashed: what signs, or what is proven against what.</figcaption>
+                    </figure>
+
+                    <div class="primer-grid">
+
+                        <div class="primer-card">
+                            <h3>1 · Trust from one QR code <a class="spec" href="https://github.com/OpenChargingCloud/WWCP_POI/blob/master/SPECIFICATION.md#86-key-statements-and-trust-anchors" rel="noopener">§8.6</a></h3>
+                            <p>The <strong>trust anchor</strong> pins the thumbprints of the identity keys of the <em>roaming network operator</em> and its quorum: several companies may hold its keys together, e.g. 2 of 3. Its <strong>key statement</strong> is signed by that quorum; each holder certifies its own <strong>signing keys</strong>. No single key, and no server, is trusted on its own.</p>
+                        </div>
+
+                        <div class="primer-card">
+                            <h3>2 · Versions, change sets, owners <a class="spec" href="https://github.com/OpenChargingCloud/WWCP_POI/blob/master/SPECIFICATION.md#4-change-sets" rel="noopener">§2–4</a></h3>
+                            <p>A version of a network is one JSON document with three <strong>ETags</strong>: SHA-256 of its canonical JSON, of its deterministic CBOR, and the root of its effective tree. A <strong>change set</strong> leads from one version to the next and is signed by the <strong>owners</strong> of what it changes: a charging station operator signs its own pools and tariffs, the roaming network operator decides who is a member.</p>
+                        </div>
+
+                        <div class="primer-card">
+                            <h3>3 · Commits <a class="spec" href="https://github.com/OpenChargingCloud/WWCP_POI/blob/master/SPECIFICATION.md#5-commits" rel="noopener">§5</a></h3>
+                            <p>A <strong>commit</strong> is a change set applied to its parent: its identification is the hash of its content, and the operator's quorum signs it. Every verifier applies the change set again and must reach exactly the ETags the commit names — byte for byte, whether the server runs C# or this page runs TypeScript.</p>
+                        </div>
+
+                        <div class="primer-card">
+                            <h3>4 · Templates and the effective tree <a class="spec" href="https://github.com/OpenChargingCloud/WWCP_POI/blob/master/SPECIFICATION.md#8-proofs-of-entities-by-a-signed-hash-tree" rel="noopener">§8–9</a></h3>
+                            <p><strong>Templates</strong> give a thousand EVSEs the same connectors and power once. The <strong>effective</strong> content resolves them; its hash tree has a Merkle tree (RFC&nbsp;9162) per child array. A <strong>station proof</strong> is the network pruned to one station, checked with some dozen hashes and one signature per holder.</p>
+                        </div>
+
+                        <div class="primer-card">
+                            <h3>5 · Checkpoints and witnesses <a class="spec" href="https://github.com/OpenChargingCloud/WWCP_POI/blob/master/SPECIFICATION.md#10-checkpoints" rel="noopener">§10</a></h3>
+                            <p>A <strong>checkpoint</strong> is the Merkle tree of the commits since the last one. Independent <strong>witnesses</strong> follow the history commit by commit and sign it; a witness never signs two checkpoints of one sequence, so a server showing different histories to different people is caught. Checkpoints are also where newcomers join and old commits are archived.</p>
+                        </div>
+
+                        <div class="primer-card">
+                            <h3>6 · Epochs and prices <a class="spec" href="https://github.com/OpenChargingCloud/WWCP_POI/blob/master/SPECIFICATION.md#11-epochs" rel="noopener">§11–12</a></h3>
+                            <p>When algorithms must change, the <strong>final checkpoint</strong> closes an epoch and names the next profiles; every server derives the same genesis. Prices that change by the minute are <strong>price statements</strong> of the charging station operator, chained per EVSE and anchored in checkpoints — the evidence of a charging session.</p>
+                        </div>
+
+                    </div>
+
+                    <h3>What this page checks, and where you see it</h3>
+                    <ul class="checklist">
+                        <li><strong>Trust</strong> — the key statement against the trust anchor, the certificates of the signing keys, and how the keys move on through the history (key succession, epochs).</li>
+                        <li><strong>History</strong> — every commit: its identification, its parent, its change set applied again with the signatures of its owners, the ETags it leads to, the quorum of the operator; every checkpoint with its commits tree, the operator and the witnesses; the price statements checkpoints name.</li>
+                        <li><strong>Network</strong> — any version, as stored or effective: where each value comes from (its own, or a template), the commits that changed an entity, and its path through the effective tree up to the root the commit names.</li>
+                        <li><strong>Proofs &amp; prices</strong> — station proofs as an app checks them, price statements, proofs of commits and price statements in checkpoints, attestations, the archive, and the evidence of a charging session.</li>
+                    </ul>
+
+                </div>
+            </div>
+
+        </section>
+
+        <section id="view" class="view" hidden></section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap">
+            <p>
+                WWCP POI Validator <span id="appVersion"></span>, built on
+                <a href="https://github.com/OpenChargingCloud/WWCP_POI.TS" rel="noopener">WWCP_POI.TS</a> <span id="poiVersion"></span>.
+                The map shows tiles of <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap</a>.
+            </p>
+            <p>
+                <a href="https://github.com/OpenChargingCloud/WWCP_POI/blob/master/SPECIFICATION.md" rel="noopener">Specification</a> ·
+                <a href="https://github.com/OpenChargingCloud/WWCP_POI" rel="noopener">WWCP_POI (C#)</a> ·
+                <a href="https://github.com/OpenChargingCloud/WWCPPOIConformanceTests" rel="noopener">Conformance tests</a> ·
+                <a href="https://www.rfc-editor.org/rfc/rfc9162#section-2.1" rel="noopener">RFC 9162 (Merkle trees)</a> ·
+                <a href="https://www.rfc-editor.org/rfc/rfc9679" rel="noopener">RFC 9679 (COSE key thumbprints)</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

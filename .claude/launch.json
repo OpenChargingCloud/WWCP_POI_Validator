@@ -1,0 +1,17 @@
+{
+    "version": "0.0.1",
+    "configurations": [
+        {
+            "name": "validator",
+            "runtimeExecutable": "npx",
+            "runtimeArgs": ["--yes", "http-server", "dist", "-p", "8138", "-c-1", "--silent"],
+            "port": 8138
+        },
+        {
+            "name": "mock-poi-server",
+            "runtimeExecutable": "node",
+            "runtimeArgs": ["tools/mock-poi-server.mjs"],
+            "port": 8139
+        }
+    ]
+}

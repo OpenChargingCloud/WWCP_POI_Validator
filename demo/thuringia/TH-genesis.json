@@ -1,0 +1,204 @@
+{
+  "timestamp": "2026-09-01T08:01:01.800Z",
+  "commit": {
+    "@id": "4d54b92eeebabbc8c02c1e99464eea7ad683ccde69dc3c20553061d93dfbac80",
+    "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
+    "roamingNetworkId": "TH",
+    "revision": 0,
+    "eTags": [
+      [
+        "json",
+        "sha256",
+        "hex",
+        "78819eed8c0180600b5940bbb466297bc31e25d4fba262cc821ca4af65a0aaea"
+      ],
+      [
+        "cbor",
+        "sha256",
+        "hex",
+        "11371aa32c8ba9ec907552b817a171234961446d5574037973d12a0eeac0f004"
+      ],
+      [
+        "effectiveTree",
+        "sha256",
+        "hex",
+        "eb0e6c902fe7afbff99e4a817b146c1b53d623b849c3a58cf6863d7fd024ccae"
+      ]
+    ],
+    "signatures": [
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-01T08:01:00.600Z",
+        "algorithm": "ES256",
+        "keyId": "0b5a6fc3bb3ff0d07b75895466c933c99065b45ffc24d9a5e539b4b18f4dbbc4",
+        "value": "6JGu9GBVopDGM+CZ2YyZHle9EZEE+8H56/hTxs+ZOCG9kXtbNWs5fChyATCYPIJmno4EEbJdJQtwwQku7SLxEQ=="
+      },
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-01T08:01:01.200Z",
+        "algorithm": "ES256",
+        "keyId": "45cc7c4c3bfbd2985a9f9384998b41b0caecceecf4f521a2f0d856a5e776ed14",
+        "value": "GS/O+qqZ+jmO/szMFuTrJAWjg+LHnXHRJmAtptVqKUBD4YFuVGcZIXkYZT2tw29Rz0pZYDIEQvu5AVmXAqjIfg=="
+      },
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-01T08:01:01.800Z",
+        "algorithm": "ES256",
+        "keyId": "dffa220da4a30fc3cc51f13896900a42155df4143f3981d84706ef09de6b69b1",
+        "value": "bJA+5/uuDdKV/CaKPGuBdTLkz5/y+E4rn02K5A1b8GosVt+7v7wZ5cI4vd7e2doBq236TNXlnn1UMD+GKmJiIw=="
+      }
+    ]
+  },
+  "roamingNetwork": {
+    "@id": "TH",
+    "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/v1",
+    "name": {
+      "en": "Thuringia Test Network"
+    },
+    "description": {
+      "en": "A generated test network of WWCP POI 3: seven charging station operators across Thuringia, some hundred charging stations, signed with test keys."
+    },
+    "operator": {
+      "@id": "THNO",
+      "name": {
+        "en": "Thuringia Network Operator (test)"
+      },
+      "minConsensus": 2,
+      "keyStatement": {
+        "roamingNetworkId": "TH",
+        "roamingNetworkOperatorId": "THNO",
+        "identityKeys": [
+          {
+            "@id": "6fe746c144c23fc718340e7adefdb98535a7d3891e4ef4ee24a517e3456ab210",
+            "key": "pAECIAIhWDAnTeIJLsZYMZ1wZI7HjPUqlXmDkisSorQ8gjlxVnv1xTpYAkReNaHAwpd5B2YMFVQiWDALTIJZczuKV+pAqapsmvHi4ujbBKs+bvPog4KpCYW6hv7QIYWuFqEvpgMAA4Ke74Q=",
+            "holder": "Wartburg Trust"
+          },
+          {
+            "@id": "933d6618a113bee4fce2a2d0082f0dc416e2afb6c3c70e7d5b62cc67c76249ed",
+            "key": "pAECIAIhWDCCk5DtHzjgcEUR1XNVahJQausPpuiSldLWfxXfT/qj5QKGaseHLw60KXbo061eKGAiWDDoFnRkDhVsUMyO+em37n/UTX5dnIoRro1JdVk4XtEq5QDzZR8xPr8jPAUPUvvOAN0=",
+            "holder": "Kyffhaeuser Trust"
+          },
+          {
+            "@id": "d6ea7eaddc2ea9d5d1f49ebd0c98e6c87a9359086a5df19699acc4d66be13363",
+            "key": "owEBIAYhWCCB3vnA7a4j+MKTNTVxiVwS+ueZGjytXmqXpGFONMkAFA==",
+            "holder": "Rennsteig Trust"
+          }
+        ],
+        "minConsensus": 2,
+        "signedAt": "2026-09-01T08:00:00.000Z",
+        "validUntil": "2028-08-31T00:00:00.000Z",
+        "signatures": [
+          {
+            "algorithm": "ES384",
+            "keyId": "933d6618a113bee4fce2a2d0082f0dc416e2afb6c3c70e7d5b62cc67c76249ed",
+            "value": "f3YhcuJFQX2or244l/WFGiY29EXgSq/8f2bmgNDVi/mYuHHzIzKQG5wQ86N4biNiQo3BcEwVyYqR7av9ysZnuNSgdEPKj9ovkYj47dsMeET7nWsdKCDV2iu4Xom+3m/J"
+          },
+          {
+            "algorithm": "Ed25519",
+            "keyId": "d6ea7eaddc2ea9d5d1f49ebd0c98e6c87a9359086a5df19699acc4d66be13363",
+            "value": "4ORuOgCjR4a720PO8PQzSxbae3jMC0hdIymx+j49ecfJxaxQlSLQk1QDd12dq6D8rvkWOOyReC6eZDS5q2ocAA=="
+          },
+          {
+            "algorithm": "ES384",
+            "keyId": "6fe746c144c23fc718340e7adefdb98535a7d3891e4ef4ee24a517e3456ab210",
+            "value": "dJD9sYzS1MmLFS0ypuzKwT6jZlGYY25SMNezXFDu3PMOHKu++YJMh2fDV0FlKYHyCCtURepGJ+19IKYOoI3g3BcXZm9/DKgHQGA1MadFwzEDL9tkzIz8qcnpFWeSSnMK"
+          }
+        ]
+      },
+      "signingKeyCertificates": [
+        {
+          "roamingNetworkOperatorId": "THNO",
+          "signingKey": {
+            "@id": "0b5a6fc3bb3ff0d07b75895466c933c99065b45ffc24d9a5e539b4b18f4dbbc4",
+            "key": "pAECIAEhWCC3tFiJOsWfD6hxC+UZAi+rjZGSiLhPx6cwScq6o/8xYSJYIGh+2X6WVa/7aI5fr1iE4ESQUaXNm9JIpZkBxfFJ1XwT",
+            "notAfter": "2028-09-01T00:00:00.000Z",
+            "holder": "Kyffhaeuser Trust",
+            "usages": [
+              "party"
+            ]
+          },
+          "signedAt": "2026-09-01T08:00:00.000Z",
+          "algorithm": "ES384",
+          "keyId": "933d6618a113bee4fce2a2d0082f0dc416e2afb6c3c70e7d5b62cc67c76249ed",
+          "value": "G0RD8EirIv4lgAPoIX2yRzr9v2kVpUIgKzVROZKPfzj3IpBr4BqXMYkJ4C/b4StHjeuUFnm4UzLgG3CRynjZuna2N7ADXTm5kSFM4jnRJvmSj8dWJQO7QA9KwxrxibbG"
+        },
+        {
+          "roamingNetworkOperatorId": "THNO",
+          "signingKey": {
+            "@id": "45cc7c4c3bfbd2985a9f9384998b41b0caecceecf4f521a2f0d856a5e776ed14",
+            "key": "pAECIAEhWCC//on/WRhBev1kM5KGsGXfaVgC4HTbVBE99izRs+yBriJYIAuYm1nfMUE9mwGn10eg1EytmG8dfTG5rwc1b/VV38c5",
+            "notAfter": "2028-09-01T00:00:00.000Z",
+            "holder": "Rennsteig Trust",
+            "usages": [
+              "party"
+            ]
+          },
+          "signedAt": "2026-09-01T08:00:00.000Z",
+          "algorithm": "Ed25519",
+          "keyId": "d6ea7eaddc2ea9d5d1f49ebd0c98e6c87a9359086a5df19699acc4d66be13363",
+          "value": "78heCvF+VjLPbROX/zNhomdBUUHHiLkDYTAAXLaL1VL2AbZkc+5OK5G78Czeq2NgCt//+tymbZXQO5UFVKBNDA=="
+        },
+        {
+          "roamingNetworkOperatorId": "THNO",
+          "signingKey": {
+            "@id": "dffa220da4a30fc3cc51f13896900a42155df4143f3981d84706ef09de6b69b1",
+            "key": "pAECIAEhWCCqOxP0kt9h39j6ZI7VcPZqmjyruKFYAG0Hy7a5Qr0NGCJYIGp5n5aOL7l8L3sU4aMSKreR3gzR+td+yaWIaAGcm5Gg",
+            "notAfter": "2028-09-01T00:00:00.000Z",
+            "holder": "Wartburg Trust",
+            "usages": [
+              "party"
+            ]
+          },
+          "signedAt": "2026-09-01T08:00:00.000Z",
+          "algorithm": "ES384",
+          "keyId": "6fe746c144c23fc718340e7adefdb98535a7d3891e4ef4ee24a517e3456ab210",
+          "value": "yytkVQ5nNoQkNrSc08LWTE49bfTxLOYHDTo1/5COddc3ltvRx/hbA4GXCxUClyO/CP/OlicOVIVZR6yODxqx+Jxt9K0SbH01UmrMLbN356NmU8qsMgbdfF0ruMDmjB9M"
+        }
+      ],
+      "identityKeys": [
+        {
+          "@id": "6fe746c144c23fc718340e7adefdb98535a7d3891e4ef4ee24a517e3456ab210",
+          "key": "pAECIAIhWDAnTeIJLsZYMZ1wZI7HjPUqlXmDkisSorQ8gjlxVnv1xTpYAkReNaHAwpd5B2YMFVQiWDALTIJZczuKV+pAqapsmvHi4ujbBKs+bvPog4KpCYW6hv7QIYWuFqEvpgMAA4Ke74Q=",
+          "holder": "Wartburg Trust"
+        },
+        {
+          "@id": "933d6618a113bee4fce2a2d0082f0dc416e2afb6c3c70e7d5b62cc67c76249ed",
+          "key": "pAECIAIhWDCCk5DtHzjgcEUR1XNVahJQausPpuiSldLWfxXfT/qj5QKGaseHLw60KXbo061eKGAiWDDoFnRkDhVsUMyO+em37n/UTX5dnIoRro1JdVk4XtEq5QDzZR8xPr8jPAUPUvvOAN0=",
+          "holder": "Kyffhaeuser Trust"
+        },
+        {
+          "@id": "d6ea7eaddc2ea9d5d1f49ebd0c98e6c87a9359086a5df19699acc4d66be13363",
+          "key": "owEBIAYhWCCB3vnA7a4j+MKTNTVxiVwS+ueZGjytXmqXpGFONMkAFA==",
+          "holder": "Rennsteig Trust"
+        }
+      ],
+      "created": "2026-09-01T08:00:00.000Z",
+      "lastChange": "2026-09-01T08:00:00.000Z"
+    },
+    "created": "2026-09-01T08:00:00.000Z",
+    "lastChange": "2026-09-01T08:00:00.000Z",
+    "eTags": [
+      [
+        "json",
+        "sha256",
+        "base64",
+        "eIGe7YwBgGALWUC7tGYpe8MeJdT7omLMghykr2Wgquo="
+      ],
+      [
+        "cbor",
+        "sha256",
+        "base64",
+        "ETcaoyyLqeyQdVK4F6FxI0lhRG1VdAN5c9EqDurA8AQ="
+      ],
+      [
+        "effectiveTree",
+        "sha256",
+        "base64",
+        "6w5skC/nr7/5nkqBexRsG1PWI7hJw6WM9oY9f9AkzK4="
+      ]
+    ]
+  }
+}

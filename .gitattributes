@@ -1,0 +1,2 @@
+# The demo documents are signed as published: keep their exact bytes across checkouts.
+demo/** -text
