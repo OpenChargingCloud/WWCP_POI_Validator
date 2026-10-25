@@ -177,7 +177,7 @@ function jsonNode(key, value, open, path, highlight) {
     const note     = highlight?.(path, value);
 
     if (!isObject(value) && !isArray(value)) {
-        row.append(h('span', 'j-toggle-space'), keyLabel, keyLabel ? h('span', 'j-punct', ': ') : null, scalar(value), note ?? null);
+        append(row, [ h('span', 'j-toggle-space'), keyLabel, keyLabel ? h('span', 'j-punct', ': ') : null, scalar(value), note ]);
         return row;
     }
 
@@ -185,7 +185,7 @@ function jsonNode(key, value, open, path, highlight) {
     const brackets = isArray(value) ? [ '[', ']' ] : [ '{', '}' ];
 
     if (entries.length === 0) {
-        row.append(h('span', 'j-toggle-space'), keyLabel, keyLabel ? h('span', 'j-punct', ': ') : null, h('span', 'j-punct', brackets.join('')), note ?? null);
+        append(row, [ h('span', 'j-toggle-space'), keyLabel, keyLabel ? h('span', 'j-punct', ': ') : null, h('span', 'j-punct', brackets.join('')), note ]);
         return row;
     }
 
@@ -210,7 +210,7 @@ function jsonNode(key, value, open, path, highlight) {
 
     toggle.addEventListener('click', () => setOpen(children.hidden));
 
-    const head = h('div', 'j-head', toggle, keyLabel, keyLabel ? h('span', 'j-punct', ': ') : null, h('span', 'j-punct', brackets[0]), summary, note ?? null);
+    const head = h('div', 'j-head', toggle, keyLabel, keyLabel ? h('span', 'j-punct', ': ') : null, h('span', 'j-punct', brackets[0]), summary, note);
     head.addEventListener('dblclick', () => setOpen(children.hidden));
     row.append(head, children);
     setOpen(open > 0);
