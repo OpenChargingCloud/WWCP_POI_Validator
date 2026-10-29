@@ -1,5 +1,8 @@
 # WWCP POI Validator
 
+[![CI](https://github.com/OpenChargingCloud/WWCP_POI_Validator/actions/workflows/ci.yml/badge.svg)](https://github.com/OpenChargingCloud/WWCP_POI_Validator/actions/workflows/ci.yml)
+[![Nightly](https://github.com/OpenChargingCloud/WWCP_POI_Validator/actions/workflows/nightly.yml/badge.svg)](https://github.com/OpenChargingCloud/WWCP_POI_Validator/actions/workflows/nightly.yml)
+
 A static single-page validator and explorer for [WWCP POI 3](https://github.com/OpenChargingCloud/WWCP_POI), in the
 spirit of the [Metrological CBOR Validator](https://github.com/Vanaheimr/MetrologicalCBORValidator): give it the trust
 anchor of a roaming network, or drop its documents, and it shows — verified by
@@ -176,8 +179,7 @@ npm --prefix "D:\Coding\OpenChargingCloud\WWCP_POI_Validator" test
   expired.
 - `tests/tampering.test.js`: one document of the Thuringia demo changed after it was signed, as *Edit and verify again*
   does it: a change set (its commit is refused, the commits after it are not taken), a signature of the operator, a
-  witness signature removed, no trust anchor. Two tests are marked `todo`, gaps the tests found: a price statement
-  changed after it was signed makes no finding yet, neither in the current statements nor in the list a checkpoint
+  witness signature removed, no trust anchor, a price statement among the current ones and in the list a checkpoint
   names.
 - `tests/servers.test.js`: *Load from its servers* against `tools/mock-poi-server.mjs`, and how it waits on 429.
 

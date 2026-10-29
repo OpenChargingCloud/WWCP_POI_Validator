@@ -228,11 +228,13 @@ function proofCard(report, result, actions) {
         result.statements?.length ? h('div', null,
             h('h4', null, 'Price statements of the station, its pool and its EVSEs'),
             h('ul', 'statements', ...result.statements.map(item => h('li', null,
-                item.ok ? badge('valid', 'ok') : badge('does not count', 'warn', 'Not signed by a signing key of the operator as this proof gives it'), ' ',
+                item.ok      ? badge('valid', 'ok') :
+                item.refused ? badge('refused', 'error', 'Its key is a signing key of the operator as this proof gives it, but it does not verify: changed after it was signed') :
+                               badge('does not count', 'warn', 'Not signed by a signing key of the operator as this proof gives it'), ' ',
                 h('code', null, `${item.statement.entityId} #${item.statement.sequence}`), ' ', h('span', 'muted', `signed ${formatTime(item.statement.signedAt)} by ${item.statement.signer}`),
                 item.ok ? null : h('div', 'check-detail', item.error)))),
             result.pricesError ? h('p', 'error-text', result.pricesError) : null,
-            h('p', 'note', 'Each is checked against the signing keys of the operator that the proof gives, and its prices against the tariffs of its EVSE (12.4). A statement signed by a key the operator replaced since does not count.')) : null,
+            h('p', 'note', 'Each is checked against the signing keys of the operator that the proof gives, and its prices against the tariffs of its EVSE (12.4). A statement signed by a key the operator replaced since does not count; one its key does not verify is refused.')) : null,
 
         structure ? h('details', 'raw', h('summary', null, `How the proof is pruned: ${structure.complete} entities complete, ${structure.hashes} hashes for everything else`),
             structure.list,

@@ -80,23 +80,31 @@ test('Without a trust anchor: a warning, as the network only vouches for itself 
 
 });
 
-test('A price statement changed after it was signed is an error', { todo: 'it is shown as "does not count" in the proof of its station, and makes no finding' }, async () => {
+test('A price statement changed after it was signed is refused, and the proof of its station says so', async () => {
 
-    const report = await analyzeDemo('thuringia', {
+    const report  = await analyzeDemo('thuringia', {
         change: files => changePrice(files, 'TH-priceStatements-current.json', 'DE*XAB*E1*1', '0.01'),
     });
+    const summary = summaryOf(report);
 
-    assert.ok(report.proofs.some(result => result.statements?.some(item => !item.ok)), 'the statement is not refused at all');
-    assert.equal(report.verdict.level, 'error');
+    assert.equal(summary.verdict.level, 'error');
+    assert.deepEqual(summary.errors, [ "The price statement 0 of the EVSE 'DE*XAB*E1*1' in 'TH-priceStatements-current.json' is refused: The signature of the price statement is invalid: The signature is invalid!" ]);
+
+    // Refused, not "does not count": its key is one of the operator as the proof gives it. The statement as the
+    // checkpoint names it still verifies, and so does the one after it.
+    const statements = report.proofs.flatMap(result => result.statements ?? []).filter(item => item.statement.entityId === 'DE*XAB*E1*1');
+    assert.deepEqual(statements.map(item => [ item.statement.sequence, item.ok, item.refused ?? false ]), [ [ 0, true, false ], [ 1, true, false ], [ 0, false, true ] ]);
 
 });
 
-test('A price statement of a checkpoint changed after it was signed is an error', { todo: 'the list no longer matches the tree of the checkpoint, which makes it only "missing" (info)' }, async () => {
+test('A price statement of a checkpoint changed after it was signed is refused', async () => {
 
     const summary = summaryOf(await analyzeDemo('thuringia', {
         change: files => changePrice(files, 'TH-checkpoint-2-priceStatements.json', 'DE*XAB*E1*1', '0.04'),
     }));
 
+    // The list no longer is the one the checkpoint names, so it is checked on its own.
     assert.equal(summary.verdict.level, 'error');
+    assert.deepEqual(summary.errors, [ "The price statement 0 of the EVSE 'DE*XAB*E1*1' in 'TH-checkpoint-2-priceStatements.json' is refused: The signature of the price statement is invalid: The signature is invalid!" ]);
 
 });

@@ -78,6 +78,56 @@ export function operatorIdOf(content, entityId) {
 }
 
 
+/**
+ * Every price statement the documents give that no checkpoint names (those are checked with their checkpoint), against
+ * the signing keys its operator states (12.2): the key it names, in the latest version held that states it. Where that
+ * key does not verify it, the statement is refused: changed after it was signed, or never signed with that key. A key no
+ * version held states leaves it unchecked; it does not count, for an app as here.
+ */
+function checkPriceStatements(report, priceLists, issue) {
+
+    const versions = [ ...report.versions.values() ].sort((left, right) => right.epoch - left.epoch || right.revision - left.revision);
+    const keysOf   = new Map();
+    const checked  = new Set(priceLists.filter(list => list.checkpointId !== undefined).flatMap(list => list.statements.map(statement => statement.digestHex())));
+
+    const signingKeys = (version, operatorId) => {
+        const id = `${version.epoch}:${version.revision}:${operatorId}`;
+        if (!keysOf.has(id)) {
+            try {
+                keysOf.set(id, POIPublicKey.parseAll(get(version.network.chargingStationOperator(operatorId) ?? {}, 'signingKeys'), 'signing keys'));
+            }
+            catch {
+                keysOf.set(id, []);
+            }
+        }
+        return keysOf.get(id);
+    };
+
+    for (const list of priceLists.filter(list => list.checkpointId === undefined))
+        for (const statement of list.statements) {
+
+            if (checked.has(statement.digestHex()))
+                continue;
+            checked.add(statement.digestHex());
+
+            for (const version of versions) {
+                const operatorId = operatorIdOf(version.network.content, statement.entityId) ?? statement.signer;
+                const keys       = signingKeys(version, operatorId);
+                if (!keys.some(key => key.id === statement.keyId))
+                    continue;
+                try {
+                    statement.verify(report.roamingNetworkId, operatorId, keys);
+                }
+                catch (e) {
+                    issue('error', `The price statement ${statement.sequence} of the ${statement.entityType} '${statement.entityId}' in '${list.document.name}' is refused: ${message(e)}`, list.document);
+                }
+                break;
+            }
+
+        }
+
+}
+
 /** A trust anchor made of the identity keys a version states itself: trust on first use, never as good as one pinned. */
 function trustOnFirstUse(network) {
     const statement = network.operator?.keyStatement;
@@ -934,6 +984,8 @@ export async function analyze(pool, settings, onProgress = () => {}) {
         if (!takenCommits.has(commit.id) && !report.epochs.some(epoch => epoch.notTaken.some(item => item.commit?.id === commit.id) || epoch.steps.some(step => step.commit?.id === commit.id)))
             report.looseCommits.push({ commit, documents });
 
+    checkPriceStatements(report, priceLists, issue);
+
 
     //  ------------------------------------------------------------------
     //  Proofs, prices, evidence: as an app checks them
@@ -1009,7 +1061,9 @@ export async function analyze(pool, settings, onProgress = () => {}) {
                     return { statement, ok: true, keyId: key.id };
                 }
                 catch (e) {
-                    return { statement, ok: false, error: message(e) };
+                    // Signed with a key of the operator as the proof gives it, and still not verified: refused. Signed with
+                    // another key, as one the operator replaced since: it does not count.
+                    return { statement, ok: false, refused: station.operatorSigningKeys.some(key => key.id === statement.keyId), error: message(e) };
                 }
             });
 
