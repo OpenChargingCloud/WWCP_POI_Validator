@@ -392,7 +392,6 @@ const versions  = [];        // { network, content, commit }
 const commits   = [];        // the commit JSON documents, revision 1 on
 const checkpointList = [];
 const statements = [];       // every price statement made, in their order
-let   changeSetCounter = 0;
 
 const etagsOf = (network) => network.eTags().map(eTag => POI.etagToJSON(eTag));
 
@@ -445,8 +444,7 @@ function commit(description, changes, signers, { holders = HOLDERS, minutes = 90
     applyChanges(content, changes, createdAt);
 
     const network   = POI.RoamingNetwork.parse(asPOI(content));
-    const changeSet = {
-        '@id':             `TH-${String(++changeSetCounter).padStart(4, '0')}`,
+    const fields    = {
         roamingNetworkId:  RN_ID,
         createdAt,
         description:       { en: description },
@@ -454,6 +452,9 @@ function commit(description, changes, signers, { holders = HOLDERS, minutes = 90
         beforeETags:       head.network.changeSetETags().map(eTag => POI.etagToJSON(eTag)),
         afterETags:        network.changeSetETags().map(eTag => POI.etagToJSON(eTag)),
     };
+
+    // A change set is identified by its content (4): nobody commits another change set in the place of one.
+    const changeSet = { '@id': POI.changeSetIdentification(asPOI(fields)), ...fields };
 
     const parsedChangeSet = POI.ChangeSet.parse(asPOI(changeSet));
     changeSet.signatures = signers.map(key => ({ algorithm: key.algorithm, keyId: key.id, value: sign(key, parsedChangeSet.signingBytes({ algorithm: key.algorithm, keyId: key.id })) }));
@@ -824,7 +825,10 @@ const witnessesJSON = WITNESSES.map(({ witness, key }) => ({ witness, key: { '@i
     const at        = recordedAt;
     const witnesses = POI.parseTrustedWitnesses(asPOI(witnessesJSON));
     let   trust     = POI.OperatorTrust.of(anchor, POI.RoamingNetwork.parse(asPOI(genesisSnapshot.roamingNetwork)), at);
+
+    // The genesis is taken unanchored: its key statement is verified against the trust anchor just above, its commit by the quorum.
     const history   = POI.History.fromSnapshot(asPOI(genesisSnapshot), {
+        unanchored: true,
         verifyCommit: (c, before, after) => { trust.verifyOperatorSignatures(c.signatures, (s, k) => c.verifySignature(s, k), 'the commit'); trust = trust.followedBy(after, at); },
         verifyCheckpoint: (c) => POI.verifyCheckpointSignatures(c, trust, { witnesses, requiredWitnesses: 2 }),
     });

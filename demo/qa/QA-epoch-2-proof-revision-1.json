@@ -1,26 +1,26 @@
 {
   "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/checkpointProof/v1",
-  "checkpointId": "d40a1d831f6beea8c8dc7d74a28f2bb320e679e2679ebe9cf2cd5a3339081f5a769c193956f2051dcf8fc8cad6df1a0572e09ea9f43c2aa396fa9f0f5279c84a",
+  "checkpointId": "84daf9037028aa81cd0bf5dab851bcf94d23444796f11b9757da003e6a88ee115b64383d7e0a1f7d4181cf5a593d2f76c9f5d8405efa6c776e38432739bcf009",
   "leaf": {
-    "commitId": "646d04186d52e2afa7b2a7a11e2f81cc7432439824c42dae8cd4860cf8257e4d0859cfea36e8e7720c091972f666d5fa99fd1e43fdab77c7a7f757302f78b4f6",
+    "commitId": "ec6468f97f2ce6c8d15bfde102d055849d71458d681681d450a10954e75877055ecc4ec77b40dc8cf093f6e6791095d3069af885ea2ec4d16c498ab0debaac21",
     "eTags": [
       [
         "json",
         "sha256",
         "hex",
-        "4b6396ead85c7743699b4fb41c188b24b2fc4dcf7957db471c6776a995e76b35"
+        "724c42ebf873317541cff95db599fb1db153dbcdbc96796468b1a3bc0b65e12f"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "7ad4bf671a5c8fc4b179275bdec51d36ed05323412f39ee56920f95dcaa043cc"
+        "00100921a4a02b44297c99cd55928c9ac42a88507171bc3b292360540d57c659"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "bb57a1723a2c2bb06d22dce2530aba57c3fa5b534801efe6cd3bbe22faf5cbcb"
+        "f1da65ae8ac3206432f8d8a805205422fd54b5fafd5f69b0b5b8e0114cd93a24"
       ]
     ],
     "revision": 1
@@ -28,7 +28,7 @@
   "@index": 1,
   "@size": 3,
   "@auditPath": [
-    "aee69e7c265d3f0b09326e2170b350c21706c7d8071666497cd0ea0f98e8e5f45f7df1ead3ec48f54a03ca64ddf0d7a1367a78c4083cfcd7d30f220c30fc3e73",
-    "4948bca82183112e99d027f9d458035a0ec4d520fca34411e889917de4e9ef6d1980ed4b75e86d8752d2bd335989b346693d5cf5092521c426f6ebe0e683531b"
+    "71cd7a6f00be38aaf52fd70b19c84efe3560e44e1b8aacdb0fc403320db906851012b8a9537d87be4e8fd5ff1de121c727e0baa74992556fbf8c9a47043f3c84",
+    "b2fcc883c87e2ffd7983dafb4854db53b337ee0f9d7ad05d4807bd7bc1b1fcb1c660e80ce62367f5f9aab72717b96b4e79a8b6427da79810f2d64efa244f9bb1"
   ]
 }

@@ -1,7 +1,7 @@
 {
   "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/proof/v1",
   "hashAlgorithm": "sha256",
-  "commitId": "e2332e4c19d7ac05a9854d7e4106625b102fb081183b2d3c686b582602e73ea6",
+  "commitId": "f9f24be30af6e8cdc98e9b72d900eedb815038d9a68cb5ce47148cd5eab12a8d",
   "revision": 25,
   "roamingNetwork": {
     "@id": "TH",
@@ -307,7 +307,7 @@
   "attestations": [
     {
       "roamingNetworkId": "TH",
-      "commitId": "e2332e4c19d7ac05a9854d7e4106625b102fb081183b2d3c686b582602e73ea6",
+      "commitId": "f9f24be30af6e8cdc98e9b72d900eedb815038d9a68cb5ce47148cd5eab12a8d",
       "revision": 25,
       "eTag": [
         "effectiveTree",
@@ -321,11 +321,11 @@
       "validUntil": "2026-09-24T11:13:30.600Z",
       "algorithm": "ES256",
       "keyId": "0b5a6fc3bb3ff0d07b75895466c933c99065b45ffc24d9a5e539b4b18f4dbbc4",
-      "value": "XKEdmLmrlizRc2l4Ofd2t2IdufY+MZGu8wUheV+0X0ppB0SMyHUxm6KGtmCdKdH5yRewfFe2LgaRRNLY1SUdKw=="
+      "value": "HfZ50oXVSvvwDBrQRC05QlhdfrxFVg0OYahV2QYzvc2pPKXScUP77BAZsNA4//Hxo3njc58DQAoQUxsNvy8leg=="
     },
     {
       "roamingNetworkId": "TH",
-      "commitId": "e2332e4c19d7ac05a9854d7e4106625b102fb081183b2d3c686b582602e73ea6",
+      "commitId": "f9f24be30af6e8cdc98e9b72d900eedb815038d9a68cb5ce47148cd5eab12a8d",
       "revision": 25,
       "eTag": [
         "effectiveTree",
@@ -339,11 +339,11 @@
       "validUntil": "2026-09-24T11:13:30.600Z",
       "algorithm": "ES256",
       "keyId": "45cc7c4c3bfbd2985a9f9384998b41b0caecceecf4f521a2f0d856a5e776ed14",
-      "value": "622qglX6j9hUO/ARZ50HhWVOkk1kZmTA8RjmdqL8A5vlefHJkRvahdrLyCmLwWNVnsE5514tW3y9/UZx7i0kHQ=="
+      "value": "U2AGXCMaTrIqiwc5B9L2aoO/oPZJhBkG+hzeKR07bNH+BPIgWTXZ1qvCSSXKdy95R92PSeTJ2h85K/tuOtq6mg=="
     },
     {
       "roamingNetworkId": "TH",
-      "commitId": "e2332e4c19d7ac05a9854d7e4106625b102fb081183b2d3c686b582602e73ea6",
+      "commitId": "f9f24be30af6e8cdc98e9b72d900eedb815038d9a68cb5ce47148cd5eab12a8d",
       "revision": 25,
       "eTag": [
         "effectiveTree",
@@ -357,7 +357,7 @@
       "validUntil": "2026-09-24T11:13:30.600Z",
       "algorithm": "ES256",
       "keyId": "dffa220da4a30fc3cc51f13896900a42155df4143f3981d84706ef09de6b69b1",
-      "value": "3C1FODvgoNJqUEbFnJbxvEYOu2R/GveEganVMc10eejWvoTgtTUp1AhKPXM68WNdJNDuwrpqOinhDCddQgXjfQ=="
+      "value": "31u7ZgCe5BQ2O2vd9n0qYdhvhJEhHMVffwbbcFC4QPmUiTUhr5stRNMz8l8q8O1smPeuuZBi2frX+poENZsp1w=="
     }
   ]
 }

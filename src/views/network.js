@@ -13,6 +13,7 @@ import { ARRAY_TYPES, entityAt, entityHistory, entityLabel, entityTree, merklePa
 import { PARTY_LABELS } from '../keys.js';
 import { changeChip, emptyState, headKey, linkButton, versionSelect } from './common.js';
 import { priceSummary } from './history.js';
+import { QI_DIGITAL_KINDS, papersOf } from './qidigital.js';
 
 
 const TYPE_LABELS = {
@@ -549,6 +550,8 @@ function entityDetail(report, version, node, mode, runtime, actions, onSelect) {
             facts(statusEntries.map(([ kind, entry ]) => [ kind, h('span', null, h('code', null, jsonText(entry.value)), h('span', 'muted', ` at ${formatTime(entry.timestamp)}`)) ])),
             h('p', 'note', 'From the snapshot beside this version: unsigned, as trustworthy as the server telling it, and no part of the version (12.5).')) : null,
 
+        papersSection(report, node, actions),
+
         h('h3', null, 'Commits that changed it'),
         historyList(report, node, actions),
 
@@ -559,6 +562,29 @@ function entityDetail(report, version, node, mode, runtime, actions, onSelect) {
     );
 
     return detail;
+
+}
+
+/** The QI-Digital papers of an EVSE's energy meter or of a charging station: its calibration, the certificates covering it. */
+function papersSection(report, node, actions) {
+
+    if (node.type !== 'EVSE' && node.type !== 'ChargingStation')
+        return null;
+
+    const papers = papersOf(report, node.type, node.id);
+
+    if (papers.length === 0)
+        return null;
+
+    return h('div', null,
+        h('h3', null, node.type === 'EVSE' ? 'Papers of its energy meter (QI-Digital)' : 'Its papers (QI-Digital)'),
+        h('ul', 'statements', ...papers.map(result => h('li', null,
+            result.ok === true ? badge('verified', 'ok') : result.ok === false ? badge('refused', 'error') : badge('not checked', 'warn'), ' ',
+            `${QI_DIGITAL_KINDS[result.kind]} `, h('code', null, result.doc?.id ?? result.document.name),
+            result.kind === 'calibrationCertificate' && result.doc
+                ? h('span', 'muted', ` by ${result.doc.calibrationLaboratoryId}, ${result.doc.passes ? 'every point passes' : 'not every point passes'}${result.doc.recalibrationDue !== undefined ? `, due ${formatTime(result.doc.recalibrationDue)}` : ''}`)
+                : result.doc ? h('span', 'muted', ` by ${result.doc.conformityAssessmentBodyId ?? ''}, module ${result.doc.module ?? '?'}`) : null))),
+        h('div', 'card-actions', linkButton('All QI-Digital papers →', () => actions.switchTab('proofs'))));
 
 }
 

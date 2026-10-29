@@ -1,6 +1,6 @@
 {
   "commit": {
-    "@id": "e2332e4c19d7ac05a9854d7e4106625b102fb081183b2d3c686b582602e73ea6",
+    "@id": "f9f24be30af6e8cdc98e9b72d900eedb815038d9a68cb5ce47148cd5eab12a8d",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "TH",
     "revision": 25,
@@ -25,10 +25,10 @@
       ]
     ],
     "parentIds": [
-      "a43482c44f36a7fdaf39d905743f5b5cbe3348ac2952639667e741a4128af5dd"
+      "6ed870e4ff7fee828b9fdec31affb4eda5d224269f54ad812e27568e11b9563e"
     ],
     "changeSet": {
-      "@id": "TH-0025",
+      "@id": "7fc70bf907324064e73cf3eb7991b2b5e1bb098629b0b32c9c7907b0c70fa808",
       "roamingNetworkId": "TH",
       "createdAt": "2026-09-24T09:51:55.200Z",
       "description": {
@@ -96,7 +96,7 @@
         {
           "algorithm": "ES256",
           "keyId": "f8ef85d13d1d407b9c2f083ac45fd701cd89380c85a74b4dceaa3213f9c203f7",
-          "value": "L3iKzX3C9lZzDlFuw8FEx8bk/QDDGbZT3RNj4wYWn+4xaJLdofTnfrNz4de0fLGYUooQOaCOBUaeOMEE+YZDJg=="
+          "value": "zvGPEkJszVaacY9R95qYHYVy+Gco2Y3+MdoOGgVf0VHqXcNvSzR++8xyxyk6STqVzLhc78PetGOjQbcRFwsb4g=="
         }
       ]
     },
@@ -107,7 +107,7 @@
         "signedAt": "2026-09-24T09:52:25.800Z",
         "algorithm": "ES256",
         "keyId": "0b5a6fc3bb3ff0d07b75895466c933c99065b45ffc24d9a5e539b4b18f4dbbc4",
-        "value": "FECwlzGZpa7xUfeydkU42r3Vagjr/Sypcb99K0UYi7T9RN9LjIkIrE7yALJrMwmnNzBpPlKv3Wx121phJvWrbA=="
+        "value": "poTosTW270DsSGhEiudj2SgJULfY7nMCBmiYduXueyT37ekr5fAfqL9kTZpA2M2ud2Ifvv4msATviBt1z2wPIA=="
       },
       {
         "role": "roamingNetworkOperator",
@@ -115,7 +115,7 @@
         "signedAt": "2026-09-24T09:52:26.400Z",
         "algorithm": "ES256",
         "keyId": "45cc7c4c3bfbd2985a9f9384998b41b0caecceecf4f521a2f0d856a5e776ed14",
-        "value": "flCoU6aqNRLRFvZWnjaoIH6ImyrphYtG+bmv6qXxHhTR3qoTWLYFOxEjLwH1HMltru/0Aki+QhrvrTiIs9YDYQ=="
+        "value": "k4raRXsScFB/FuCJ5A1LVlBSgh6ujMTs9B/oyZncLrSNRptASVXqVL1USmgWnGyHMYUgqWJSR4idMuJfjztvOQ=="
       },
       {
         "role": "roamingNetworkOperator",
@@ -123,7 +123,7 @@
         "signedAt": "2026-09-24T09:52:27.000Z",
         "algorithm": "ES256",
         "keyId": "dffa220da4a30fc3cc51f13896900a42155df4143f3981d84706ef09de6b69b1",
-        "value": "spf957HJDCac6UzsZJAMmIoWGoQ9Fm9z4Dwy1UxbYLuPmvNSYMNxkbk5u8Tltj/M2GlovOzVY7kELbhdk5WiuA=="
+        "value": "eTLTrecYmT5YiS4D1QufCP2wLmjL3a0/WhsbR44K07uRiyEJ7hiyVGtd7UKY5ekr2BU1XQfuUgWyg4GzHt0Nxg=="
       }
     ]
   },

@@ -1,26 +1,26 @@
 {
   "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/checkpointProof/v1",
-  "checkpointId": "1ebc8ae3066ac1e6b25ebdc83b95d7260ac546556482763927da436c16547ed3",
+  "checkpointId": "52c26a03e8a5e9b4d0d08abd029534d52458b0acf1df68b967b0a6331f042ed2",
   "leaf": {
-    "commitId": "325f1da245bdccc6bc089afbcf1d9c88cba97208746ddb82060a07c9452c1d5c",
+    "commitId": "b23002c2178363980a3235ed39c0dd4aaa764a2ea34f59cd54f058535b22f845",
     "eTags": [
       [
         "json",
         "sha256",
         "hex",
-        "6194e383f658a0a1e03d7b3b69600a6fa5e546e4ac3eb7d1b8f3ccab76d637df"
+        "df1857e145a8dba1f9e53375338c2091eba66f89ae9d8eb41edd928679b45434"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "cf42cfe4c3ec40303d537a71b8bf0ab72dddbda7e94dde8ee16a4762894f3b15"
+        "f5b5b625dc2e2fa51994b4c7eb5a459ed1a4c03f291cc5996aa1003dca6b4869"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "5a45cdc9c96a7b769b32e1f12dbaccf3653e442c90989167532a4dfb28018c03"
+        "731dcdd5f6e807d5e53d791c3b7025b57084f8f6d08e24907a16c7e48cbe42b7"
       ]
     ],
     "revision": 4
@@ -28,8 +28,8 @@
   "@index": 4,
   "@size": 8,
   "@auditPath": [
-    "3028b803ff76bfcaddb3691b31a3a862eaa909c66194402dbaf9c827429a7953",
-    "81c072e28089f8f7d8265af9b3ac17249b9b53531292d91aa53ede363e0026c1",
-    "49f8cce1f38846b7341f9a2468788886281f0b6b0f7fe8692a2d5d9f34da08dd"
+    "fc5d76bd84322e937030f55623f867a54d4370b8b87b9d606f15f1ec148c1250",
+    "e86eda379bf645138bf37662ee31951162fbfab95eebe02911210ea958d93ba8",
+    "27cb3e1f90e138c0b8df478f4a084a92c7d7ec57d602ab76afac2df595ebda7b"
   ]
 }

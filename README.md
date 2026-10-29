@@ -21,16 +21,21 @@ epochs and price statements fit together.
   operator, its holders and the certificates of their signing keys; who signed how many commits, checkpoints and
   attestations; how the keys moved on (key succession, epochs); the keys of every party; the trusted witnesses.
 - **History** — every epoch, where it starts (genesis, a checkpoint, an archive segment, or the genesis derived from the
-  final checkpoint before), and each commit and checkpoint with what was checked: the identification, the parent, the
-  change set applied again with the signatures of its owners (and who owns each change, section 4.1), the ETags it leads
-  to, the quorum of the operator; for checkpoints their commits tree, the signatures of the operator and the witnesses,
-  and the price statements they name. Refused documents are shown where they would have been, with the reason.
+  final checkpoint before) and how that start is anchored in the trust anchor (10.5), and each commit and checkpoint
+  with what was checked: the identification, the parent, the change set applied again with the signatures of its owners
+  (and who owns each change, section 4.1), the ETags it leads to, the quorum of the operator; for checkpoints their
+  commits tree, the signatures of the operator and the witnesses, and the price statements they name. Refused documents
+  are shown where they would have been, with the reason.
 - **Network** — any version, effective (as proofs and apps see it) or as stored; a map of the charging pools; for each
   entity where its values come from (its own or a template, 9.2), the tariffs an EVSE takes, the groups it is a member
   of, its runtime status, the commits that changed it, and its path through the effective tree up to the root the commit
   names — the audit paths a proof of it would give.
-- **Proofs & prices** — station proofs as an app checks them, with how they are pruned; price statements; the evidence of
-  a charging session; proofs of commits and price statements in checkpoints; attestations; the archive.
+- **Proofs & prices** — station proofs as an app checks them, with how they are pruned, the models, hardware revisions,
+  firmware versions and serial numbers of the station and its meters, the certificates they name and the transparency
+  software proven by them; price statements; the evidence of a charging session; proofs of commits and price statements
+  in checkpoints; attestations; the archive; and the **QI-Digital** papers of meters (example A14): digital calibration
+  certificates, certificates of conformity and declarations of conformity, each checked against the network and against
+  each other.
 - **Documents** — everything loaded, as POI reads it. A document can be **edited and verified again**: change a price, a
   power, an identification or a signature, and see which check refuses it.
 
@@ -42,12 +47,13 @@ epochs and price statements fit together.
    checkpoints, the archive, the snapshot of the first checkpoint, the head, the commits since, the attestations, the
    price statements, and the proofs of the stations you name — and checks all of it from the pinned keys alone.
 2. **Documents** dropped onto the page: snapshots, commits, checkpoints, archive segments, station proofs, price
-   statements, attestations, evidence, a list of trusted witnesses. What a document is follows from its JSON-LD context,
-   or from its shape. A trust anchor or a list of witnesses among them goes into the settings.
+   statements, attestations, evidence, QI-Digital documents, a list of trusted witnesses. What a document is follows
+   from its JSON-LD context, or from its shape. A trust anchor or a list of witnesses among them goes into the settings.
 3. **Demos**:
-   - **QA**, the roaming network of the WWCP_POI examples A1 to A13 at commit `801bbce`, one recorded run (public data
-     only, vendored by WWCP_POI.TS): a quorum of three holders, one operator with 16 EVSEs, manufacturers, transparency
-     software, two epochs (ECDSA/SHA-256, then ML-DSA/SHA-512), witnesses, price statements, evidence.
+   - **QA**, the roaming network of the WWCP_POI examples A1 to A14, one recorded run (public data only), the one
+     WWCP_POI.TS vendors (`tests/vectors/csharp-33447ac` today): a quorum of three holders, one operator with 16 EVSEs,
+     manufacturers and their models, transparency software and its certificates, a calibration laboratory, two epochs
+     (ECDSA/SHA-256, then ML-DSA/SHA-512), witnesses, price statements, evidence, and the QI-Digital papers of a meter.
    - **Thuringia**, a generated test network of medium size: seven charging station operators, 195 charging pools,
      417 stations and 834 EVSEs on a map; change sets of several owners, a key rotation, a removed pool, a latecomer;
      four witnessed checkpoints, price statements and station proofs. Signed with test keys of fixed seeds.
@@ -126,8 +132,9 @@ servers*.
 
 ## The demos
 
-- `tools/vendor-qa-demo.mjs` copies the public documents of the recorded run from `WWCP_POI.TS/tests/vectors/csharp-801bbce`
-  into `demo/qa` and writes its manifest:
+- `tools/vendor-qa-demo.mjs` copies the public documents of the recorded run WWCP_POI.TS vendors into `demo/qa` and writes
+  its manifest; the run and the time it is checked as of are those of `WWCP_POI.TS/tests/at.ts` (`VECTORS_RUN`, `AT`),
+  so that running it again after WWCP_POI.TS moved on to a new run follows it:
 
   ```bash
   node "D:\Coding\OpenChargingCloud\WWCP_POI_Validator\tools\vendor-qa-demo.mjs"
@@ -153,11 +160,15 @@ servers*.
 | `src/analyze.js` | the analysis with WWCP_POI.TS: trust, history, checkpoints, epochs, proofs, prices, evidence, archive |
 | `src/keys.js` | who holds a key: the directory of all keys of a version |
 | `src/entities.js` | the entities of a version: tree, provenance of effective values, Merkle paths, entity history |
-| `src/views/*.js` | overview, trust, history, network, proofs & prices, documents |
+| `src/views/*.js` | overview, trust, history, network, proofs & prices (with `qidigital.js`), documents |
 
 Every verdict is the library's: the page only records what it checked, step by step, and goes on where it can, so that
 one refused signature does not hide the rest of the history. Branches and merges, element changes and preconditions are
 refused by WWCP_POI.TS as not yet supported, and shown as such.
+
+A history starts as WWCP_POI.TS lets it start (10.5): a snapshot of a checkpoint or of the head anchored in the trust
+anchor, by the signatures of the operator's quorum or by its attestations; a genesis, or the base of an archive segment,
+unanchored, its key statement verified against the trust anchor here and its commit signed by the quorum.
 
 
 ## License

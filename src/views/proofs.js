@@ -9,6 +9,7 @@ import { CHILD_ARRAYS, etagToText, get, isArray, isObject } from '@open-charging
 import { badge, button, facts, formatBytes, formatTime, h, i18n, jsonText, jsonView, plural, section, shortId } from '../dom.js';
 import { emptyState, linkButton } from './common.js';
 import { priceSummary } from './history.js';
+import { qiDigitalCard } from './qidigital.js';
 
 
 /** The forms of the child arrays of a proof (8.4): complete, pruned, or partial with audit paths. */
@@ -99,20 +100,80 @@ function evseTable(station, prices) {
 }
 
 
+const namedByText = (namedBy) => `${namedBy.entityType === 'ChargingStation' ? 'station' : 'meter'} ${namedBy.entityId}`;
+
+/** The model and versions a certificate is for: `GD-DC300 of GraphDefined, hardware 1.0, firmware 2.5.0`. */
+function certificateSubject(certificate) {
+    const model        = certificate['chargingStationModel'] ?? certificate['energyMeterModel'];
+    const manufacturer = certificate['chargingStationManufacturerId'] ?? certificate['energyMeterManufacturerId'];
+    const versions     = (name, values) => isArray(values) && values.length ? `${name} ${values.map(jsonText).join(', ')}` : null;
+    return [ `${model ?? '?'} of ${manufacturer ?? '?'}`, versions('hardware', certificate['hardwareRevisions']), versions('firmware', certificate['firmwareVersions']) ].filter(Boolean).join(', ');
+}
+
+/** The certificates the station and its meters name (`certificateIds`), as the proof gives them (A13). */
+function certificateTable(station) {
+    if (station.certificates.length === 0)
+        return null;
+    const table = h('table', 'grid');
+    table.append(h('thead', null, h('tr', null, h('th', null, 'Named by'), h('th', null, 'Certificate'), h('th', null, 'For'), h('th', null, 'Issued by'), h('th', null, 'Valid'), h('th', null, 'For this model'))));
+    const body = h('tbody');
+    for (const item of station.certificates) {
+        const certificate = item.certificate;
+        const meters      = isArray(certificate['energyMeters']) ? certificate['energyMeters'] : [];
+        body.append(h('tr', null,
+            h('td', null, namedByText(item.namedBy)),
+            h('td', null, h('code', null, String(certificate['@id'])), certificate['legislation'] ? h('div', 'muted small', String(certificate['legislation'])) : null,
+                          typeof certificate['documentURL'] === 'string' ? h('div', 'small', h('a', null, 'document')) : null),
+            h('td', null, certificateSubject(certificate),
+                          meters.length ? h('div', 'muted small', `issued with ${meters.map(meter => `${meter['modelId']} of ${meter['manufacturerId']}`).join(', ')}`) : null,
+                          isArray(certificate['verifiedTransparencySoftwareIds']) && certificate['verifiedTransparencySoftwareIds'].length
+                              ? h('div', 'muted small', `verifies ${certificate['verifiedTransparencySoftwareIds'].join(', ')}`) : null),
+            h('td', null, String(item.body['@id']), item.statedBy === 'RoamingNetworkOperator' ? h('div', 'muted small', 'stated by the roaming network operator in its place') : null),
+            h('td', 'small', `${formatTime(certificate['notBefore'])} – ${formatTime(certificate['notAfter'])}`),
+            h('td', null, item.forThisModel ? badge('yes', 'ok', 'For the model, the hardware revision and the firmware version of what names it') : badge('no', 'warn', 'Not for the model, hardware revision or firmware version of what names it'))));
+        const link = body.lastElementChild.querySelector('a');
+        if (link) {
+            link.href = String(certificate['documentURL']);
+            link.rel  = 'noopener';
+        }
+    }
+    table.append(body);
+    return table;
+}
+
+/** Who checks the measurements: the releases the station and its meters name, with the certificates proving them (A13). */
 function softwareTable(station) {
     if (station.transparencySoftware.length === 0)
         return null;
     const table = h('table', 'grid');
-    table.append(h('thead', null, h('tr', null, h('th', null, 'Energy meter'), h('th', null, 'Legal status'), h('th', null, 'Release'), h('th', null, 'Manufacturer'), h('th', null, 'Certificate'), h('th', null, 'For this model'))));
+    table.append(h('thead', null, h('tr', null, h('th', null, 'Named by'), h('th', null, 'Legal status'), h('th', null, 'Release'), h('th', null, 'Manufacturer'), h('th', null, 'Proven by'))));
     const body = h('tbody');
     for (const item of station.transparencySoftware)
         body.append(h('tr', null,
-            h('td', null, h('code', null, item.energyMeterId)),
+            h('td', null, namedByText(item.namedBy)),
             h('td', null, item.legalStatus ?? '—'),
-            h('td', null, `${i18n(item.release['name']) ?? String(item.release['@id'])} ${jsonText(item.release['version'])}`),
+            h('td', null, `${i18n(item.release['name']) ?? String(item.release['@id'])} ${jsonText(item.release['version'])}`,
+                          item.release['supportUntil'] ? h('div', 'muted small', `supported until ${formatTime(item.release['supportUntil'])}`) : null),
             h('td', null, `${String(item.manufacturer['@id'])}${item.manufacturer['craRole'] ? ` (${item.manufacturer['craRole']})` : ''}`),
-            h('td', null, item.certificate ? `${item.certificate['legislation'] ?? ''} by ${String(item.body?.['@id'] ?? '?')}` : '—'),
-            h('td', null, item.forThisModel === true ? badge('yes', 'ok') : item.forThisModel === false ? badge('no', 'warn') : '—')));
+            h('td', null, item.certificates.length
+                              ? h('div', 'stack', ...item.certificates.map(named => h('span', null, h('code', null, String(named.certificate['@id'])), ' ', named.forThisModel ? badge('for this model', 'ok') : badge('other model', 'warn'))))
+                              : h('span', 'muted', 'no certificate names it'))));
+    table.append(body);
+    return table;
+}
+
+/** The hardware revision, firmware version and serial number of the station and its meters, as the proof gives them. */
+function versionsOf(station) {
+    const rows = [ { what: `station ${String(station.chargingStation['@id'])}`, json: station.chargingStation },
+                   ...station.energyMeters.map(meter => ({ what: `meter ${String(meter['@id'])}`, json: meter })) ];
+    if (!rows.some(row => row.json['hardwareRevision'] !== undefined || row.json['firmwareVersion'] !== undefined || row.json['serialNumber'] !== undefined))
+        return null;
+    const table = h('table', 'grid');
+    table.append(h('thead', null, h('tr', null, h('th', null, 'Device'), h('th', null, 'Model'), h('th', null, 'Hardware'), h('th', null, 'Firmware'), h('th', null, 'Serial number'))));
+    const body = h('tbody');
+    for (const { what, json } of rows)
+        body.append(h('tr', null, h('td', null, what), h('td', null, json['modelId'] ? `${json['modelId']} of ${json['manufacturerId'] ?? '?'}` : '—'),
+                              h('td', null, jsonText(json['hardwareRevision'])), h('td', null, jsonText(json['firmwareVersion'])), h('td', null, jsonText(json['serialNumber']))));
     table.append(body);
     return table;
 }
@@ -153,13 +214,21 @@ function proofCard(report, result, actions) {
         station ? h('h4', null, 'EVSEs, as they are at runtime') : null,
         station ? evseTable(station, result.prices) : null,
 
-        station && softwareTable(station) ? h('h4', null, 'Who checks the meters: transparency software') : null,
+        station && versionsOf(station) ? h('h4', null, 'Devices: models, versions, serial numbers') : null,
+        station ? versionsOf(station) : null,
+
+        station && certificateTable(station) ? h('h4', null, 'Certificates the station and its meters name') : null,
+        station ? certificateTable(station) : null,
+
+        station && softwareTable(station) ? h('h4', null, 'Who checks the measurements: transparency software') : null,
         station ? softwareTable(station) : null,
+        station && (station.certificates.length || station.transparencySoftware.length)
+            ? h('p', 'note', 'A certificate is for a model, in the hardware revisions and firmware versions it covers; "for this model" tells whether it covers what names it. POI proves who states them, not that they are true.') : null,
 
         result.statements?.length ? h('div', null,
             h('h4', null, 'Price statements of the station, its pool and its EVSEs'),
             h('ul', 'statements', ...result.statements.map(item => h('li', null,
-                item.ok ? badge('valid', 'ok') : badge('refused', 'error'), ' ',
+                item.ok ? badge('valid', 'ok') : badge('does not count', 'warn', 'Not signed by a signing key of the operator as this proof gives it'), ' ',
                 h('code', null, `${item.statement.entityId} #${item.statement.sequence}`), ' ', h('span', 'muted', `signed ${formatTime(item.statement.signedAt)} by ${item.statement.signer}`),
                 item.ok ? null : h('div', 'check-detail', item.error)))),
             result.pricesError ? h('p', 'error-text', result.pricesError) : null,
@@ -318,6 +387,15 @@ export function renderProofs(container, state, actions) {
 
     if (report.attestations.length > 0)
         container.append(section(`Attestations (${report.attestations.length})`, attestationTable(report)));
+
+    if (report.qiDigital.length > 0) {
+        const cards = h('div', 'proof-cards');
+        for (const result of report.qiDigital)
+            cards.append(qiDigitalCard(result, actions));
+        container.append(section(`QI-Digital: the papers of what charges (${report.qiDigital.length})`,
+            h('p', 'note', 'A proof of concept of WWCP_POI (example A14): calibration certificates, certificates of conformity and declarations of conformity, each signed by its issuer — a calibration laboratory, a notified body, a manufacturer — with a key the roaming network names for it, and checked against the network as it is: the issuer a party of it, the model and versions those of the network, the calibrated meter the one at runtime, with the serial number the network gives it.'),
+            cards));
+    }
 
     if (report.archive)
         container.append(section('Archive', archiveTable(report)));

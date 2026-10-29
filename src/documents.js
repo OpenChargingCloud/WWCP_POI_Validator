@@ -28,6 +28,15 @@ const CONTEXTS = new Map([
     [ ctx('keyStatement/v3'),             'keyStatement' ],
 ]);
 
+/** The QI-Digital documents (example A14): their contexts name the kind of document and its version. */
+const QI_DIGITAL_CONTEXT = CONTEXT_PREFIX + 'qiDigital/';
+
+const QI_DIGITAL_TYPES = {
+    digitalCalibrationCertificate:   'calibrationCertificate',
+    digitalCertificateOfConformity:  'certificateOfConformity',
+    digitalDeclarationOfConformity:  'declarationOfConformity',
+};
+
 
 /** What each type of document is, for people. */
 export const TYPE_LABELS = {
@@ -53,6 +62,9 @@ export const TYPE_LABELS = {
     epoch:                'Epoch',
     epochs:               'Epochs',
     keyStatement:         'Key statement',
+    calibrationCertificate:   'QI-Digital: calibration certificate',
+    certificateOfConformity:  'QI-Digital: certificate of conformity',
+    declarationOfConformity:  'QI-Digital: declaration of conformity',
     party:                'Party',
     unknown:              'Unknown',
 };
@@ -65,6 +77,9 @@ function typeOfObject(json) {
 
     if (typeof context === 'string' && CONTEXTS.has(context))
         return CONTEXTS.get(context);
+
+    if (typeof context === 'string' && context.startsWith(QI_DIGITAL_CONTEXT))
+        return QI_DIGITAL_TYPES[context.slice(QI_DIGITAL_CONTEXT.length).split('/')[0]] ?? 'unknown';
 
     if ('commit' in json && 'roamingNetwork' in json)
         return 'snapshot';
@@ -242,6 +257,15 @@ export function summarize(type, json) {
 
             case 'changeSet':
                 return i18n(json['description']) ?? String(json['@id']);
+
+            case 'calibrationCertificate':
+                return `${json['@id']} of ${json['item']?.['type'] === 'ChargingStation' ? 'the charging station' : 'the energy meter'} ${json['item']?.['id']}, by ${json['calibrationLaboratoryId']}`;
+
+            case 'certificateOfConformity':
+                return `${json['@id']}, module ${json['module']}, ${json['model'] ? `the model ${json['model']['modelId']} of ${json['model']['manufacturerId']}` : `the quality system of ${json['manufacturer']?.['manufacturerId']}`}, by ${json['conformityAssessmentBodyId']}`;
+
+            case 'declarationOfConformity':
+                return `${json['@id']}, the model ${json['model']?.['modelId']} of ${json['model']?.['manufacturerId']}`;
 
             default:
                 return '';

@@ -182,6 +182,7 @@ function appCard(report, actions) {
         [ 'Proofs of commits',         report.commitProofs ],
         [ 'Proofs of price statements', report.priceStatementProofs ],
         [ 'Attestations',              report.attestations ],
+        [ 'QI-Digital papers',         report.qiDigital ],
     ].filter(([ , list ]) => list.length > 0);
     if (rows.length === 0)
         return null;

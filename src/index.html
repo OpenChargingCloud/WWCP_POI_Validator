@@ -254,6 +254,11 @@
                             <p>When algorithms must change, the <strong>final checkpoint</strong> closes an epoch and names the next profiles; every server derives the same genesis. Prices that change by the minute are <strong>price statements</strong> of the charging station operator, chained per EVSE and anchored in checkpoints — the evidence of a charging session.</p>
                         </div>
 
+                        <div class="primer-card">
+                            <h3>7 · Who checks the meter: certificates and QI-Digital <a class="spec" href="https://github.com/OpenChargingCloud/WWCP_POI/tree/master/examples" rel="noopener">A13, A14</a></h3>
+                            <p>Models name their <strong>hardware revisions and firmware versions</strong>, stations and meters one of each and the <strong>certificates</strong> of their models; a proof gives them, with the transparency software that checks the measurements. <strong>QI-Digital</strong> papers — a digital calibration certificate, certificates of conformity of a notified body, the manufacturer's declaration — are signed by keys the network names for their issuers, and checked against the meter as it is at runtime.</p>
+                        </div>
+
                     </div>
 
                     <h3>What this page checks, and where you see it</h3>
@@ -261,7 +266,7 @@
                         <li><strong>Trust</strong> — the key statement against the trust anchor, the certificates of the signing keys, and how the keys move on through the history (key succession, epochs).</li>
                         <li><strong>History</strong> — every commit: its identification, its parent, its change set applied again with the signatures of its owners, the ETags it leads to, the quorum of the operator; every checkpoint with its commits tree, the operator and the witnesses; the price statements checkpoints name.</li>
                         <li><strong>Network</strong> — any version, as stored or effective: where each value comes from (its own, or a template), the commits that changed an entity, and its path through the effective tree up to the root the commit names.</li>
-                        <li><strong>Proofs &amp; prices</strong> — station proofs as an app checks them, price statements, proofs of commits and price statements in checkpoints, attestations, the archive, and the evidence of a charging session.</li>
+                        <li><strong>Proofs &amp; prices</strong> — station proofs as an app checks them, with the certificates and transparency software of the station and its meters; price statements, proofs of commits and price statements in checkpoints, attestations, the archive, the evidence of a charging session, and the QI-Digital papers of meters.</li>
                     </ul>
 
                 </div>

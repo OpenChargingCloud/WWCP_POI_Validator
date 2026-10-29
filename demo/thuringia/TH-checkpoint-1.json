@@ -1,11 +1,11 @@
 {
-  "@id": "075151f73b443c2c36ada8cfb23a7980efed8a02c81d567c56971d7bdfde87ec",
+  "@id": "2ed42e75b787e47469eae8a696b9585dbb3d8992b13c41fa7d8de77cf84cd666",
   "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/checkpoint/v1",
   "roamingNetworkId": "TH",
   "epoch": 1,
   "sequence": 1,
-  "previousId": "cf513f9bd44f3d0bc343b4e1e21786bb13cc523822734e206a3c52541bf3d518",
-  "commitId": "5e90647edba28cd6d008bf1c55829785d85121737e4ce26c8eef7863eb97e348",
+  "previousId": "33611fc011179965166d99944ed00f3ee3ff33859128799efd84898654a81260",
+  "commitId": "d1b9883aa402d664807455886f0e800c529904b148cdffc4a1abbbc95afbe028",
   "revision": 15,
   "eTags": [
     [
@@ -28,7 +28,7 @@
     ]
   ],
   "commits": {
-    "@merkleRoot": "5de5e2cb28223839cb3b6c0c8137abf579453a66dc93828749fbf73e51929b0f",
+    "@merkleRoot": "98427e415c80aa329349aabf95e481fb8d1b07e9c21df25d50147cd9d19a47f7",
     "@size": 9
   },
   "createdAt": "2026-09-11T11:55:01.800Z",
@@ -39,7 +39,7 @@
       "signedAt": "2026-09-11T11:55:03.000Z",
       "algorithm": "ES256",
       "keyId": "0b5a6fc3bb3ff0d07b75895466c933c99065b45ffc24d9a5e539b4b18f4dbbc4",
-      "value": "0FOqCmFiI+icXvitHtRj0abZu4b7BSw3/w6IeS8rH3Pw246oEgtFOf9iuohvU5eyG/sQ0lDY3RbW4Qn46aYDng=="
+      "value": "GZCZNKMBPbTYlGShIGBmERCvpRd/wseNxC8wdOjj6xMsqLZ1Uoi+IIcnkSYxhg1aDxerlCbxS1e/B0dBSvGS/g=="
     },
     {
       "role": "roamingNetworkOperator",
@@ -47,7 +47,7 @@
       "signedAt": "2026-09-11T11:55:04.200Z",
       "algorithm": "ES256",
       "keyId": "45cc7c4c3bfbd2985a9f9384998b41b0caecceecf4f521a2f0d856a5e776ed14",
-      "value": "uA1HRLKiKt+2Mzs2BnDndGb4zz4PoEWOzivkZMTb21BsOai9zP9kpSfUYIChTYtZgI/ojFrdE0FtJwe5YszIiA=="
+      "value": "J/9ML6g5WErgSDA1chi+m1575hE5zCBUN8fi8G8fkWM7w2AsfT61wpbepibAqqfibrFS+PgXHJXJqWEREIdMag=="
     },
     {
       "role": "roamingNetworkOperator",
@@ -55,7 +55,7 @@
       "signedAt": "2026-09-11T11:55:05.400Z",
       "algorithm": "ES256",
       "keyId": "dffa220da4a30fc3cc51f13896900a42155df4143f3981d84706ef09de6b69b1",
-      "value": "QDDZf9NAbRAKt7izDK9C0Hve1bcYBTapyRI3fwVBWEbetb/JJRGilbBoT+mv9b/80efIVxzBwdKvLVIBSN8EcA=="
+      "value": "hr+WE0hWV5wVKo4ihKcYzwrQ/IRUdjGI4cn7k5S5ZnPBVXnD7D6NP1l0TNz4EJKCxiffFYc0FKU+WhXvEKLF3Q=="
     },
     {
       "role": "witness",
@@ -63,7 +63,7 @@
       "signedAt": "2026-09-11T11:58:05.400Z",
       "algorithm": "Ed25519",
       "keyId": "a5dd6d2f2da95350aee14190ecbd3f6d5bc9c89dd1951babbe11b1bd3e4fd074",
-      "value": "1nziXWZIqXsoM5asJRHF1crygq1ZPu76CE5ZLqinWnTUNI5OXzuRfBRcyK89/YOmVcu7U8DUWz9s0Rfy4OVEBg=="
+      "value": "PII0R2m6cQpG3GcmJbI0059JziGaZHTIs42JPZAnly5cPByYpjmcjsk/J09gA8eC/btTTsioW3ivEp9aXXemDg=="
     },
     {
       "role": "witness",
@@ -71,7 +71,7 @@
       "signedAt": "2026-09-11T12:01:05.400Z",
       "algorithm": "ES256",
       "keyId": "a9c1d57cf76d764280fae579dc7c4c46ca03beca02059b9e511b0109e2fda712",
-      "value": "9dbPIMrdpjmSkValLz0zNLrq+ay+FM9/oq8vn/NdO9IvMVU3y57H3gYf3hhh2rNtsz7Atj2b+Llng1SEO4PHKw=="
+      "value": "Bk1J6TvGGZSt0NLEwniFzUHfiFonjXXo45M5G872jkReHvFlVCYFwPLJgSW/LOtU54spmjUfAetofhUaOeDpKQ=="
     }
   ]
 }

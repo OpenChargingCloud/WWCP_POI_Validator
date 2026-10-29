@@ -346,6 +346,14 @@ function rootDetail(report, epoch, step, actions) {
         trust?.ok === false ? h('div', 'trust-followed error', trust.error) : null,
         step.tofu?.ok ? h('div', 'trust-followed warn', `Trusted on first use: the ${plural(step.tofu.keys.length, 'identity key')} the version states itself, a quorum of ${step.tofu.minConsensus}. This shows a consistent history, not who made it.`) : null,
         step.tofu?.ok === false ? h('div', 'trust-followed error', `No trust: ${step.tofu.error}`) : null,
+        step.operatorSignatures ? h('div', null,
+            h('h3', null, 'Signatures of its commit'),
+            h('div', 'operator-check', h('strong', null, 'Signed by the roaming network operator: '),
+                step.operatorCheck?.ok === true ? h('span', null, badge('quorum reached', 'ok'), ` ${step.operatorCheck.holders.join(', ')} — ${step.operatorCheck.required} of the holders required`)
+                : step.operatorCheck?.ok === false ? h('span', null, badge('quorum not reached', 'error'), ' ', step.operatorCheck.error)
+                : h('span', 'muted', step.operatorCheck?.detail ?? 'not checked')),
+            roleSignatureTable(step.operatorSignatures, keyDirectory(step.network, { witnesses: report.witnesses })),
+            h('p', 'note', 'A signed commit is taken only with a verifier of its signatures, the commit of a snapshot as well (O3 of WWCPPOIConformanceTests).')) : null,
         h('h3', null, 'ETags'),
         etagList(step.commit.eTags),
         step.commit.profiles ? h('details', 'raw', h('summary', null, 'The genesis commit as JSON'), jsonView(step.commit.json, { open: 1 })) : null,

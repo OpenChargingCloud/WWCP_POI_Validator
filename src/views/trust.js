@@ -45,11 +45,13 @@ function trustChain(report, network, anchor) {
         anchor
             ? h('div', null,
                 h('div', 'chain-line', `${plural(anchor.keys.length, 'identity key')} pinned by @id`),
-                h('div', 'chain-line', `quorum: ${anchor.minConsensus} holder${anchor.minConsensus === 1 ? '' : 's'}`),
-                h('div', 'stack', ...anchor.keys.map(key => {
-                    const known = directory.get(key);
-                    return h('div', 'pinned-key', shortId(key, 10), known ? h('span', 'muted', ` ${known.holder ?? ''}`) : h('span', 'muted', ' not in this version'));
-                })))
+                h('div', 'chain-line', `quorum: ${anchor.minConsensus} of ${plural(anchor.holders.length, 'holder')}, the keys named per holder`),
+                h('div', 'stack', ...anchor.holders.map((keys, index) => h('div', 'pinned-key',
+                    h('span', 'muted', `holder ${index + 1}: `),
+                    ...keys.map(key => {
+                        const known = directory.get(key);
+                        return h('span', null, shortId(key, 10), known ? h('span', 'muted', ` ${known.holder ?? ''} `) : h('span', 'muted', ' not in this version '));
+                    })))))
             : h('div', 'chain-line muted', report.anchor.kind === 'invalid' ? 'invalid' : 'none given: trust on first use'));
 
     const statementBox = h('div', 'chain-box statement',

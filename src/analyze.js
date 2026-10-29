@@ -17,6 +17,7 @@ import {
     verifyCheckpointSignatures, verifyChargingStation, verifyPriceStatements, verifyCheckpointPriceStatements,
     verifyEvidence, parseEvidence, parseTrustedWitnesses, parsePriceStatements, priceStatementsRoot,
     parseArchiveSegmentInfo, verifySegmentLine, sameETags, etagToText, canonicalJSON, toHex, get, isArray, isObject,
+    DigitalCalibrationCertificate, DigitalCertificateOfConformity, DigitalDeclarationOfConformity,
 } from '@open-charging-cloud/wwcp-poi';
 
 import { keyDirectory } from './keys.js';
@@ -82,12 +83,31 @@ function trustOnFirstUse(network) {
     const statement = network.operator?.keyStatement;
     if (statement === undefined)
         return undefined;
-    return TrustAnchor.create(network.id, [ `https://unknown.invalid/RNs/${encodeURIComponent(network.id)}` ], statement.identityKeys.map(key => key.id), statement.minConsensus);
+    return TrustAnchor.create(network.id, [ `https://unknown.invalid/RNs/${encodeURIComponent(network.id)}` ], keysByHolder(statement.identityKeys), statement.minConsensus);
+}
+
+/** The `@id`s of identity keys, one entry per holder, as a trust anchor names them: holders are counted, not keys (4.1, 8.6). */
+function keysByHolder(identityKeys) {
+    const holders = new Map();
+    for (const key of identityKeys)
+        holders.set(key.holderOrUnnamed, [ ...(holders.get(key.holderOrUnnamed) ?? []), key.id ]);
+    return [ ...holders.values() ];
 }
 
 
-/** Each signature of a commit or checkpoint, as a verifier trusting `trust` and the witnesses sees it. */
-function describeRoleSignatures(signatures, trust, witnesses, verify) {
+/**
+ * Each signature of a commit or checkpoint, as a verifier trusting `trust` and the witnesses sees it. Where the library
+ * verified them already (`verified`: the signatures it found invalid, by key), they are not verified again: the costly
+ * algorithms (ES512, Ed448, ML-DSA) count twice otherwise.
+ */
+function describeRoleSignatures(signatures, trust, witnesses, verify, verified) {
+
+    if (verified !== undefined)
+        verify = (signature) => {
+            const reason = verified.get(signature.keyId);
+            if (reason !== undefined)
+                throw new Error(reason);
+        };
 
     return signatures.map(signature => {
 
@@ -95,17 +115,19 @@ function describeRoleSignatures(signatures, trust, witnesses, verify) {
 
         if (signature.role === 'roamingNetworkOperator') {
 
-            const key = trust?.signingKeyOf(signature);
+            // Counted for the holder of the trusted identity key that certified the key, as the trust knows it.
+            const key    = trust?.signingKeyOf(signature);
+            const holder = trust?.holderOf(signature);
 
-            if (key === undefined)
+            if (key === undefined || holder === undefined)
                 return { ...result, status: 'untrusted', detail: trust === undefined ? 'no trust in the roaming network operator' : 'no signing key a trusted identity key of its holder certifies, valid then and for the party' };
 
             try {
                 verify(signature, key);
-                return { ...result, status: 'valid', holder: key.holderOrUnnamed };
+                return { ...result, status: 'valid', holder };
             }
             catch (e) {
-                return { ...result, status: 'invalid', holder: key.holderOrUnnamed, detail: message(e) };
+                return { ...result, status: 'invalid', holder, detail: message(e) };
             }
 
         }
@@ -187,8 +209,11 @@ const PARTY_ARRAYS = {
 };
 
 
-/** Each signature of a change set: whose key, which kind, and whether it is valid. */
-function describeChangeSetSignatures(changeSet, before, witnesses) {
+/**
+ * Each signature of a change set: whose key, which kind, and whether it is valid. Where the library applied the change
+ * set (`verified`), it verified every signature of it already: they are not verified again.
+ */
+function describeChangeSetSignatures(changeSet, before, witnesses, verified = false) {
 
     const directory = keyDirectory(before, { witnesses });
     const fresh     = newIdentityKeys(changeSet, before);
@@ -201,7 +226,10 @@ function describeChangeSetSignatures(changeSet, before, witnesses) {
         let valid;
         let detail;
 
-        if (key !== undefined) {
+        if (key !== undefined && verified)
+            valid = true;
+
+        else if (key !== undefined) {
             try {
                 changeSet.verifySignature(signature, key);
                 valid = true;
@@ -261,6 +289,7 @@ export async function analyze(pool, settings, onProgress = () => {}) {
         priceStatementProofs: [],
         attestations:      [],
         archive:           undefined,
+        qiDigital:         [],
         runtime:           [],
         looseCommits:      [],
         issues,
@@ -502,8 +531,6 @@ export async function analyze(pool, settings, onProgress = () => {}) {
 
                 const step = currentStep;
 
-                step.operatorSignatures = describeRoleSignatures(commit.signatures, trust, report.witnesses, (signature, key) => commit.verifySignature(signature, key));
-
                 if (trust === undefined)
                     step.operatorCheck = { ok: undefined, detail: 'The roaming network operator is not trusted: its signatures are not checked.' };
                 else {
@@ -516,10 +543,16 @@ export async function analyze(pool, settings, onProgress = () => {}) {
                     }
                 }
 
+                // Every signature by a trusted key is valid where the library took them; otherwise each is checked to tell which.
+                step.operatorSignatures = describeRoleSignatures(commit.signatures, trust, report.witnesses, (signature, key) => commit.verifySignature(signature, key),
+                                                                 step.operatorCheck.ok === true ? new Map() : undefined);
+
                 // The keys the operator states anew are followed when the trusted ones signed their statement (8.6, Succession).
-                const statementBefore = before.operator?.keyStatement;
+                // The commit of a snapshot has no version before it here: its statement is the one trusted already.
+                const statementBefore = before?.operator?.keyStatement;
                 const statementAfter  = after.operator?.keyStatement;
-                const changed         = statementAfter !== undefined && (statementBefore === undefined || canonicalJSON(statementBefore.json) !== canonicalJSON(statementAfter.json));
+                const changed         = before !== undefined && statementAfter !== undefined &&
+                                        (statementBefore === undefined || canonicalJSON(statementBefore.json) !== canonicalJSON(statementAfter.json));
 
                 if (trust !== undefined) {
                     try {
@@ -537,10 +570,10 @@ export async function analyze(pool, settings, onProgress = () => {}) {
             verifyCheckpoint: (checkpoint) => {
 
                 const step = currentStep;
-
-                step.signatures = describeRoleSignatures(checkpoint.signatures, trust, report.witnesses, (signature, key) => checkpoint.verifySignature(signature, key));
+                const verify = (signature, key) => checkpoint.verifySignature(signature, key);
 
                 if (trust === undefined) {
+                    step.signatures = describeRoleSignatures(checkpoint.signatures, trust, report.witnesses, verify);
                     step.signatureCheck = { ok: undefined, detail: 'The roaming network operator is not trusted: the signatures are not checked.' };
                     return;
                 }
@@ -552,6 +585,10 @@ export async function analyze(pool, settings, onProgress = () => {}) {
                 catch (e) {
                     step.signatureCheck = { ok: false, error: message(e), required: trust.requiredConsensus, requiredWitnesses: report.requiredWitnesses };
                 }
+
+                // Taken without an invalid signature, each counted one is valid; otherwise each is checked to tell which.
+                const clean = step.signatureCheck.ok === true && !step.signatureCheck.ignored.some(reason => reason.includes('invalid'));
+                step.signatures = describeRoleSignatures(checkpoint.signatures, trust, report.witnesses, verify, clean ? new Map() : undefined);
 
             },
 
@@ -606,12 +643,25 @@ export async function analyze(pool, settings, onProgress = () => {}) {
                         }
                     }
 
+                    // A snapshot of another server is anchored in the trust anchor (10.5): a checkpoint by the signatures of the
+                    // operator's quorum, the head by its attestations. A genesis, or the base of an archive segment, is taken
+                    // unanchored: its key statement was verified against the trust anchor here, its commit is signed by the quorum.
+                    const anchored = anchor !== undefined && step.trust?.ok === true && step.tofu === undefined && snapshot.revision > 0 && !snapshot.archive;
+
                     currentStep = step;
-                    history = History.fromSnapshot(snapshot.json, options);
+                    history = History.fromSnapshot(snapshot.json, anchored ? { ...options, trustAnchor: anchor, at } : { ...options, unanchored: true });
                     step.network = history.root.network;
+                    step.anchored = anchored;
                     step.checks.push({ label: 'The roaming network of the snapshot leads to the ETags of its commit (3, 10.5)', ok: true });
                     if (snapshot.checkpoint)
                         step.checks.push({ label: 'Its checkpoint names its commit, with its revision and ETags', ok: true });
+                    step.checks.push(anchored
+                        ? { label: snapshot.checkpoint
+                                       ? 'Anchored in the trust anchor: its checkpoint is signed by signing keys of the quorum of the operator, certified by trusted identity keys (10.5)'
+                                       : 'Anchored in the trust anchor: its attestations attest the root of its head (8.5, 10.5)', ok: true }
+                        : { label: 'Taken unanchored, its key statement verified against the trust anchor here and its commit signed by the quorum of the operator', ok: step.trust?.ok === true ? true : undefined });
+                    if (step.operatorCheck?.ok === false)
+                        issue('error', `The commit of the snapshot '${snapshot.document.name}' is not signed as the roaming network operator requires: ${step.operatorCheck.error}`, snapshot.document);
                     rootStep = step;
                     if (snapshot.checkpoint)
                         takenCheckpoints.add(history.checkpoints[0]?.id);
@@ -771,7 +821,6 @@ export async function analyze(pool, settings, onProgress = () => {}) {
 
             try {
                 step.changeSet = ChangeSet.parse(commit.changeSet);
-                step.changeSetSigners = describeChangeSetSignatures(step.changeSet, before, report.witnesses);
                 step.owners = step.changeSet.changes.map(change => ownerOfChange(change, before));
             }
             catch (e) {
@@ -800,6 +849,10 @@ export async function analyze(pool, settings, onProgress = () => {}) {
                 issue('error', `Revision ${commit.revision} of epoch ${epochNumber} is refused: ${message(e)}`, item.documents[0]);
                 stopped = true;
             }
+
+            // Who signed the change set: applied, the library verified every signature of it.
+            if (step.changeSet !== undefined)
+                step.changeSetSigners = describeChangeSetSignatures(step.changeSet, before, report.witnesses, step.network !== undefined);
 
             if (step.ok === false && step.error === undefined && step.operatorCheck?.ok === false)
                 issue('error', `Revision ${commit.revision} of epoch ${epochNumber} is not signed as the roaming network operator requires: ${step.operatorCheck.error}`, item.documents[0]);
@@ -896,7 +949,7 @@ export async function analyze(pool, settings, onProgress = () => {}) {
             const statement = trust.keyStatement;
             const ids       = statement.identityKeys.map(key => key.id);
             if (ids.some(id => !anchor.keys.includes(id)))
-                followedAnchor = TrustAnchor.create(anchor.id, anchor.urls, ids, Math.max(anchor.minConsensus, statement.minConsensus), anchor.name, anchor.description);
+                followedAnchor = TrustAnchor.create(anchor.id, anchor.urls, keysByHolder(statement.identityKeys), Math.max(anchor.minConsensus, statement.minConsensus), anchor.name, anchor.description);
         }
         catch {
             followedAnchor = undefined;
@@ -1079,6 +1132,8 @@ export async function analyze(pool, settings, onProgress = () => {}) {
         }
     }
 
+    analyzeQIDigital(pool, report, at, issue);
+
     // The archive (10.6): its segments a line, their commits those of the history.
     const segmentInfos = pool.ofType('archiveSegments').flatMap(document => document.json);
     if (segmentInfos.length > 0 || pool.ofType('archiveSegment').length > 0) {
@@ -1118,6 +1173,116 @@ export async function analyze(pool, settings, onProgress = () => {}) {
     report.verdict = verdictOf(report);
 
     return report;
+
+}
+
+
+//  ------------------------------------------------------------------
+//  QI-Digital (example A14): the papers of what charges, checked against the network
+//  ------------------------------------------------------------------
+
+const QI_DIGITAL = {
+    calibrationCertificate:   { parse: (text) => DigitalCalibrationCertificate.parseText(text),  what: 'digital calibration certificate' },
+    certificateOfConformity:  { parse: (text) => DigitalCertificateOfConformity.parseText(text), what: 'digital certificate of conformity' },
+    declarationOfConformity:  { parse: (text) => DigitalDeclarationOfConformity.parseText(text), what: 'digital declaration of conformity' },
+};
+
+/** The EVSE or charging station that holds an energy meter or is a charging station of the given identification, at runtime. */
+function holderOfItem(network, item) {
+    for (const operator of isArray(network.effectiveContent['chargingStationOperators']) ? network.effectiveContent['chargingStationOperators'] : [])
+        for (const pool of isArray(operator['chargingPools']) ? operator['chargingPools'] : [])
+            for (const station of isArray(pool['chargingStations']) ? pool['chargingStations'] : []) {
+                if (item.type === 'ChargingStation' && String(station['@id']).replaceAll('*', '').toUpperCase() === item.id.replaceAll('*', '').toUpperCase())
+                    return { type: 'ChargingStation', id: String(station['@id']), path: [ { array: 'chargingStationOperators', id: String(operator['@id']) }, { array: 'chargingPools', id: String(pool['@id']) }, { array: 'chargingStations', id: String(station['@id']) } ] };
+                for (const evse of isArray(station['EVSEs']) ? station['EVSEs'] : [])
+                    if (isObject(evse['energyMeter']) && String(evse['energyMeter']['@id']).toUpperCase() === item.id.toUpperCase())
+                        return { type: 'EVSE', id: String(evse['@id']), meter: evse['energyMeter'],
+                                 path: [ { array: 'chargingStationOperators', id: String(operator['@id']) }, { array: 'chargingPools', id: String(pool['@id']) }, { array: 'chargingStations', id: String(station['@id']) }, { array: 'EVSEs', id: String(evse['@id']) } ] };
+            }
+    return undefined;
+}
+
+/**
+ * Reads every QI-Digital document as WWCP_POI reads it, checks it against the head of the network - signed by a key of its
+ * issuer, a party of the network, that may sign it, valid when it signed and at `at`; its notified body, model and item
+ * those of the network, the item as it is at runtime - and against each other: a declaration against the certificates it
+ * names, a certificate against the item of a calibration certificate it covers.
+ */
+function analyzeQIDigital(pool, report, at, issue) {
+
+    const network = report.head?.version.network;
+
+    for (const document of pool.ofType('calibrationCertificate', 'certificateOfConformity', 'declarationOfConformity')) {
+
+        const result = { document, kind: document.type, relations: [] };
+        report.qiDigital.push(result);
+
+        try {
+            result.doc = QI_DIGITAL[document.type].parse(document.text);
+        }
+        catch (e) {
+            result.ok = false;
+            result.error = message(e);
+            issue('error', `The ${QI_DIGITAL[document.type].what} '${document.name}' is refused as it is read: ${message(e)}`, document);
+            continue;
+        }
+
+        if (network === undefined) {
+            result.ok = undefined;
+            result.error = 'There is no version of a roaming network to check it against.';
+            continue;
+        }
+
+        try {
+            result.doc.verify(network, at);
+            result.ok = true;
+            result.checkedAgainst = { epoch: report.head.epoch, revision: report.head.version.commit.revision };
+        }
+        catch (e) {
+            result.ok = false;
+            result.error = message(e);
+            issue('error', `${result.doc.documentText[0].toUpperCase()}${result.doc.documentText.slice(1)} does not verify against the head: ${message(e)}`, document);
+        }
+
+        if (result.kind === 'calibrationCertificate')
+            result.holder = holderOfItem(network, result.doc.item);
+
+    }
+
+    const of = (kind) => report.qiDigital.filter(item => item.kind === kind && item.doc !== undefined);
+
+    // A declaration names the certificates of its notified bodies: each must be one it can be checked against.
+    for (const declaration of of('declarationOfConformity'))
+        for (const body of declaration.doc.notifiedBodies) {
+            if (body.certificateId === undefined)
+                continue;
+            const certificate = of('certificateOfConformity').find(item => item.doc.id === body.certificateId);
+            if (certificate === undefined) {
+                declaration.relations.push({ label: `Names the certificate ${body.certificateId} of ${body.conformityAssessmentBodyId} (module ${body.module ?? '?'})`, ok: undefined, detail: 'not among the documents' });
+                continue;
+            }
+            try {
+                declaration.doc.verifyCertificate(certificate.doc);
+                declaration.relations.push({ label: `The certificate ${body.certificateId} of ${body.conformityAssessmentBodyId} is the one it names: module ${body.module ?? '?'}, its model and legislation`, ok: true, ref: certificate.document });
+            }
+            catch (e) {
+                declaration.relations.push({ label: `The certificate ${body.certificateId} it names`, ok: false, detail: message(e), ref: certificate.document });
+            }
+        }
+
+    // A certificate covers what was calibrated: of its model and versions, or of a manufacturer whose quality system it approves.
+    for (const certificate of of('certificateOfConformity'))
+        for (const calibration of of('calibrationCertificate')) {
+            try {
+                certificate.doc.cover(calibration.doc.item);
+                certificate.relations.push({ label: `Covers ${calibration.doc.item.text}, which ${calibration.doc.id} calibrated`, ok: true, ref: calibration.document });
+                calibration.relations.push({ label: `${certificate.doc.id} (module ${certificate.doc.module}) covers its item`, ok: true, ref: certificate.document });
+            }
+            catch (e) {
+                // Not a fault: another certificate may cover it. Shown, not counted.
+                certificate.relations.push({ label: `Does not cover ${calibration.doc.item.text}`, ok: undefined, detail: message(e), ref: calibration.document });
+            }
+        }
 
 }
 

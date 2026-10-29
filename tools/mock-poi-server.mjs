@@ -55,7 +55,10 @@ const epochs = new Map();   // number → { history, checkpoints: [], commits: [
 
 const genesisSnapshots = pool.ofType('snapshot').filter(document => document.json['commit']?.['revision'] === 0).sort((left, right) => (left.json['epoch']?.['epoch'] ?? 1) - (right.json['epoch']?.['epoch'] ?? 1));
 
-let history = POI.History.fromSnapshot(genesisSnapshots[0].json);
+// A stand-in checks nothing: it takes the genesis unanchored, and the signatures as they are. The validator checks them.
+const unchecked = { verifyCommit: () => {}, verifyCheckpoint: () => {} };
+
+let history = POI.History.fromSnapshot(genesisSnapshots[0].json, { ...unchecked, unanchored: true });
 
 for (;;) {
 
