@@ -45,11 +45,12 @@ jobs:
     steps:
       # Before the checkout: the bare debian:13 image has no git, and actions/checkout without it downloads a tarball,
       # which is no repository - the demos made anew are compared with git. And what Node needs: xz-utils for its
-      # tarball, the certificates for npm.
+      # tarball, the certificates for npm, and libatomic.so.1, which Node 26 links and Node 22 did not (without it, its
+      # binary exits with 127 before it runs).
       - name: Install prerequisites (Debian container)
         if: ${{ inputs.container != '' }}
         working-directory: .
-        run: apt-get update && apt-get install -y --no-install-recommends ca-certificates git libstdc++6 xz-utils && git config --global --add safe.directory '*'
+        run: apt-get update && apt-get install -y --no-install-recommends ca-certificates git libatomic1 libstdc++6 xz-utils && git config --global --add safe.directory '*'
 
       - uses: actions/checkout@v7
         with:
