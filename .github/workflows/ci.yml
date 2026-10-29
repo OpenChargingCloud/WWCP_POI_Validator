@@ -1,0 +1,42 @@
+name: CI
+
+# The gate of every push: does this commit work with the WWCP_POI.TS it pins (package.json, config.wwcpPoiTs)? What
+# WWCP_POI.TS does since is the business of the nightly run.
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  # Manual runs from the Actions tab ("Run workflow").
+  workflow_dispatch:
+
+concurrency:
+  # Pull requests: one run per branch, newest wins. Pushes: one run per commit, so that every commit gets a verdict.
+  group: ci-${{ github.event_name == 'pull_request' && github.ref || github.sha }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    # As in WWCP_POI.TS: Ubuntu on Node 22.18, the minimum package.json promises; Ubuntu on Node 26; Windows on Node 24,
+    # where a checkout converting line endings would change the signed bytes of the demos (.gitattributes keeps them).
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            node: '22.18'
+            leg: ubuntu-node-22.18
+          - os: ubuntu-latest
+            node: '26'
+            leg: ubuntu-node-26
+          - os: windows-latest
+            node: '24'
+            leg: windows-node-24
+    uses: ./.github/workflows/verify.yml
+    with:
+      os: ${{ matrix.os }}
+      node: ${{ matrix.node }}
+      leg: ${{ matrix.leg }}

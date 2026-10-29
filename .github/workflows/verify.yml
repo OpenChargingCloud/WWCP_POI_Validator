@@ -1,0 +1,103 @@
+name: Verify
+
+# The steps CI and Nightly share. The validator takes WWCP_POI.TS from a checkout next to it ("file:../WWCP_POI.TS" in
+# package.json) until it is published on npm, so the job checks both out side by side: WWCP_POI.TS at the commit
+# package.json pins (config.wwcpPoiTs), or at the ref given. Then the tests, the build, and the demos made anew with that
+# WWCP_POI.TS, which have to be the ones committed, byte for byte.
+on:
+  workflow_call:
+    inputs:
+      wwcp-poi-ts:
+        description: 'The ref of WWCP_POI.TS to verify with; empty for the commit package.json pins.'
+        type: string
+        default: ''
+      os:
+        type: string
+        default: ubuntu-latest
+      node:
+        type: string
+        default: '26'
+      leg:
+        description: 'The name of this run in the names of its artifacts.'
+        type: string
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ${{ inputs.os }}
+    timeout-minutes: 20
+    defaults:
+      run:
+        # Git Bash on Windows: one script for both operating systems.
+        shell: bash
+        working-directory: WWCP_POI_Validator
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          path: WWCP_POI_Validator
+
+      - name: Which WWCP_POI.TS
+        id: poi
+        env:
+          REF: ${{ inputs.wwcp-poi-ts }}
+        run: |
+          if [ -z "$REF" ]; then REF=$(node -p "require('./package.json').config.wwcpPoiTs"); fi
+          echo "ref=$REF" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v7
+        with:
+          repository: OpenChargingCloud/WWCP_POI.TS
+          ref: ${{ steps.poi.outputs.ref }}
+          path: WWCP_POI.TS
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ inputs.node }}
+          cache: npm
+          cache-dependency-path: |
+            WWCP_POI.TS/package-lock.json
+            WWCP_POI_Validator/package-lock.json
+
+      - name: Build WWCP_POI.TS
+        working-directory: WWCP_POI.TS
+        run: |
+          echo "Verified with WWCP_POI.TS $(git log -1 --format='%H, %cs: %s')" | tee -a "$GITHUB_STEP_SUMMARY"
+          npm ci
+          npm run build
+
+      - name: Install dependencies
+        run: npm ci
+
+      # The demos verify, documents changed after they were signed are refused, and "Load from its servers" loads the
+      # QA demo from tools/mock-poi-server.mjs, waiting where it answers 429. JUnit as well, for 'gh run download'.
+      - name: Test
+        run: |
+          mkdir -p artifacts
+          node --test --test-reporter=spec --test-reporter-destination=stdout --test-reporter=junit --test-reporter-destination=artifacts/tests-${{ inputs.leg }}.xml "tests/*.test.js"
+
+      - name: Build
+        run: npm run build
+
+      # The QA demo is the recorded run WWCP_POI.TS vendors (tests/at.ts), the Thuringia demo is generated and signed
+      # with test keys of fixed seeds by WWCP_POI.TS: both made anew have to be what is committed. A difference means
+      # WWCP_POI.TS moved on to another run, or calculates other bytes: run both scripts and commit what they write.
+      - name: The demos, made anew, are the ones committed
+        run: |
+          npm run vendor:qa
+          npm run generate:thuringia
+          if [ -n "$(git status --porcelain -- demo)" ]; then
+            git status --short -- demo
+            echo "::error::The demos made anew with this WWCP_POI.TS differ from the ones committed: run 'npm run vendor:qa' and 'npm run generate:thuringia', and commit demo/."
+            exit 1
+          fi
+
+      # !cancelled() rather than success(): a red run is when these files matter most.
+      - name: Upload test results
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-results-${{ inputs.leg }}
+          path: WWCP_POI_Validator/artifacts/*.xml

@@ -9,7 +9,14 @@
     "watch": "webpack --config webpack.config.cjs --watch",
     "vendor:qa": "node tools/vendor-qa-demo.mjs",
     "generate:thuringia": "node tools/generate-demo-network.mjs",
-    "mock-server": "node tools/mock-poi-server.mjs"
+    "mock-server": "node tools/mock-poi-server.mjs",
+    "test": "node --test \"tests/*.test.js\""
+  },
+  "config": {
+    "wwcpPoiTs": "0aaf713f84351463f476e851d3479e9672c880c9"
+  },
+  "engines": {
+    "node": ">=22.18"
   },
   "author": "GraphDefined GmbH <achim.friedland@graphdefined.com>",
   "license": "AGPL-3.0-only",

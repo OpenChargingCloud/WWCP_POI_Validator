@@ -73,6 +73,8 @@ D:\Coding\OpenChargingCloud\WWCP_POI.TS
 D:\Coding\OpenChargingCloud\WWCP_POI_Validator
 ```
 
+The commit of WWCP_POI.TS it is tested with is pinned in `package.json` (`config.wwcpPoiTs`); CI checks out that one.
+
 Build WWCP_POI.TS once, then the validator:
 
 ```bash
@@ -161,6 +163,34 @@ node "D:\Coding\OpenChargingCloud\WWCP_POI_Validator\tools\mock-poi-server.mjs" 
   ```
 
 
+## Tests
+
+The analysis runs in Node as in the browser, so the tests need no browser (`node:test`, about a minute):
+
+```bash
+npm --prefix "D:\Coding\OpenChargingCloud\WWCP_POI_Validator" test
+```
+
+- `tests/demos.test.js`: both demos verify as of the time of their recording, with every commit, checkpoint, proof,
+  attestation and QI-Digital document; a day later the station proofs of the QA demo are refused, their attestations
+  expired.
+- `tests/tampering.test.js`: one document of the Thuringia demo changed after it was signed, as *Edit and verify again*
+  does it: a change set (its commit is refused, the commits after it are not taken), a signature of the operator, a
+  witness signature removed, no trust anchor. Two tests are marked `todo`, gaps the tests found: a price statement
+  changed after it was signed makes no finding yet, neither in the current statements nor in the list a checkpoint
+  names.
+- `tests/servers.test.js`: *Load from its servers* against `tools/mock-poi-server.mjs`, and how it waits on 429.
+
+GitHub Actions run them with WWCP_POI.TS checked out next to the validator (`.github/workflows/verify.yml`), and then
+make both demos anew, which have to be the ones committed, byte for byte:
+
+- **CI** (`ci.yml`), on every push and pull request: with the pinned commit of WWCP_POI.TS, on Ubuntu with Node 22.18 and
+  26, and on Windows with Node 24.
+- **Nightly** (`nightly.yml`): the same once more, and with WWCP_POI.TS master. A red there means WWCP_POI.TS moved on and
+  the validator has to follow: adapt it, make the demos anew (`npm run vendor:qa`, `npm run generate:thuringia`), and
+  pin the new commit.
+
+
 ## How it is built
 
 | File | |
@@ -172,6 +202,8 @@ node "D:\Coding\OpenChargingCloud\WWCP_POI_Validator\tools\mock-poi-server.mjs" 
 | `src/keys.js` | who holds a key: the directory of all keys of a version |
 | `src/entities.js` | the entities of a version: tree, provenance of effective values, Merkle paths, entity history |
 | `src/views/*.js` | overview, trust, history, network, proofs & prices (with `qidigital.js`), documents |
+| `tests/*.test.js` | the demos, documents changed after they were signed, loading from servers |
+| `tools/*.mjs` | the QA demo vendored, the Thuringia demo generated, a stand-in POI_API server |
 
 Every verdict is the library's: the page only records what it checked, step by step, and goes on where it can, so that
 one refused signature does not hide the rest of the history. Branches and merges, element changes and preconditions are
