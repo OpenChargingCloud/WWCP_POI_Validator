@@ -12,6 +12,12 @@
             "runtimeExecutable": "node",
             "runtimeArgs": ["tools/mock-poi-server.mjs"],
             "port": 8139
+        },
+        {
+            "name": "mock-poi-server-limited",
+            "runtimeExecutable": "node",
+            "runtimeArgs": ["tools/mock-poi-server.mjs", "qa", "8140", "4"],
+            "port": 8140
         }
     ]
 }

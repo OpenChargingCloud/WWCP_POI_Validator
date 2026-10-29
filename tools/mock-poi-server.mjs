@@ -3,7 +3,10 @@
  * it serves the documents of a demo below the paths POI_API serves them (README of WWCP_POI, specification 10.5, 10.6,
  * 11.5, 12.5), with CORS, so that a page of another origin may read them.
  *
- *   node tools/mock-poi-server.mjs [demo] [port]        e.g.  node tools/mock-poi-server.mjs qa 8139
+ *   node tools/mock-poi-server.mjs [demo] [port] [heavy reads per minute]    e.g.  node tools/mock-poi-server.mjs qa 8139
+ *
+ * With a number of heavy reads per minute it limits them as POI3 does (specification 5.5): snapshots, pages of commits
+ * and archive segments beyond it are answered with 429 and Retry-After, to see the validator wait and ask again.
  *
  * It replays the history of the demo with WWCP_POI.TS once, to have the version of every checkpoint as a snapshot, and
  * prints the trust anchor naming its own URL. It answers only what the demo recorded: it is no implementation of POI,
@@ -21,6 +24,7 @@ import { DocumentPool } from '../src/documents.js';
 
 const demo   = process.argv[2] ?? 'qa';
 const port   = Number(process.argv[3] ?? 8139);
+const limit  = process.argv[4] === undefined ? undefined : Number(process.argv[4]);
 const folder = join(import.meta.dirname, '..', 'demo', demo);
 
 const manifest = JSON.parse(readFileSync(join(folder, 'manifest.json'), 'utf8'));
@@ -242,6 +246,28 @@ function route(path, query) {
 }
 
 
+//  ------------------------------------------------------------------
+//  The heavy reads (5.5): a bucket of `limit` reads, filled again within a minute
+//  ------------------------------------------------------------------
+
+const isHeavy = (path) => /\/history\/(snapshot|commits|archive\/\d+|checkpoints\/[0-9a-f]+\/snapshot)$/.test(path);
+
+let tokens = limit;
+let filled = Date.now();
+
+/** The seconds to wait for the next heavy read, or 0 where one is taken now. */
+function takeHeavyRead() {
+    const now = Date.now();
+    tokens = Math.min(limit, tokens + (now - filled) * limit / 60_000);
+    filled = now;
+    if (tokens >= 1) {
+        tokens--;
+        return 0;
+    }
+    return Math.max(1, Math.ceil((1 - tokens) * 60 / limit));
+}
+
+
 createServer((request, response) => {
 
     const url = new URL(request.url ?? '/', `http://localhost:${port}`);
@@ -262,6 +288,17 @@ createServer((request, response) => {
     let status;
     let body;
 
+    // Retry-After is not exposed to other origins (Access-Control-Expose-Headers), as POI_API does not either: a page
+    // reads the seconds from the description.
+    const wait = limit !== undefined && isHeavy(url.pathname) ? takeHeavyRead() : 0;
+
+    if (wait > 0) {
+        response.writeHead(429, { ...headers, 'Content-Type': 'application/json; charset=utf-8', 'Retry-After': String(wait) });
+        response.end(JSON.stringify({ description: `Too many heavy reads: try again in ${wait} seconds!` }));
+        console.log(`${request.method} ${url.pathname}${url.search} → 429, try again in ${wait} s`);
+        return;
+    }
+
     try {
         [ status, body ] = route(url.pathname, url.searchParams);
     }
@@ -278,6 +315,8 @@ createServer((request, response) => {
 
     console.log(`A stand-in POI_API server for the demo '${demo}' (${manifest.title}) at ${ownURL}`);
     console.log(`Epochs: ${[ ...epochs.entries() ].map(([ number, entry ]) => `${number} (${entry.commits.length} commits, ${entry.checkpoints.length} checkpoints)`).join(', ')}`);
+    if (limit !== undefined)
+        console.log(`Heavy reads: ${limit} per minute, beyond them 429`);
     console.log('');
     console.log('Its trust anchor — paste one of these into the validator and press "Load from its servers":');
     console.log('');

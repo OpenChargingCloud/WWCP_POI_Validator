@@ -74,6 +74,44 @@ export async function loadFiles(files, pool) {
 
 const MAX_COMMITS = 5000;
 
+// A server may limit the heavy reads of a client, and answers one beyond with 429 and Retry-After (5.5): the page waits
+// as long as told, a minute at most at a time, and asks again, up to six times.
+const MAX_ASKED = 6;
+const MAX_WAIT  = 60;
+
+/**
+ * The seconds a server answering 429 asks to wait: its Retry-After, in seconds or as a date. A page of another origin
+ * reads that header only where the server exposes it (Access-Control-Expose-Headers); otherwise the seconds its
+ * description names, as POI3 words it ("Too many heavy reads: try again in 7 seconds!").
+ */
+function retryAfterOf(response, body) {
+
+    const header = response.headers.get('Retry-After')?.trim();
+
+    if (header) {
+        if (/^\d+$/.test(header))
+            return Number(header);
+        const date = Date.parse(header);
+        if (!Number.isNaN(date))
+            return Math.max(1, Math.ceil((date - Date.now()) / 1000));
+    }
+
+    const named = /try again in (\d+) seconds?/i.exec(body);
+    return named ? Number(named[1]) : undefined;
+
+}
+
+/** Waits the given seconds, telling each one that is left. */
+async function waitSeconds(seconds, signal, onSecond) {
+    for (let left = seconds; left > 0; left--) {
+        onSecond(left);
+        await new Promise((resolve, reject) => {
+            const timer = setTimeout(resolve, 1000);
+            signal?.addEventListener('abort', () => { clearTimeout(timer); reject(signal.reason); }, { once: true });
+        });
+    }
+}
+
 /**
  * Asks the servers of the trust anchor, the preferred one first, for what the analysis needs. A server that does not
  * answer, or answers something else, is just one more document that did not load; the next one is asked only when the
@@ -96,15 +134,28 @@ export async function loadFromServers(trustAnchorText, pool, { onProgress, signa
             onProgress?.(`GET ${path} …`, undefined);
 
             try {
-                const response = await fetch(target, { headers: { Accept: 'application/json' }, signal, cache: 'no-store' });
-                const body     = await response.text();
-                if (!response.ok) {
-                    if (!optional)
-                        pool.addFailure(label, 'http', `HTTP ${response.status}${body ? ': ' + body.slice(0, 200) : ''}`, { url: target });
-                    return undefined;
+                for (let asked = 1; ; asked++) {
+
+                    const response = await fetch(target, { headers: { Accept: 'application/json' }, signal, cache: 'no-store' });
+                    const body     = await response.text();
+
+                    if (response.status === 429 && asked < MAX_ASKED) {
+                        const seconds = Math.min(retryAfterOf(response, body) ?? 2 ** asked, MAX_WAIT);
+                        await waitSeconds(seconds, signal, left => onProgress?.(`GET ${path}: the server asks to wait (429), asking again in ${left} s …`, undefined));
+                        continue;
+                    }
+
+                    if (!response.ok) {
+                        // What is optional may be missing, but not refused for too many reads.
+                        if (!optional || response.status === 429)
+                            pool.addFailure(label, 'http', `HTTP ${response.status}${body ? ': ' + body.slice(0, 200) : ''}${asked > 1 ? ` (asked ${asked} times)` : ''}`, { url: target });
+                        return undefined;
+                    }
+
+                    answered++;
+                    return pool.addText(label, body, 'http', { url: target });
+
                 }
-                answered++;
-                return pool.addText(label, body, 'http', { url: target });
             }
             catch (e) {
                 if (signal?.aborted)

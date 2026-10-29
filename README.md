@@ -119,6 +119,13 @@ A page may read the answers of a server of another origin only when the server a
 of its history, checkpoints, epochs and proofs; until it does, *Load from its servers* works with a server that adds the
 header (e.g. behind a reverse proxy), or with the validator served from the same origin as POI_API.
 
+A server may limit the heavy reads of a client — snapshots, pages of commits, archive segments — and answer one beyond
+with 429 Too Many Requests and `Retry-After` (specification 5.5; POI3 takes 600 per minute). The validator then waits as
+long as told, a minute at most at a time, and asks again, up to six times. Another origin reads `Retry-After` only where
+the server exposes it (`Access-Control-Expose-Headers`); otherwise the validator takes the seconds the description of
+the answer names, as POI3 words it. A 429 has to carry `Access-Control-Allow-Origin` as well, or the page sees only a
+failed request.
+
 To try it without a server of WWCP_POI, `tools/mock-poi-server.mjs` serves a demo below the paths POI_API serves, with
 CORS, and prints the trust anchor naming its own URL:
 
@@ -127,7 +134,11 @@ node "D:\Coding\OpenChargingCloud\WWCP_POI_Validator\tools\mock-poi-server.mjs" 
 ```
 
 Paste the printed trust anchor (`http://localhost:8139/RNs/QA?keys=…`) into the validator and press *Load from its
-servers*.
+servers*. A third argument limits the heavy reads per minute, to see the validator wait:
+
+```bash
+node "D:\Coding\OpenChargingCloud\WWCP_POI_Validator\tools\mock-poi-server.mjs" qa 8140 4
+```
 
 
 ## The demos
