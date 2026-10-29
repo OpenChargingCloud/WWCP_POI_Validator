@@ -22,7 +22,8 @@ module.exports = {
     },
 
     resolve: {
-        // WWCP_POI.TS is linked from ../WWCP_POI.TS: its own dependencies are resolved from there.
+        // Where WWCP_POI.TS is linked from a checkout instead of its release (npm install ../WWCP_POI.TS, as the nightly
+        // run against its master does), its own dependencies are resolved from there.
         symlinks: true
     },
 

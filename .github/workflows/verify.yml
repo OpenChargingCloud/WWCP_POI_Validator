@@ -1,14 +1,15 @@
 name: Verify
 
-# The steps CI and Nightly share. The validator takes WWCP_POI.TS from a checkout next to it ("file:../WWCP_POI.TS" in
-# package.json) until it is published on npm, so the job checks both out side by side: WWCP_POI.TS at the commit
-# package.json pins (config.wwcpPoiTs), or at the ref given. Then the tests, the build, and the demos made anew with that
-# WWCP_POI.TS, which have to be the ones committed, byte for byte.
+# The steps CI and Nightly share. The validator takes WWCP_POI.TS from npm, the release package-lock.json holds. The QA
+# demo comes from the test vectors of WWCP_POI.TS, which its package does not carry, so the job checks WWCP_POI.TS out
+# next to the validator as well: at the tag of that release, or at the ref given, which is then also built and taken
+# instead of the release. Then the tests, the build, and the demos made anew with that WWCP_POI.TS, which have to be the
+# ones committed, byte for byte.
 on:
   workflow_call:
     inputs:
       wwcp-poi-ts:
-        description: 'The ref of WWCP_POI.TS to verify with; empty for the commit package.json pins.'
+        description: 'A ref of WWCP_POI.TS to verify with instead of the release package-lock.json holds; empty for that release.'
         type: string
         default: ''
       os:
@@ -44,7 +45,7 @@ jobs:
         env:
           REF: ${{ inputs.wwcp-poi-ts }}
         run: |
-          if [ -z "$REF" ]; then REF=$(node -p "require('./package.json').config.wwcpPoiTs"); fi
+          if [ -z "$REF" ]; then REF=v$(node -p "require('./package-lock.json').packages['node_modules/@open-charging-cloud/wwcp-poi'].version"); fi
           echo "ref=$REF" >> "$GITHUB_OUTPUT"
 
       - uses: actions/checkout@v7
@@ -61,15 +62,21 @@ jobs:
             WWCP_POI.TS/package-lock.json
             WWCP_POI_Validator/package-lock.json
 
-      - name: Build WWCP_POI.TS
-        working-directory: WWCP_POI.TS
-        run: |
-          echo "Verified with WWCP_POI.TS $(git log -1 --format='%H, %cs: %s')" | tee -a "$GITHUB_STEP_SUMMARY"
-          npm ci
-          npm run build
-
       - name: Install dependencies
         run: npm ci
+
+      # Not the release, but the ref given: built, and linked in its place.
+      - name: Build WWCP_POI.TS and take it
+        if: ${{ inputs.wwcp-poi-ts != '' }}
+        run: |
+          npm --prefix ../WWCP_POI.TS ci
+          npm --prefix ../WWCP_POI.TS run build
+          npm install --no-save --no-audit --no-fund ../WWCP_POI.TS
+
+      - name: Verified with
+        run: |
+          VERSION=$(node -p "require('@open-charging-cloud/wwcp-poi/package.json').version")
+          echo "Verified with WWCP_POI.TS $VERSION, $(git -C ../WWCP_POI.TS log -1 --format='%H, %cs: %s')" | tee -a "$GITHUB_STEP_SUMMARY"
 
       # The demos verify, documents changed after they were signed are refused, and "Load from its servers" loads the
       # QA demo from tools/mock-poi-server.mjs, waiting where it answers 429. JUnit as well, for 'gh run download'.

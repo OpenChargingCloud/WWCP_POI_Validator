@@ -69,24 +69,9 @@ epochs and price statements fit together.
 
 ## Building
 
-The validator uses WWCP_POI.TS from a checkout next to it, until it is published on npm:
-
-```
-D:\Coding\OpenChargingCloud\WWCP_POI.TS
-D:\Coding\OpenChargingCloud\WWCP_POI_Validator
-```
-
-The commit of WWCP_POI.TS it is tested with is pinned in `package.json` (`config.wwcpPoiTs`); CI checks out that one.
-
-Build WWCP_POI.TS once, then the validator:
-
-```bash
-npm --prefix "D:\Coding\OpenChargingCloud\WWCP_POI.TS" ci
-```
-
-```bash
-npm --prefix "D:\Coding\OpenChargingCloud\WWCP_POI.TS" run build
-```
+The validator takes WWCP_POI.TS from npm
+([`@open-charging-cloud/wwcp-poi`](https://www.npmjs.com/package/@open-charging-cloud/wwcp-poi)), the release
+`package-lock.json` holds:
 
 ```bash
 npm --prefix "D:\Coding\OpenChargingCloud\WWCP_POI_Validator" ci
@@ -115,6 +100,17 @@ npx --yes http-server "D:\Coding\OpenChargingCloud\WWCP_POI_Validator\dist" -p 8
 ```
 
 The map loads its tiles from OpenStreetMap; nothing else leaves the browser.
+
+To try the validator with a WWCP_POI.TS not yet released, build a checkout of it and take that one instead, without
+changing `package.json`; `npm ci` returns to the release:
+
+```bash
+npm --prefix "D:\Coding\OpenChargingCloud\WWCP_POI.TS" run build
+```
+
+```bash
+npm --prefix "D:\Coding\OpenChargingCloud\WWCP_POI_Validator" install --no-save "D:\Coding\OpenChargingCloud\WWCP_POI.TS"
+```
 
 
 ## Loading from servers: CORS
@@ -150,7 +146,9 @@ node "D:\Coding\OpenChargingCloud\WWCP_POI_Validator\tools\mock-poi-server.mjs" 
 
 - `tools/vendor-qa-demo.mjs` copies the public documents of the recorded run WWCP_POI.TS vendors into `demo/qa` and writes
   its manifest; the run and the time it is checked as of are those of `WWCP_POI.TS/tests/at.ts` (`VECTORS_RUN`, `AT`),
-  so that running it again after WWCP_POI.TS moved on to a new run follows it:
+  so that running it again after WWCP_POI.TS moved on to a new run follows it. Its package on npm carries no test
+  vectors: they are read from a checkout of WWCP_POI.TS next to the validator, at the tag of the release the validator
+  takes (`v0.1.0`), or from the path given as its argument:
 
   ```bash
   node "D:\Coding\OpenChargingCloud\WWCP_POI_Validator\tools\vendor-qa-demo.mjs"
@@ -183,14 +181,14 @@ npm --prefix "D:\Coding\OpenChargingCloud\WWCP_POI_Validator" test
   names.
 - `tests/servers.test.js`: *Load from its servers* against `tools/mock-poi-server.mjs`, and how it waits on 429.
 
-GitHub Actions run them with WWCP_POI.TS checked out next to the validator (`.github/workflows/verify.yml`), and then
-make both demos anew, which have to be the ones committed, byte for byte:
+GitHub Actions run them (`.github/workflows/verify.yml`), and then make both demos anew, which have to be the ones
+committed, byte for byte; for the QA demo with WWCP_POI.TS checked out next to the validator, at the tag of its release:
 
-- **CI** (`ci.yml`), on every push and pull request: with the pinned commit of WWCP_POI.TS, on Ubuntu with Node 22.18 and
-  26, and on Windows with Node 24.
-- **Nightly** (`nightly.yml`): the same once more, and with WWCP_POI.TS master. A red there means WWCP_POI.TS moved on and
-  the validator has to follow: adapt it, make the demos anew (`npm run vendor:qa`, `npm run generate:thuringia`), and
-  pin the new commit.
+- **CI** (`ci.yml`), on every push and pull request: with the release of WWCP_POI.TS `package-lock.json` holds, on Ubuntu
+  with Node 22.18 and 26, and on Windows with Node 24.
+- **Nightly** (`nightly.yml`): the same once more, and with WWCP_POI.TS master, built and taken instead of the release. A
+  red there means WWCP_POI.TS moved on and the validator has to follow before its next release: adapt it, make the demos
+  anew (`npm run vendor:qa`, `npm run generate:thuringia`), and take the release once it is on npm.
 
 
 ## How it is built

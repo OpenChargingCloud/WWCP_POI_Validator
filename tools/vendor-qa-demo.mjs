@@ -2,6 +2,8 @@
  * Copies the public documents of the recorded run of the WWCP_POI examples that WWCP_POI.TS vendors in
  * tests/vectors/<run>, into demo/qa, and writes the manifest the validator loads. The run and the point in time it is
  * checked as of are those of WWCP_POI.TS (tests/at.ts: VECTORS_RUN and AT), so that the demo follows the library.
+ * Its package on npm carries no test vectors: this reads them from a checkout, next to the validator unless given,
+ * at the tag of the release the validator takes (v0.1.0, …) or wherever the validator is to follow it.
  *
  *   node tools/vendor-qa-demo.mjs [path of WWCP_POI.TS]
  *

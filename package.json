@@ -12,16 +12,13 @@
     "mock-server": "node tools/mock-poi-server.mjs",
     "test": "node --test \"tests/*.test.js\""
   },
-  "config": {
-    "wwcpPoiTs": "37b34f20466b79cf1672caae66c4f9e084070ade"
-  },
   "engines": {
     "node": ">=22.18"
   },
   "author": "GraphDefined GmbH <achim.friedland@graphdefined.com>",
   "license": "AGPL-3.0-only",
   "dependencies": {
-    "@open-charging-cloud/wwcp-poi": "file:../WWCP_POI.TS",
+    "@open-charging-cloud/wwcp-poi": "^0.1.0",
     "leaflet": "^1.9.4",
     "qrcode-generator": "^2.0.4"
   },

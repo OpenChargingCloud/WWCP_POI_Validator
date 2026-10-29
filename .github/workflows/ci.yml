@@ -1,7 +1,7 @@
 name: CI
 
-# The gate of every push: does this commit work with the WWCP_POI.TS it pins (package.json, config.wwcpPoiTs)? What
-# WWCP_POI.TS does since is the business of the nightly run.
+# The gate of every push: does this commit work with the release of WWCP_POI.TS package-lock.json holds? What WWCP_POI.TS
+# does since is the business of the nightly run.
 on:
   push:
     branches: [master]
