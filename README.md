@@ -191,8 +191,9 @@ npm --prefix "D:\Coding\OpenChargingCloud\WWCP_POI_Validator" test
 GitHub Actions run them (`.github/workflows/verify.yml`), and then make both demos anew, which have to be the ones
 committed, byte for byte; for the QA demo with WWCP_POI.TS checked out next to the validator, at the tag of its release:
 
-- **CI** (`ci.yml`), on every push and pull request: with the release of WWCP_POI.TS `package-lock.json` holds, on Ubuntu
-  with Node 22.18 and 26, and on Windows with Node 24.
+- **CI** (`ci.yml`), on every push and pull request: with the release of WWCP_POI.TS `package-lock.json` holds, on
+  Debian 13 with Node 22.18 and 26 (a container on GitHub's Ubuntu runner, as in the rest of this stack), and on
+  Windows with Node 24.
 - **Nightly** (`nightly.yml`): the same once more, and with WWCP_POI.TS master, built and taken instead of the release. A
   red there means WWCP_POI.TS moved on and the validator has to follow before its next release: adapt it, make the demos
   anew (`npm run vendor:qa`, `npm run generate:thuringia`), and take the release once it is on npm.

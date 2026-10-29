@@ -20,23 +20,28 @@ permissions:
 
 jobs:
   verify:
-    # As in WWCP_POI.TS: Ubuntu on Node 22.18, the minimum package.json promises; Ubuntu on Node 26; Windows on Node 24,
-    # where a checkout converting line endings would change the signed bytes of the demos (.gitattributes keeps them).
+    # Debian 13, what the rest of this stack is deployed on, in a container on the Ubuntu runner (verify.yml), on Node
+    # 22.18, the minimum package.json promises, and on Node 26; Windows on Node 24, where a checkout converting line
+    # endings would change the signed bytes of the demos (.gitattributes keeps them).
     strategy:
       fail-fast: false
       matrix:
         include:
           - os: ubuntu-latest
+            container: 'debian:13'
             node: '22.18'
-            leg: ubuntu-node-22.18
+            leg: debian-13-node-22.18
           - os: ubuntu-latest
+            container: 'debian:13'
             node: '26'
-            leg: ubuntu-node-26
+            leg: debian-13-node-26
           - os: windows-latest
+            container: ''
             node: '24'
             leg: windows-node-24
     uses: ./.github/workflows/verify.yml
     with:
       os: ${{ matrix.os }}
+      container: ${{ matrix.container }}
       node: ${{ matrix.node }}
       leg: ${{ matrix.leg }}

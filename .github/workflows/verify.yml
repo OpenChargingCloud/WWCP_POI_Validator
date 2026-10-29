@@ -15,6 +15,12 @@ on:
       os:
         type: string
         default: ubuntu-latest
+      # As the rest of this stack: Linux is Debian 13, what it is deployed on. GitHub has no Debian runner image, so it is
+      # a container on the Ubuntu runner, which a change of that image (Ubuntu 26.04 since 2026-10-19) leaves untouched
+      # but for the kernel. '' for the Windows runner.
+      container:
+        type: string
+        default: 'debian:13'
       node:
         type: string
         default: '26'
@@ -29,6 +35,7 @@ permissions:
 jobs:
   verify:
     runs-on: ${{ inputs.os }}
+    container: ${{ inputs.container }}
     timeout-minutes: 20
     defaults:
       run:
@@ -36,9 +43,24 @@ jobs:
         shell: bash
         working-directory: WWCP_POI_Validator
     steps:
+      # Before the checkout: the bare debian:13 image has no git, and actions/checkout without it downloads a tarball,
+      # which is no repository - the demos made anew are compared with git. And what Node needs: xz-utils for its
+      # tarball, the certificates for npm.
+      - name: Install prerequisites (Debian container)
+        if: ${{ inputs.container != '' }}
+        working-directory: .
+        run: apt-get update && apt-get install -y --no-install-recommends ca-certificates git libstdc++6 xz-utils && git config --global --add safe.directory '*'
+
       - uses: actions/checkout@v7
         with:
           path: WWCP_POI_Validator
+
+      # Before the release is read from package-lock.json: a container has no Node of its own.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ inputs.node }}
+          cache: npm
+          cache-dependency-path: WWCP_POI_Validator/package-lock.json
 
       - name: Which WWCP_POI.TS
         id: poi
@@ -53,14 +75,6 @@ jobs:
           repository: OpenChargingCloud/WWCP_POI.TS
           ref: ${{ steps.poi.outputs.ref }}
           path: WWCP_POI.TS
-
-      - uses: actions/setup-node@v7
-        with:
-          node-version: ${{ inputs.node }}
-          cache: npm
-          cache-dependency-path: |
-            WWCP_POI.TS/package-lock.json
-            WWCP_POI_Validator/package-lock.json
 
       - name: Install dependencies
         run: npm ci

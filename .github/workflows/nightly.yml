@@ -5,7 +5,7 @@ name: Nightly
 # release: the analysis reads something the library no longer gives, or the demos made anew differ, as WWCP_POI.TS moved
 # on to another recorded run or calculates other bytes. Then follow it, and with its next release on npm take that one.
 #
-# 'release' runs the gate once more: a change of the runner images or of Node reaches it on a day nobody pushed.
+# 'release' runs the gate once more: a change of the debian:13 image or of Node reaches it on a day nobody pushed.
 #
 # Scheduled workflows run on the default branch only, and GitHub disables them after 60 days without any activity in
 # the repository: if this stops reporting, that is the first thing to check.
