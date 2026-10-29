@@ -1,8 +1,8 @@
 {
   "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/proof/v1",
   "hashAlgorithm": "sha256",
-  "commitId": "f9f24be30af6e8cdc98e9b72d900eedb815038d9a68cb5ce47148cd5eab12a8d",
-  "revision": 25,
+  "commitId": "63dc9170b339a612e95dcb0d3869db911dbccd871bd8c8f553516b6783b05cfb",
+  "revision": 27,
   "roamingNetwork": {
     "@id": "TH",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/v1",
@@ -130,7 +130,7 @@
       "lastChange": "2026-09-01T08:00:00.000Z"
     },
     "created": "2026-09-01T08:00:00.000Z",
-    "lastChange": "2026-09-24T09:51:55.200Z",
+    "lastChange": "2026-09-24T13:29:02.400Z",
     "chargingStationOperators": {
       "@size": 7,
       "@leaves": [
@@ -159,6 +159,14 @@
                 ]
               },
               {
+                "@id": "2c189fe4b5a64b5deb4ddc1643f1a2e2a11a4a6c5e0a1bb1f26a9ec4b4e0e8ac",
+                "key": "pAECIAEhWCAnu3DG2Kw/FphNZtwk4D+wA9CdgZvFJP4CgKVbRrtWUCJYIIqP1jULiWEGd6xkm7Odjufjrv/SSysmwuYcJcjV/KXz",
+                "notAfter": "2028-09-01T00:00:00.000Z",
+                "usages": [
+                  "payments"
+                ]
+              },
+              {
                 "@id": "87d7a0f8d7c18d01caa8142a640293826c05b41660837b9c04562d0d1afd9c45",
                 "key": "pAECIAEhWCDKm6c4ZcyKA+b0XTDQ4oGwr0CDdHPEHC0jN0qbO9BrpSJYIANH9GZUMr42Gj7xBUe39MTvDG2WXjHBUAhhAWsIJLCO",
                 "notAfter": "2028-09-01T00:00:00.000Z",
@@ -174,7 +182,7 @@
               }
             ],
             "created": "2026-09-15T20:22:40.800Z",
-            "lastChange": "2026-09-23T03:51:23.400Z",
+            "lastChange": "2026-09-24T13:29:02.400Z",
             "chargingTariffs": {
               "@size": 1,
               "@leaves": [
@@ -215,9 +223,9 @@
                   "@index": 0,
                   "@auditPath": [
                     "c2df0550f5004d35b9373be62f27b275ca3f5d386b41d72e52af4e5b52fe8769",
-                    "0bc4ce6313e84c5014bf3763da7d6bab7f2851fa172250ce45ae15c9759f88fd",
-                    "0b7f053801f08fcdae8043839b2f2f3edc004fa7105a467486c88b81bf2db194",
-                    "92aa27629e1e095138ce811b8de4f406085cd8ee04e84d4544485549272010e5"
+                    "81cea38db74ac9c9af4d4f6581c6dae3172cdf5ae0cda11926921458864e2e67",
+                    "56c742fd05f61649c7daec38b714cde9bdf025cae114684cc2a43e95cdf38f5d",
+                    "d796b99b4b3afe472b0615b90e9b0cd1b2cdc359cadc8ca8184af22e12ec90fc"
                   ],
                   "@entity": {
                     "@id": "DE*XAG*P1",
@@ -229,7 +237,11 @@
                       "lng": 11.8785
                     },
                     "created": "2026-09-18T02:23:44.400Z",
-                    "lastChange": "2026-09-19T02:23:44.400Z",
+                    "lastChange": "2026-09-24T13:29:02.400Z",
+                    "paymentOptions": [
+                      "CreditCard",
+                      "EVTaler"
+                    ],
                     "chargingStations": {
                       "@size": 3,
                       "@leaves": [
@@ -300,6 +312,28 @@
             "EVSEGroups": {
               "@merkleRoot": "3524a17539079a54f362aa8cc45f6433429f739b65bac21fd738a3b9bd4f7369",
               "@size": 1
+            },
+            "evTaler": {
+              "merchantBaseURL": "https://taler.highway-hpc.example/instances/de-xag/",
+              "merchantPublicKey": "DY4J0ZHVHVCHPD9GGS8HJEHQQT87F1Q8J5YSC2TR1ETEKQ6AX0SG",
+              "exchanges": [
+                {
+                  "masterPublicKey": "VAAD0V4SH0W73CFCD8FJC57QZX02ACXZP5CTVMS7KKDETWDGQVG0",
+                  "baseURL": "https://exchange.alpen.example/",
+                  "currency": "CHF",
+                  "name": {
+                    "en": "Alpine Test Exchange"
+                  }
+                },
+                {
+                  "masterPublicKey": "X4MY4W2H2768X3PVSAK86VVG9RYH22W5RGNZ2JNXWFC5V2S5B0J0",
+                  "baseURL": "https://exchange.thueringen.example/",
+                  "currency": "EUR",
+                  "name": {
+                    "en": "Thuringia Test Exchange"
+                  }
+                }
+              ]
             }
           }
         }
@@ -309,57 +343,57 @@
   "attestations": [
     {
       "roamingNetworkId": "TH",
-      "commitId": "f9f24be30af6e8cdc98e9b72d900eedb815038d9a68cb5ce47148cd5eab12a8d",
-      "revision": 25,
+      "commitId": "63dc9170b339a612e95dcb0d3869db911dbccd871bd8c8f553516b6783b05cfb",
+      "revision": 27,
       "eTag": [
         "effectiveTree",
         "sha256",
         "hex",
-        "683743dc31227f6be74678c435561a588ca06aca7fd4885b809ee50b0709998b"
+        "efae50a50d520dce078e723191d50f027b45d356b40d00ef8dae2e8c815eb719"
       ],
       "role": "roamingNetworkOperator",
       "signer": "THNO",
-      "signedAt": "2026-09-24T10:58:30.600Z",
-      "validUntil": "2026-09-24T11:13:30.600Z",
+      "signedAt": "2026-09-24T13:59:34.200Z",
+      "validUntil": "2026-09-24T14:14:34.200Z",
       "algorithm": "ES256",
       "keyId": "0b5a6fc3bb3ff0d07b75895466c933c99065b45ffc24d9a5e539b4b18f4dbbc4",
-      "value": "HfZ50oXVSvvwDBrQRC05QlhdfrxFVg0OYahV2QYzvc2pPKXScUP77BAZsNA4//Hxo3njc58DQAoQUxsNvy8leg=="
+      "value": "Wrww9kYE6g8dkXh/TiQw26mUHS16r/E9pTw/ta9vTAdmHys1TPgTcWFFShKDmZ8PHfujNl6IUzNoZygDIfEshQ=="
     },
     {
       "roamingNetworkId": "TH",
-      "commitId": "f9f24be30af6e8cdc98e9b72d900eedb815038d9a68cb5ce47148cd5eab12a8d",
-      "revision": 25,
+      "commitId": "63dc9170b339a612e95dcb0d3869db911dbccd871bd8c8f553516b6783b05cfb",
+      "revision": 27,
       "eTag": [
         "effectiveTree",
         "sha256",
         "hex",
-        "683743dc31227f6be74678c435561a588ca06aca7fd4885b809ee50b0709998b"
+        "efae50a50d520dce078e723191d50f027b45d356b40d00ef8dae2e8c815eb719"
       ],
       "role": "roamingNetworkOperator",
       "signer": "THNO",
-      "signedAt": "2026-09-24T10:58:30.600Z",
-      "validUntil": "2026-09-24T11:13:30.600Z",
+      "signedAt": "2026-09-24T13:59:34.200Z",
+      "validUntil": "2026-09-24T14:14:34.200Z",
       "algorithm": "ES256",
       "keyId": "45cc7c4c3bfbd2985a9f9384998b41b0caecceecf4f521a2f0d856a5e776ed14",
-      "value": "U2AGXCMaTrIqiwc5B9L2aoO/oPZJhBkG+hzeKR07bNH+BPIgWTXZ1qvCSSXKdy95R92PSeTJ2h85K/tuOtq6mg=="
+      "value": "JHB4YpgOWjxSrmV4PxFA9RqPxsAsVwEkjjHIGrFLg1U1gJneX5H2+NwLdyhAVWTL9SRe2Ek3Yujn+AomjPKcaA=="
     },
     {
       "roamingNetworkId": "TH",
-      "commitId": "f9f24be30af6e8cdc98e9b72d900eedb815038d9a68cb5ce47148cd5eab12a8d",
-      "revision": 25,
+      "commitId": "63dc9170b339a612e95dcb0d3869db911dbccd871bd8c8f553516b6783b05cfb",
+      "revision": 27,
       "eTag": [
         "effectiveTree",
         "sha256",
         "hex",
-        "683743dc31227f6be74678c435561a588ca06aca7fd4885b809ee50b0709998b"
+        "efae50a50d520dce078e723191d50f027b45d356b40d00ef8dae2e8c815eb719"
       ],
       "role": "roamingNetworkOperator",
       "signer": "THNO",
-      "signedAt": "2026-09-24T10:58:30.600Z",
-      "validUntil": "2026-09-24T11:13:30.600Z",
+      "signedAt": "2026-09-24T13:59:34.200Z",
+      "validUntil": "2026-09-24T14:14:34.200Z",
       "algorithm": "ES256",
       "keyId": "dffa220da4a30fc3cc51f13896900a42155df4143f3981d84706ef09de6b69b1",
-      "value": "31u7ZgCe5BQ2O2vd9n0qYdhvhJEhHMVffwbbcFC4QPmUiTUhr5stRNMz8l8q8O1smPeuuZBi2frX+poENZsp1w=="
+      "value": "UTzDcDJHs4goLOV36yWGzQrZOcPOpiIk9Yc+Xu3+TV0zVRq86lXjSft5WHF1KlXs+svJ7fQU7ok5uGCBT4dOoQ=="
     }
   ]
 }

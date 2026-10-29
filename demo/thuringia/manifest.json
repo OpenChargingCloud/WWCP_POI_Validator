@@ -1,9 +1,9 @@
 {
   "id": "thuringia",
   "title": "Thuringia, a generated test network",
-  "description": "A roaming network of medium size, generated and signed with test keys: 7 charging station operators, 195 charging pools, 417 charging stations and 834 EVSEs across Thuringia; 25 commits with change sets of several owners, a key rotation, a removed pool, a latecomer; 4 checkpoints signed by two witnesses, price statements and station proofs.",
+  "description": "A roaming network of medium size, generated and signed with test keys: 7 charging station operators, 195 charging pools, 417 charging stations and 834 EVSEs across Thuringia; 27 commits with change sets of several owners, a key rotation, a removed pool, a latecomer taking EV Taler; 4 checkpoints signed by two witnesses, price statements and station proofs.",
   "source": "tools/generate-demo-network.mjs",
-  "recordedAt": "2026-09-24T10:58:30.600Z",
+  "recordedAt": "2026-09-24T13:59:34.200Z",
   "trustAnchor": "WWCP/TA-2:P1LJ683VCLTACVCC$C6REF6BR6EN.87V8$28V23G$1P8SIKNAZ6IXQI$3H/ULS4+03+Y8:MMF6BSRI +CFGK/5OS/VAQKP11EX18+2R9MYXOJ$1*OB$$PC9PPF9F6BS7RT0GQ$R7LLIOQ23KTQ1+7TEMFMBB4KDGOUAJJZ*OWSDFM6FVCBEC7%CYJCI/D8UA6%EZEDD3DOCC5UA QEZ347$CK4F-KEMVC.KE4REB8FA9DIWENPEJ/5S9EGDDB$CBECP9ESZCAIACPELTA38DUPCG/DB$CQWEA19MWEW9E0G7%:5I9E -DNPCGECD3D3/D+%5*VD$$EQ:5-3E7WEBAFCPES4FVPC-:5S3EJ$D3/D:+9PWE04EYODKWE7%EGVE:.D59DQJEI.E$VDZEDSN8F/D1$C$QECOE",
   "witnesses": [
     {
@@ -42,6 +42,10 @@
     {
       "path": "TH-commits-since-checkpoint-2.json",
       "description": "Commits 22 to 25"
+    },
+    {
+      "path": "TH-commits-since-checkpoint-3.json",
+      "description": "Commits 26 to 27"
     },
     {
       "path": "TH-checkpoint-0.json",

@@ -80,6 +80,18 @@ function sign(key, bytes) {
     return POI.toBase64(signWith(algorithmByName(key.algorithm), key.curve, bytes, key.pair.privateKeyBytes()));
 }
 
+/** An EdDSA public key of a seed as GNU Taler writes it: its 32 bytes in Crockford's Base32, the last 4 bits zero. */
+function talerKey(name) {
+    const ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
+    let text = '', value = 0, bits = 0;
+    for (const byte of CoseKey.fromOkpPrivateKey(CoseCurves.Ed25519, seedOf(name)).publicKey().x) {
+        value = ((value << 8) | byte) & 0xFFFF;
+        for (bits += 8; bits >= 5; bits -= 5)
+            text += ALPHABET[(value >>> (bits - 5)) & 31];
+    }
+    return bits > 0 ? text + ALPHABET[(value << (5 - bits)) & 31] : text;
+}
+
 const byId = (left, right) => left['@id'] < right['@id'] ? -1 : left['@id'] > right['@id'] ? 1 : 0;
 
 const KEY_VALIDITY = '2028-09-01T00:00:00.000Z';
@@ -347,6 +359,14 @@ function applyChanges(content, changes, createdAt) {
             operator.chargingPools = operator.chargingPools.filter(pool => pool['@id'] !== change.entityId);
             if (operator.chargingPools.length === 0)
                 delete operator.chargingPools;
+            operator.lastChange = createdAt;
+            continue;
+        }
+
+        if (change.kind === 'UpdateProperty' && change.entityType === 'ChargingPool') {
+            const pool = operator.chargingPools.find(item => item['@id'] === change.entityId);
+            pool[change.propertyName] = clone(change.newValue);
+            pool.lastChange = createdAt;
             operator.lastChange = createdAt;
             continue;
         }
@@ -803,6 +823,34 @@ const statementsAfter = [];
 
 checkpoint(statementsAfter);
 
+// EV Taler (WWCP_POI concepts/EVTaler.md, phase 1): the latecomer takes GNU Taler along the A4. Its merchant is changed
+// only with a signing key that may sign 'payments', as whoever changes it redirects the payments of every station (4.4):
+// a key of its own, added by its identity key as every signing key is. After the last checkpoint: the head is two
+// commits beyond it.
+{
+    const before = [ LATECOMER.infrastructureKey.json, LATECOMER.tariffKey.json ].sort(byId);
+    LATECOMER.paymentsKey = makeKey(`payments key of ${LATECOMER.id}`, 'ES256', { notAfter: KEY_VALIDITY, usages: [ 'payments' ] });
+    commit(`${LATECOMER.name} adds a signing key for payments`,
+           [ { kind: 'UpdateProperty', entityType: 'ChargingStationOperator', entityId: LATECOMER.id, propertyName: 'signingKeys',
+               oldValue: before, newValue: [ ...before, LATECOMER.paymentsKey.json ].sort(byId) } ],
+           [ LATECOMER.identityKey ], { minutes: 60 * 2 });
+}
+
+{
+    // Its merchant at a merchant backend, and the exchanges whose coins it takes, in the order of their master public
+    // keys: one in euros, which its tariffs are in, and one in Swiss francs, which no EVSE of it is paid with.
+    const exchanges = [
+        { masterPublicKey: talerKey('exchange Thueringen'), baseURL: 'https://exchange.thueringen.example/', currency: 'EUR', name: { en: 'Thuringia Test Exchange' } },
+        { masterPublicKey: talerKey('exchange Alpen'),      baseURL: 'https://exchange.alpen.example/',      currency: 'CHF', name: { en: 'Alpine Test Exchange' } },
+    ].sort((left, right) => ordinal(left.masterPublicKey, right.masterPublicKey));
+    const merchant  = { merchantBaseURL: 'https://taler.highway-hpc.example/instances/de-xag/', merchantPublicKey: talerKey(`merchant instance of ${LATECOMER.id}`), exchanges };
+    const along     = versions.at(-1).content.chargingStationOperators.find(item => item['@id'] === LATECOMER.id).chargingPools.filter((pool, index) => index % 2 === 0);
+    commit(`${LATECOMER.name} takes EV Taler at its charging parks along the A4`,
+           [ { kind: 'UpdateProperty', entityType: 'ChargingStationOperator', entityId: LATECOMER.id, propertyName: 'evTaler', oldValue: null, newValue: merchant },
+             ...along.map(pool => ({ kind: 'UpdateProperty', entityType: 'ChargingPool', entityId: pool['@id'], propertyName: 'paymentOptions', oldValue: null, newValue: [ 'CreditCard', 'EVTaler' ] })) ],
+           [ LATECOMER.paymentsKey, LATECOMER.infrastructureKey ], { minutes: 60 });
+}
+
 // The moment the demo is recorded: proofs and prices as an app gets them.
 const recordedAt = advance(30);
 const head       = versions.at(-1);
@@ -844,6 +892,10 @@ const witnessesJSON = WITNESSES.map(({ witness, key }) => ({ witness, key: { '@i
     for (const stationId of proofStations) {
         const station = POI.verifyChargingStation(anchor, asPOI(stationProof(head, stationId, recordedAt)), { at: recordedAt, chargingStationId: stationId });
         POI.verifyPriceStatements(station, asPOI(latestStatements.filter(item => station.evses.some(evse => evse['@id'] === item.entityId))), { at: recordedAt });
+        // Along the A4, EV Taler with the exchange in euros, not the one in Swiss francs; elsewhere none.
+        const evTaler = station.evses.map(evse => POI.evTalerExchangesAt(station, evse['@id']).map(exchange => exchange.currency).join());
+        if (evTaler.some(currencies => currencies !== (station.operator['@id'] === LATECOMER.id ? 'EUR' : '')))
+            throw new Error(`The charging station ${stationId} is paid with EV Taler in '${evTaler}'`);
     }
     console.log(`Replayed: revision ${history.head.commit.revision}, ${history.checkpoints.length} checkpoints, ${proofStations.length} proofs — everything verifies.`);
 }
@@ -907,8 +959,8 @@ const manifest = {
     id:            'thuringia',
     title:         'Thuringia, a generated test network',
     description:   `A roaming network of medium size, generated and signed with test keys: ${OPERATORS.length + 1} charging station operators, ${pools} charging pools, ${stations} charging stations ` +
-                   `and ${stations * 2} EVSEs across Thuringia; ${commits.length} commits with change sets of several owners, a key rotation, a removed pool, a latecomer; ` +
-                   `${checkpointList.length} checkpoints signed by two witnesses, price statements and station proofs.`,
+                   `and ${stations * 2} EVSEs across Thuringia; ${commits.length} commits with change sets of several owners, a key rotation, a removed pool, a latecomer ` +
+                   `taking EV Taler; ${checkpointList.length} checkpoints signed by two witnesses, price statements and station proofs.`,
     source:        'tools/generate-demo-network.mjs',
     recordedAt,
     trustAnchor:   anchor.toQRCode(),

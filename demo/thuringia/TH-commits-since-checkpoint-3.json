@@ -1,0 +1,354 @@
+[
+  {
+    "@id": "ed227fa055c427443335b18f7c328d2036a04b1563e5ffb9ff124a0e9ac89748",
+    "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
+    "roamingNetworkId": "TH",
+    "revision": 26,
+    "eTags": [
+      [
+        "json",
+        "sha256",
+        "hex",
+        "b701da175a162a76415580bf0372cd3ebe11fc5858ac3f21ea6e1ad12f292f80"
+      ],
+      [
+        "cbor",
+        "sha256",
+        "hex",
+        "3738e073cff8c0f792218a8711ecb56e4e4394a148581c3380765cb3cd572d57"
+      ],
+      [
+        "effectiveTree",
+        "sha256",
+        "hex",
+        "e8d1540ceaa36dcda384776ae0eccf85475bd74aeb5c429a46616616b20db1d2"
+      ]
+    ],
+    "parentIds": [
+      "f9f24be30af6e8cdc98e9b72d900eedb815038d9a68cb5ce47148cd5eab12a8d"
+    ],
+    "changeSet": {
+      "@id": "05a6ead2709fdd7caa28a9b754e424fc48ed5e72804e0dbe330751fa701e7735",
+      "roamingNetworkId": "TH",
+      "createdAt": "2026-09-24T12:28:30.600Z",
+      "description": {
+        "en": "Highway HPC (test) adds a signing key for payments"
+      },
+      "changes": [
+        {
+          "kind": "UpdateProperty",
+          "entityType": "ChargingStationOperator",
+          "entityId": "DE*XAG",
+          "propertyName": "signingKeys",
+          "oldValue": [
+            {
+              "@id": "042ab65984dc91b507a21b2121f509f7c2eb2ca8ee0ce73878da2c1d20733278",
+              "key": "pAECIAEhWCDeHhbRBggoTvk9DO6Tj2JwJHDzdTUqKAmrZmakKHEX0iJYIA6Zl5sM1/waWb1SSLXwgVr9DmTyiiXwPbc2Yvx71PZQ",
+              "notAfter": "2028-09-01T00:00:00.000Z",
+              "usages": [
+                "priceStatements",
+                "tariffs"
+              ]
+            },
+            {
+              "@id": "87d7a0f8d7c18d01caa8142a640293826c05b41660837b9c04562d0d1afd9c45",
+              "key": "pAECIAEhWCDKm6c4ZcyKA+b0XTDQ4oGwr0CDdHPEHC0jN0qbO9BrpSJYIANH9GZUMr42Gj7xBUe39MTvDG2WXjHBUAhhAWsIJLCO",
+              "notAfter": "2028-09-01T00:00:00.000Z",
+              "usages": [
+                "infrastructure"
+              ]
+            }
+          ],
+          "newValue": [
+            {
+              "@id": "042ab65984dc91b507a21b2121f509f7c2eb2ca8ee0ce73878da2c1d20733278",
+              "key": "pAECIAEhWCDeHhbRBggoTvk9DO6Tj2JwJHDzdTUqKAmrZmakKHEX0iJYIA6Zl5sM1/waWb1SSLXwgVr9DmTyiiXwPbc2Yvx71PZQ",
+              "notAfter": "2028-09-01T00:00:00.000Z",
+              "usages": [
+                "priceStatements",
+                "tariffs"
+              ]
+            },
+            {
+              "@id": "2c189fe4b5a64b5deb4ddc1643f1a2e2a11a4a6c5e0a1bb1f26a9ec4b4e0e8ac",
+              "key": "pAECIAEhWCAnu3DG2Kw/FphNZtwk4D+wA9CdgZvFJP4CgKVbRrtWUCJYIIqP1jULiWEGd6xkm7Odjufjrv/SSysmwuYcJcjV/KXz",
+              "notAfter": "2028-09-01T00:00:00.000Z",
+              "usages": [
+                "payments"
+              ]
+            },
+            {
+              "@id": "87d7a0f8d7c18d01caa8142a640293826c05b41660837b9c04562d0d1afd9c45",
+              "key": "pAECIAEhWCDKm6c4ZcyKA+b0XTDQ4oGwr0CDdHPEHC0jN0qbO9BrpSJYIANH9GZUMr42Gj7xBUe39MTvDG2WXjHBUAhhAWsIJLCO",
+              "notAfter": "2028-09-01T00:00:00.000Z",
+              "usages": [
+                "infrastructure"
+              ]
+            }
+          ]
+        }
+      ],
+      "beforeETags": [
+        [
+          "json",
+          "sha256",
+          "hex",
+          "8efa45864e1e9f2b3f1471b14d9cff42fe772e0c12cc799968987d722846da79"
+        ],
+        [
+          "cbor",
+          "sha256",
+          "hex",
+          "a900bafd524fcf3e5753ecfd5388352094eeca06a7e15fd3fa61726cc42ee996"
+        ]
+      ],
+      "afterETags": [
+        [
+          "json",
+          "sha256",
+          "hex",
+          "b701da175a162a76415580bf0372cd3ebe11fc5858ac3f21ea6e1ad12f292f80"
+        ],
+        [
+          "cbor",
+          "sha256",
+          "hex",
+          "3738e073cff8c0f792218a8711ecb56e4e4394a148581c3380765cb3cd572d57"
+        ]
+      ],
+      "signatures": [
+        {
+          "algorithm": "Ed25519",
+          "keyId": "ef36e1ae08338d30adf73ae32733546e4c2b806abda72009a734e271a97cb667",
+          "value": "FnRmq6NSolbQuZub9fQdMxJFRMGoGTwyHjgY063KWP1O4pjhm24NdrHCihczVX2t4l8pDHBe4OVAFVlp3ibhDg=="
+        }
+      ]
+    },
+    "signatures": [
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-24T12:29:01.200Z",
+        "algorithm": "ES256",
+        "keyId": "0b5a6fc3bb3ff0d07b75895466c933c99065b45ffc24d9a5e539b4b18f4dbbc4",
+        "value": "n+CJYHMG4s4G6mEZvGU7YGPCMoi1Zs44C2nlJm0OsHkY9AxhKTNA3dO3GF2EGMUcYwFKRCw/fisHQ15R2JFYAA=="
+      },
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-24T12:29:01.800Z",
+        "algorithm": "ES256",
+        "keyId": "45cc7c4c3bfbd2985a9f9384998b41b0caecceecf4f521a2f0d856a5e776ed14",
+        "value": "hv2M+zybKkE3alckffezdgcWQAQXsdtRzg6zl6U+ox5FUT9jrVFspyPyBZgL/owxlcSOnLX2JE6qVDyFHvBnsw=="
+      },
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-24T12:29:02.400Z",
+        "algorithm": "ES256",
+        "keyId": "dffa220da4a30fc3cc51f13896900a42155df4143f3981d84706ef09de6b69b1",
+        "value": "/R44McjLqXiU2/pLvBpBcXv/kU/0flOiOTfTDIUvMPqB4HfJgMDqzbaEVOszZTKmj025a1U3D0+hRCFumuD6pw=="
+      }
+    ]
+  },
+  {
+    "@id": "63dc9170b339a612e95dcb0d3869db911dbccd871bd8c8f553516b6783b05cfb",
+    "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
+    "roamingNetworkId": "TH",
+    "revision": 27,
+    "eTags": [
+      [
+        "json",
+        "sha256",
+        "hex",
+        "ee2fd3557a50102e906e2103688f0682da7d784b6496ffb80664a041fe6d3271"
+      ],
+      [
+        "cbor",
+        "sha256",
+        "hex",
+        "be26b6225a13947298565caf3e9d285774c36c21eebff11379ddd0365f2eed89"
+      ],
+      [
+        "effectiveTree",
+        "sha256",
+        "hex",
+        "efae50a50d520dce078e723191d50f027b45d356b40d00ef8dae2e8c815eb719"
+      ]
+    ],
+    "parentIds": [
+      "ed227fa055c427443335b18f7c328d2036a04b1563e5ffb9ff124a0e9ac89748"
+    ],
+    "changeSet": {
+      "@id": "816fad01e689ba686767cf67e8bb051c314a5da078fc3158279df64544b60d65",
+      "roamingNetworkId": "TH",
+      "createdAt": "2026-09-24T13:29:02.400Z",
+      "description": {
+        "en": "Highway HPC (test) takes EV Taler at its charging parks along the A4"
+      },
+      "changes": [
+        {
+          "kind": "UpdateProperty",
+          "entityType": "ChargingStationOperator",
+          "entityId": "DE*XAG",
+          "propertyName": "evTaler",
+          "oldValue": null,
+          "newValue": {
+            "merchantBaseURL": "https://taler.highway-hpc.example/instances/de-xag/",
+            "merchantPublicKey": "DY4J0ZHVHVCHPD9GGS8HJEHQQT87F1Q8J5YSC2TR1ETEKQ6AX0SG",
+            "exchanges": [
+              {
+                "masterPublicKey": "VAAD0V4SH0W73CFCD8FJC57QZX02ACXZP5CTVMS7KKDETWDGQVG0",
+                "baseURL": "https://exchange.alpen.example/",
+                "currency": "CHF",
+                "name": {
+                  "en": "Alpine Test Exchange"
+                }
+              },
+              {
+                "masterPublicKey": "X4MY4W2H2768X3PVSAK86VVG9RYH22W5RGNZ2JNXWFC5V2S5B0J0",
+                "baseURL": "https://exchange.thueringen.example/",
+                "currency": "EUR",
+                "name": {
+                  "en": "Thuringia Test Exchange"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P1",
+          "propertyName": "paymentOptions",
+          "oldValue": null,
+          "newValue": [
+            "CreditCard",
+            "EVTaler"
+          ]
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P11",
+          "propertyName": "paymentOptions",
+          "oldValue": null,
+          "newValue": [
+            "CreditCard",
+            "EVTaler"
+          ]
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P2",
+          "propertyName": "paymentOptions",
+          "oldValue": null,
+          "newValue": [
+            "CreditCard",
+            "EVTaler"
+          ]
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P4",
+          "propertyName": "paymentOptions",
+          "oldValue": null,
+          "newValue": [
+            "CreditCard",
+            "EVTaler"
+          ]
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P6",
+          "propertyName": "paymentOptions",
+          "oldValue": null,
+          "newValue": [
+            "CreditCard",
+            "EVTaler"
+          ]
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P8",
+          "propertyName": "paymentOptions",
+          "oldValue": null,
+          "newValue": [
+            "CreditCard",
+            "EVTaler"
+          ]
+        }
+      ],
+      "beforeETags": [
+        [
+          "json",
+          "sha256",
+          "hex",
+          "b701da175a162a76415580bf0372cd3ebe11fc5858ac3f21ea6e1ad12f292f80"
+        ],
+        [
+          "cbor",
+          "sha256",
+          "hex",
+          "3738e073cff8c0f792218a8711ecb56e4e4394a148581c3380765cb3cd572d57"
+        ]
+      ],
+      "afterETags": [
+        [
+          "json",
+          "sha256",
+          "hex",
+          "ee2fd3557a50102e906e2103688f0682da7d784b6496ffb80664a041fe6d3271"
+        ],
+        [
+          "cbor",
+          "sha256",
+          "hex",
+          "be26b6225a13947298565caf3e9d285774c36c21eebff11379ddd0365f2eed89"
+        ]
+      ],
+      "signatures": [
+        {
+          "algorithm": "ES256",
+          "keyId": "2c189fe4b5a64b5deb4ddc1643f1a2e2a11a4a6c5e0a1bb1f26a9ec4b4e0e8ac",
+          "value": "lLFEpzEJ2QCn+x+aPTH1oGvjN1D7yuIrkfw+RBa/ylQ6vpaVHDuGK0mhyyKw/DdhYcInMDyvZMK4MGInv/KeAw=="
+        },
+        {
+          "algorithm": "ES256",
+          "keyId": "87d7a0f8d7c18d01caa8142a640293826c05b41660837b9c04562d0d1afd9c45",
+          "value": "CT8VZRFN61thC/7CP8w4RXNFO3rb1Vgl2A8j0bQeY0bcvAukLw5CN+bXEF6wpZLiW5sF5qD8MYKlN1nFf2IXHw=="
+        }
+      ]
+    },
+    "signatures": [
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-24T13:29:33.000Z",
+        "algorithm": "ES256",
+        "keyId": "0b5a6fc3bb3ff0d07b75895466c933c99065b45ffc24d9a5e539b4b18f4dbbc4",
+        "value": "hhhKwx6dnOa18UjVE7W2hJbBSCG3/vFewDgTgF1A7Z2HjFHaUrno3L+H4vs+ZdWC7uF06lWMIs4YsfHl9c73HA=="
+      },
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-24T13:29:33.600Z",
+        "algorithm": "ES256",
+        "keyId": "45cc7c4c3bfbd2985a9f9384998b41b0caecceecf4f521a2f0d856a5e776ed14",
+        "value": "kI1FXiLaCtzakLNSLA1vWICvJmZKYULkIQd8jUtMbjR1Ho3UD5FGzHuD3KqgPeAbhzbBi6Of5SiCYswJcw5iUg=="
+      },
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "THNO",
+        "signedAt": "2026-09-24T13:29:34.200Z",
+        "algorithm": "ES256",
+        "keyId": "dffa220da4a30fc3cc51f13896900a42155df4143f3981d84706ef09de6b69b1",
+        "value": "Dtw0CmaLxtggfXp3YEh1im0vQ4apJq3Yvtu2uRcc4YqHJPMC7hUTuB3UM+8qsGEoMGi3Mqz+7iSCPw4ZEPefEg=="
+      }
+    ]
+  }
+]

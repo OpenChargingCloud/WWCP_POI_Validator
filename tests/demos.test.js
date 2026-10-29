@@ -6,6 +6,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
+import { paymentOptionName } from '@open-charging-cloud/wwcp-poi';
+
+import { ownerOfChange } from '../src/analyze.js';
 import { analyzeDemo, readDemo, summaryOf } from './helpers.js';
 
 
@@ -56,10 +59,34 @@ test('Thuringia: the generated test network verifies', async () => {
 
     assert.deepEqual(summary.errors,   []);
     assert.deepEqual(summary.warnings, []);
-    assert.deepEqual(summary.verdict,  { level: 'ok', commits: 25, checkpoints: 4, errors: 0, warnings: 0 });
+    assert.deepEqual(summary.verdict,  { level: 'ok', commits: 27, checkpoints: 4, errors: 0, warnings: 0 });
     assert.equal(summary.anchor, 'pinned');
-    assert.deepEqual(summary.head, { epoch: 1, revision: 25 });
-    assert.deepEqual(summary.epochs, [ { number: 1, commits: 25, checkpoints: 4, notTaken: 0 } ]);
+    assert.deepEqual(summary.head, { epoch: 1, revision: 27 });
+    assert.deepEqual(summary.epochs, [ { number: 1, commits: 27, checkpoints: 4, notTaken: 0 } ]);
     assert.deepEqual(summary.proofs, [ true, true, true ]);
+
+});
+
+test('Thuringia: the latecomer takes EV Taler along the A4, and the proof of its station says how its EVSEs are paid', async () => {
+
+    const report   = await analyzeDemo('thuringia');
+    const proofOf  = (operatorId) => report.proofs.find(result => String(result.station.operator['@id']) === operatorId);
+    const highway  = proofOf('DE*XAG');
+
+    // Its merchant as the proof gives it: one exchange in euros, one in Swiss francs.
+    assert.equal(highway.evTaler.merchant.merchantBaseURL, 'https://taler.highway-hpc.example/instances/de-xag/');
+    assert.deepEqual(highway.evTaler.merchant.exchanges.map(exchange => exchange.currency).sort(), [ 'CHF', 'EUR' ]);
+
+    // Its EVSEs, in a pool naming EVTaler, by their tariff in euros: with the exchange in euros only.
+    assert.deepEqual(highway.evTaler.evses.map(({ evseId, tariff, exchanges }) => [ evseId, String(tariff['@id']), exchanges.map(exchange => paymentOptionName(exchange)[0][1]) ]),
+                     [ [ 'DE*XAG*E1*1', 'DE*XAG*T_HPC', [ 'EV Taler (Thuringia Test Exchange, EUR)' ] ],
+                       [ 'DE*XAG*E1*2', 'DE*XAG*T_HPC', [ 'EV Taler (Thuringia Test Exchange, EUR)' ] ] ]);
+
+    // The operators without a merchant: nothing to say.
+    assert.equal(proofOf('DE*XAB').evTaler, undefined);
+    assert.equal(proofOf('DE*XAA').evTaler, undefined);
+
+    // The merchant is changed with a key for payments (EVTaler.md 4.4).
+    assert.equal(ownerOfChange({ kind: 'UpdateProperty', entityType: 'ChargingStationOperator', entityId: 'DE*XAG', propertyName: 'evTaler' }).usage, 'payments');
 
 });

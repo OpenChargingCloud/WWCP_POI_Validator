@@ -7,7 +7,7 @@
 import { CHILD_ARRAYS, etagToText, get, isArray, isObject } from '@open-charging-cloud/wwcp-poi';
 
 import { badge, button, facts, formatBytes, formatTime, h, i18n, jsonText, jsonView, plural, section, shortId } from '../dom.js';
-import { emptyState, linkButton } from './common.js';
+import { emptyState, evTalerMerchant, evTalerName, linkButton } from './common.js';
 import { priceSummary } from './history.js';
 import { qiDigitalCard } from './qidigital.js';
 
@@ -179,6 +179,27 @@ function versionsOf(station) {
 }
 
 
+/** How the EVSEs of a verified station are paid for with EV Taler: the merchant its proof gives, and each EVSE's tariff. */
+function evTalerSection(evTaler) {
+
+    const table = h('table', 'grid');
+    table.append(h('thead', null, h('tr', null, h('th', null, 'EVSE'), h('th', null, 'EV Taler tariff'), h('th', null, 'Paid with'))));
+    table.append(h('tbody', null, ...evTaler.evses.map(({ evseId, tariff, exchanges }) => h('tr', null,
+        h('td', null, h('code', null, evseId)),
+        h('td', null, tariff ? h('span', null, h('code', null, String(tariff['@id'])), i18n(tariff['name']) ? ` · ${i18n(tariff['name'])}` : '', ` · ${String(tariff['currency'])}`) : h('span', 'muted', 'none')),
+        h('td', null, exchanges.length ? h('div', 'stack', ...exchanges.map(exchange => h('span', null, badge(evTalerName(exchange), 'ok')))) : h('span', 'muted', 'not with EV Taler'))))));
+
+    return h('div', null,
+        h('h4', null, 'EV Taler'),
+        evTaler.merchant ? evTalerMerchant(evTaler.merchant) : null,
+        table,
+        h('p', 'note', 'The proof gives the merchant of the operator completely, with its keys: an app knows offline, checked against the trust anchor, which merchant may take the money for this station (EVTaler.md 4.2). ' +
+                       'An EVSE is paid with EV Taler where its pool names the payment option EVTaler: by its tariff of the type AD_HOC_PAYMENT, or else the one without a type, unless that one names payment means other than EV_TALER, ' +
+                       'with the exchanges in the currency of that tariff (4.3). Nothing here takes or makes a payment.'));
+
+}
+
+
 function proofCard(report, result, actions) {
 
     const station  = result.station;
@@ -213,6 +234,8 @@ function proofCard(report, result, actions) {
 
         station ? h('h4', null, 'EVSEs, as they are at runtime') : null,
         station ? evseTable(station, result.prices) : null,
+
+        result.evTaler ? evTalerSection(result.evTaler) : null,
 
         station && versionsOf(station) ? h('h4', null, 'Devices: models, versions, serial numbers') : null,
         station ? versionsOf(station) : null,

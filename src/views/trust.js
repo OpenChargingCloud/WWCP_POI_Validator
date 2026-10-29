@@ -244,7 +244,7 @@ export function renderTrust(container, state, actions) {
         h('p', 'note', 'A verifier that follows the history commit by commit follows the keys as well: a new key statement counts when the keys trusted before signed it (8.6, Succession). An app that only scanned an old QR code does not — it needs the new trust anchor.')));
 
     container.append(section(`Parties and their keys (${i18n(version.network.name) ?? version.network.id}, epoch ${version.epoch}, revision ${version.revision})`, partyKeys(version.network),
-        h('p', 'note', 'A change is signed by its owner with a signing key that may sign its usage: infrastructure, tariffs, priceStatements, models, software, certificates or party (4.1). A party without signing keys is changed by the roaming network operator in its place.')));
+        h('p', 'note', 'A change is signed by its owner with a signing key that may sign its usage: infrastructure, tariffs, priceStatements, models, software, certificates, payments (the EV Taler merchant of a charging station operator) or party (4.1). A party without signing keys is changed by the roaming network operator in its place.')));
 
     container.append(section('Trusted witnesses', witnessTable(report)));
 

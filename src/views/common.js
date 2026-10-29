@@ -2,7 +2,7 @@
  * What several views show alike: versions to choose from, signatures, checks, keys, changes and ETags.
  */
 
-import { etagToText } from '@open-charging-cloud/wwcp-poi';
+import { etagToText, paymentOptionName } from '@open-charging-cloud/wwcp-poi';
 
 import { badge, formatTime, h, i18n, shortId, statusIcon } from '../dom.js';
 import { PARTY_LABELS } from '../keys.js';
@@ -163,4 +163,32 @@ export function linkButton(label, onClick, title) {
 /** An empty state, e.g. "No proofs were loaded". */
 export function emptyState(text, hint) {
     return h('div', 'empty-state', h('p', null, text), hint ? h('p', 'hint', hint) : null);
+}
+
+/** A text in languages as WWCP_POI.TS gives it, `[ [ language, text ], … ]`, as the page shows texts: English first. */
+export const i18nOf = (texts) => i18n(Object.fromEntries(texts));
+
+/** The payment option as drivers see it where an exchange pays, e.g. "EV Taler (Example Exchange, EUR)" (EVTaler.md 4.1). */
+export const evTalerName = (exchange) => i18nOf(paymentOptionName(exchange));
+
+/**
+ * The EV Taler merchant of a charging station operator, as WWCP_POI.TS read it: its instance at a merchant backend, the key
+ * its contracts are signed with, and the exchanges whose coins it takes (EVTaler.md 4.2).
+ */
+export function evTalerMerchant(merchant) {
+
+    const table = h('table', 'grid');
+    table.append(h('thead', null, h('tr', null, h('th', null, 'Exchange'), h('th', null, 'Currency'), h('th', null, 'Base URL'), h('th', null, 'Master public key'))));
+    table.append(h('tbody', null, ...merchant.exchanges.map(exchange => h('tr', null,
+        h('td', null, i18nOf(exchange.name), h('div', 'muted small', evTalerName(exchange))),
+        h('td', null, h('code', null, exchange.currency)),
+        h('td', null, h('code', 'small', exchange.baseURL)),
+        h('td', null, shortId(exchange.masterPublicKey, 16))))));
+
+    return h('div', null,
+        h('dl', 'facts',
+            h('dt', null, 'Merchant'),            h('dd', null, h('code', 'small', merchant.merchantBaseURL)),
+            h('dt', null, 'Its public key'),      h('dd', null, shortId(merchant.merchantPublicKey, 16))),
+        table);
+
 }

@@ -30,12 +30,15 @@ epochs and price statements fit together.
   commits tree, the signatures of the operator and the witnesses, and the price statements they name. Refused documents
   are shown where they would have been, with the reason.
 - **Network** — any version, effective (as proofs and apps see it) or as stored; a map of the charging pools; for each
-  entity where its values come from (its own or a template, 9.2), the tariffs an EVSE takes, the groups it is a member
-  of, its runtime status, the commits that changed it, and its path through the effective tree up to the root the commit
-  names — the audit paths a proof of it would give.
+  entity where its values come from (its own or a template, 9.2), the tariffs an EVSE takes and whether it is paid
+  with EV Taler, the EV Taler merchant of an operator, the groups it is a member of, its runtime status, the commits
+  that changed it, and its path through the effective tree up to the root the commit names — the audit paths a proof of
+  it would give.
 - **Proofs & prices** — station proofs as an app checks them, with how they are pruned, the models, hardware revisions,
   firmware versions and serial numbers of the station and its meters, the certificates they name and the transparency
-  software proven by them; price statements; the evidence of a charging session; proofs of commits and price statements
+  software proven by them; how its EVSEs are paid with EV Taler (the merchant the proof gives, the EV Taler tariff of
+  each EVSE and the exchanges in its currency, [concepts/EVTaler.md](https://github.com/OpenChargingCloud/WWCP_POI/blob/master/concepts/EVTaler.md));
+  price statements; the evidence of a charging session; proofs of commits and price statements
   in checkpoints; attestations; the archive; and the **QI-Digital** papers of meters (example A14): digital calibration
   certificates, certificates of conformity and declarations of conformity, each checked against the network and against
   each other.
@@ -58,8 +61,10 @@ epochs and price statements fit together.
      manufacturers and their models, transparency software and its certificates, a calibration laboratory, two epochs
      (ECDSA/SHA-256, then ML-DSA/SHA-512), witnesses, price statements, evidence, and the QI-Digital papers of a meter.
    - **Thuringia**, a generated test network of medium size: seven charging station operators, 195 charging pools,
-     417 stations and 834 EVSEs on a map; change sets of several owners, a key rotation, a removed pool, a latecomer;
-     four witnessed checkpoints, price statements and station proofs. Signed with test keys of fixed seeds.
+     417 stations and 834 EVSEs on a map; change sets of several owners, a key rotation, a removed pool, a latecomer
+     that takes **EV Taler** at its charging parks along the A4 (its merchant, changed with a key for payments, and two
+     exchanges, of which the one in euros pays); four witnessed checkpoints, price statements and station proofs.
+     Signed with test keys of fixed seeds.
 
    The demos are checked *as of the time of their recording*, as their attestations were valid for 15 minutes back then;
    switch the verification time to *now* in the settings to see them refused.
@@ -116,16 +121,18 @@ npm --prefix "D:\Coding\OpenChargingCloud\WWCP_POI_Validator" install --no-save 
 ## Loading from servers: CORS
 
 A page may read the answers of a server of another origin only when the server allows it
-(`Access-Control-Allow-Origin`). POI_API of WWCP_POI answers the CORS preflights of its entity routes, but not yet those
-of its history, checkpoints, epochs and proofs; until it does, *Load from its servers* works with a server that adds the
-header (e.g. behind a reverse proxy), or with the validator served from the same origin as POI_API.
+(`Access-Control-Allow-Origin`). POI_API of WWCP_POI lets every origin read what it serves to everyone (CORS `*`): the
+entities, and every read of a history — its head, snapshots, commits, checkpoints, epochs, the archive, proofs, price
+statements, attestations — an error as well; what changes something it allows no other origin. A server in front of
+it, or another implementation, may not: then *Load from its servers* works with a server that adds the header (e.g. a
+reverse proxy), or with the validator served from the same origin as POI_API.
 
 A server may limit the heavy reads of a client — snapshots, pages of commits, archive segments — and answer one beyond
 with 429 Too Many Requests and `Retry-After` (specification 5.5; POI3 takes 600 per minute). The validator then waits as
 long as told, a minute at most at a time, and asks again, up to six times. Another origin reads `Retry-After` only where
-the server exposes it (`Access-Control-Expose-Headers`); otherwise the validator takes the seconds the description of
-the answer names, as POI3 words it. A 429 has to carry `Access-Control-Allow-Origin` as well, or the page sees only a
-failed request.
+the server exposes it (`Access-Control-Expose-Headers`), as POI_API does; otherwise the validator takes the seconds the
+description of the answer names, as POI3 words it. A 429 has to carry `Access-Control-Allow-Origin` as well, or the
+page sees only a failed request.
 
 To try it without a server of WWCP_POI, `tools/mock-poi-server.mjs` serves a demo below the paths POI_API serves, with
 CORS, and prints the trust anchor naming its own URL:
@@ -174,7 +181,7 @@ npm --prefix "D:\Coding\OpenChargingCloud\WWCP_POI_Validator" test
 
 - `tests/demos.test.js`: both demos verify as of the time of their recording, with every commit, checkpoint, proof,
   attestation and QI-Digital document; a day later the station proofs of the QA demo are refused, their attestations
-  expired.
+  expired; the proof of a station along the A4 says how its EVSEs are paid with EV Taler.
 - `tests/tampering.test.js`: one document of the Thuringia demo changed after it was signed, as *Edit and verify again*
   does it: a change set (its commit is refused, the commits after it are not taken), a signature of the operator, a
   witness signature removed, no trust anchor, a price statement among the current ones and in the list a checkpoint

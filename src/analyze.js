@@ -18,6 +18,7 @@ import {
     verifyEvidence, parseEvidence, parseTrustedWitnesses, parsePriceStatements, priceStatementsRoot,
     parseArchiveSegmentInfo, verifySegmentLine, sameETags, etagToText, canonicalJSON, toHex, get, isArray, isObject,
     DigitalCalibrationCertificate, DigitalCertificateOfConformity, DigitalDeclarationOfConformity,
+    evTalerMerchantOf, evTalerTariffOf, evTalerExchangesAt,
 } from '@open-charging-cloud/wwcp-poi';
 
 import { keyDirectory } from './keys.js';
@@ -50,10 +51,13 @@ export function ownerOfChange(change, before) {
     if (change.entityType === 'RoamingNetworkOperator' || change.entityType === 'RoamingNetwork')
         return { type: 'RoamingNetworkOperator', id: before?.operator?.id, keys: [ 'identityKeys', 'minConsensus' ].includes(change.propertyName) ? 'identity keys' : 'signing keys', usage: 'party' };
 
+    // The EV Taler merchant of a charging station operator by a key that may sign 'payments': whoever changes it redirects
+    // the payments of every station (EVTaler.md 4.4).
     if (PARTY_TYPES.has(change.entityType))
         return change.kind === 'Add' || change.kind === 'Remove'
                    ? { type: 'RoamingNetworkOperator', id: before?.operator?.id, keys: 'signing keys', usage: 'party', note: 'decides who is a member' }
-                   : { type: change.entityType, id: change.entityId, keys: change.propertyName === 'identityKeys' ? 'identity keys' : 'signing keys', usage: 'party' };
+                   : { type: change.entityType, id: change.entityId, keys: change.propertyName === 'identityKeys' ? 'identity keys' : 'signing keys',
+                       usage: change.entityType === 'ChargingStationOperator' && change.propertyName === 'evTaler' ? 'payments' : 'party' };
 
     const child = PARTY_CHILDREN[change.entityType];
     if (child !== undefined)
@@ -1076,6 +1080,17 @@ export async function analyze(pool, settings, onProgress = () => {}) {
                 catch (e) {
                     result.pricesError = message(e);
                 }
+            }
+
+            // How its EVSEs are paid for with EV Taler, as the proof gives the merchant of its operator (EVTaler.md 4.1 to
+            // 4.3): the EV Taler tariff of each, and the exchanges in its currency; none where its pool does not name it.
+            const merchantJSON = get(station.operator, 'evTaler');
+            if (merchantJSON !== undefined) {
+                const merchant = evTalerMerchantOf(merchantJSON);
+                result.evTaler = {
+                    merchant: typeof merchant === 'string' ? undefined : merchant,
+                    evses:    station.evses.map(evse => String(evse['@id'])).map(evseId => ({ evseId, tariff: evTalerTariffOf(station, evseId), exchanges: evTalerExchangesAt(station, evseId) })),
+                };
             }
 
         }

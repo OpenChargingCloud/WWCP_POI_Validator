@@ -6,12 +6,12 @@
 
 import L from 'leaflet';
 
-import { etagToText, get, isArray, isObject, jsonETag } from '@open-charging-cloud/wwcp-poi';
+import { etagToText, evTalerExchangesAt, evTalerMerchantOf, evTalerTariffOf, get, isArray, isObject, jsonETag } from '@open-charging-cloud/wwcp-poi';
 
 import { badge, button, facts, formatTime, h, i18n, jsonText, jsonView, plural, section, shortId } from '../dom.js';
 import { ARRAY_TYPES, entityAt, entityHistory, entityLabel, entityTree, merklePath, provenance } from '../entities.js';
 import { PARTY_LABELS } from '../keys.js';
-import { changeChip, emptyState, headKey, linkButton, versionSelect } from './common.js';
+import { changeChip, emptyState, evTalerMerchant, evTalerName, headKey, linkButton, versionSelect } from './common.js';
 import { priceSummary } from './history.js';
 import { QI_DIGITAL_KINDS, papersOf } from './qidigital.js';
 
@@ -405,6 +405,48 @@ function tariffsOfEvse(effectiveContent, path, evse) {
     return list;
 }
 
+/** The EV Taler merchant of a charging station operator, as WWCP_POI.TS reads it (EVTaler.md 4.2). */
+function merchantSection(json) {
+    const merchant = evTalerMerchantOf(json);
+    return h('div', null,
+        h('h3', null, 'EV Taler merchant'),
+        typeof merchant === 'string' ? h('p', 'error-text', merchant) : evTalerMerchant(merchant),
+        h('p', 'note', 'Where its charging pools name the payment option EVTaler, drivers pay this merchant step by step with the coins of these exchanges, ' +
+                       'of the one in the currency of the tariff of the EVSE. It is changed only with a signing key that may sign payments: whoever changes it redirects the payments of every station (4.4).'));
+}
+
+/**
+ * How an EVSE is paid for with EV Taler in this version: by the rule WWCP_POI.TS applies to a verified charging station
+ * (`evTalerTariffOf`, `evTalerExchangesAt`), given the operator, the pool and the tariffs of the EVSE as they are effective
+ * here; none where its operator has no merchant.
+ */
+function evTalerOfEvse(effectiveContent, path, evse) {
+
+    const operator = entityAt(effectiveContent, path.slice(0, 1));
+
+    if (operator?.['evTaler'] === undefined)
+        return null;
+
+    const id       = String(evse['@id']);
+    const pool     = entityAt(effectiveContent, path.slice(0, 2));
+    const tariffs  = isArray(operator['chargingTariffs']) ? operator['chargingTariffs'] : [];
+    const ids      = isArray(evse['chargingTariffIds']) ? evse['chargingTariffIds'].map(String) : [];
+    const station  = { operator, chargingPool: pool, evses: [ evse ], tariffs: new Map([ [ id, ids.map(tariffId => tariffs.find(item => String(item['@id']) === tariffId)).filter(Boolean) ] ]) };
+    const tariff   = evTalerTariffOf(station, id);
+    const exchanges = evTalerExchangesAt(station, id);
+    const options  = isArray(pool?.['paymentOptions']) ? pool['paymentOptions'].map(String) : [];
+
+    return h('div', null,
+        h('h3', null, 'EV Taler'),
+        exchanges.length
+            ? h('p', null, ...exchanges.map(exchange => badge(evTalerName(exchange), 'ok')), ' by its tariff ', h('code', null, String(tariff['@id'])), i18n(tariff['name']) ? ` · ${i18n(tariff['name'])}` : '')
+            : h('p', 'muted', options.some(option => option.toLowerCase() === 'evtaler')
+                                  ? 'Its pool names the payment option EVTaler, but it has no EV Taler tariff, or no exchange of its operator is in the currency of that tariff.'
+                                  : 'Not with EV Taler: its pool does not name the payment option EVTaler, though its operator is an EV Taler merchant.'),
+        h('p', 'note', 'Its tariff of the type AD_HOC_PAYMENT, or else the one without a type, unless that one names payment means other than EV_TALER, with the exchanges in its currency (EVTaler.md 4.3).'));
+
+}
+
 function groupsOf(content, path, type, id) {
     const operator = path[0]?.array === 'chargingStationOperators' ? entityAt(content, path.slice(0, 1)) : undefined;
     if (operator === undefined)
@@ -542,6 +584,8 @@ function entityDetail(report, version, node, mode, runtime, actions, onSelect) {
         origin ? h('p', 'note', 'The effective member takes, of every property a template may give, its own value, else the one of the first of its templates giving one; arrays are united (9.2). Proofs and apps see the effective member.') : null,
 
         node.type === 'EVSE' && mode === 'effective' ? h('div', null, h('h3', null, 'Charging tariffs it takes'), tariffsOfEvse(effective, node.path, json) ?? h('p', 'muted', 'none')) : null,
+        node.type === 'EVSE' && mode === 'effective' ? evTalerOfEvse(effective, node.path, json) : null,
+        node.type === 'ChargingStationOperator' && json['evTaler'] !== undefined ? merchantSection(json['evTaler']) : null,
 
         groups.length ? h('div', null, h('h3', null, 'Member of'), h('div', 'chips', ...groups.map(group => h('span', 'chip', `${String(group['@id'])}${i18n(group['name']) ? ' · ' + i18n(group['name']) : ''}`))),
                           h('p', 'note', 'Groups name members and give them nothing: no effective value depends on a group (9.3).')) : null,

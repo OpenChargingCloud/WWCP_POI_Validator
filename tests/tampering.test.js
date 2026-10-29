@@ -33,9 +33,9 @@ test('A change set changed after it was signed: its commit is refused, and every
     assert.equal(summary.errors.length, 1);
     assert.match(summary.errors[0], /^A commit of 'TH-commits-since-checkpoint-0\.json' \(revision 13\) is refused: The commit identification/);
 
-    // Revisions 1 to 12 and the checkpoint after revision 6 hold; 13 is refused, 14 to 25 and three checkpoints follow it.
+    // Revisions 1 to 12 and the checkpoint after revision 6 hold; 13 is refused, 14 to 27 and three checkpoints follow it.
     assert.deepEqual(summary.head, { epoch: 1, revision: 12 });
-    assert.deepEqual(summary.epochs, [ { number: 1, commits: 12, checkpoints: 1, notTaken: 16 } ]);
+    assert.deepEqual(summary.epochs, [ { number: 1, commits: 12, checkpoints: 1, notTaken: 18 } ]);
 
 });
 
@@ -47,7 +47,7 @@ test('A signature of the operator changed: an error, though the other holders st
 
     assert.equal(summary.verdict.level, 'error');
     assert.deepEqual(summary.errors, [ 'Revision 13 of epoch 1 is not signed as the roaming network operator requires: The signature is invalid!' ]);
-    assert.deepEqual(summary.head, { epoch: 1, revision: 25 });
+    assert.deepEqual(summary.head, { epoch: 1, revision: 27 });
 
 });
 
