@@ -18,12 +18,12 @@
   "author": "GraphDefined GmbH <achim.friedland@graphdefined.com>",
   "license": "AGPL-3.0-only",
   "dependencies": {
-    "@open-charging-cloud/wwcp-poi": "^0.1.0",
+    "@open-charging-cloud/wwcp-poi": "^0.2.0",
     "leaflet": "^1.9.4",
     "qrcode-generator": "^2.0.4"
   },
   "devDependencies": {
-    "@vanaheimr/cose": "^0.10.0",
+    "@vanaheimr/cose": "^0.12.0",
     "copy-webpack-plugin": "^14.0.0",
     "terser-webpack-plugin": "^5.6.1",
     "webpack": "^5.112.2",
