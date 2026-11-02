@@ -9,6 +9,10 @@
  * Nothing is changed: the sessions are signed, and the validator checks them as they were published. The variants of
  * price-publication.json, receipts of the publication of the prices refused for one reason each, are the one session it
  * holds with their evidence in its place, as an app would get them.
+ *
+ * And how the trust of the network moves on (trust-transitions.json, experimental): a proof of a station under the trust
+ * anchor of the network, two transitions its holders and those of the next policy signed - to other identity keys and
+ * servers, or to the next epoch with the checkpoints closing the first -, a proof under each, and a transition refused.
  */
 
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
@@ -78,12 +82,36 @@ const unknown = Object.keys(publication.variants).filter(variant => !(variant in
 if (unknown.length > 0)
     throw new Error(`price-publication.json has variants not described here: ${unknown.join(', ')}`);
 
+const sessions = files.length;
+
+// How the trust of the network moves on, in the order an app would meet it. The two transitions start from the same
+// policy: alternatives, of which an app follows one and refuses the other as a fork.
+const transitions = parseJSON(read('trust-transitions.json'));
+
+if (transitions.anchor !== publication.session.poiEvidence.bootstrap.trustAnchor)
+    throw new Error('trust-transitions.json is of another trust anchor than the sessions');
+
+const TRUST = [
+    [ 'baseProof',           'proof-of-the-network.json',             'A proof of a charging station under the trust anchor of the network' ],
+    [ 'policy',              'transition-to-new-keys.json',           'A trust transition to other identity keys and servers, signed by a quorum of the holders of both' ],
+    [ 'targetProof',         'proof-under-new-keys.json',             'A proof under those identity keys: no key the trust anchor pins signed it' ],
+    [ 'epoch',               'transition-to-epoch-2.json',            'A trust transition to epoch 2, with the checkpoint closing epoch 1, its final one, and the first of epoch 2: the other way on from the same policy' ],
+    [ 'epochProof',          'proof-of-epoch-2.json',                 'A proof of the genesis of epoch 2' ],
+    [ 'invalidCertificate',  'transition-invalid-certificate.json',   'A trust transition signed by both quorums, to an operator whose signing key certificate is invalid: refused' ],
+];
+
+for (const [ key, name, description ] of TRUST) {
+    writeFileSync(join(target, name), prettyJSON(transitions[key]) + '\n');
+    files.push({ path: name, description });
+}
+
 const manifest = {
     id:                  'sessions',
-    title:               'Charging sessions, as an app checks them',
-    description:         `${files.length} charging sessions of the test network ${meta.networkId} of WWCP_POI.TS, as Chargy writes them: the meter and its key from the proof of the ` +
+    title:               'An app: charging sessions and trust transitions',
+    description:         `${sessions} charging sessions of the test network ${meta.networkId} of WWCP_POI.TS, as Chargy writes them: the meter and its key from the proof of the ` +
                          'station, now and when it measured; prices bound to the session, in Ed25519, ML-DSA-65 and decimals; and the receipts of the publication of the prices, ' +
-                         'witnessed before the start or refused for one reason each. Public test keys only.',
+                         'witnessed before the start or refused for one reason each. And how the trust of the network moves on: trust transitions to other identity keys, and ' +
+                         'to epoch 2, with a proof under each. Public test keys only.',
     source:              'tools/vendor-sessions-demo.mjs',
     recordedAt:          publication.now,
     trustAnchor:         publication.session.poiEvidence.bootstrap.trustAnchor,
@@ -97,4 +125,4 @@ const manifest = {
 
 writeFileSync(join(target, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
 
-console.log(`Copied ${files.length} sessions of ${vectors} to ${target}, checked as of ${manifest.recordedAt}.`);
+console.log(`Copied ${sessions} sessions and ${files.length - sessions} documents of trust transitions of ${vectors} to ${target}, checked as of ${manifest.recordedAt}.`);

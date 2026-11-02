@@ -227,6 +227,37 @@ function evTalerSection(evTaler) {
 }
 
 
+/**
+ * What an app keeps of the versions it observed (compareObservedVersions): each proof, its price statements and each trust
+ * transition in the order the documents came, whether the journal took it, and why not; and where each chain stands.
+ */
+function journalSection(journal, actions) {
+
+    const level = (status) => [ 'first-seen', 'advanced', 'matches' ].includes(status) ? 'ok' : status === 'historical' ? 'info' : 'error';
+
+    const steps = h('table', 'grid',
+        h('thead', null, h('tr', null, h('th', null, 'Observed'), h('th', null, 'What'), h('th', null, 'The journal'))),
+        h('tbody', null, ...journal.steps.map(step => h('tr', null,
+            h('td', null, linkButton(step.document.name, () => actions.showDocument(step.document))),
+            h('td', null, step.what ?? '—'),
+            h('td', null, badge(step.status, level(step.status)), ...step.issues.map(issue => h('div', 'muted small', `${issue.code}: ${issue.detail}`)))))));
+
+    const heads = Object.entries(journal.state.heads).map(([ key, head ]) => {
+        const [ kind, chain ] = (() => { try { return JSON.parse(key); } catch { return [ key, '' ]; } })();
+        return h('tr', null, h('td', null, kind), h('td', null, h('code', null, chain)), h('td', null, head.epoch || '—'), h('td', 'num', head.position), h('td', null, shortId(head.digest, 16)));
+    });
+
+    return section('What an app keeps: the versions it observed',
+        steps,
+        heads.length ? h('h4', null, 'Where each chain stands') : null,
+        heads.length ? h('table', 'grid', h('thead', null, h('tr', null, h('th', null, 'Kind'), h('th', null, 'Chain'), h('th', null, 'Epoch'), h('th', 'num', 'Position'), h('th', null, 'Digest'))), h('tbody', null, ...heads)) : null,
+        h('p', 'note', 'An app keeps a journal of what it observed, verified, and takes a version as the current one only where it follows the one before: no older one than it saw (a rollback), no other one of the same place (a fork), no new epoch no verified trust transition opens. ' +
+                       'As an app that observed the proofs, their price statements and the trust transitions loaded, in their order (WWCP_POI.TS 0.2.0, compareObservedVersions). Two transitions from the same policy are two ways on: an app that took one refuses the other as a fork. ' +
+                       'No global freshness follows from it: only what this app saw.'));
+
+}
+
+
 function proofCard(report, result, actions) {
 
     const station  = result.station;
@@ -238,6 +269,7 @@ function proofCard(report, result, actions) {
                 : result.basis === 'followed' ? 'against the identity keys the history followed — the trust anchor names older ones'
                 : result.basis === 'tofu'     ? 'against the keys the head states itself (no trust anchor)'
                 : result.basis === 'context'  ? 'against the identity keys of the trust anchor trusted in the settings (a trust context)'
+                : result.basis === 'transition' ? `against the trust anchor the verified trust transition '${result.transition.document.name}' delegates to${result.transition.verified.epoch.number !== result.transition.verified.oldEpoch.number ? `, epoch ${result.transition.verified.epoch.number}` : ''}`
                 :                               '';
     const evaluation = result.evaluation;
 
@@ -457,6 +489,9 @@ export function renderProofs(container, state, actions) {
 
     if (report.archive)
         container.append(section('Archive', archiveTable(report)));
+
+    if (report.journal)
+        container.append(journalSection(report.journal, actions));
 
     if (container.childElementCount === 0 || (container.childElementCount === 1 && lookup))
         container.append(section('Proofs & prices', emptyState('No proofs, price statements, attestations or evidence were loaded.',

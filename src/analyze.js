@@ -24,6 +24,8 @@ import {
 
 import { keyDirectory } from './keys.js';
 import { analyzeSessions } from './sessions.js';
+import { analyzeTransitions } from './transitions.js';
+import { observeVersions } from './journal.js';
 import { yieldToBrowser } from './dom.js';
 
 
@@ -344,6 +346,8 @@ export async function analyze(pool, settings, onProgress = () => {}) {
         proofs:            [],
         evidence:          [],
         sessions:          [],
+        transitions:       [],
+        journal:           undefined,
         trustedIdentityKeyIds: settings.trustedIdentityKeyIds,
         publicationPolicy: undefined,
         commitProofs:      [],
@@ -1043,6 +1047,18 @@ export async function analyze(pool, settings, onProgress = () => {}) {
         return TrustContext.evaluate(trustAnchor, operator.keyStatement, { trustedIdentityKeyIds, otherIdentityKeys: operator.identityKeys, at });
     };
 
+    // Trust transitions, from the trust anchor of the settings; the operators they may start from are those the documents
+    // give, found by the digest of their key statement.
+    const givenOperators = [
+        ...pool.ofType('stationProof').map(document => get(get(document.json, 'roamingNetwork') ?? {}, 'operator')),
+        ...pool.ofType('chargingSession').map(document => get(get(get(document.json, 'poiEvidence') ?? {}, 'bootstrap') ?? {}, 'keyStatement')),
+        ...[ ...report.versions.values() ].map(version => version.network.operator?.json),
+    ].filter(isObject);
+
+    report.transitions = analyzeTransitions(pool.ofType('trustTransition'), { anchor, trustedIdentityKeyIds: settings.trustedIdentityKeyIds, at, operators: givenOperators }, issue);
+
+    const verifiedTransitions = report.transitions.filter(item => item.verified !== undefined);
+
     for (const document of pool.ofType('stationProof')) {
 
         const result = { document, ok: false };
@@ -1050,7 +1066,28 @@ export async function analyze(pool, settings, onProgress = () => {}) {
 
         const attempt = (trustAnchor) => verifyChargingStation(trustAnchor, document.json, { at });
 
-        try {
+        // With the trust context of a verified transition, which carries its own time: the first of them it verifies with.
+        const viaTransition = (transitions) => {
+            for (const transition of transitions) {
+                try {
+                    result.station    = verifyChargingStation(transition.verified.context, document.json);
+                    result.basis      = 'transition';
+                    result.transition = transition;
+                    result.evaluation = undefined;
+                    return true;
+                }
+                catch {
+                    continue;
+                }
+            }
+            return false;
+        };
+
+        // The proof of the start of an epoch a verified transition opens: with that transition, whose epoch it is.
+        const opening = verifiedTransitions.filter(item => item.verified.first?.commitId === String(get(document.json, 'commitId')));
+
+        /** With a trust context of the keys trusted, or with the trust anchor, or the identity keys the history followed. */
+        const viaAnchor = () => {
             if (proofAnchor === undefined)
                 throw new Error('There is no trust anchor to check it against.');
             if (restricted) {
@@ -1059,26 +1096,39 @@ export async function analyze(pool, settings, onProgress = () => {}) {
                     throw new Error(`The identity keys trusted here give no trust context for its key statement: ${(result.evaluation.verificationError ?? 'signatures, signers, quorum or validity do not hold.').replace(/[^.!?]$/, '$&.')}`);
                 result.station = attempt(result.evaluation.context);
                 result.basis   = 'context';
+                return;
             }
-            else {
+            try {
+                result.station = attempt(proofAnchor);
+                result.basis   = anchor !== undefined ? 'pinned' : 'tofu';
+            }
+            catch (e) {
+                if (followedAnchor === undefined)
+                    throw e;
+                result.pinnedError = message(e);
+                result.station     = attempt(followedAnchor);
+                result.basis       = 'followed';
+            }
+            // As an app would see it: every key of the trust anchor the proof verified with, trusted.
+            try {
+                const basis = result.basis === 'followed' ? followedAnchor : proofAnchor;
+                result.evaluation = evaluateProof(document.json, basis, basis.keys);
+            }
+            catch {
+                result.evaluation = undefined;
+            }
+        };
+
+        try {
+            if (!(opening.length > 0 && viaTransition(opening))) {
                 try {
-                    result.station = attempt(proofAnchor);
-                    result.basis   = anchor !== undefined ? 'pinned' : 'tofu';
+                    viaAnchor();
                 }
                 catch (e) {
-                    if (followedAnchor === undefined)
+                    // Of a later policy or epoch: with the trust context of a verified transition to it.
+                    if (!viaTransition(verifiedTransitions))
                         throw e;
                     result.pinnedError = message(e);
-                    result.station     = attempt(followedAnchor);
-                    result.basis       = 'followed';
-                }
-                // As an app would see it: every key of the trust anchor the proof verified with, trusted.
-                try {
-                    const basis = result.basis === 'followed' ? followedAnchor : proofAnchor;
-                    result.evaluation = evaluateProof(document.json, basis, basis.keys);
-                }
-                catch {
-                    result.evaluation = undefined;
                 }
             }
             result.ok = true;
@@ -1088,12 +1138,18 @@ export async function analyze(pool, settings, onProgress = () => {}) {
             issue('error', `The proof '${document.name}' does not verify: ${message(e)}`, document);
         }
 
+        // The epoch of its version: as the history or the transition it verified with gives it, else the first.
+        if (result.station !== undefined)
+            result.epochNumber = [ ...report.versions.values() ].find(version => version.commit.id === result.station.commitId)?.epoch
+                                     ?? result.transition?.verified.epoch.number ?? 1;
+
         // The keys of the operator that may sign charging documents for its EVSEs, e.g. the transparency records of a
         // session (usage chargeTransparencyRecords, or a key restricted to no usage).
-        if (result.station !== undefined && result.evaluation?.context !== undefined && result.station.evses.length > 0) {
+        const documentContext = result.evaluation?.context ?? result.transition?.verified.context;
+        if (result.station !== undefined && documentContext !== undefined && result.station.evses.length > 0) {
             try {
-                result.documentKeys = verifyChargingDocumentKeys(result.evaluation.context, document.json,
-                                                                 { evseId: String(result.station.evses[0]['@id']), operatorId: String(result.station.operator['@id']), at });
+                result.documentKeys = verifyChargingDocumentKeys(documentContext, document.json,
+                                                                 { evseId: String(result.station.evses[0]['@id']), operatorId: String(result.station.operator['@id']), at: documentContext.evaluatedAt });
             }
             catch (e) {
                 result.documentKeysError = message(e);
@@ -1180,6 +1236,10 @@ export async function analyze(pool, settings, onProgress = () => {}) {
         anchor, at, trustedIdentityKeyIds: settings.trustedIdentityKeyIds,
         witnesses: report.witnesses, requiredWitnesses: report.requiredWitnesses, publicationPolicy: report.publicationPolicy,
     }, issue);
+
+    // What an app that observed the proofs and transitions in their order keeps: the versions, and what it refuses.
+    if (report.proofs.some(item => item.ok) || verifiedTransitions.length > 0)
+        report.journal = observeVersions(report, new Map(pool.documents.map((document, index) => [ document, index ])), at);
 
     const checkpointById = (id) => {
         for (const epoch of report.epochs) {
@@ -1427,7 +1487,7 @@ function verdictOf(report) {
     const commits  = report.epochs.reduce((sum, epoch) => sum + epoch.steps.filter(step => step.type === 'commit').length, 0);
     const cps      = report.epochs.reduce((sum, epoch) => sum + epoch.steps.filter(step => step.type === 'checkpoint').length, 0);
 
-    if (report.head === undefined && report.proofs.length === 0 && report.evidence.length === 0 && report.sessions.length === 0)
+    if (report.head === undefined && report.proofs.length === 0 && report.evidence.length === 0 && report.sessions.length === 0 && report.transitions.length === 0)
         return { level: errors > 0 ? 'error' : 'info', commits, checkpoints: cps, errors, warnings };
 
     return { level: errors > 0 ? 'error' : warnings > 0 ? 'warn' : 'ok', commits, checkpoints: cps, errors, warnings };

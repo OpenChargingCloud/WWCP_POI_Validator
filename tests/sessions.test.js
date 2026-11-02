@@ -52,8 +52,9 @@ test('Sessions: every session of the demo, as an app checks it with the trust an
     assert.equal(report.sessions.find(result => result.document.name === 'session-price-decimal.chargy').prices.verification.selected.rates.energyPerKWh, '0.3500');
 
     // A refused receipt is a finding, with the reason WWCP_POI.TS gives; not proven is none.
-    assert.equal(summary.errors.length, 7);
-    assert.ok(summary.errors.every(text => /^The charging session 'publication-[a-z-]+\.chargy': a receipt of the publication of its prices is refused \(.+\)\.$/.test(text)), summary.errors.join('\n'));
+    const sessionErrors = summary.errors.filter(text => text.startsWith('The charging session'));
+    assert.equal(sessionErrors.length, 7);
+    assert.ok(sessionErrors.every(text => /^The charging session 'publication-[a-z-]+\.chargy': a receipt of the publication of its prices is refused \(.+\)\.$/.test(text)), sessionErrors.join('\n'));
     assert.deepEqual(summary.warnings, []);
 
 });

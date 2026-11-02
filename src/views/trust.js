@@ -6,7 +6,7 @@
 
 import { POIPublicKey, get } from '@open-charging-cloud/wwcp-poi';
 
-import { attrs, badge, formatTime, h, i18n, plural, section, shortId } from '../dom.js';
+import { attrs, badge, button, facts, formatTime, h, i18n, plural, section, shortId } from '../dom.js';
 import { PARTY_LABELS, keyAlgorithm, keyDirectory, partiesWithKeys } from '../keys.js';
 import { headKey, linkButton, versionSelect } from './common.js';
 
@@ -241,6 +241,45 @@ function trustDecisions(report) {
 
 }
 
+/** The trust transitions loaded: from which policy to which trust anchor, signed by which holders, and what each opens. */
+function transitionsSection(report, actions) {
+
+    if (report.transitions.length === 0)
+        return null;
+
+    const cards = report.transitions.map(item => {
+
+        const transition = item.transition;
+        const verified   = item.verified;
+        const target     = verified?.context.anchor ?? transition?.anchor;
+
+        return h('div', `card proof-card ${item.ok ? '' : 'error-card'}`,
+            h('div', 'card-title-row', h('h3', null, item.document.name), item.ok ? badge('verified', 'ok') : badge('refused', 'error')),
+            item.document.description ? h('p', 'muted', item.document.description) : null,
+            item.error ? h('p', 'error-text', item.error) : null,
+            transition ? facts([
+                [ 'Sequence', transition.previous ? h('span', null, `${transition.sequence}, after `, shortId(transition.previous, 12)) : `${transition.sequence}, the first` ],
+                [ 'From', h('span', null, 'the policy ', shortId(transition.fromPolicyId, 16), ', its key statement ', shortId(transition.fromStatementDigest, 16)) ],
+                [ 'To', target ? h('span', null, `${target.id}: ${plural(target.holders.length, 'holder')}, a quorum of ${target.minConsensus}`, h('div', 'muted small', target.urls.join(', '))) : undefined ],
+                [ 'Signed', `${formatTime(transition.signedAt)}, valid until ${formatTime(transition.validUntil)}` ],
+                [ 'Signed by', verified ? `holders ${[ ...verified.signedBy.old ].sort((left, right) => left - right).map(index => index + 1).join(', ')} of the policy before it, holders ${[ ...verified.signedBy.next ].sort((left, right) => left - right).map(index => index + 1).join(', ')} of the next` : undefined ],
+                [ 'Epoch', verified ? (verified.epoch.number === verified.oldEpoch.number ? `${verified.epoch.number}, the same` : `${verified.oldEpoch.number} → ${verified.epoch.number}`) : undefined ],
+                [ 'Checkpoints', verified && (verified.checkpoints.length > 0 || verified.first) ? h('span', null, `${plural(verified.checkpoints.length, 'checkpoint')} of epoch ${verified.oldEpoch.number}`,
+                      verified.first ? h('span', null, `; the first of epoch ${verified.epoch.number}, of the commit `, shortId(verified.first.commitId, 12)) : null) : undefined ],
+                [ 'Its trust anchor', verified ? h('span', null, button('Use it in the settings', () => actions.useTrustAnchor(verified.context.anchor.toQRCode()))) : undefined ],
+            ]) : null);
+
+    });
+
+    return section(`Trust transitions (${report.transitions.length})`,
+        h('div', 'proof-cards', ...cards),
+        h('p', 'note', 'Experimental in WWCP_POI.TS 0.2.0: a compact delegation by which a quorum of the holders of a trust anchor and one of the holders of the next policy name ' +
+                       'the policy they continue, its key statement, the trust anchor and the operator that follow, and for a new epoch the checkpoints closing the one before. ' +
+                       'A trust context does not follow the keys of the operator by itself: a transition verified from the trust anchor of the settings and the keys trusted there ' +
+                       'is how it may, and proofs of its target are checked with it. It replays no history: what changed between is not shown.'));
+
+}
+
 export function renderTrust(container, state, actions) {
 
     const report  = state.report;
@@ -250,6 +289,10 @@ export function renderTrust(container, state, actions) {
     const decisions = trustDecisions(report);
     if (decisions)
         container.append(decisions);
+
+    const transitions = transitionsSection(report, actions);
+    if (transitions)
+        container.append(transitions);
 
     if (version === undefined) {
         container.append(section('Trust', h('p', null, 'No version was taken: there are no keys of a history to show.')));

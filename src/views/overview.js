@@ -184,6 +184,7 @@ function appCard(report, actions) {
         [ 'Attestations',              report.attestations ],
         [ 'QI-Digital papers',         report.qiDigital ],
         [ 'Charging sessions',         report.sessions ],
+        [ 'Trust transitions',         report.transitions ],
     ].filter(([ , list ]) => list.length > 0);
     if (rows.length === 0)
         return null;

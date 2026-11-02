@@ -20,10 +20,11 @@ epochs and price statements fit together.
 
 - **Overview** — the verdict, the roaming network as its verified head names it, the trust anchor with its QR code, the
   head with its ETags, what the network holds, a timeline of the history and every finding.
-- **Trust** — your trust decisions: which identity keys of the trust anchor you trust (below); the chain from the
-  identity keys the trust anchor pins to the key statement of the roaming network operator, its holders and the
-  certificates of their signing keys; who signed how many commits, checkpoints and attestations; how the keys moved on
-  (key succession, epochs); the keys of every party; the trusted witnesses.
+- **Trust** — your trust decisions: which identity keys of the trust anchor you trust (below); trust transitions to
+  other identity keys or the next epoch, signed by the holders of both (below); the chain from the identity keys the
+  trust anchor pins to the key statement of the roaming network operator, its holders and the certificates of their
+  signing keys; who signed how many commits, checkpoints and attestations; how the keys moved on (key succession,
+  epochs); the keys of every party; the trusted witnesses.
 - **History** — every epoch, where it starts (genesis, a checkpoint, an archive segment, or the genesis derived from the
   final checkpoint before) and how that start is anchored in the trust anchor (10.5), and each commit and checkpoint
   with what was checked: the identification, the parent, the change set applied again with the signatures of its owners
@@ -42,9 +43,11 @@ epochs and price statements fit together.
   with EV Taler (the merchant the proof gives, the EV Taler tariff of each EVSE and the exchanges in its currency,
   [concepts/EVTaler.md](https://github.com/OpenChargingCloud/WWCP_POI/blob/master/concepts/EVTaler.md));
   price statements; the evidence of a charging session; proofs of commits and price statements
-  in checkpoints; attestations; the archive; and the **QI-Digital** papers of meters (example A14): digital calibration
+  in checkpoints; attestations; the archive; the **QI-Digital** papers of meters (example A14): digital calibration
   certificates, certificates of conformity and declarations of conformity, each checked against the network and against
-  each other.
+  each other; and what an app keeps of the versions it observed (`compareObservedVersions`): each proof, its price
+  statements and each trust transition in their order, whether its journal takes it, or refuses it as a rollback, a
+  fork or an epoch no transition opens, and where each chain stands.
 - **Sessions** — charging sessions as Chargy writes them (`.chargy`), with the evidence of WWCP POI for them, as an app
   checks them (WWCP_POI.TS 0.2.0): the meter of the EVSE and the key it signs with as the network states them now
   (`verifyMeterKey`), and as it stated them when the meter measured, with the checkpoints naming those versions
@@ -76,10 +79,12 @@ epochs and price statements fit together.
      that takes **EV Taler** at its charging parks along the A4 (its merchant, changed with a key for payments, and two
      exchanges, of which the one in euros pays); four witnessed checkpoints, price statements and station proofs.
      Signed with test keys of fixed seeds.
-   - **Charging sessions**, the 18 sessions of the test network `CHARGY-POI-DEMO` WWCP_POI.TS keeps among its test
-     vectors (public test keys only): the meter and its key from the proof of the station, now and when it measured;
-     prices bound to the session in Ed25519, ML-DSA-65 and decimals as signed; and the receipts of the publication of the
-     prices, witnessed by two organizations before the start, or not proven or refused for one reason each.
+   - **An app: charging sessions and trust transitions**, of the test network `CHARGY-POI-DEMO` WWCP_POI.TS keeps among
+     its test vectors (public test keys only). 18 sessions: the meter and its key from the proof of the station, now and
+     when it measured; prices bound to the session in Ed25519, ML-DSA-65 and decimals as signed; and the receipts of the
+     publication of the prices, witnessed by two organizations before the start, or not proven or refused for one reason
+     each. And how its trust moves on: a proof under its trust anchor, a transition to other identity keys and one to
+     epoch 2 — two ways on from the same policy —, a proof under each, and a transition refused.
 
    The demos are checked *as of the time of their recording*, as their attestations were valid for 15 minutes back then;
    switch the verification time to *now* in the settings to see them refused.
@@ -101,6 +106,13 @@ The trust anchor a charging session brings is trusted by nobody by itself: a ses
 until its trust anchor is taken into the settings. Nor are the receipts of the publication of prices it brings: they
 count where the *policy of the witnesses of price publications* in the settings authorizes their organizations, keys
 and clocks (`witnessPublicationPolicy/v1`), once per organization.
+
+A **trust transition** (WWCP_POI.TS 0.2.0, experimental, `trustTransition/v1`) is how trust may move on explicitly: a
+compact certificate by which a quorum of the holders of a trust anchor and one of the holders of the next policy name
+the policy they continue, its key statement, the trust anchor and operator that follow, and for a new epoch the
+checkpoints closing the one before. The page verifies each from the trust anchor of the settings and the keys trusted
+there, a later one from the one it continues, and checks the proofs of its target with it: a proof no key of the trust
+anchor signed, and the proof of the start of an epoch a transition opens. It replays no history.
 
 
 ## Building
@@ -194,8 +206,9 @@ node "D:\Coding\OpenChargingCloud\WWCP_POI_Validator\tools\mock-poi-server.mjs" 
 
 - `tools/vendor-sessions-demo.mjs` copies the charging sessions of the same checkout (`tests/vectors`, since 0.2.0)
   into `demo/sessions`: five sessions as they are, and the one session of `price-publication.json` once with each of its
-  13 variants of the receipts of the publication of its prices in its place, each described in the manifest; the
-  trusted witness of the checkpoints and the policy of the witnesses of price publications go into the settings:
+  13 variants of the receipts of the publication of its prices in its place, each described in the manifest; and of
+  `trust-transitions.json` the proofs and transitions, in the order an app meets them; the trusted witness of the
+  checkpoints and the policy of the witnesses of price publications go into the settings:
 
   ```bash
   node "D:\Coding\OpenChargingCloud\WWCP_POI_Validator\tools\vendor-sessions-demo.mjs"
@@ -213,7 +226,7 @@ node "D:\Coding\OpenChargingCloud\WWCP_POI_Validator\tools\mock-poi-server.mjs" 
 
 ## Tests
 
-The analysis runs in Node as in the browser, so the tests need no browser (`node:test`, about a minute):
+The analysis runs in Node as in the browser, so the tests need no browser (`node:test`, a few minutes):
 
 ```bash
 npm --prefix "D:\Coding\OpenChargingCloud\WWCP_POI_Validator" test
@@ -231,6 +244,9 @@ npm --prefix "D:\Coding\OpenChargingCloud\WWCP_POI_Validator" test
   organization and only before the start; without the policy of the settings no receipt counts; the trust anchor a
   session brings, or one holder short of the quorum, gives no trust context; station proofs with two of three holders
   trusted verify, with one they are refused.
+- `tests/transitions.test.js`: the trust transitions of the sessions demo verified, one refused, and the proofs of
+  their targets with them, in their epoch; the journal of an app follows one way on and refuses the other as a fork,
+  and takes everything of the QA and the Thuringia demo; with a holder untrusted, no transition and no proof holds.
 
 GitHub Actions run them (`.github/workflows/verify.yml`), and then make the demos anew, which have to be the ones
 committed, byte for byte; for the QA and the sessions demo with WWCP_POI.TS checked out next to the validator, at the tag
@@ -254,10 +270,12 @@ of its release:
 | `src/documents.js` | what a document is, from its context or its shape; the pool of all documents |
 | `src/analyze.js` | the analysis with WWCP_POI.TS: trust, history, checkpoints, epochs, proofs, prices, evidence, archive |
 | `src/sessions.js` | charging sessions as an app checks them: their readings, trust context, meter key, historical evidence, prices |
+| `src/transitions.js` | trust transitions, verified from the trust anchor of the settings, a later one from the one it continues |
+| `src/journal.js` | what an app keeps of the versions it observed: its journal, and what it refuses |
 | `src/keys.js` | who holds a key: the directory of all keys of a version |
 | `src/entities.js` | the entities of a version: tree, provenance of effective values, Merkle paths, entity history |
 | `src/views/*.js` | overview, trust, history, network, proofs & prices (with `qidigital.js`), sessions, documents |
-| `tests/*.test.js` | the demos, documents changed after they were signed, loading from servers, sessions and trust decisions |
+| `tests/*.test.js` | the demos, documents changed after they were signed, loading from servers, sessions, trust decisions and transitions |
 | `tools/*.mjs` | the QA and the sessions demo vendored, the Thuringia demo generated, a stand-in POI_API server |
 
 Every verdict is the library's: the page only records what it checked, step by step, and goes on where it can, so that

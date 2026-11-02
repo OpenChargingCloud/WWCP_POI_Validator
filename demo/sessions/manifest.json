@@ -1,7 +1,7 @@
 {
   "id": "sessions",
-  "title": "Charging sessions, as an app checks them",
-  "description": "18 charging sessions of the test network CHARGY-POI-DEMO of WWCP_POI.TS, as Chargy writes them: the meter and its key from the proof of the station, now and when it measured; prices bound to the session, in Ed25519, ML-DSA-65 and decimals; and the receipts of the publication of the prices, witnessed before the start or refused for one reason each. Public test keys only.",
+  "title": "An app: charging sessions and trust transitions",
+  "description": "18 charging sessions of the test network CHARGY-POI-DEMO of WWCP_POI.TS, as Chargy writes them: the meter and its key from the proof of the station, now and when it measured; prices bound to the session, in Ed25519, ML-DSA-65 and decimals; and the receipts of the publication of the prices, witnessed before the start or refused for one reason each. And how the trust of the network moves on: trust transitions to other identity keys, and to epoch 2, with a proof under each. Public test keys only.",
   "source": "tools/vendor-sessions-demo.mjs",
   "recordedAt": "2026-11-01T00:16:21.000Z",
   "trustAnchor": "WWCP/TA-2:P1LJ68GVCYM8RB8+09ZW521ANW5BY8T1A/PD-FFNLG344WMHA 5V75U0HNXFX:AYMA0 CXZHU%VAULQK5R7MRPE:Y23AR*64PPK93RB/6P07/BI1R7ZGNANHZ7CN0R:POE$PR8F1W487JJBI..DF$DZNK6VCQ8FLN8GECT3D$3421ANW50$C-3E QEVKEBWE-3E.245UA QEJQE29DNXOZQE: CJA51$CL8FLN8GECT3D$3421AC440$C-3E QEVKEBWE-3E.247WE QEJ44C$C6PEMVC.KE4REO8FA9DIWENPEJ/5S9EGDDB$CBECP9ESZCAIACPEYM8RB8+09ZW521ANW5BY8X1AD68-3E7WEBAFB9FA9DIWENPEJ/5/3E1$C+%5 8D$KEZED:1DRPC34E.TCUPCG/DB$CLWE10684F98E0LEBECZEDV2D7$CK4F-KE/:56LE QEAC8NPC04E006%G6J$DC.D-3ELQEF/D7%E20",
@@ -146,6 +146,30 @@
     {
       "path": "publication-private-source.chargy",
       "description": "A receipt of a retrieval from a private address: refused"
+    },
+    {
+      "path": "proof-of-the-network.json",
+      "description": "A proof of a charging station under the trust anchor of the network"
+    },
+    {
+      "path": "transition-to-new-keys.json",
+      "description": "A trust transition to other identity keys and servers, signed by a quorum of the holders of both"
+    },
+    {
+      "path": "proof-under-new-keys.json",
+      "description": "A proof under those identity keys: no key the trust anchor pins signed it"
+    },
+    {
+      "path": "transition-to-epoch-2.json",
+      "description": "A trust transition to epoch 2, with the checkpoint closing epoch 1, its final one, and the first of epoch 2: the other way on from the same policy"
+    },
+    {
+      "path": "proof-of-epoch-2.json",
+      "description": "A proof of the genesis of epoch 2"
+    },
+    {
+      "path": "transition-invalid-certificate.json",
+      "description": "A trust transition signed by both quorums, to an operator whose signing key certificate is invalid: refused"
     }
   ]
 }
