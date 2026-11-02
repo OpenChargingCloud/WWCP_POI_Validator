@@ -94,6 +94,16 @@
                         <label for="witnesses">Trusted witnesses <span class="hint">[ { "witness": "…", "key": { "@id": "…", "key": "…" } } ]</span></label>
                         <textarea id="witnesses" rows="3" spellcheck="false" placeholder="[]"></textarea>
                     </div>
+                    <div class="setting wide">
+                        <label>Identity keys of the trust anchor you trust</label>
+                        <div id="trustedKeys" class="trusted-keys"><span class="hint">Give a trust anchor first.</span></div>
+                        <p class="note">An app trusts the keys of an imported trust anchor only as its user decides; proofs and charging sessions are checked with the keys trusted here (a trust context, WWCP_POI.TS 0.1.1). Untrust a key to see what still holds. A trust context does not follow the keys of the operator to their successors: the proof of a later epoch, signed by other identity keys, needs the trust anchor of those.</p>
+                    </div>
+                    <div class="setting wide">
+                        <label for="publicationPolicy">Witnesses of price publications <span class="hint">a policy of witnessPublicationPolicy/v1</span></label>
+                        <textarea id="publicationPolicy" rows="3" spellcheck="false" placeholder="none"></textarea>
+                        <p class="note">Whose receipts count for the publication of prices before a charging session started: organizations, networks, keys and clocks you authorize. Receipts and recommendations a session brings authorize nobody.</p>
+                    </div>
                 </div>
             </details>
 
@@ -113,6 +123,7 @@
             <button type="button" role="tab" data-tab="history"  disabled>History</button>
             <button type="button" role="tab" data-tab="network"  disabled>Network</button>
             <button type="button" role="tab" data-tab="proofs"   disabled>Proofs &amp; prices</button>
+            <button type="button" role="tab" data-tab="sessions" disabled>Sessions</button>
             <button type="button" role="tab" data-tab="documents" disabled>Documents</button>
         </nav>
 
@@ -267,6 +278,7 @@
                         <li><strong>History</strong> — every commit: its identification, its parent, its change set applied again with the signatures of its owners, the ETags it leads to, the quorum of the operator; every checkpoint with its commits tree, the operator and the witnesses; the price statements checkpoints name.</li>
                         <li><strong>Network</strong> — any version, as stored or effective: where each value comes from (its own, or a template), the commits that changed an entity, and its path through the effective tree up to the root the commit names.</li>
                         <li><strong>Proofs &amp; prices</strong> — station proofs as an app checks them, with the certificates and transparency software of the station and its meters; price statements, proofs of commits and price statements in checkpoints, attestations, the archive, the evidence of a charging session, and the QI-Digital papers of meters.</li>
+                        <li><strong>Sessions</strong> — charging sessions as Chargy writes them, as an app checks them: the meter of the EVSE and the key it signs with, now and when it measured; the prices bound to the session at its start; the receipts of their publication before it, counted as the policy of the settings authorizes their witnesses.</li>
                     </ul>
 
                 </div>

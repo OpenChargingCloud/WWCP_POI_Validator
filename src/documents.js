@@ -4,7 +4,7 @@
  * from the pool, whatever its source: a snapshot is a snapshot, whether a server sent it or it was dropped as a file.
  */
 
-import { CONTEXT_PREFIX, TRUST_ANCHOR_QR_PREFIX, isArray, isObject, parseJSON } from '@open-charging-cloud/wwcp-poi';
+import { CONTEXT_PREFIX, TRUST_ANCHOR_QR_PREFIX, WITNESS_PUBLICATION_POLICY_CONTEXT, isArray, isObject, parseJSON } from '@open-charging-cloud/wwcp-poi';
 
 import { formatBytes, i18n, plural } from './dom.js';
 
@@ -56,7 +56,9 @@ export const TYPE_LABELS = {
     commitProof:          'Proof of a commit in a checkpoint',
     priceStatementProof:  'Proof of a price statement in a checkpoint',
     evidence:             'Evidence of a charging session',
+    chargingSession:      'Charging session (Chargy)',
     witnesses:            'Trusted witnesses',
+    publicationPolicy:    'Witnesses of price publications (policy)',
     archiveSegment:       'Archive segment',
     archiveSegments:      'Archive segments (list)',
     epoch:                'Epoch',
@@ -77,6 +79,13 @@ function typeOfObject(json) {
 
     if (typeof context === 'string' && CONTEXTS.has(context))
         return CONTEXTS.get(context);
+
+    if (context === WITNESS_PUBLICATION_POLICY_CONTEXT)
+        return 'publicationPolicy';
+
+    // A charging session as Chargy writes it, with the evidence of WWCP POI an app checks for it (WWCP_POI.TS 0.2.0).
+    if (isObject(json['poiEvidence']))
+        return 'chargingSession';
 
     if (typeof context === 'string' && context.startsWith(QI_DIGITAL_CONTEXT))
         return QI_DIGITAL_TYPES[context.slice(QI_DIGITAL_CONTEXT.length).split('/')[0]] ?? 'unknown';
@@ -239,6 +248,17 @@ export function summarize(type, json) {
 
             case 'evidence':
                 return `EVSE ${json['EVSEId']}, charging started ${json['chargingStarted']}`;
+
+            case 'chargingSession': {
+                const evidence = json['poiEvidence'];
+                const parts    = [ evidence['chargingStationProof'] ? 'the proof of its station' : null,
+                                   evidence['historicalEvidence'] ? 'historical evidence' : null,
+                                   evidence['priceEvidence'] ? `prices${isArray(evidence['priceEvidence']['publicationReceipts']) ? `, ${plural(evidence['priceEvidence']['publicationReceipts'].length, 'receipt')} of their publication` : ''}` : null ].filter(Boolean);
+                return `EVSE ${evidence['EVSEId']} of ${evidence['roamingNetworkId']}${parts.length ? ': ' + parts.join(', ') : ''}`;
+            }
+
+            case 'publicationPolicy':
+                return `${plural(json['witnesses']?.length ?? 0, 'witness', 'witnesses')}, ${json['requiredOrganizations']} organizations required`;
 
             case 'witnesses':
                 return json.map(item => item['witness']).join(', ');

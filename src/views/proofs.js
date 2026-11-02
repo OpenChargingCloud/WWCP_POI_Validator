@@ -179,6 +179,33 @@ function versionsOf(station) {
 }
 
 
+/**
+ * The key statement a proof gives, evaluated as an app evaluates it before it trusts the keys of an imported trust anchor
+ * (TrustContext.evaluate): its signatures, its signers, the quorum of trusted keys and its validity, each apart.
+ */
+function trustEvaluation(evaluation, showError = true) {
+    const aspect = (status, label, title) => h('span', null, badge(status, status === 'valid' ? 'ok' : 'error', title), ` ${label} `);
+    return h('div', null,
+        h('h4', null, 'Its key statement, against the keys trusted'),
+        h('p', null,
+            aspect(evaluation.signatures, 'signatures', 'Every signature of the key statement verifies'),
+            aspect(evaluation.signers, 'signers', 'Its signers are holders the trust anchor names, with keys valid when they signed'),
+            aspect(evaluation.quorum, 'quorum', 'Trusted keys of as many holders as the larger quorum signed it'),
+            aspect(evaluation.validity, 'validity', 'It is valid at the time checked'),
+            h('span', 'muted small', `${plural(evaluation.trustedHolderCount, 'holder')} trusted, ${evaluation.requiredConsensus} required`)),
+        showError && evaluation.verificationError ? h('p', 'error-text', evaluation.verificationError) : null);
+}
+
+/** The keys of the operator that may sign charging documents of its EVSEs (chargeTransparencyRecords), or why none may. */
+function documentKeysPart(result) {
+    const keys = result.documentKeys?.keys ?? [];
+    return h('div', null,
+        h('h4', null, 'Keys for charging documents'),
+        keys.length ? h('ul', 'statements', ...keys.map(key => h('li', null, shortId(key.id, 16), h('span', 'muted small', ` ${key.algorithm}, ${key.keyUsage.length ? key.keyUsage.join(', ') : 'any usage'}`)))) : null,
+        result.documentKeysError ? h('p', 'muted', result.documentKeysError) : null,
+        h('p', 'note', 'Which keys of the operator may sign documents of a charging session at its EVSEs, e.g. its transparency records: a signing key with the usage chargeTransparencyRecords, or one restricted to no usage; a key only for prices may not (WWCP_POI.TS, verifyChargingDocumentKeys).'));
+}
+
 /** How the EVSEs of a verified station are paid for with EV Taler: the merchant its proof gives, and each EVSE's tariff. */
 function evTalerSection(evTaler) {
 
@@ -210,7 +237,9 @@ function proofCard(report, result, actions) {
     const basis = result.basis === 'pinned'   ? 'against the trust anchor'
                 : result.basis === 'followed' ? 'against the identity keys the history followed — the trust anchor names older ones'
                 : result.basis === 'tofu'     ? 'against the keys the head states itself (no trust anchor)'
+                : result.basis === 'context'  ? 'against the identity keys of the trust anchor trusted in the settings (a trust context)'
                 :                               '';
+    const evaluation = result.evaluation;
 
     return h('div', `card proof-card ${result.ok ? '' : 'error-card'}`,
         h('div', 'card-title-row',
@@ -229,6 +258,10 @@ function proofCard(report, result, actions) {
             [ 'Attested by', station.attestedBy.join(', ') ],
             [ 'Document', h('span', null, linkButton(result.document.name, () => actions.showDocument(result.document)), ` (${formatBytes(result.document.size)})`) ],
         ]) : null,
+
+        evaluation ? trustEvaluation(evaluation, result.ok) : null,
+
+        result.documentKeys || result.documentKeysError ? documentKeysPart(result) : null,
 
         station?.warnings.length ? h('ul', 'warnings', ...station.warnings.map(warning => h('li', null, badge('warning', 'warn'), ' ', warning))) : null,
 

@@ -348,6 +348,11 @@ textarea {
 .setting label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
 .setting.wide { grid-column: 1 / -1; }
 
+.trusted-keys { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.9rem; }
+.trusted-keys .holder { display: flex; flex-direction: column; gap: 2px; }
+.trusted-keys .holder-name { color: var(--muted); font-size: 0.8rem; }
+.setting .trusted-keys label { display: inline-flex; align-items: center; gap: 6px; font-weight: 400; margin: 0; }
+
 .actions { display: flex; gap: 10px; align-items: center; margin-top: 14px; flex-wrap: wrap; }
 
 .status {

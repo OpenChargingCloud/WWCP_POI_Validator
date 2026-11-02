@@ -27,6 +27,7 @@ export function settingsOf(manifest, overrides = {}) {
         trustAnchorText:    manifest.trustAnchor,
         witnesses:          manifest.witnesses ?? [],
         requiredWitnesses:  manifest.requiredWitnesses ?? 0,
+        publicationPolicy:  manifest.publicationPolicy,
         at:                 Date.parse(manifest.recordedAt),
         ...overrides,
     };

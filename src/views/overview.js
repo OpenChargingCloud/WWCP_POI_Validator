@@ -183,6 +183,7 @@ function appCard(report, actions) {
         [ 'Proofs of price statements', report.priceStatementProofs ],
         [ 'Attestations',              report.attestations ],
         [ 'QI-Digital papers',         report.qiDigital ],
+        [ 'Charging sessions',         report.sessions ],
     ].filter(([ , list ]) => list.length > 0);
     if (rows.length === 0)
         return null;
@@ -192,7 +193,8 @@ function appCard(report, actions) {
             const ok = list.filter(item => item.ok).length;
             return [ label, h('span', null, badge(`${ok} of ${list.length} verify`, ok === list.length ? 'ok' : 'error')) ];
         })),
-        h('div', 'card-actions', linkButton('Proofs & prices →', () => actions.switchTab('proofs'))));
+        h('div', 'card-actions', linkButton('Proofs & prices →', () => actions.switchTab('proofs')),
+                                 report.sessions.length ? linkButton('Sessions →', () => actions.switchTab('sessions')) : null));
 }
 
 

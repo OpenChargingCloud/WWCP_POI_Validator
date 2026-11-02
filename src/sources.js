@@ -14,6 +14,7 @@ import { TrustAnchor, isArray, isObject } from '@open-charging-cloud/wwcp-poi';
 export const DEMOS = [
     { id: 'qa',        path: 'demo/qa/manifest.json' },
     { id: 'thuringia', path: 'demo/thuringia/manifest.json' },
+    { id: 'sessions',  path: 'demo/sessions/manifest.json' },
 ];
 
 

@@ -8,6 +8,7 @@
     "build": "webpack --config webpack.config.cjs",
     "watch": "webpack --config webpack.config.cjs --watch",
     "vendor:qa": "node tools/vendor-qa-demo.mjs",
+    "vendor:sessions": "node tools/vendor-sessions-demo.mjs",
     "generate:thuringia": "node tools/generate-demo-network.mjs",
     "mock-server": "node tools/mock-poi-server.mjs",
     "test": "node --test \"tests/*.test.js\""

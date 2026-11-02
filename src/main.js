@@ -12,16 +12,19 @@
  * Everything is verified by WWCP_POI.TS, locally in the browser.
  */
 
+import { TrustAnchor }                                     from '@open-charging-cloud/wwcp-poi';
+
 import { analyze }                                         from './analyze.js';
 import { DocumentPool }                                    from './documents.js';
 import { DEMOS, loadDemo, loadDemoManifest, loadFiles, loadFromServers } from './sources.js';
-import { $, button, clear, formatTime, h }                 from './dom.js';
+import { $, button, clear, formatTime, h, shortId }        from './dom.js';
 
 import { renderOverview }   from './views/overview.js';
 import { renderTrust }      from './views/trust.js';
 import { renderHistory }    from './views/history.js';
 import { renderNetwork }    from './views/network.js';
 import { renderProofs }     from './views/proofs.js';
+import { renderSessions }   from './views/sessions.js';
 import { renderDocuments }  from './views/documents.js';
 
 
@@ -31,6 +34,7 @@ const VIEWS = {
     history:    renderHistory,
     network:    renderNetwork,
     proofs:     renderProofs,
+    sessions:   renderSessions,
     documents:  renderDocuments,
 };
 
@@ -40,6 +44,8 @@ const state = {
     manifest:   undefined,
     tab:        'primer',
     running:    false,
+    /** The identity keys of the trust anchor the user does not trust; every other one is trusted. */
+    untrusted:  new Set(),
     /** What each view shows, kept while switching tabs. */
     selection: {
         historyStep:  undefined,   // { epoch, index }
@@ -85,7 +91,9 @@ function verificationTime() {
 function updateSettingsSummary() {
     const at        = verificationTime();
     const witnesses = (() => { try { return JSON.parse($('witnesses').value || '[]').length; } catch { return '?'; } })();
-    $('settingsSummary').textContent = `— as of ${at === undefined ? 'now' : formatTime(at)}, ${witnesses} trusted witness${witnesses === 1 ? '' : 'es'}, ${$('requiredWitnesses').value} required per checkpoint`;
+    const anchor    = trustAnchorOf($('trustAnchor').value);
+    const trusted   = anchor === undefined ? '' : `, ${anchor.keys.filter(id => !state.untrusted.has(id)).length} of ${anchor.keys.length} identity keys trusted`;
+    $('settingsSummary').textContent = `— as of ${at === undefined ? 'now' : formatTime(at)}, ${witnesses} trusted witness${witnesses === 1 ? '' : 'es'}, ${$('requiredWitnesses').value} required per checkpoint${trusted}`;
     $('atCustom').hidden = $('atMode').value !== 'custom';
     $('atMode').querySelector('option[value="recorded"]').disabled = !state.manifest?.recordedAt;
 }
@@ -95,6 +103,55 @@ function readWitnesses() {
     if (text === '')
         return [];
     return JSON.parse(text);
+}
+
+function readPublicationPolicy() {
+    const text = $('publicationPolicy').value.trim();
+    return text === '' ? undefined : JSON.parse(text);
+}
+
+/** The trust anchor of the given text, its QR code, URL or JSON; undefined where it is none. */
+function trustAnchorOf(text) {
+    try {
+        const trimmed = text.trim();
+        return trimmed === '' ? undefined : trimmed.startsWith('{') ? TrustAnchor.fromJSON(JSON.parse(trimmed)) : TrustAnchor.parse(trimmed);
+    }
+    catch {
+        return undefined;
+    }
+}
+
+/** The identity keys of the trust anchor, by holder, each with a box to trust it or not: the local decisions of an app. */
+function renderTrustedKeys() {
+
+    const container = clear($('trustedKeys'));
+    const anchor    = trustAnchorOf($('trustAnchor').value);
+
+    if (anchor === undefined) {
+        container.append(h('span', 'hint', 'Give a trust anchor first.'));
+        return;
+    }
+
+    anchor.holders.forEach((keys, index) => {
+        const holder = h('div', 'holder', h('span', 'holder-name', `holder ${index + 1} of ${anchor.holders.length}`));
+        for (const id of keys) {
+            const box = h('input');
+            box.type    = 'checkbox';
+            box.checked = !state.untrusted.has(id);
+            box.addEventListener('change', () => {
+                if (box.checked)
+                    state.untrusted.delete(id);
+                else
+                    state.untrusted.add(id);
+                updateSettingsSummary();
+            });
+            holder.append(h('label', null, box, shortId(id, 16)));
+        }
+        container.append(holder);
+    });
+
+    container.append(h('span', 'hint', `a quorum of ${anchor.minConsensus} holders`));
+
 }
 
 
@@ -116,6 +173,7 @@ async function run() {
     document.body.classList.add('busy');
 
     let witnesses;
+    let publicationPolicy;
 
     try {
         witnesses = readWitnesses();
@@ -126,6 +184,18 @@ async function run() {
         document.body.classList.remove('busy');
         return;
     }
+
+    try {
+        publicationPolicy = readPublicationPolicy();
+    }
+    catch (e) {
+        setStatus('error', `The policy of the witnesses of price publications is no JSON: ${e.message}`);
+        state.running = false;
+        document.body.classList.remove('busy');
+        return;
+    }
+
+    const anchor = trustAnchorOf($('trustAnchor').value);
 
     const started = performance.now();
 
@@ -138,6 +208,9 @@ async function run() {
             at:                 verificationTime(),
             witnesses,
             requiredWitnesses:  Number($('requiredWitnesses').value) || 0,
+            // Every key of the trust anchor, unless the user untrusted some: then only the others.
+            trustedIdentityKeyIds: anchor !== undefined && anchor.keys.some(id => state.untrusted.has(id)) ? anchor.keys.filter(id => !state.untrusted.has(id)) : undefined,
+            publicationPolicy,
         }, (text, fraction) => {
             setStatus('working', text);
             if (fraction !== undefined)
@@ -203,7 +276,10 @@ async function startDemo(manifest) {
     $('trustAnchor').value          = manifest.trustAnchor ?? '';
     $('witnesses').value            = JSON.stringify(manifest.witnesses ?? [], null, 2);
     $('requiredWitnesses').value    = String(manifest.requiredWitnesses ?? 0);
+    $('publicationPolicy').value    = manifest.publicationPolicy ? JSON.stringify(manifest.publicationPolicy, null, 2) : '';
     $('atMode').value               = manifest.recordedAt ? 'recorded' : 'now';
+    state.untrusted.clear();
+    renderTrustedKeys();
     updateSettingsSummary();
 
     setStatus('working', `Loading the demo ${manifest.title} …`);
@@ -253,7 +329,8 @@ async function addFiles(files) {
 
     const added = await loadFiles(files, state.pool);
 
-    // A trust anchor or a list of witnesses among them is configuration: it goes where the user would have put it.
+    // A trust anchor, a list of witnesses or a policy of witnesses among them is configuration: it goes where the user would
+    // have put it.
     for (const document of added) {
         if (document.type === 'trustAnchor' && typeof document.json === 'string')
             $('trustAnchor').value = document.json;
@@ -261,8 +338,11 @@ async function addFiles(files) {
             $('trustAnchor').value = String(document.json['qrCode']);
         else if (document.type === 'witnesses')
             $('witnesses').value = JSON.stringify(document.json, null, 2);
+        else if (document.type === 'publicationPolicy')
+            $('publicationPolicy').value = document.text.trim();
     }
 
+    renderTrustedKeys();
     updateSettingsSummary();
     await run();
 
@@ -331,6 +411,14 @@ const actions = {
         await run();
         switchTab('overview');
     },
+    /** Takes the trust anchor a charging session brings into the settings: the user decides to, it never does by itself. */
+    async useTrustAnchor(text) {
+        $('trustAnchor').value = text;
+        state.untrusted.clear();
+        renderTrustedKeys();
+        updateSettingsSummary();
+        await run();
+    },
 };
 
 
@@ -353,13 +441,18 @@ async function init() {
         $('trustAnchor').value = '';
         $('witnesses').value = '';
         $('requiredWitnesses').value = '0';
+        $('publicationPolicy').value = '';
         $('atMode').value = 'now';
+        state.untrusted.clear();
+        renderTrustedKeys();
         updateSettingsSummary();
         setStatus('idle', 'Pick a demo, give a trust anchor, or drop documents.');
     });
 
     for (const id of [ 'atMode', 'atCustom', 'requiredWitnesses', 'witnesses' ])
         $(id).addEventListener('change', updateSettingsSummary);
+
+    $('trustAnchor').addEventListener('input', () => { renderTrustedKeys(); updateSettingsSummary(); });
 
     $('fileInput').addEventListener('change', async (event) => {
         await addFiles([ ...event.target.files ]);
@@ -376,6 +469,7 @@ async function init() {
 
     document.addEventListener('drop', (event) => addFiles([ ...(event.dataTransfer?.files ?? []) ]));
 
+    renderTrustedKeys();
     updateSettingsSummary();
 
     // The demos the page ships with.

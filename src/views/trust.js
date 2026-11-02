@@ -218,14 +218,41 @@ function witnessTable(report) {
 }
 
 
+/** The identity keys of the trust anchor, each trusted here or not, and where these decisions apply. */
+function trustDecisions(report) {
+
+    const anchor = report.anchor.kind === 'pinned' ? report.anchor.anchor : undefined;
+
+    if (anchor === undefined)
+        return null;
+
+    const trusted = new Set(report.trustedIdentityKeyIds ?? anchor.keys);
+
+    return section('Your trust decisions',
+        h('table', 'grid',
+            h('thead', null, h('tr', null, h('th', null, 'Holder'), h('th', null, 'Identity key the trust anchor pins'), h('th', null, 'Here'))),
+            h('tbody', null, ...anchor.holders.flatMap((keys, index) => keys.map(id => h('tr', null,
+                h('td', null, `holder ${index + 1} of ${anchor.holders.length}`),
+                h('td', null, shortId(id, 24)),
+                h('td', null, trusted.has(id) ? badge('trusted', 'ok') : badge('not trusted', 'warn'))))))),
+        h('p', 'note', `A quorum of ${anchor.minConsensus} holders. An app trusts the keys of an imported trust anchor only as its user decides, ` +
+                       'a trust context (WWCP_POI.TS 0.1.1): station proofs and charging sessions are checked with the keys trusted here, which the settings choose. ' +
+                       'The history is followed from every key of the trust anchor, as a verifier follows it.'));
+
+}
+
 export function renderTrust(container, state, actions) {
 
     const report  = state.report;
     const key     = state.selection.trustVersion ?? headKey(report);
     const version = report.versions.get(key);
 
+    const decisions = trustDecisions(report);
+    if (decisions)
+        container.append(decisions);
+
     if (version === undefined) {
-        container.append(section('Trust', h('p', null, 'No version was taken: there are no keys to show.')));
+        container.append(section('Trust', h('p', null, 'No version was taken: there are no keys of a history to show.')));
         return;
     }
 

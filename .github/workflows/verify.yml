@@ -103,16 +103,18 @@ jobs:
       - name: Build
         run: npm run build
 
-      # The QA demo is the recorded run WWCP_POI.TS vendors (tests/at.ts), the Thuringia demo is generated and signed
-      # with test keys of fixed seeds by WWCP_POI.TS: both made anew have to be what is committed. A difference means
-      # WWCP_POI.TS moved on to another run, or calculates other bytes: run both scripts and commit what they write.
+      # The QA demo is the recorded run WWCP_POI.TS vendors (tests/at.ts), the sessions demo its charging sessions
+      # (tests/vectors), the Thuringia demo is generated and signed with test keys of fixed seeds by WWCP_POI.TS: all made
+      # anew have to be what is committed. A difference means WWCP_POI.TS moved on to other vectors, or calculates other
+      # bytes: run the scripts and commit what they write.
       - name: The demos, made anew, are the ones committed
         run: |
           npm run vendor:qa
+          npm run vendor:sessions
           npm run generate:thuringia
           if [ -n "$(git status --porcelain -- demo)" ]; then
             git status --short -- demo
-            echo "::error::The demos made anew with this WWCP_POI.TS differ from the ones committed: run 'npm run vendor:qa' and 'npm run generate:thuringia', and commit demo/."
+            echo "::error::The demos made anew with this WWCP_POI.TS differ from the ones committed: run 'npm run vendor:qa', 'npm run vendor:sessions' and 'npm run generate:thuringia', and commit demo/."
             exit 1
           fi
 

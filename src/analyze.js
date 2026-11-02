@@ -19,9 +19,11 @@ import {
     parseArchiveSegmentInfo, verifySegmentLine, sameETags, etagToText, canonicalJSON, toHex, get, isArray, isObject,
     DigitalCalibrationCertificate, DigitalCertificateOfConformity, DigitalDeclarationOfConformity,
     evTalerMerchantOf, evTalerTariffOf, evTalerExchangesAt,
+    RoamingNetworkOperator, TrustContext, verifyChargingDocumentKeys, parseWitnessPublicationPolicy,
 } from '@open-charging-cloud/wwcp-poi';
 
 import { keyDirectory } from './keys.js';
+import { analyzeSessions } from './sessions.js';
 import { yieldToBrowser } from './dom.js';
 
 
@@ -320,7 +322,9 @@ function readSnapshot(document, json) {
 /**
  * Analyzes the pool. `settings`: `trustAnchorText` (QR code text, URL or JSON of a trust anchor), `at` (when key statements,
  * attestations and prices must be valid; now when undefined), `witnesses` (trusted witnesses as JSON) and
- * `requiredWitnesses`. `onProgress(text, fraction)` is told how far it got.
+ * `requiredWitnesses`; `trustedIdentityKeyIds`, the identity keys of the trust anchor the user trusts, all of them when
+ * undefined, with which station proofs and charging sessions are checked as an app checks them; `publicationPolicy`, whose
+ * receipts of a publication of prices count, as JSON. `onProgress(text, fraction)` is told how far it got.
  */
 export async function analyze(pool, settings, onProgress = () => {}) {
 
@@ -339,6 +343,9 @@ export async function analyze(pool, settings, onProgress = () => {}) {
         head:              undefined,
         proofs:            [],
         evidence:          [],
+        sessions:          [],
+        trustedIdentityKeyIds: settings.trustedIdentityKeyIds,
+        publicationPolicy: undefined,
         commitProofs:      [],
         priceStatementProofs: [],
         attestations:      [],
@@ -355,6 +362,14 @@ export async function analyze(pool, settings, onProgress = () => {}) {
     }
     catch (e) {
         issue('error', `The trusted witnesses can not be read: ${message(e)}`);
+    }
+
+    // Whose receipts of a publication of prices count: configured as well, never taken from a session.
+    try {
+        report.publicationPolicy = settings.publicationPolicy === undefined || settings.publicationPolicy === null ? undefined : parseWitnessPublicationPolicy(settings.publicationPolicy);
+    }
+    catch (e) {
+        issue('error', `The policy of the witnesses of price publications can not be read: ${message(e)}`);
     }
 
     // The trust anchor, as the user gave it.
@@ -1015,6 +1030,19 @@ export async function analyze(pool, settings, onProgress = () => {}) {
 
     const proofAnchor = anchor ?? (report.head ? trustOnFirstUse(report.head.version.network) : undefined);
 
+    // Whether the user trusts only some of the identity keys of the trust anchor: then proofs are checked as an app checks
+    // them, with a trust context of those keys (WWCP_POI.TS 0.1.1), not with every key the trust anchor pins.
+    const restricted = anchor !== undefined && settings.trustedIdentityKeyIds !== undefined;
+
+    /** The key statement a proof gives, against the given identity keys of the given trust anchor: a trust evaluation. */
+    const evaluateProof = (json, trustAnchor, trustedIdentityKeyIds) => {
+        const network  = get(json, 'roamingNetwork');
+        const operator = RoamingNetworkOperator.parse(get(network ?? {}, 'operator'), String(get(network ?? {}, '@id')));
+        if (operator.keyStatement === undefined)
+            throw new Error('Its roaming network operator gives no key statement.');
+        return TrustContext.evaluate(trustAnchor, operator.keyStatement, { trustedIdentityKeyIds, otherIdentityKeys: operator.identityKeys, at });
+    };
+
     for (const document of pool.ofType('stationProof')) {
 
         const result = { document, ok: false };
@@ -1025,22 +1053,51 @@ export async function analyze(pool, settings, onProgress = () => {}) {
         try {
             if (proofAnchor === undefined)
                 throw new Error('There is no trust anchor to check it against.');
-            try {
-                result.station = attempt(proofAnchor);
-                result.basis   = anchor !== undefined ? 'pinned' : 'tofu';
+            if (restricted) {
+                result.evaluation = evaluateProof(document.json, anchor, settings.trustedIdentityKeyIds);
+                if (result.evaluation.context === undefined)
+                    throw new Error(`The identity keys trusted here give no trust context for its key statement: ${(result.evaluation.verificationError ?? 'signatures, signers, quorum or validity do not hold.').replace(/[^.!?]$/, '$&.')}`);
+                result.station = attempt(result.evaluation.context);
+                result.basis   = 'context';
             }
-            catch (e) {
-                if (followedAnchor === undefined)
-                    throw e;
-                result.pinnedError = message(e);
-                result.station     = attempt(followedAnchor);
-                result.basis       = 'followed';
+            else {
+                try {
+                    result.station = attempt(proofAnchor);
+                    result.basis   = anchor !== undefined ? 'pinned' : 'tofu';
+                }
+                catch (e) {
+                    if (followedAnchor === undefined)
+                        throw e;
+                    result.pinnedError = message(e);
+                    result.station     = attempt(followedAnchor);
+                    result.basis       = 'followed';
+                }
+                // As an app would see it: every key of the trust anchor the proof verified with, trusted.
+                try {
+                    const basis = result.basis === 'followed' ? followedAnchor : proofAnchor;
+                    result.evaluation = evaluateProof(document.json, basis, basis.keys);
+                }
+                catch {
+                    result.evaluation = undefined;
+                }
             }
             result.ok = true;
         }
         catch (e) {
             result.error = message(e);
             issue('error', `The proof '${document.name}' does not verify: ${message(e)}`, document);
+        }
+
+        // The keys of the operator that may sign charging documents for its EVSEs, e.g. the transparency records of a
+        // session (usage chargeTransparencyRecords, or a key restricted to no usage).
+        if (result.station !== undefined && result.evaluation?.context !== undefined && result.station.evses.length > 0) {
+            try {
+                result.documentKeys = verifyChargingDocumentKeys(result.evaluation.context, document.json,
+                                                                 { evseId: String(result.station.evses[0]['@id']), operatorId: String(result.station.operator['@id']), at });
+            }
+            catch (e) {
+                result.documentKeysError = message(e);
+            }
         }
 
         // The price statements of its station, its pool and its EVSEs, wherever they came from: each checked against the
@@ -1117,6 +1174,12 @@ export async function analyze(pool, settings, onProgress = () => {}) {
             issue('error', `The evidence '${document.name}' does not verify: ${message(e)}`, document);
         }
     }
+
+    // Charging sessions, as an app checks them: with the trust anchor of the settings and the keys trusted there.
+    report.sessions = analyzeSessions(pool.ofType('chargingSession'), {
+        anchor, at, trustedIdentityKeyIds: settings.trustedIdentityKeyIds,
+        witnesses: report.witnesses, requiredWitnesses: report.requiredWitnesses, publicationPolicy: report.publicationPolicy,
+    }, issue);
 
     const checkpointById = (id) => {
         for (const epoch of report.epochs) {
@@ -1364,7 +1427,7 @@ function verdictOf(report) {
     const commits  = report.epochs.reduce((sum, epoch) => sum + epoch.steps.filter(step => step.type === 'commit').length, 0);
     const cps      = report.epochs.reduce((sum, epoch) => sum + epoch.steps.filter(step => step.type === 'checkpoint').length, 0);
 
-    if (report.head === undefined && report.proofs.length === 0 && report.evidence.length === 0)
+    if (report.head === undefined && report.proofs.length === 0 && report.evidence.length === 0 && report.sessions.length === 0)
         return { level: errors > 0 ? 'error' : 'info', commits, checkpoints: cps, errors, warnings };
 
     return { level: errors > 0 ? 'error' : warnings > 0 ? 'warn' : 'ok', commits, checkpoints: cps, errors, warnings };
