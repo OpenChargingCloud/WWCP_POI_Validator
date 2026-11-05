@@ -26,7 +26,7 @@ import { keyDirectory } from './keys.js';
 import { analyzeSessions } from './sessions.js';
 import { analyzeTransitions } from './transitions.js';
 import { observeVersions } from './journal.js';
-import { yieldToBrowser } from './dom.js';
+import { plural, yieldToBrowser } from './dom.js';
 
 
 const message = (e) => e instanceof Error ? e.message : String(e);
@@ -532,6 +532,12 @@ export async function analyze(pool, settings, onProgress = () => {}) {
     const takenCommits = new Set();
     const takenCheckpoints = new Set();
 
+    // A trust anchor newer than the start of the history, e.g. one of the post-quantum identity keys of a later epoch: the
+    // key statement there does not verify against it. The history is then taken with the keys it states itself until a
+    // checkpoint the trust anchor carries anchors it, as a server joining from that checkpoint is anchored (10.5); that
+    // checkpoint binds everything before it by their identifications (5.1, 10.1, 11.3). Unset while nothing waits for it.
+    let unanchored;
+
     const totalCommits = [ ...commits.values() ].length || 1;
     let progressed = 0;
 
@@ -547,8 +553,9 @@ export async function analyze(pool, settings, onProgress = () => {}) {
                 return;
             }
             catch (e) {
+                // Refused only when no later checkpoint the trust anchor carries binds this version.
                 step.trust = { ok: false, basis: 'pinned', error: message(e) };
-                issue('error', `The key statement of the roaming network operator of revision ${step.revision} of epoch ${step.epoch} does not verify against the trust anchor: ${message(e)}`);
+                unanchored ??= { epoch: step.epoch, revision: step.revision, step, error: message(e) };
             }
         }
 
@@ -572,6 +579,68 @@ export async function analyze(pool, settings, onProgress = () => {}) {
             step.tofu = { ok: false, error: message(e) };
             issue('warning', `The signatures of the roaming network operator can not be checked: ${message(e)}`);
         }
+
+    };
+
+    /**
+     * Anchors a history taken so far with the keys it states itself at a checkpoint the trust anchor carries: signed as the
+     * roaming network operator by signing keys of the quorum the trust anchor and the key statement of its version require,
+     * certified by identity keys the trust anchor names, and by the witnesses required (10.5). It binds what is before it
+     * by their identifications: the steps of its epoch, and each epoch before, as long as one was derived from the final
+     * checkpoint of the other (11.3). A checkpoint the trust anchor does not carry leaves the history waiting for the next.
+     */
+    const anchorAt = (history, epochNumber, step) => {
+
+        const checkpoint = step.checkpoint;
+        const network    = history.versionOf(checkpoint.commitId)?.network;
+
+        let pinned;
+        let result;
+        try {
+            if (network === undefined)
+                return;
+            pinned = OperatorTrust.of(anchor, network, at);
+            result = verifyCheckpointSignatures(checkpoint, pinned, { witnesses: report.witnesses, requiredWitnesses: report.requiredWitnesses });
+        }
+        catch {
+            return;
+        }
+
+        // From here on, the keys the trust anchor names, and those a statement signed by them names (8.6, Succession).
+        trust = pinned;
+        const verify = (signature, key) => checkpoint.verifySignature(signature, key);
+        step.signatureCheck = { ok: true, ...result, required: pinned.requiredConsensus, requiredWitnesses: report.requiredWitnesses };
+        step.signatures     = describeRoleSignatures(checkpoint.signatures, pinned, report.witnesses, verify, result.ignored.some(reason => reason.includes('invalid')) ? undefined : new Map());
+
+        let epoch = report.epochs.find(item => item.number === epochNumber);
+        const bound = epoch.steps.slice(0, epoch.steps.indexOf(step));
+        while (epoch.steps[0]?.kind === 'derived' && (epoch = report.epochs.find(item => item.number === epoch.number - 1)) !== undefined)
+            bound.unshift(...epoch.steps);
+
+        const anchoredAt = { epoch: epochNumber, sequence: checkpoint.sequence, revision: checkpoint.revision };
+        for (const item of bound) {
+            item.checks.push({ label: `Bound by checkpoint ${checkpoint.sequence} of epoch ${epochNumber}, which the trust anchor carries, by the identifications leading to it (5.1, 10.1, 11.3)`, ok: true });
+            if (item.type === 'root' && item.trust?.basis === 'pinned' && item.trust.ok === false)
+                item.trust = { ...item.trust, ok: true, basis: 'later', anchoredAt };
+        }
+
+        const commits     = bound.filter(item => item.type !== 'checkpoint').length;
+        const checkpoints = bound.filter(item => item.type === 'checkpoint').length;
+        const hashes      = [ ...new Set(bound.map(item => report.epochs.find(other => other.number === item.epoch)?.profiles?.identificationHash).filter(Boolean)) ];
+
+        step.anchors = { ...anchoredAt, commits, checkpoints, hashes, signedBy: [ ...pinned.statementSignedBy ], required: pinned.requiredConsensus };
+        step.checks.push({ label: `Anchored in the trust anchor: signed by signing keys of the quorum of the operator, certified by trusted identity keys (10.5); it binds the ${plural(commits, 'commit')} and ${plural(checkpoints, 'checkpoint')} before it`, ok: true });
+
+        if (bound.includes(unanchored.step)) {
+            report.lateAnchor = { ...step.anchors, from: { epoch: unanchored.epoch, revision: unanchored.revision }, error: unanchored.error };
+            issue('info', `The trust anchor carries checkpoint ${checkpoint.sequence} of epoch ${epochNumber}, not the start of the history: the key statement of revision ${unanchored.revision} of epoch ${unanchored.epoch} does not verify against it (${unanchored.error.replace(/^\w/, letter => letter.toLowerCase()).replace(/[.!]$/, '')}). ` +
+                          `The ${plural(commits, 'commit')} and ${plural(checkpoints, 'checkpoint')} before are bound by the identifications that checkpoint names, their signatures checked against the keys the history states itself (10.5, 11.3).`);
+        }
+        else
+            issue('error', `The key statement of the roaming network operator of revision ${unanchored.revision} of epoch ${unanchored.epoch} does not verify against the trust anchor: ${unanchored.error} ` +
+                           `Checkpoint ${checkpoint.sequence} of epoch ${epochNumber}, which the trust anchor carries, does not bind it: no epoch between was derived from the one before (11.3).`);
+
+        unanchored = undefined;
 
     };
 
@@ -809,6 +878,10 @@ export async function analyze(pool, settings, onProgress = () => {}) {
                         step.checks.push({ label: `Final: it closes epoch ${epochNumber} and names epoch ${checkpoint.next?.number} and its profiles (11.2)`, ok: true });
                     if (checkpoint.previous !== undefined)
                         step.checks.push({ label: `Names the final checkpoint of epoch ${checkpoint.previous.epoch} it follows (11.3)`, ok: true });
+                    if (unanchored !== undefined) {
+                        anchorAt(history, epochNumber, step);
+                        step.ok = step.signatureCheck?.ok !== false;
+                    }
                 }
                 catch (e) {
                     step.ok = false;
@@ -983,6 +1056,10 @@ export async function analyze(pool, settings, onProgress = () => {}) {
 
     }
 
+    if (unanchored !== undefined)
+        issue('error', `The key statement of the roaming network operator of revision ${unanchored.revision} of epoch ${unanchored.epoch} does not verify against the trust anchor: ${unanchored.error} ` +
+                       'Nor does the trust anchor carry a later checkpoint of the history that binds it (10.5, 11.3).');
+
     // What the library refused to read at all, where it would have been in the history.
     for (const item of refused) {
         const epoch = report.epochs.find(candidate => candidate.number === item.epoch) ?? report.epochs.at(-1);
@@ -1017,9 +1094,10 @@ export async function analyze(pool, settings, onProgress = () => {}) {
     onProgress('Checking proofs and price statements …', 0.85);
     await yieldToBrowser();
 
-    // The trust anchor of the identity keys the history followed (8.6, Succession), for proofs of a later epoch.
+    // The trust anchor of the identity keys the history followed (8.6, Succession), for proofs of a later epoch: only of a
+    // history anchored in the trust anchor, never of one taken with the keys it states itself.
     let followedAnchor;
-    if (anchor !== undefined && trust !== undefined && report.anchor.kind === 'pinned') {
+    if (anchor !== undefined && trust !== undefined && report.anchor.kind === 'pinned' && unanchored === undefined) {
         try {
             const statement = trust.keyStatement;
             const ids       = statement.identityKeys.map(key => key.id);

@@ -18,7 +18,9 @@ function verdictBanner(report) {
     const head    = report.head;
     const network = head?.version.network;
     const name    = networkName(network) ?? report.roamingNetworkId ?? 'the documents';
-    const basis   = report.anchor.kind === 'pinned' ? 'from its trust anchor' : 'without a trust anchor (trust on first use)';
+    const basis   = report.anchor.kind !== 'pinned' ? 'without a trust anchor (trust on first use)'
+                  : report.lateAnchor ? `from its trust anchor, anchored at checkpoint ${report.lateAnchor.sequence} of epoch ${report.lateAnchor.epoch}`
+                  : 'from its trust anchor';
 
     let title;
     let text;

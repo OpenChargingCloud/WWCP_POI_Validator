@@ -74,6 +74,7 @@ epochs and price statements fit together.
      WWCP_POI.TS vendors (`tests/vectors/csharp-33447ac` today): a quorum of three holders, one operator with 16 EVSEs,
      manufacturers and their models, transparency software and its certificates, a calibration laboratory, two epochs
      (ECDSA/SHA-256, then ML-DSA/SHA-512), witnesses, price statements, evidence, and the QI-Digital papers of a meter.
+     Besides its own trust anchor it gives the one of the ML-DSA identity keys of epoch 2, to pick in the settings.
    - **Thuringia**, a generated test network of medium size: seven charging station operators, 195 charging pools,
      417 stations and 834 EVSEs on a map; change sets of several owners, a key rotation, a removed pool, a latecomer
      that takes **EV Taler** at its charging parks along the A4 (its merchant, changed with a key for payments, and two
@@ -113,6 +114,17 @@ the policy they continue, its key statement, the trust anchor and operator that 
 checkpoints closing the one before. The page verifies each from the trust anchor of the settings and the keys trusted
 there, a later one from the one it continues, and checks the proofs of its target with it: a proof no key of the trust
 anchor signed, and the proof of the start of an epoch a transition opens. It replays no history.
+
+A **trust anchor newer than the history**, e.g. one of the post-quantum identity keys an operator moved to, names no key
+of the genesis: its key statement does not verify against it. The page does not take the old keys into the trust anchor
+for that, which would trust them on, also once their algorithm is broken. It anchors the history where a server joining
+it would (10.5): at the first checkpoint the trust anchor carries, signed as the operator by signing keys certified by
+identity keys it names, and by the witnesses required. That checkpoint binds everything before it by their
+identifications: its commit, the checkpoints before it, each naming the previous one, and the final checkpoint of each
+epoch before (5.1, 10.1, 11.3). Up to there, the signatures are checked against the keys the history states itself; the
+trust comes from the checkpoint, and the binding is as strong as the identification hashes of those epochs. With the
+ML-DSA trust anchor of the QA demo, checkpoint 0 of epoch 2 binds the 20 commits and 7 checkpoints before it. Where the
+trust anchor carries no checkpoint, the history is refused, and no proof is checked with the keys it states.
 
 
 ## Building
@@ -234,7 +246,9 @@ npm --prefix "D:\Coding\OpenChargingCloud\WWCP_POI_Validator" test
 
 - `tests/demos.test.js`: both demos verify as of the time of their recording, with every commit, checkpoint, proof,
   attestation and QI-Digital document; a day later the station proofs of the QA demo are refused, their attestations
-  expired; the proof of a station along the A4 says how its EVSEs are paid with EV Taler.
+  expired; with the ML-DSA trust anchor of epoch 2, the QA history is anchored at checkpoint 0 of epoch 2, and with a
+  trust anchor no checkpoint carries it is refused; the proof of a station along the A4 says how its EVSEs are paid with
+  EV Taler.
 - `tests/tampering.test.js`: one document of the Thuringia demo changed after it was signed, as *Edit and verify again*
   does it: a change set (its commit is refused, the commits after it are not taken), a signature of the operator, a
   witness signature removed, no trust anchor, a price statement among the current ones and in the list a checkpoint

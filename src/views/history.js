@@ -290,6 +290,14 @@ function checkpointDetail(report, epoch, step, actions) {
         roleSignatureTable(step.signatures, directory),
         h('p', 'note', 'A witness signs only after it took every commit itself, and never two checkpoints of one sequence: that makes a split view visible (10.2). Signatures by keys nobody trusts are not counted — and do not block the checkpoint.'),
 
+        step.anchors
+            ? h('div', null, h('h3', null, 'The history is anchored here'),
+                h('div', 'trust-followed ok', `The trust anchor names later keys than the start of the history, and this is the first checkpoint it carries: signed as the operator by signing keys certified by identity keys it names, the key statement of its version signed by ${step.anchors.signedBy.join(', ')} — ${step.anchors.required} required. `,
+                    `It binds the ${plural(step.anchors.commits, 'commit')} and ${plural(step.anchors.checkpoints, 'checkpoint')} before it by their identifications: its commit, the checkpoints before it each naming the previous one, the final checkpoint of each epoch before it (5.1, 10.1, 11.3).`),
+                h('p', 'note', `Their own signatures were checked against the keys the history states itself; the trust comes from this checkpoint, as a server joining from it is anchored (10.5). The binding is as strong as the identification hashes of those epochs (${step.anchors.hashes.join(', ')}): ` +
+                               'signing them again under the profiles of a later epoch, before one becomes weak, is an open point of the specification (11.6).'))
+            : null,
+
         checkpoint.isFinal && checkpoint.next
             ? h('div', null, h('h3', null, `The next epoch: ${checkpoint.next.number}`),
                 facts([ [ 'Identification hash', checkpoint.next.profiles.identificationHash ],
@@ -320,6 +328,11 @@ function checkpointDetail(report, epoch, step, actions) {
 
 }
 
+/** The index of the checkpoint of an epoch the trust anchor carries, where a history taken before is anchored. */
+function anchoringIndex(report, epochNumber) {
+    return report.epochs.find(epoch => epoch.number === epochNumber)?.steps.findIndex(step => step.anchors !== undefined) ?? -1;
+}
+
 function rootDetail(report, epoch, step, actions) {
 
     const trust = step.trust;
@@ -342,9 +355,14 @@ function rootDetail(report, epoch, step, actions) {
             ? h('div', 'trust-followed ok', `The key statement of the operator verifies against the trust anchor: signed by trusted identity keys of ${trust.signedBy.join(', ')} — ${trust.required} required — and valid at ${formatTime(report.at)}.`)
             : trust?.basis === 'followed' && trust.ok
                 ? h('div', 'trust-followed ok', `The keys were followed from the epoch before: the key statement is signed by ${trust.signedBy.join(', ')}.`)
-                : null,
+                : trust?.basis === 'later'
+                    ? h('div', 'trust-followed ok', `The trust anchor names later keys: the key statement of this version does not verify against it (${trust.error.replace(/^\w/, letter => letter.toLowerCase()).replace(/[.!]$/, '')}). `,
+                        `But it carries checkpoint ${trust.anchoredAt.sequence} of epoch ${trust.anchoredAt.epoch}, which binds this version and everything up to it by their identifications: the history is anchored there (10.5, 11.3). `,
+                        linkButton('show the checkpoint', () => actions.showStep(trust.anchoredAt.epoch, anchoringIndex(report, trust.anchoredAt.epoch))))
+                    : null,
         trust?.ok === false ? h('div', 'trust-followed error', trust.error) : null,
-        step.tofu?.ok ? h('div', 'trust-followed warn', `Trusted on first use: the ${plural(step.tofu.keys.length, 'identity key')} the version states itself, a quorum of ${step.tofu.minConsensus}. This shows a consistent history, not who made it.`) : null,
+        step.tofu?.ok && trust?.basis === 'later' ? h('div', 'trust-followed', `Up to that checkpoint, the signatures are checked against the ${plural(step.tofu.keys.length, 'identity key')} the version states itself, a quorum of ${step.tofu.minConsensus}, and those their statements name later.`) : null,
+        step.tofu?.ok && trust?.basis !== 'later' ? h('div', 'trust-followed warn', `Trusted on first use: the ${plural(step.tofu.keys.length, 'identity key')} the version states itself, a quorum of ${step.tofu.minConsensus}. This shows a consistent history, not who made it.`) : null,
         step.tofu?.ok === false ? h('div', 'trust-followed error', `No trust: ${step.tofu.error}`) : null,
         step.operatorSignatures ? h('div', null,
             h('h3', null, 'Signatures of its commit'),

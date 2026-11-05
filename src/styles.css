@@ -348,6 +348,9 @@ textarea {
 .setting label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
 .setting.wide { grid-column: 1 / -1; }
 
+.demo-anchors { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 6px; }
+.demo-anchors button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
+
 .trusted-keys { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.9rem; }
 .trusted-keys .holder { display: flex; flex-direction: column; gap: 2px; }
 .trusted-keys .holder-name { color: var(--muted); font-size: 0.8rem; }

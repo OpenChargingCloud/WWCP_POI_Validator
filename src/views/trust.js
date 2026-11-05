@@ -146,8 +146,14 @@ function succession(report, actions) {
                     h('strong', null, `Epoch ${epoch.number}, revision ${step.revision}`), ' — ',
                     step.trust?.basis === 'pinned'   ? `the key statement verifies against the trust anchor, signed by ${step.trust.signedBy?.join(', ') ?? '—'}` :
                     step.trust?.basis === 'followed' ? `the keys followed from the epoch before, the statement signed by ${step.trust.signedBy?.join(', ')}` :
+                    step.trust?.basis === 'later'    ? `the key statement does not verify against the trust anchor, which names later keys: the history is anchored later, at checkpoint ${step.trust.anchoredAt.sequence} of epoch ${step.trust.anchoredAt.epoch}, which binds it by hashes` :
                     step.tofu?.ok                     ? 'trusted on first use: the keys the version states itself' : 'not trusted',
-                    step.trust?.ok === false ? h('div', 'check-detail', step.trust.error) : null,
+                    step.trust?.ok === false || step.trust?.basis === 'later' ? h('div', 'check-detail', step.trust.error) : null,
+                    ' ', linkButton('show', () => actions.showStep(epoch.number, index))));
+            if (step.type === 'checkpoint' && step.anchors)
+                list.append(h('li', null,
+                    h('strong', null, `Epoch ${epoch.number}, checkpoint ${step.checkpoint.sequence}`), ' — ',
+                    `the first checkpoint the trust anchor carries: the history is anchored here, and the ${plural(step.anchors.commits, 'commit')} and ${plural(step.anchors.checkpoints, 'checkpoint')} before it are bound by their identifications (10.5, 11.3)`,
                     ' ', linkButton('show', () => actions.showStep(epoch.number, index))));
             if (step.type === 'commit' && step.trustFollowed)
                 list.append(h('li', step.trustFollowed.ok ? null : 'failed',

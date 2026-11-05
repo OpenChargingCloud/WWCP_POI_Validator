@@ -121,8 +121,30 @@ function trustAnchorOf(text) {
     }
 }
 
+/** The trust anchors a demo gives besides its own, e.g. one of the keys of a later epoch: the user picks one, the page never does. */
+function renderDemoAnchors() {
+
+    const container = clear($('demoAnchors'));
+    const others    = state.manifest?.alternativeTrustAnchors ?? [];
+
+    container.hidden = others.length === 0;
+    if (others.length === 0)
+        return;
+
+    const current = $('trustAnchor').value.trim();
+    container.append(h('span', 'hint', 'Trust anchors of this demo:'));
+    for (const { label, text } of [ { label: 'its own', text: state.manifest.trustAnchor }, ...others ]) {
+        const item = button(label, () => actions.useTrustAnchor(text), 'small');
+        item.setAttribute('aria-pressed', String(text.trim() === current));
+        container.append(item);
+    }
+
+}
+
 /** The identity keys of the trust anchor, by holder, each with a box to trust it or not: the local decisions of an app. */
 function renderTrustedKeys() {
+
+    renderDemoAnchors();
 
     const container = clear($('trustedKeys'));
     const anchor    = trustAnchorOf($('trustAnchor').value);
