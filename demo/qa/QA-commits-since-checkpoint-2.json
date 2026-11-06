@@ -1,6 +1,6 @@
 [
   {
-    "@id": "082054736347dc29f735f82cab05cd3045e2d06014e2a6c94d28a4b1aa112d2d",
+    "@id": "39988b8a79831301842545f0a82ba5aa02ac7ad6e6b14a18d5d4e4f9c42b0ce9",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
     "revision": 11,
@@ -9,36 +9,36 @@
         "json",
         "sha256",
         "hex",
-        "50fb00a160d292f283ff795a2eb418a09196945317290f9aafb0f3f35aa68dba"
+        "d97e89be0b8fa1ce29cfa8ed145a531d6ca496d3301d90b908c16c920bf5365e"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "918b6caa8cd46288f4e6bae578eb814cc82359f8188b7023fc35f671a96550de"
+        "87499f9debb590f2ce0fe53522ed163a90c35afe588400db542e7705b57f9978"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "1b66f5e147ccfdd9bf35d12495238cab9132aeee8dc959321a259d7535dda55e"
+        "d0debf70987920e8c1b0e5ea7a194261f036d8906e787d38672088c6c6834d0c"
       ]
     ],
     "parentIds": [
-      "39cc38003c86c75b3095f98438ead8658326e273bf851ed1a3f07665d8c95571"
+      "43d3a542cdc58ab715bdffcf0d13c93ba23303364e4f057949d476acf1f32d83"
     ],
     "changeSet": {
-      "@id": "7f85ddf11b4470f02eff14997deb4e6f5a441bce664206552064634db956a7fa",
+      "@id": "f9bda09be20496af280448eabe9fc91f6173c221885886ba7fb2cdfb10932f35",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-10-27T17:20:45.225Z",
+      "createdAt": "2026-11-05T19:43:39.650Z",
       "description": {
         "en": "The AC and the DC charging tariffs"
       },
       "signatures": [
         {
           "algorithm": "ES256",
-          "keyId": "b6f50fff4920d07c49b301fe1b54ab46f8ccaaa1fdda3fd58e70b287f7fd1244",
-          "value": "6vTj/J2HmebcKXiffqR8mgre92AB0sziNW13E312IB7Ze/s8xWFLSUlxLu/TgjaZgVu/xF89Vqio0jhWH52fvA=="
+          "keyId": "548c474288fabff893b89bb7d7a62fe52ced94c99e70f2aa20f8d5c1670a56dd",
+          "value": "bd/fmXZvv+TawMU54EJaIQW3CkIV39o6ERGutbzNPLO9LUcImlw1DjJAZoFoXl+UUYKDOxPkk9VEMekmx3eD/A=="
         }
       ],
       "changes": [
@@ -63,7 +63,7 @@
                 ]
               }
             ],
-            "created": "2026-10-27T17:20:45.186Z"
+            "created": "2026-11-05T19:43:39.621Z"
           }
         },
         {
@@ -87,7 +87,7 @@
                 ]
               }
             ],
-            "created": "2026-10-27T17:20:45.225Z"
+            "created": "2026-11-05T19:43:39.650Z"
           }
         }
       ],
@@ -96,13 +96,13 @@
           "json",
           "sha256",
           "hex",
-          "393b3964111823d5cc32272bd273f13dbb2eb49fb5ad96f468cee9be342032d9"
+          "7e3d17dad9dcf5c54e57ab017f1557fcb20145abbe71af49039a3973b15dd68b"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "376f5e53e06f8e73412428f699be07685f5f2fd14f0f02cd7c1d9ee6eea5fecb"
+          "35a1ef42988a4f452e3d2acdd06caeea9d28dc9285c28ff1717bd94e80905303"
         ]
       ],
       "afterETags": [
@@ -110,13 +110,13 @@
           "json",
           "sha256",
           "hex",
-          "50fb00a160d292f283ff795a2eb418a09196945317290f9aafb0f3f35aa68dba"
+          "d97e89be0b8fa1ce29cfa8ed145a531d6ca496d3301d90b908c16c920bf5365e"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "918b6caa8cd46288f4e6bae578eb814cc82359f8188b7023fc35f671a96550de"
+          "87499f9debb590f2ce0fe53522ed163a90c35afe588400db542e7705b57f9978"
         ]
       ]
     },
@@ -124,31 +124,31 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:45.282Z",
+        "signedAt": "2026-11-05T19:43:39.730Z",
         "algorithm": "ES256",
-        "keyId": "b490ecc8d382e99f19bad697b4da30efee50a99f2f8b1149d22756bc736ad7d5",
-        "value": "LGiszS3WI8dUqmcPSpaUA9gYtrOgQWXdl2BpAE5QccooAKBaL8dZj6495eJupVSTPOkRnNrE36CQp8+KMCUE9Q=="
+        "keyId": "d76d4d4ee6807bce5acc02ab3ec841d00c690fb4dc7c2c9a505508d37252805b",
+        "value": "DOPFfPax5X5pmVGu6h5XhtZtMLJWYlZYTbOawynuzxT3PNtY6X0Znd9lQD5kEtGYMTB9yn5vtiCZS3/9ac/quw=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:45.292Z",
+        "signedAt": "2026-11-05T19:43:39.735Z",
         "algorithm": "ES256",
-        "keyId": "9059fbeb4cb8a8381387d2bc6e6f91f88a3f2933b95acac426b9cd354c8e9567",
-        "value": "0uIgs7LhcW5FAU4jtkBy6PKY89mZ+ncgpjEthPfncw+p5WL7L9F+HnszSUcsS/s1TcXvFAY0dQIiD9Fd7T2U3g=="
+        "keyId": "c9f38055464600f4ed5e24d1c2c21847924b447b02c9fec892c15aa9174d1591",
+        "value": "inVzdgIAiL4FSfkllPTGOFpZbE3bcOpJa97jr7aG1RjPsO9Jv7Ztdi4XWpZgo26vQlBiagsiNmOcItMb7lALUg=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:45.296Z",
+        "signedAt": "2026-11-05T19:43:39.739Z",
         "algorithm": "ES256",
-        "keyId": "b8b98a33d5eadceb30e5b94e27877373fa49476aa601ba7faad6ba0a9f227242",
-        "value": "6KV/G0Ta+szJuOXpoMjpu4neOPkBXZICMMl0kDQC0w35IxipMQkmxfOMJ73J/8KAyCKDvoPZWOs4GFyK5BnX6Q=="
+        "keyId": "823d28d540597eb924110cd6247b4b79a207f927c6da6918e9a87df295080b1c",
+        "value": "uWApMtHg5AgTSOoVjhHn+2G64dek4DEFTb5MOEty9gs440lH64ks8LDOBRpSXs6XYD/ylqsb2ZJLZ81db2o9HA=="
       }
     ]
   },
   {
-    "@id": "7505139031d90e98b83204393406bdcc457f7542c833da739f88380dca61f506",
+    "@id": "0d5c18ba558ed910b2de5031949a518f9216a7550d51dc317375698acfac0810",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
     "revision": 12,
@@ -157,36 +157,36 @@
         "json",
         "sha256",
         "hex",
-        "7d5099386bfba67a4eb32c2a42e39b279cb62d70c1dfa44d188a4f6080404acf"
+        "0deda9cd439a3e5e0c84ae7b9dfb7a63b7916603589ab27921dbdc31ac2c2dee"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "cae54a65cf3c65c029081d9725e1f5011c6b98c2670ceed84220c2a26abc7f00"
+        "cf3bceac3455c4ab6136a4097f59fc3e676802d4f573022a9c8e62716a11bb32"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "3932f63cae67ec5b40459d7996b0a8dcd80247fcc21f0124390823b21fcdb116"
+        "ef1a46d0d450b4b855b0e6914cc529fa03159c086536eba571e8221d740dfe37"
       ]
     ],
     "parentIds": [
-      "082054736347dc29f735f82cab05cd3045e2d06014e2a6c94d28a4b1aa112d2d"
+      "39988b8a79831301842545f0a82ba5aa02ac7ad6e6b14a18d5d4e4f9c42b0ce9"
     ],
     "changeSet": {
-      "@id": "9ae36128d370eab13687a9bf98f117cf3cbb0be1b71efd1023c1858ac863c763",
+      "@id": "3139ea6758ada633293e2e773b73f9d3345aefbe21dbcd8742ffd170fa58209c",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-10-27T17:20:45.306Z",
+      "createdAt": "2026-11-05T19:43:39.749Z",
       "description": {
         "en": "The EVSE templates name the tariffs"
       },
       "signatures": [
         {
           "algorithm": "ES256",
-          "keyId": "61506b54a5b74079ba3e9d590c3b444a4ad5e0080119a9531ea59323aaabac24",
-          "value": "2dak9zeTWV78y496msDAczzynNgmSVcabGP7VZl5Pp0nUvseiCfjn9j8dhks//jbmZnjLuKnch1Sv3OPEdqL6Q=="
+          "keyId": "c6f020b57897c76f8dceb2f2c319447fc2f656b4de657b67a2607b8dfb21725e",
+          "value": "vce7Sn4A/+SBoTlc7WrdRYY16pDBhDtV+ed1jF8IJpKX5Nrp02YXgGSJzJ722MC6Mw0q0kTf7aP44Vpsgo+DQQ=="
         }
       ],
       "changes": [
@@ -212,13 +212,13 @@
           "json",
           "sha256",
           "hex",
-          "50fb00a160d292f283ff795a2eb418a09196945317290f9aafb0f3f35aa68dba"
+          "d97e89be0b8fa1ce29cfa8ed145a531d6ca496d3301d90b908c16c920bf5365e"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "918b6caa8cd46288f4e6bae578eb814cc82359f8188b7023fc35f671a96550de"
+          "87499f9debb590f2ce0fe53522ed163a90c35afe588400db542e7705b57f9978"
         ]
       ],
       "afterETags": [
@@ -226,13 +226,13 @@
           "json",
           "sha256",
           "hex",
-          "7d5099386bfba67a4eb32c2a42e39b279cb62d70c1dfa44d188a4f6080404acf"
+          "0deda9cd439a3e5e0c84ae7b9dfb7a63b7916603589ab27921dbdc31ac2c2dee"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "cae54a65cf3c65c029081d9725e1f5011c6b98c2670ceed84220c2a26abc7f00"
+          "cf3bceac3455c4ab6136a4097f59fc3e676802d4f573022a9c8e62716a11bb32"
         ]
       ]
     },
@@ -240,31 +240,31 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:45.375Z",
+        "signedAt": "2026-11-05T19:43:39.841Z",
         "algorithm": "ES256",
-        "keyId": "b490ecc8d382e99f19bad697b4da30efee50a99f2f8b1149d22756bc736ad7d5",
-        "value": "RQayg9lvKO4L05MakMnaOLJ+FU+RGk6Gpddp06tiWlEejee/r0qfBd3WGr7QYrhlskz2wcHOWWKXdOkSv6Ip8g=="
+        "keyId": "d76d4d4ee6807bce5acc02ab3ec841d00c690fb4dc7c2c9a505508d37252805b",
+        "value": "ONeCO1L49McjVSyZuddqMMQDltvO/tp5gv+Dd7Wn1covcLiqEEtbAhfTZeoIHf/HzA9We605LEZxgbZlPm1mRA=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:45.377Z",
+        "signedAt": "2026-11-05T19:43:39.846Z",
         "algorithm": "ES256",
-        "keyId": "9059fbeb4cb8a8381387d2bc6e6f91f88a3f2933b95acac426b9cd354c8e9567",
-        "value": "MIq6tcpPVApJDF5ejSjkSGX3KVOXiHFx7YqNw62gUVKezRfIZV8uwfrj8ektPeSYJFN57NbsnyBxfPoqv8WWQw=="
+        "keyId": "c9f38055464600f4ed5e24d1c2c21847924b447b02c9fec892c15aa9174d1591",
+        "value": "wlHEis/38B5S4qc/I9047z8bQAPgmGYsTtGZ/duHUuVF/UC10DQhApY+3cOxcTJGHQeDkzwBgP9eaLAF4hzkBw=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:45.378Z",
+        "signedAt": "2026-11-05T19:43:39.850Z",
         "algorithm": "ES256",
-        "keyId": "b8b98a33d5eadceb30e5b94e27877373fa49476aa601ba7faad6ba0a9f227242",
-        "value": "+KfNWAlMmEwTWhC4749Nxn/1x89Rct57n70yCTfHyJIZBaTtE+Bi3c3gY7ZbfyAZZi+b7Wf4KUY1hj4OYyvx1Q=="
+        "keyId": "823d28d540597eb924110cd6247b4b79a207f927c6da6918e9a87df295080b1c",
+        "value": "K0M742hIefF1So3LNyriJan1wzs3H0iiYa41kPHYyvp5HW3p3p72h9SPr9UX3DAOWnSreM7CvDAl6jcTHKUumg=="
       }
     ]
   },
   {
-    "@id": "13655bbfad16efe5d63ccf6ea4f4d60269229b9821296b0095e100de7d802b5c",
+    "@id": "6dc2dde38015fc79923e64ff6953c48ed1318854a618f5f4a3acdab4e33958a0",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
     "revision": 13,
@@ -273,36 +273,36 @@
         "json",
         "sha256",
         "hex",
-        "f6d2d2565f7f94068bef925afa62bcd9f536e6ddb3e8ccefebbc267b0791b254"
+        "05fd3d2c17f076a22addf5967c02239c70fb8d752b301781c8e028c3d601025d"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "2ca387426f0d08a76b8c239a08939cce280d21b7efbed2ff1cc2f79f775eb6cf"
+        "b41afae8384d77813cf78b1439d4ba66a06b0ba83017fea7d912b12e147d2028"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "f77445d6627eab1d5b80f4ca1658ebd4bfcae26b3a98ed8a6fb3621c62375262"
+        "ade9aedf2570895869b876cfc3ab55826de6a26ffa8f6ffc3436bc2008b93f54"
       ]
     ],
     "parentIds": [
-      "7505139031d90e98b83204393406bdcc457f7542c833da739f88380dca61f506"
+      "0d5c18ba558ed910b2de5031949a518f9216a7550d51dc317375698acfac0810"
     ],
     "changeSet": {
-      "@id": "8dcf6572a1a5684e6fc8e5b9c70bfe1013fcaa74b669b75638af4586a7a3da6c",
+      "@id": "e6880217bb175ab5b24eb0e0a66b74762b7aeaf2ed5519624ff2007faaa25cbe",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-10-27T17:20:45.482Z",
+      "createdAt": "2026-11-05T19:43:40.059Z",
       "description": {
         "en": "The AC charging tariff: 0.52 €/kWh"
       },
       "signatures": [
         {
           "algorithm": "ES256",
-          "keyId": "b6f50fff4920d07c49b301fe1b54ab46f8ccaaa1fdda3fd58e70b287f7fd1244",
-          "value": "TWfuK6kyiEjNTUZ0PQyA1Br9V9vxaTr8jOxGcDNyr8aBFkQLpePIH0+kjUGMPPvsgfZ7hN8azeTChQxlqjG+7A=="
+          "keyId": "548c474288fabff893b89bb7d7a62fe52ced94c99e70f2aa20f8d5c1670a56dd",
+          "value": "6tpmvK2A5BkNSxyR4pwmFHCZYnscn4qNeix08Lk24bNblr15BuVOrjfU8iAwtq7uiHmBeT0NPO275uRCDVWM/w=="
         }
       ],
       "changes": [
@@ -340,13 +340,13 @@
           "json",
           "sha256",
           "hex",
-          "7d5099386bfba67a4eb32c2a42e39b279cb62d70c1dfa44d188a4f6080404acf"
+          "0deda9cd439a3e5e0c84ae7b9dfb7a63b7916603589ab27921dbdc31ac2c2dee"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "cae54a65cf3c65c029081d9725e1f5011c6b98c2670ceed84220c2a26abc7f00"
+          "cf3bceac3455c4ab6136a4097f59fc3e676802d4f573022a9c8e62716a11bb32"
         ]
       ],
       "afterETags": [
@@ -354,13 +354,13 @@
           "json",
           "sha256",
           "hex",
-          "f6d2d2565f7f94068bef925afa62bcd9f536e6ddb3e8ccefebbc267b0791b254"
+          "05fd3d2c17f076a22addf5967c02239c70fb8d752b301781c8e028c3d601025d"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "2ca387426f0d08a76b8c239a08939cce280d21b7efbed2ff1cc2f79f775eb6cf"
+          "b41afae8384d77813cf78b1439d4ba66a06b0ba83017fea7d912b12e147d2028"
         ]
       ]
     },
@@ -368,26 +368,26 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:45.510Z",
+        "signedAt": "2026-11-05T19:43:40.108Z",
         "algorithm": "ES256",
-        "keyId": "b490ecc8d382e99f19bad697b4da30efee50a99f2f8b1149d22756bc736ad7d5",
-        "value": "3rdgkeH22DXQOBjltyh960mYIquBswaKoEO6miYgmpuUYaf1KyyJlKMxSozra4jSQCGSU7U+huenSSjzr2/2/A=="
+        "keyId": "d76d4d4ee6807bce5acc02ab3ec841d00c690fb4dc7c2c9a505508d37252805b",
+        "value": "XZ5L8ZVuKpvLy/GILr/+ayMcAXT2tu6RcpP/OLnAfXuoHbHVeHPA7O8wu3/0pyA/f7a1KZnzVMnFKq44Lu93oQ=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:45.511Z",
+        "signedAt": "2026-11-05T19:43:40.112Z",
         "algorithm": "ES256",
-        "keyId": "9059fbeb4cb8a8381387d2bc6e6f91f88a3f2933b95acac426b9cd354c8e9567",
-        "value": "rRn4zA+v14rBPYuv5A1CoESRxHb6J52JKIjvgTLozxRAXZQ/Wbk1lv9uZGZPYGvx7lZ/+kmXotUgQFfs7JPrSA=="
+        "keyId": "c9f38055464600f4ed5e24d1c2c21847924b447b02c9fec892c15aa9174d1591",
+        "value": "q1lAMVLngjJV/eUcsq46+7rBUGW4YWpo+vGt/z3kvu9Kk22ts2l3i7CNuuf6GUJap1j4kx5JvIKD7yWPD/juYg=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:45.512Z",
+        "signedAt": "2026-11-05T19:43:40.115Z",
         "algorithm": "ES256",
-        "keyId": "b8b98a33d5eadceb30e5b94e27877373fa49476aa601ba7faad6ba0a9f227242",
-        "value": "ZemEhLFKYivda38xrG9P9tksM33wMUPVTvx3QfnF+f1dAcRYWG/wIsZUpeKi9kdsxOUti+dPDKmWrFwaJPwZ9w=="
+        "keyId": "823d28d540597eb924110cd6247b4b79a207f927c6da6918e9a87df295080b1c",
+        "value": "CfFvvdNI6YATnH/G7xzRkgfg1WF4x8ClrxvOeZmHKFAM+4Jf4OlmeEeEjwHc8Uod56ge0ZS8Xj6NlUHgQ6vfTg=="
       }
     ]
   }

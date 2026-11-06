@@ -70,10 +70,12 @@ epochs and price statements fit together.
    the witnesses of price publications. What a document is follows from its JSON-LD context, or from its shape. A trust
    anchor, a list of witnesses or a policy among them goes into the settings.
 3. **Demos**:
-   - **QA**, the roaming network of the WWCP_POI examples A1 to A14, one recorded run (public data only), the one
-     WWCP_POI.TS vendors (`tests/vectors/csharp-33447ac` today): a quorum of three holders, one operator with 16 EVSEs,
+   - **QA**, the roaming network of the WWCP_POI examples A1 to A15, one recorded run (public data only), the one
+     WWCP_POI.TS vendors (`tests/vectors/csharp-045e180` today): a quorum of three holders, one operator with 16 EVSEs,
      manufacturers and their models, transparency software and its certificates, a calibration laboratory, two epochs
-     (ECDSA/SHA-256, then ML-DSA/SHA-512), witnesses, price statements, evidence, and the QI-Digital papers of a meter.
+     (ECDSA/SHA-256, then ML-DSA/SHA-512), witnesses, price statements, evidence, the QI-Digital papers of a meter, and
+     **EV Taler** at one pool (its merchant, changed with a key for payments, and two exchanges, of which the one in
+     euros pays).
      Besides its own trust anchor it gives the one of the ML-DSA identity keys of epoch 2, to pick in the settings.
    - **Thuringia**, a generated test network of medium size: seven charging station operators, 195 charging pools,
      417 stations and 834 EVSEs on a map; change sets of several owners, a key rotation, a removed pool, a latecomer

@@ -1,6 +1,6 @@
 [
   {
-    "@id": "affc849b72a8f5f2121f9b6ea477dddfadabe8891380556b6d0973c637b0c2b6",
+    "@id": "c29fb4af2a943d67b85266348636ff0e13168392eb634c09ec3f5dc130e9c918",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
     "revision": 1,
@@ -9,66 +9,66 @@
         "json",
         "sha256",
         "hex",
-        "bf40404eaf1b9eb3ea6aa3f20fbea27aefe493532cfab61452abf3e6b8eb6315"
+        "1204fccb05eb571a327b3533b1631d6bed0d0f296b4b974e64bcddc377213d93"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "706da05c0c5018ddb430bfbf3bcd8b4690eb1cac7ac61096d562cf00a782df75"
+        "c4d480ce53db75b8745f3785f7b107d8adc481674c8e7f979a5e26bd26053fe3"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "7c174eaaaa62b0ec4e583da0f4d59778f487429adc6b9bb1f5fc6083fd8530d9"
+        "7dbf5efc22c814360120ce14281c9422b9c81ef93ff3894ea67e7e6691318a5e"
       ]
     ],
     "parentIds": [
-      "1a333f29ee39c7098eeaccb14a3549f589d816b4769a499fe8a3417e152d71c1"
+      "42d013cf5a94124c8a952d0fa98033d449438dcb75cbf622b4dc2360e3c7280f"
     ],
     "changeSet": {
-      "@id": "e12cbd7d36d7ed64d218200e1a9b61c2805880f44f76d4ce9eb9036579a2db44",
+      "@id": "81c93d1c3facdc3b22254464a0a5e84993e5b12c814897e5198396a5c12bbb9c",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-10-27T17:20:26.367Z",
+      "createdAt": "2026-11-05T19:43:30.248Z",
       "description": {
         "en": "DE*GEF, GraphDefined Charging Solutions, and the manufacturers of its charging stations and energy meters"
       },
       "signatures": [
         {
           "algorithm": "ES512",
-          "keyId": "2a7463c549c8a013cf0ba7d89a13fc7d4559829f41972d9c4ecaa3537df44d22",
-          "value": "ACOBiqAXQGst86UhHQJltuH7r1n4DAfyoYlpU9U220xczYR5hiA8Rw8XRM6VmVQj1zUtvD3rvzP6Dp6vSxN9zLGeAKPoX44efyhINU+8IoOW/S/hy4hWlb7gD1kuGI75xKfDrBGODcMUjxXZzReLWt8mQ1HBVeJMQ02eKpOpxBap4Amq"
+          "keyId": "4d8db5761464bfb21b47139a08305b0962f482dad97d941c50c96b63be2b2462",
+          "value": "AataRp+KaiBMSUxPlkGlVaPL0KswBi55CXZmCxqdwA0r0zt+22YZc/SGLKaa40fXCys7YxkBTOtjKc44HVYzFi94AQPRY9IqYoQmKgHqs/M9W00B1NM2aY1AvyAyAbbaU0MxnTWVs/3UFi+g9gc0qobsto+2Uf74WlqvZGd8hwXexNmJ"
         },
         {
           "algorithm": "Ed448",
-          "keyId": "226f4f689d09f6bcc5135262a298bbb87172fa6680efaa2742e6e20158535922",
-          "value": "hfcFAX0hPBV/QsswzGzs/HjOt1q00xBnBx4pm4WZ9iAyGFsRwNmmT8gE8inTIMO+stbSKwkT1PCAq+ojQ6KzPhGnTHURzHYB1ZUEeXr9Ue4LpG4btcaTYCyf6Wq7lyhkEfMj8B9Cy9Q0u6N89muFDh4A"
+          "keyId": "629d3b59085d3f2742dd4354a9bc1b112e471f265ef28b14a7004ef10d1d902b",
+          "value": "KERUmPjrsN6AmTBobB1zual6kl+553ThBQb0ZVPQjM8FY2LRrnmgewfZ+CL8doKWMWfUe2LAwj2ADCURupgq/2GHxSEKEkfRhbxP61p7eKaC5dE8ME9CAkC92Q3hfb2bH0bOf0Dw2PsNvg3OIHTxgx8A"
         },
         {
           "algorithm": "ES512",
-          "keyId": "142f7891b2eb0609633775046edda5fe3ce168fb3be5db4b074373254ec8408d",
-          "value": "AWhqyO+JfIKZcswS4e5xOoxRAqV+lEZquCIpHpfJ8f99TS7SuwlYcoIsluQAESka7b/KPqH4hoYTBNb7WELvqxIBAbu4ohKToNgIE1ln72ABG8oQPVLt9lvOMTowtr25uPN0a5ZZcWXpVv3/TO/3+I37sOMwtUZEqvvr/YJBv+BxFJZe"
+          "keyId": "164e0b1c955bf5b182b2602fa510cd9f2af333a298d2373dc3af19f8bed69999",
+          "value": "AX6J5ji3V3wI4/6UwoUMf4iVO0B0c1LPu3sKQGRfsOONLDOLeAFGckladt+xeS5+Wo/XXV2149T21mognnZEjZ8qAKVTUGvMneF/R/E8MjiUSwnriq5TIHuGli3r6szxBdy/pW3+lFLDpcULH9ifHcqkaf8ktFI3IZ7y6ENTQ8fcrr+v"
         },
         {
           "algorithm": "ES512",
-          "keyId": "bf6fa8879eaec9e86de39d770c0d4565842e576614fbe5fc11fe58fb3e427f40",
-          "value": "AbMp4fjg8SkGzqCuXEV8VYxqkBt5qV1vRRu35Law9KvPoVGoPon64o5R6sECna/qSZA2oFePPlLPThDYiqZuYhZFAeEm56MI5+4hWIK8XdebllcTEMRCIGm9AHv2KoXdmw0mUYSdH1Nb5gzwZ7eBKrulDo4mVulbeWgIGWF0SGephaQz"
+          "keyId": "c3d871a4265ce2e46cce5bbbc4259a784f084463952c7c171bda5691f69dc28d",
+          "value": "AQK3kWPTbHbGZ3mmmhcrw7CG7SWE49PlhShNNTjfwgLcwkGWddSrgdCXMLAfAsCyFratOCBjedWsKko2kIc+0NY1Ac3ern7UccLVvmWMM5FmSjPChWJpvBpKkMb7uvgV3XRI2vTV2imoATOTbD+ed0Di1ZBMWarHsXoEkPL+1+aDGvbw"
         },
         {
           "algorithm": "ES512",
-          "keyId": "dff5bb32e6ca6bd4d96c74160e72ff59a4fced5dbe9788a2d2cc715a2c55d279",
-          "value": "AGOVfHFWvnsAinv3QtANv1u4/G6ZyOyWfN1v/+t02x3GYNyPyIIhWp8lLHTYW4VGi342kY50N6obgO+NQxZmC2bZAdrwRdFrgSDJBoL2/B8C6QNUM18rrQX2bgCDiFLBoxFNHHh1d4/ak4FuREluqx8AHcEhvFm9ALsRGw3XcrI1RJFX"
+          "keyId": "784cb103c526fd50a3784592167927a9d12a248b10c83bedc7fa67c38cf002d4",
+          "value": "AXuea1q5Z3upLzCv9YrCV0o3Cj7pb5DpqGCgsb+Qd/wf/z0Zwk2nwrJ4uQqvB0xQJ7qhBGYhriIRowQEOYLLfUvgAY93G2/kcMw1ABcdiqHJ4B+r/vbQ3VOubdIXgkVO2DscUefj1iWyPYphnQy2KvCByisaudvbb3+2ZHwols4TfmTi"
         },
         {
           "algorithm": "ES256",
-          "keyId": "b490ecc8d382e99f19bad697b4da30efee50a99f2f8b1149d22756bc736ad7d5",
-          "value": "nX2MFDZbpE0DDAMGWaXhYym2r9B/tmG1QW6Ftw4zJvSZvswLRrgcCG5segDfLZswPsUp48Qo3+4RTm1gKnXsOA=="
+          "keyId": "d76d4d4ee6807bce5acc02ab3ec841d00c690fb4dc7c2c9a505508d37252805b",
+          "value": "lcigKXjzcXLLYk3L1Oh4VDSibEv8EEjaBS6QL6xphlW8XK2eHEX8izB9EIpm0SCJFfGFyqrgQl3kh4dIFVpKjQ=="
         },
         {
           "algorithm": "ES256",
-          "keyId": "9059fbeb4cb8a8381387d2bc6e6f91f88a3f2933b95acac426b9cd354c8e9567",
-          "value": "uivD3hb3WpNFVxAVwsMwVBSt21e4ET58MJibZDbYvYMNeL5knwhUN7p1YRXm8aCjPV1pLfAvlrdmQX7ZW5EFuQ=="
+          "keyId": "c9f38055464600f4ed5e24d1c2c21847924b447b02c9fec892c15aa9174d1591",
+          "value": "WNeZmfceX3/k/gMfpZvyRz77Vx6mJV6AscVggvoU3xR4jUVyUsn9Yjy/BqUZNQeZtZQ+hIdsk+Q3wcXXPbQdbg=="
         }
       ],
       "changes": [
@@ -86,42 +86,42 @@
             },
             "signingKeys": [
               {
-                "@id": "61506b54a5b74079ba3e9d590c3b444a4ad5e0080119a9531ea59323aaabac24",
-                "key": "pAECIAEhWCAEzcsyiRhb4zB2TUW1CZ7SA5C5p6MpcISgABDOZ+I67yJYICMxBVaZgcr98kcfhR4ug6B3x1M3dpUWs0ddF5LySPF3",
-                "notAfter": "2027-10-27T17:20:25.744Z",
+                "@id": "30d2854aa011611c6ed547be0c18a45b34a549fe653008db7dd7c7e8430d4690",
+                "key": "pAECIAEhWCD2nO6JmeYZ62bRHIqBBMNIKD7VAxposo5HuGmKqwepXyJYIKIoTvaJYlOvOi9zunnU66qW7GOqHM2wxrip1NfIRkP3",
+                "notAfter": "2027-11-05T19:43:29.130Z",
                 "usages": [
-                  "infrastructure"
+                  "party"
                 ]
               },
               {
-                "@id": "b6f50fff4920d07c49b301fe1b54ab46f8ccaaa1fdda3fd58e70b287f7fd1244",
-                "key": "pAECIAEhWCAdTZVcGl/c2TQ1fId1mavzL2T2VqxcGOCmIRPdGxi1gSJYIB0lUkISrnkNnr2K8Tn42ddM5M/dDexh7C/EXVpiSk0J",
-                "notAfter": "2027-10-27T17:20:25.744Z",
+                "@id": "548c474288fabff893b89bb7d7a62fe52ced94c99e70f2aa20f8d5c1670a56dd",
+                "key": "pAECIAEhWCC134i1sSodAPvaTx6HTBBU98/ILqFze64nmNlS4zZNMCJYIIMIJvDvKN6N469gHuJxqxzE/iF8/C6mx+KTrfKNP97l",
+                "notAfter": "2027-11-05T19:43:29.130Z",
                 "usages": [
                   "priceStatements",
                   "tariffs"
                 ]
               },
               {
-                "@id": "c0211a167e3c8e61788dfeb581c71fd5f053aa43ad318d969af950dd18828177",
-                "key": "pAECIAEhWCB3mb0TQ23nlH22wDsx1zg4gpe876gwNtdiPFQa9L2x2SJYIACL/I5dATkHMDdR3QFiv2iCUbTHf6f4yqNNLQlIoBJC",
-                "notAfter": "2027-10-27T17:20:25.744Z",
+                "@id": "c6f020b57897c76f8dceb2f2c319447fc2f656b4de657b67a2607b8dfb21725e",
+                "key": "pAECIAEhWCBgsZM5PfJzqVuOcfDzllHknI2m8XL4Vyp7UzwmSZrpcyJYIJUrb545Ksr1rYlMNSqzMBGthf7iAShwrdj+pbv4yUlk",
+                "notAfter": "2027-11-05T19:43:29.130Z",
                 "usages": [
-                  "party"
+                  "infrastructure"
                 ]
               }
             ],
             "identityKeys": [
               {
-                "@id": "226f4f689d09f6bcc5135262a298bbb87172fa6680efaa2742e6e20158535922",
-                "key": "owEBIAchWDnexMJghB89sElP3pznI5juFwUwzZVFGt6T+i+p8gy8Wq8wHR9FF6nj7NO8UsDvUND1wnj9DkBs7gA="
+                "@id": "4d8db5761464bfb21b47139a08305b0962f482dad97d941c50c96b63be2b2462",
+                "key": "pAECIAMhWEIAmd1k4Gm0ctHrS1rqmmQyBQQst+kyLhBiGRHkz624s8HP2K+jdGSyYpTa5iXQUFxmRLUVqwYwd8wlY6Gp7CvgtuEiWEIAnGfles2r+AhnsC2o70nOPpJtM8HYzViifVZSnuqmRPXdAyvp4Y+FOntQZPAcO/ZFn/XMry/XOkgZVUVXx6/gJN4="
               },
               {
-                "@id": "2a7463c549c8a013cf0ba7d89a13fc7d4559829f41972d9c4ecaa3537df44d22",
-                "key": "pAECIAMhWEIBJ9jlrhTe5aeAyklJ8DzRI+wCHzeDGY24qPAMZ0YnvKcbCO22SQMlIphyuXfESnuc18p0QfCvoFizMwNd0j/Q3jMiWEIAUJRjcK6jso7IIPdSzODfePu0WHZgIQrkFf8/Oc7DehGeHhTOfyFJffcCVbNfe/EIh7+7CBYlNXa564KclYOkZLw="
+                "@id": "629d3b59085d3f2742dd4354a9bc1b112e471f265ef28b14a7004ef10d1d902b",
+                "key": "owEBIAchWDlZaGS4J9akWcuNLc1Mam72sbsI7s9ROby0RwR4laREquSP0ONYrpKcEeAA49OSE8wdi3CZ+yBVlIA="
               }
             ],
-            "created": "2026-10-27T17:20:25.882Z"
+            "created": "2026-11-05T19:43:29.461Z"
           }
         },
         {
@@ -136,17 +136,17 @@
             "homepage": "https://stations.graphdefined.example",
             "signingKeys": [
               {
-                "@id": "cf625038413602ec823b9fe229c115369bcad98370c23bccb04d5d3bb4612573",
-                "key": "pAECIAEhWCAV3sqY5vrQAC2Fzr4unhKQseBvViowugJS9xhxKlhphSJYIC7v97DGhgUpYi5OdxWyZI2MGwexWvyUJ7e4cGwSLWK9",
-                "notAfter": "2027-10-27T17:20:25.744Z",
+                "@id": "3c054027f51e7933048aab00667fc804bc96f9f0e3f436efc5e7b9b651433522",
+                "key": "pAECIAEhWCDFUfbHOi3fxpv3f68XkoVUe+oUBzerTPvt3mR0eHnnDiJYIOrUA972IesYLnZp1kCGitLhRk43cbe3Q9PJZpogqAsn",
+                "notAfter": "2027-11-05T19:43:29.130Z",
                 "usages": [
                   "party"
                 ]
               },
               {
-                "@id": "e9850b1a3b359b1e4d72a4149c1ce0a4c755c9e044eab50825b897ae1229eb13",
-                "key": "pAECIAEhWCAKuiXdxc/QTMJjKkDvMoBRy9Sw8exm1fI8u10sf5auxyJYIKBBTDrsfiE3OYoFnHaKiOkeyvUqWYucFTsq01FXuanz",
-                "notAfter": "2027-10-27T17:20:25.744Z",
+                "@id": "68942f906b793450f8dd354ae089ad902a2314da672c2cab6ac86cd80a3c3b6f",
+                "key": "pAECIAEhWCCgdiLRNuVooPt8UjTS/TaU9hovnlJEjtS2iw00+n4wNSJYIAmtx4zh1ilWQuQ6vQXbY/pwIMNBaejfahYCU8X+uf86",
+                "notAfter": "2027-11-05T19:43:29.130Z",
                 "usages": [
                   "models"
                 ]
@@ -154,11 +154,11 @@
             ],
             "identityKeys": [
               {
-                "@id": "142f7891b2eb0609633775046edda5fe3ce168fb3be5db4b074373254ec8408d",
-                "key": "pAECIAMhWEIAEfjK+Iu4aqqp+J8tt2SB9BKnW9rYH1vw5bN7FJBqfPReyteTsahA6SJCCE7zTWAEw6bbZzqfPOkwLikmQzX5AlIiWEIAOpPSmexwqL2k2sUrXvzzjZnIcIsuy74hwBkdxT0AN5AsRJ28oYpjXTwsH8QkXugiV319/xvu+nSzkzYSY5c3M9A="
+                "@id": "164e0b1c955bf5b182b2602fa510cd9f2af333a298d2373dc3af19f8bed69999",
+                "key": "pAECIAMhWEIB0FYrUGQUFhfg0E+f4wtd0u6jgQnMsKT+aC1opdbteD770105KVZfbT0G3D8R86WaTHYuMwAFTwqFGc9JUnXPQbgiWEIBS3Bw3O4ItISmyeSGcP3fT2yH8bQZBbTbvn7rYGYBfQZiACdoTREq2koHSnoCPCtkCD4oiKZraNYS1t2YKSzhSJ4="
               }
             ],
-            "created": "2026-10-27T17:20:26.136Z"
+            "created": "2026-11-05T19:43:30.045Z"
           }
         },
         {
@@ -176,29 +176,29 @@
             "homepage": "https://saale-metering.example",
             "signingKeys": [
               {
-                "@id": "8b7a1ea340f72a8d1e1f8ce078fac0f885a7987ae1e8340184a03927453b0e4f",
-                "key": "pAECIAEhWCDFps+HliD+4ZDKGyUQhDBT6Tyg1f7JxwzcmTvtjMC4nCJYIEoau9A204VWoEbP1JCBXGHh8iua2fdkqrhB2pThFgrK",
-                "notAfter": "2027-10-27T17:20:25.744Z",
+                "@id": "e78bfd3704c73d7f00d36426c82fa52a00070fd61b17ee3500f385e535733153",
+                "key": "pAECIAEhWCCerVeWJLOYTFBwpWs5hgruNH2TgmrlrhdoGokW23ViXSJYIKPbIHuaPrVFOwrKfqxzfusjSdXOmOguELMJPAKbz+Xd",
+                "notAfter": "2027-11-05T19:43:29.130Z",
                 "usages": [
-                  "party"
+                  "models"
                 ]
               },
               {
-                "@id": "e68d50a706f7b5672927db071b06669dc9157a777fef42697a124e9b46ac578a",
-                "key": "pAECIAEhWCAZ1h0s13tAx30rLhHSRYIQrMpycKC/yF1I496I7MYD8CJYIMRf8+oO0q2uOX8dJ4wD1/YYcoAq4RdYnBYyCJdGhQan",
-                "notAfter": "2027-10-27T17:20:25.744Z",
+                "@id": "eb6face2fd529fcaa233a74c418aca8c95475ca9d7b6f412d9f49871aa21f882",
+                "key": "pAECIAEhWCDm06Ih1tRAJslM1C3RYDmeX21M0quhnAgtoYKR3dbsqyJYIL6iLiJqbTTQPTRcd0W59Ow3/XlgPo/NxJMPYHzOkJYL",
+                "notAfter": "2027-11-05T19:43:29.130Z",
                 "usages": [
-                  "models"
+                  "party"
                 ]
               }
             ],
             "identityKeys": [
               {
-                "@id": "bf6fa8879eaec9e86de39d770c0d4565842e576614fbe5fc11fe58fb3e427f40",
-                "key": "pAECIAMhWEIBUA9gCCzBYRhefSRNu/GXvieWbo4m8qe6eISPTuiJZDPAktMeZjSrosSMKJd8DyxN3vG1lZF1T0X+w+N1vpBjp3AiWEIBuHmZ3T1DyZKVFBuWGicxdK0XuM+JZMgAPb3gUMH7e/yhEVyKFvFWTxWXBIKvBLdq3BBxNX6KNkRiMXjV60JDWxk="
+                "@id": "c3d871a4265ce2e46cce5bbbc4259a784f084463952c7c171bda5691f69dc28d",
+                "key": "pAECIAMhWEIBsEJKZWHtegBys50/cx95nthBwWFwm9CttHDY2fpviVkCxnHym/2E294q4uQv1gj/cGm9EL1IV2CNhjJTRTna/a0iWEIAFJt2GIIScnCVtbMMjEYFi1IXoKt24A5o7iYFRim90bSjEIf55JncpyfuDgvOaHcqEQ61HH4sqtRLzbPImCS+tMc="
               }
             ],
-            "created": "2026-10-27T17:20:26.222Z"
+            "created": "2026-11-05T19:43:30.126Z"
           }
         },
         {
@@ -216,29 +216,29 @@
             "homepage": "https://kernberg-metering.example",
             "signingKeys": [
               {
-                "@id": "5ab2fa7471246fa190c9e0f35862d7981514f3f37ef29e3bfc18d87efa620272",
-                "key": "pAECIAEhWCDwl7kSQRKkLQ4ZVpq0k7e3kfKtv40XwvTlVOWEzT96NiJYIOBoU+G+YFH8N9J3hefXZJ7As61W6me1TXjhiRzfvyiK",
-                "notAfter": "2027-10-27T17:20:25.744Z",
+                "@id": "2671533dabefaa04c9bd51e4233d89213d5aa22c3ea14ef4491240672fda2a1d",
+                "key": "pAECIAEhWCBs4eLMHf9aGA1roEdODpVlyNrvbeGx5S+jOl+QaWFDxyJYIClsf1kmTjIOkShnJjLbuwZGtVNs/Ji0YurAyKddhDCb",
+                "notAfter": "2027-11-05T19:43:29.130Z",
                 "usages": [
-                  "party"
+                  "models"
                 ]
               },
               {
-                "@id": "bc3caf9574461961175afc031a3a75431a64b53b8f2f406f65b6705a8a43d8c6",
-                "key": "pAECIAEhWCANDo74+pfcuje8WFLC8eitR3n0AkNTLwy1gU3lCIKm8iJYIPDRX8zcSW5vHJ6vmjxn8HsnJej+mH/BZ8QuY9BFrmaB",
-                "notAfter": "2027-10-27T17:20:25.744Z",
+                "@id": "c3aeda1566a270ecabdb7ea4197dc77b528ab077044ddf56f3a6a0a67145f0bd",
+                "key": "pAECIAEhWCDFsuAr2rdQnlNQXqMt/Yl9GiB9ehcyFUrjPneiYZy8YiJYIFqtdU4XbvJwdi1w7ernNvygufETiRzGmaZx8GSm36rR",
+                "notAfter": "2027-11-05T19:43:29.130Z",
                 "usages": [
-                  "models"
+                  "party"
                 ]
               }
             ],
             "identityKeys": [
               {
-                "@id": "dff5bb32e6ca6bd4d96c74160e72ff59a4fced5dbe9788a2d2cc715a2c55d279",
-                "key": "pAECIAMhWEIATAmE4zn6OYzgoaGuwwXITkCrYDGhgypARVgwo8LDb1xZcGtqQXhmd5PVMdg3gjXR9uHN0r5mXB5F926AjAXwOTQiWEIBl+AbahyebYarQE9/cmxgJX5Pg5gDe7O8OyJ0HUiTtM4vVJjNxbv/KtKvI1wORWMP3ruTtp07q+Kk20aCfUlT3Wk="
+                "@id": "784cb103c526fd50a3784592167927a9d12a248b10c83bedc7fa67c38cf002d4",
+                "key": "pAECIAMhWEIA40cIV6TDtjSOCwKMaPt94Rm7T3PyJf3RXJvZPBxVpPOVIG2W9kKflksz5fmYivSx3ALAp19hqqu+UbFrgli2btAiWEIBrTxTUyK/nMBsObJ4gB0yrYNfl/M5Wll70a8lOTzVRfC5HoimDuQw7Fxnw0e0jnjiS7aZjP9W+BjEC0guXme0gio="
               }
             ],
-            "created": "2026-10-27T17:20:26.286Z"
+            "created": "2026-11-05T19:43:30.218Z"
           }
         }
       ],
@@ -247,13 +247,13 @@
           "json",
           "sha256",
           "hex",
-          "aaa96aba121d405c6f06f6c4d39c67227956c2ee51def07673e88238b161f47f"
+          "a0f18e229d68b386180da6028629fed5e633c532e8151fd4b5a8eba2bda6a35e"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "5ecb1f013af375c0cc0e83982efbe833c82c1bea1e8f14d5d5019ec8ca3babb3"
+          "143015ec82353da45389a8230079b79ea1a1781f0ca9b58132c212ca31070478"
         ]
       ],
       "afterETags": [
@@ -261,13 +261,13 @@
           "json",
           "sha256",
           "hex",
-          "bf40404eaf1b9eb3ea6aa3f20fbea27aefe493532cfab61452abf3e6b8eb6315"
+          "1204fccb05eb571a327b3533b1631d6bed0d0f296b4b974e64bcddc377213d93"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "706da05c0c5018ddb430bfbf3bcd8b4690eb1cac7ac61096d562cf00a782df75"
+          "c4d480ce53db75b8745f3785f7b107d8adc481674c8e7f979a5e26bd26053fe3"
         ]
       ]
     },
@@ -275,31 +275,31 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:27.477Z",
+        "signedAt": "2026-11-05T19:43:30.803Z",
         "algorithm": "ES256",
-        "keyId": "b490ecc8d382e99f19bad697b4da30efee50a99f2f8b1149d22756bc736ad7d5",
-        "value": "igJ1Ez3JtCVPMnw7IwaPqum22etvoSB0IntoUTa7wXrqMJtudpl5buZZLtjfySvYtH80nmh3HYrm9peTKqC2kw=="
+        "keyId": "d76d4d4ee6807bce5acc02ab3ec841d00c690fb4dc7c2c9a505508d37252805b",
+        "value": "EFlpTSGr1zvy3+hU6I6gzDTPoTKs2oDoxXP6T3Hi86rkJGLjBtH6B4eFhDNz1YalRn5+kHO+7kIMHE9YKHkn+w=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:27.488Z",
+        "signedAt": "2026-11-05T19:43:30.807Z",
         "algorithm": "ES256",
-        "keyId": "9059fbeb4cb8a8381387d2bc6e6f91f88a3f2933b95acac426b9cd354c8e9567",
-        "value": "Vyno67mm8nKUw7NEExGQ9k6iDaFPaYZWSV9F8ZqOhR5kSpIJXdpn2UcsuHuVDr9D+1lbk9AqDkN3iWgQamYfoA=="
+        "keyId": "c9f38055464600f4ed5e24d1c2c21847924b447b02c9fec892c15aa9174d1591",
+        "value": "jlFqtPnpQegJ0zB7iaWgP0++rNwiZ1hmYJJeVp0X4gn1RpkpHZD55xeEtBNu1NgV0PyYr7gLZLbn2qClPY89OQ=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:27.493Z",
+        "signedAt": "2026-11-05T19:43:30.811Z",
         "algorithm": "ES256",
-        "keyId": "b8b98a33d5eadceb30e5b94e27877373fa49476aa601ba7faad6ba0a9f227242",
-        "value": "yoYGDsO28whxtdSbYYLhDn3WGE8+nS5Jo7tUr2Ngf5Sw5LDUa/F30Ax7xaYlkOMmxleDMz/MHnbbIePa7vy4lg=="
+        "keyId": "823d28d540597eb924110cd6247b4b79a207f927c6da6918e9a87df295080b1c",
+        "value": "pAr4BUBLs7+J8sSCn1So+oJyTUEwgoMyo/M49eK225Jh72b+L50kqpB5zq16orOXEbwCpFCH7QR5o6+INk+FZA=="
       }
     ]
   },
   {
-    "@id": "6d4c8bc3853dbd672287d0ada0e07aba84cabd72740883085b9d7854b6a1d4f3",
+    "@id": "f47963f4d4428153b9420d2b27a19e70b8256f19f09afa9f79739d69ba2918cb",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
     "revision": 2,
@@ -308,46 +308,46 @@
         "json",
         "sha256",
         "hex",
-        "becd40c8e6355233885b480b725d3e6a99b0dfa38fe4e9c81c7fcbd941b8d872"
+        "424f984739fe00de6105e5ec35b938f0a802c7f7ad1e2be7c376ab662e826cdc"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "a28d27d213bb7a9855f4d29258be156ca3504af892fb5338c60b2e352ec4892d"
+        "6274f7cede4f482672b7da42a95a5d29e8c0c1fd4e4ff2cf98adcf7eb6eb1fa6"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "a9fc91ff265a6f9708a32d7461d319ec98e8d40e6fe0e4957df31078c6efd011"
+        "6de1ef0069752c8e16d7b1a02741771a439b71cde5d7a49d4fdb23d4e229dca0"
       ]
     ],
     "parentIds": [
-      "affc849b72a8f5f2121f9b6ea477dddfadabe8891380556b6d0973c637b0c2b6"
+      "c29fb4af2a943d67b85266348636ff0e13168392eb634c09ec3f5dc130e9c918"
     ],
     "changeSet": {
-      "@id": "4f4568395a79190a998433f8f74c5392b6418c39496901552c09c6cb7d4d7d54",
+      "@id": "7caf695c07134490465c6b0f3a7bfbf4b4bf2ae80f42e4ed5a6c9433e2c761a7",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-10-27T17:20:27.587Z",
+      "createdAt": "2026-11-05T19:43:30.879Z",
       "description": {
         "en": "The models of GraphDefined, KERNBERG and SAALE"
       },
       "signatures": [
         {
           "algorithm": "ES256",
-          "keyId": "e9850b1a3b359b1e4d72a4149c1ce0a4c755c9e044eab50825b897ae1229eb13",
-          "value": "uk48iEn5qwGnqVx39CM/LunT+a5x9mfWTKUVeAQijeDKsiais08M9xbX+uy2eMhKGBSERUlMp4nZznyOHeobxQ=="
+          "keyId": "68942f906b793450f8dd354ae089ad902a2314da672c2cab6ac86cd80a3c3b6f",
+          "value": "U2f/umaILbg4Ihz6I/mX3EDGeLLa1lXpPcwhVNj1ZeZImM+wOU5GiiVxA1VwdArb49UR7huVf1tLO+tVa8fSQg=="
         },
         {
           "algorithm": "ES256",
-          "keyId": "bc3caf9574461961175afc031a3a75431a64b53b8f2f406f65b6705a8a43d8c6",
-          "value": "SF96uJMfHUyeM6H680vwadPYakq6MFOYvNR/t6dvU25yrI6fSaLrMaG1jfoSGCTNEsMg5/oQLkHM+bpDFR3B8g=="
+          "keyId": "2671533dabefaa04c9bd51e4233d89213d5aa22c3ea14ef4491240672fda2a1d",
+          "value": "pFAksgJEM8y60kSYesvQmw53gkQZIznxgGHd5B5CYSW2T6SbNZb7JCBrwqEr+ttjNg0ZJ6D2FIjRJTrqOVj/Ww=="
         },
         {
           "algorithm": "ES256",
-          "keyId": "e68d50a706f7b5672927db071b06669dc9157a777fef42697a124e9b46ac578a",
-          "value": "duW/MBg5gj+yNDSwY6UCXNCWsATYyXh0upMJaimi26NHxufkCqzQx6K3H7ORfKavfLsB/jAur1noVtM/dbr+tw=="
+          "keyId": "e78bfd3704c73d7f00d36426c82fa52a00070fd61b17ee3500f385e535733153",
+          "value": "oioXsn3BIxDGMdl2jwAWjtCWV2AArrlT3wBfIYajT9GDC8cCbnjty5oBivWY5vs6wR/Lps/B/AXUrYDLZUWIHw=="
         }
       ],
       "changes": [
@@ -476,13 +476,13 @@
           "json",
           "sha256",
           "hex",
-          "bf40404eaf1b9eb3ea6aa3f20fbea27aefe493532cfab61452abf3e6b8eb6315"
+          "1204fccb05eb571a327b3533b1631d6bed0d0f296b4b974e64bcddc377213d93"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "706da05c0c5018ddb430bfbf3bcd8b4690eb1cac7ac61096d562cf00a782df75"
+          "c4d480ce53db75b8745f3785f7b107d8adc481674c8e7f979a5e26bd26053fe3"
         ]
       ],
       "afterETags": [
@@ -490,13 +490,13 @@
           "json",
           "sha256",
           "hex",
-          "becd40c8e6355233885b480b725d3e6a99b0dfa38fe4e9c81c7fcbd941b8d872"
+          "424f984739fe00de6105e5ec35b938f0a802c7f7ad1e2be7c376ab662e826cdc"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "a28d27d213bb7a9855f4d29258be156ca3504af892fb5338c60b2e352ec4892d"
+          "6274f7cede4f482672b7da42a95a5d29e8c0c1fd4e4ff2cf98adcf7eb6eb1fa6"
         ]
       ]
     },
@@ -504,31 +504,31 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:27.886Z",
+        "signedAt": "2026-11-05T19:43:31.042Z",
         "algorithm": "ES256",
-        "keyId": "b490ecc8d382e99f19bad697b4da30efee50a99f2f8b1149d22756bc736ad7d5",
-        "value": "nvGFAj+LgNlA4GOYWqEou0puC46FNtt5A934hnAAEi5w4ze3/3yYO+F6GPHQ5HpVaV99TWGxbR1wGMszbQBzdQ=="
+        "keyId": "d76d4d4ee6807bce5acc02ab3ec841d00c690fb4dc7c2c9a505508d37252805b",
+        "value": "ZgIk4CUE2IrnisSycj6EmqpjJ+CdPqwVluN5b4tDJr9iAP27N24vzPPJkm25ogKsjZZuXhF0DrjoLHZLZ5eA6g=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:27.892Z",
+        "signedAt": "2026-11-05T19:43:31.047Z",
         "algorithm": "ES256",
-        "keyId": "9059fbeb4cb8a8381387d2bc6e6f91f88a3f2933b95acac426b9cd354c8e9567",
-        "value": "G2BxQ49dNY2LB5ZXC5Z5r7bJRp7obsNwQXHJsIQtf3i121oyqoExTXqwMAKAg3hrGx9TTthe6vg2ZhrUFKlrrg=="
+        "keyId": "c9f38055464600f4ed5e24d1c2c21847924b447b02c9fec892c15aa9174d1591",
+        "value": "pB1ThjsA6AU5PdNR+vD4ncvUNXq8lrVkw3sEnSIzJPNVU16TtJ92WHmuazud9Ao9j2r8H95YzOngJImMmKV5Yw=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:27.897Z",
+        "signedAt": "2026-11-05T19:43:31.051Z",
         "algorithm": "ES256",
-        "keyId": "b8b98a33d5eadceb30e5b94e27877373fa49476aa601ba7faad6ba0a9f227242",
-        "value": "lGicy7RPhm5d0LkHffESwBGBVgDxMR+IYBBbKGxUU5HkaJiWoNJDuzFURb2EgB5ha3RyRCgpfJD3qm8+N7yh3g=="
+        "keyId": "823d28d540597eb924110cd6247b4b79a207f927c6da6918e9a87df295080b1c",
+        "value": "BhWQovmMmx0JHc9WVg+qs6xDO4Cphujax1OunKWntY25RoDOQSWMVshDhw/1VRHKWj4XH/rNj2f5zMwlAp26vw=="
       }
     ]
   },
   {
-    "@id": "af248e62c6c7d3b3905b3b5aeea3bc4a013531a529d6b4410b2885292287f2cf",
+    "@id": "a21b333e02874102161146b70fd8d3374b76401b63a6ec4753d46f0b1154a9bf",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
     "revision": 3,
@@ -537,36 +537,36 @@
         "json",
         "sha256",
         "hex",
-        "b7c7b0108cd98ca411d7e1ad54703625f5cb659c9f8cb9362d8dd855d3fd437b"
+        "cbfd65015ebf7d38a7c0767ba953a5c9b5f50504892bed9b34414d0437ee982b"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "9016b50742d36100e70727f45f689cbe3d296022fdfafb4441061c3b2fbd53f9"
+        "882887bd50bed6ccc20b296179038c9bea1f1a30620f9fa1375d478877c5f915"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "6623512081e983a5cb21abcea617d6fc50918ee13e982f498f3bb12c0a6f745c"
+        "1bf97a56ee703bf0db64a3ba81b07013c83bc38dc88489df9c21e566818eca14"
       ]
     ],
     "parentIds": [
-      "6d4c8bc3853dbd672287d0ada0e07aba84cabd72740883085b9d7854b6a1d4f3"
+      "f47963f4d4428153b9420d2b27a19e70b8256f19f09afa9f79739d69ba2918cb"
     ],
     "changeSet": {
-      "@id": "7b8a27e5cae1416c5aa7ceeceaa48f489a53cb076bc15ae29e248db94f4498b3",
+      "@id": "8cc7f89da05892485c669d3af67ed83d16816673b9b85aa98f05525b56bce081",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-10-27T17:20:28.463Z",
+      "createdAt": "2026-11-05T19:43:31.209Z",
       "description": {
         "en": "The templates of the DC and the AC stations, EVSEs and energy meters"
       },
       "signatures": [
         {
           "algorithm": "ES256",
-          "keyId": "61506b54a5b74079ba3e9d590c3b444a4ad5e0080119a9531ea59323aaabac24",
-          "value": "a5qEAydP4PkvEkqFjdXF4z4Ix71dEfLFsz+1fk46JnVA6jL1NCJL4uIMi7UqE+llJvq5DfG+MQJvYQXl9sxmzQ=="
+          "keyId": "c6f020b57897c76f8dceb2f2c319447fc2f656b4de657b67a2607b8dfb21725e",
+          "value": "anhtAGyP2E8Bfh7FdqbwiBSktUZ4B22HjKabYPGqSCo+Zhb23c2uKlbX+j/3Fx1kw9vhV1Sy3DZxL1r9ndNPqA=="
         }
       ],
       "changes": [
@@ -584,7 +584,7 @@
             "hardwareRevision": "1.0",
             "firmwareVersion": "2.5.0",
             "maxPower": 300000,
-            "created": "2026-10-27T17:20:28.384Z"
+            "created": "2026-11-05T19:43:31.171Z"
           }
         },
         {
@@ -601,7 +601,7 @@
             "hardwareRevision": "1.0",
             "firmwareVersion": "1.8.2",
             "maxPower": 44000,
-            "created": "2026-10-27T17:20:28.404Z"
+            "created": "2026-11-05T19:43:31.188Z"
           }
         },
         {
@@ -620,7 +620,7 @@
                 "format": "CABLE"
               }
             ],
-            "created": "2026-10-27T17:20:28.412Z"
+            "created": "2026-11-05T19:43:31.195Z"
           }
         },
         {
@@ -639,7 +639,7 @@
                 "format": "SOCKET"
               }
             ],
-            "created": "2026-10-27T17:20:28.454Z"
+            "created": "2026-11-05T19:43:31.205Z"
           }
         },
         {
@@ -661,7 +661,7 @@
             "signatureMethods": [
               "OCMF"
             ],
-            "created": "2026-10-27T17:20:28.455Z"
+            "created": "2026-11-05T19:43:31.206Z"
           }
         },
         {
@@ -683,7 +683,7 @@
             "signatureMethods": [
               "OCMF"
             ],
-            "created": "2026-10-27T17:20:28.460Z"
+            "created": "2026-11-05T19:43:31.208Z"
           }
         }
       ],
@@ -692,13 +692,13 @@
           "json",
           "sha256",
           "hex",
-          "becd40c8e6355233885b480b725d3e6a99b0dfa38fe4e9c81c7fcbd941b8d872"
+          "424f984739fe00de6105e5ec35b938f0a802c7f7ad1e2be7c376ab662e826cdc"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "a28d27d213bb7a9855f4d29258be156ca3504af892fb5338c60b2e352ec4892d"
+          "6274f7cede4f482672b7da42a95a5d29e8c0c1fd4e4ff2cf98adcf7eb6eb1fa6"
         ]
       ],
       "afterETags": [
@@ -706,13 +706,13 @@
           "json",
           "sha256",
           "hex",
-          "b7c7b0108cd98ca411d7e1ad54703625f5cb659c9f8cb9362d8dd855d3fd437b"
+          "cbfd65015ebf7d38a7c0767ba953a5c9b5f50504892bed9b34414d0437ee982b"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "9016b50742d36100e70727f45f689cbe3d296022fdfafb4441061c3b2fbd53f9"
+          "882887bd50bed6ccc20b296179038c9bea1f1a30620f9fa1375d478877c5f915"
         ]
       ]
     },
@@ -720,31 +720,31 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:28.695Z",
+        "signedAt": "2026-11-05T19:43:31.359Z",
         "algorithm": "ES256",
-        "keyId": "b490ecc8d382e99f19bad697b4da30efee50a99f2f8b1149d22756bc736ad7d5",
-        "value": "92HknV2ahqtW+2D0IW5UTNa8ADuXWmY2kRnhAqD9ha7KhOY5UiBRZ+L/U0YRGzRKn4l6vj8RHeRY/CSkJFGu0w=="
+        "keyId": "d76d4d4ee6807bce5acc02ab3ec841d00c690fb4dc7c2c9a505508d37252805b",
+        "value": "Nd95uLx0IJR1HokyNroRLQljXPiKjcQmWVjoJ6fARVsQNEfj53liwZz89nlpt7lUEmHQZ7DLKIjPPbMi8YQjHA=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:28.699Z",
+        "signedAt": "2026-11-05T19:43:31.364Z",
         "algorithm": "ES256",
-        "keyId": "9059fbeb4cb8a8381387d2bc6e6f91f88a3f2933b95acac426b9cd354c8e9567",
-        "value": "+9gBuFiFlAnZ/u4l0gv5Q64RzEparQ2rkhe/m/D/ZozDwkQf7snIqbssrMZTuOIuYYBxLTd7zSbsluZoX/LOCQ=="
+        "keyId": "c9f38055464600f4ed5e24d1c2c21847924b447b02c9fec892c15aa9174d1591",
+        "value": "XtC62ZMJR7ovzDyP58n5eeiJqtM/H1churFuOgjFPSn1jzF26Pm2lrEevOBld8wmXXnXR6vcBcu0kXFmQNeyaw=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:28.706Z",
+        "signedAt": "2026-11-05T19:43:31.370Z",
         "algorithm": "ES256",
-        "keyId": "b8b98a33d5eadceb30e5b94e27877373fa49476aa601ba7faad6ba0a9f227242",
-        "value": "Fawtr1ptRcZ0clB3ZL3pygZohBaZLFnMbRSXfeqdtW1AVFnkjlcWjD4w2RNMteuK6NeoZMtHW45OLQPfOXd+nQ=="
+        "keyId": "823d28d540597eb924110cd6247b4b79a207f927c6da6918e9a87df295080b1c",
+        "value": "2pzs7Bvzlk9gCaNNh+cmCPFKhEJ+AF9zJ+wEK5Acgxuq0HuJnG1ucUP38sr3MAMuYBHdPmOkjXWiWxhB7EfRWA=="
       }
     ]
   },
   {
-    "@id": "b23002c2178363980a3235ed39c0dd4aaa764a2ea34f59cd54f058535b22f845",
+    "@id": "eae408e00fd31e98eface65ae2fc34f96c19e4055ddcc8a3a0fa8f086f6bd86b",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
     "revision": 4,
@@ -753,36 +753,36 @@
         "json",
         "sha256",
         "hex",
-        "df1857e145a8dba1f9e53375338c2091eba66f89ae9d8eb41edd928679b45434"
+        "6872049e1b0f1862371afbd39d5b26e33067b687dbfafef08693c86f0fbe3f77"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "f5b5b625dc2e2fa51994b4c7eb5a459ed1a4c03f291cc5996aa1003dca6b4869"
+        "285836daea06b5551d4f799f74edcb72406a5b6eeb04cfd70ca0f9f1fb6a2ec4"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "731dcdd5f6e807d5e53d791c3b7025b57084f8f6d08e24907a16c7e48cbe42b7"
+        "2b93d102c6bd4f7c51d0dca6f2978382f1d809a0d71dd5c3d6489ab08a38bedf"
       ]
     ],
     "parentIds": [
-      "af248e62c6c7d3b3905b3b5aeea3bc4a013531a529d6b4410b2885292287f2cf"
+      "a21b333e02874102161146b70fd8d3374b76401b63a6ec4753d46f0b1154a9bf"
     ],
     "changeSet": {
-      "@id": "565b6dc73cfe645a732d7850c237d3c496c2eb318c83c9413aee316b3deb9f43",
+      "@id": "d819d09abdf48dd4674d0d5ae246a61c523165cc59849796f64f3f8038a348a1",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-10-27T17:20:29.420Z",
+      "createdAt": "2026-11-05T19:43:31.956Z",
       "description": {
         "en": "Jena Paradies, a DC and an AC station"
       },
       "signatures": [
         {
           "algorithm": "ES256",
-          "keyId": "61506b54a5b74079ba3e9d590c3b444a4ad5e0080119a9531ea59323aaabac24",
-          "value": "8+niXvSadBJ/Z2jZPJXVQj0R1rRU2FchalhgIeazgj2dcJdsFoYqCeiMBsm2OAOAV7gI/YWHjrd9TPSBXv2ePg=="
+          "keyId": "c6f020b57897c76f8dceb2f2c319447fc2f656b4de657b67a2607b8dfb21725e",
+          "value": "qim6j9nYsOi1z8wkBHucUPYUPemYyd0aimwNAeyjKlznmflVaooliSZhSKemMhaie4XKuJTD7NgR/u5+Mu72vg=="
         }
       ],
       "changes": [
@@ -816,21 +816,21 @@
                       "serialNumber": "DCM-2026-001-1",
                       "publicKeys": [
                         {
-                          "@id": "c1a3388c0ce05621f09f9c697a84ed8377eefed9e7c45d65ac0456f70120abd3",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEtXoZFSN68bwYwdPdQie/4L4OrfaNC2BWv64wbcG7tgvRP9tlc88pz0v9mGUlQ+CI8XIBkRAvme8s9sYlGd2QYQ=="
+                          "@id": "dabde08ee1c4ccad0f3f40cc04b8a29cc7fd03e1d4c2e45d52d2249189deff51",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEibHhmi27gwozrPUXbIPJt1zpibgRXbQYQgEk6oBR6UInwNnS+85MsPMItGudlZX9ZVhNEjbrg3b0jDWkWadpww=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_DC"
                       ],
-                      "created": "2026-10-27T17:20:29.413Z",
-                      "lastChange": "2026-10-27T17:20:29.413Z"
+                      "created": "2026-11-05T19:43:31.950Z",
+                      "lastChange": "2026-11-05T19:43:31.950Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_DC"
                     ],
-                    "created": "2026-10-27T17:20:29.413Z",
-                    "lastChange": "2026-10-27T17:20:29.413Z"
+                    "created": "2026-11-05T19:43:31.950Z",
+                    "lastChange": "2026-11-05T19:43:31.950Z"
                   },
                   {
                     "@id": "DE*GEF*E1*2",
@@ -843,28 +843,28 @@
                       "serialNumber": "DCM-2026-001-2",
                       "publicKeys": [
                         {
-                          "@id": "8355d3c4d7eacd75c18fa2d946cad9ea732da253350164122af49d6f24df12f6",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEb8z/lntB6Flx5vXGF7pvpetNUBOuODPv2WqVAsq7h6N3zwu8RtLUcziN70IUEbla+I0FpPoLzf+ncJvFKnVEIw=="
+                          "@id": "9b26dccd6aa2a06c1a941ab5a449a2e691ef46170ac118644f5c9ef82f4bf1dd",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAElii40+XHZRn7A/Nb1ienMivwnPSMpEADKrZqC/XwC0ht+z4TLyWS22LxGoQh0XYOt1A/hZnJxNqs3hy77wY+9w=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_DC"
                       ],
-                      "created": "2026-10-27T17:20:29.415Z",
-                      "lastChange": "2026-10-27T17:20:29.415Z"
+                      "created": "2026-11-05T19:43:31.952Z",
+                      "lastChange": "2026-11-05T19:43:31.952Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_DC"
                     ],
-                    "created": "2026-10-27T17:20:29.415Z",
-                    "lastChange": "2026-10-27T17:20:29.415Z"
+                    "created": "2026-11-05T19:43:31.952Z",
+                    "lastChange": "2026-11-05T19:43:31.952Z"
                   }
                 ],
                 "templateIds": [
                   "DE*GEF*ST_DC"
                 ],
-                "created": "2026-10-27T17:20:29.415Z",
-                "lastChange": "2026-10-27T17:20:29.415Z"
+                "created": "2026-11-05T19:43:31.952Z",
+                "lastChange": "2026-11-05T19:43:31.952Z"
               },
               {
                 "@id": "DE*GEF*S2",
@@ -880,21 +880,21 @@
                       "serialNumber": "ACM-2026-002-1",
                       "publicKeys": [
                         {
-                          "@id": "ea0b64873006444608eb4490a67f9aa8b24e68ee37884c292cc8793a2784349a",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEP+QfnzqyhVwqV+ZpbFhxLpgp1hUtYYKxb3GI+KYiYlVwCg/MPUYJ7ec2TVmJqEIuCe2ldCc83gg6lnpQf6oBYA=="
+                          "@id": "f7cc87de688af18b26e174a127c5542a78bb9c75a2c67ca13d477d12251a06e6",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEiDd+HTS5qwU0NAtTfWhoiUyIXi1NJPvFUF9FnP0VL9d0CWzMjhSbNHSSfBgNNPtKU8BJzmMc/EqKqrfWc52fDA=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_AC"
                       ],
-                      "created": "2026-10-27T17:20:29.417Z",
-                      "lastChange": "2026-10-27T17:20:29.417Z"
+                      "created": "2026-11-05T19:43:31.954Z",
+                      "lastChange": "2026-11-05T19:43:31.954Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_AC"
                     ],
-                    "created": "2026-10-27T17:20:29.417Z",
-                    "lastChange": "2026-10-27T17:20:29.417Z"
+                    "created": "2026-11-05T19:43:31.954Z",
+                    "lastChange": "2026-11-05T19:43:31.954Z"
                   },
                   {
                     "@id": "DE*GEF*E2*2",
@@ -907,31 +907,31 @@
                       "serialNumber": "ACM-2026-002-2",
                       "publicKeys": [
                         {
-                          "@id": "090b4bb456a44f93cb49eddec7013b4744c687e06220e2f73359211d828ab327",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEmp5bPZZZsnHLwWG7c5N7A7256bYADFK7cAyiqDgatgotjE+Euj4rdy9RjsWBvd92Z4X1XvPJqyHSC8Fqi5CFFA=="
+                          "@id": "e66e76f89658eb089a519c53a115f3e7fe508cf521f5b320db8ec60501eccef4",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEFZwlju/WaUa1DUUUNSJFGw+3V4B9R/93aU06/x7f3dj0La0nWAkq5cA4XK/4d4ty4WYv8RzTW/MeP1L9F6e5mg=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_AC"
                       ],
-                      "created": "2026-10-27T17:20:29.419Z",
-                      "lastChange": "2026-10-27T17:20:29.419Z"
+                      "created": "2026-11-05T19:43:31.955Z",
+                      "lastChange": "2026-11-05T19:43:31.955Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_AC"
                     ],
-                    "created": "2026-10-27T17:20:29.419Z",
-                    "lastChange": "2026-10-27T17:20:29.419Z"
+                    "created": "2026-11-05T19:43:31.956Z",
+                    "lastChange": "2026-11-05T19:43:31.956Z"
                   }
                 ],
                 "templateIds": [
                   "DE*GEF*ST_AC"
                 ],
-                "created": "2026-10-27T17:20:29.419Z",
-                "lastChange": "2026-10-27T17:20:29.419Z"
+                "created": "2026-11-05T19:43:31.956Z",
+                "lastChange": "2026-11-05T19:43:31.956Z"
               }
             ],
-            "created": "2026-10-27T17:20:29.419Z"
+            "created": "2026-11-05T19:43:31.956Z"
           }
         }
       ],
@@ -940,13 +940,13 @@
           "json",
           "sha256",
           "hex",
-          "b7c7b0108cd98ca411d7e1ad54703625f5cb659c9f8cb9362d8dd855d3fd437b"
+          "cbfd65015ebf7d38a7c0767ba953a5c9b5f50504892bed9b34414d0437ee982b"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "9016b50742d36100e70727f45f689cbe3d296022fdfafb4441061c3b2fbd53f9"
+          "882887bd50bed6ccc20b296179038c9bea1f1a30620f9fa1375d478877c5f915"
         ]
       ],
       "afterETags": [
@@ -954,13 +954,13 @@
           "json",
           "sha256",
           "hex",
-          "df1857e145a8dba1f9e53375338c2091eba66f89ae9d8eb41edd928679b45434"
+          "6872049e1b0f1862371afbd39d5b26e33067b687dbfafef08693c86f0fbe3f77"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "f5b5b625dc2e2fa51994b4c7eb5a459ed1a4c03f291cc5996aa1003dca6b4869"
+          "285836daea06b5551d4f799f74edcb72406a5b6eeb04cfd70ca0f9f1fb6a2ec4"
         ]
       ]
     },
@@ -968,31 +968,31 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:29.501Z",
+        "signedAt": "2026-11-05T19:43:32.000Z",
         "algorithm": "ES256",
-        "keyId": "b490ecc8d382e99f19bad697b4da30efee50a99f2f8b1149d22756bc736ad7d5",
-        "value": "EUqVgUnvg+hn9CM1qpuHzIGotRTFTH4c+E4SPpi4WndE2SFE6h/1+ddXRStPcoLNkubr2QuKHaIzgBRoJV9u3A=="
+        "keyId": "d76d4d4ee6807bce5acc02ab3ec841d00c690fb4dc7c2c9a505508d37252805b",
+        "value": "7m4IsJzeI+MedqJ+nsm2EYDUyajwtu46e2LXyYDl06icd8uXdYQcRY69Vdc1Fc1RbihXzKQMGfXrMFi+z7V4ow=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:29.506Z",
+        "signedAt": "2026-11-05T19:43:32.003Z",
         "algorithm": "ES256",
-        "keyId": "9059fbeb4cb8a8381387d2bc6e6f91f88a3f2933b95acac426b9cd354c8e9567",
-        "value": "r8As176BMMhriclw+REiZSX8h1ZBdRmaB54IE2GcyzYYkdTvNNI0st7YDdNvt2puZ37UqqdRGKsJ+sXjstEtnQ=="
+        "keyId": "c9f38055464600f4ed5e24d1c2c21847924b447b02c9fec892c15aa9174d1591",
+        "value": "0TnkreReRiYG65zzHn/ylmD9kCLZrPu8pH8AentPg0LkiC+6LFIaiLYmskM8XxlYQUBff1kyKoWMkKjO5/3rvg=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:29.510Z",
+        "signedAt": "2026-11-05T19:43:32.008Z",
         "algorithm": "ES256",
-        "keyId": "b8b98a33d5eadceb30e5b94e27877373fa49476aa601ba7faad6ba0a9f227242",
-        "value": "96dhf9/15jfZXbTiIXpk9rxVerDloWrBTEBo7r5IIwrqd4vmfqV4ZLpCSmUOV9ek2+pjyQK5YTYizC2lz9J50g=="
+        "keyId": "823d28d540597eb924110cd6247b4b79a207f927c6da6918e9a87df295080b1c",
+        "value": "lXutJ8hxwHFJpUZ/d/ThTLzzPEiFQkFdrweWubk5ePZZBbLKfnXrWlSZtryz5GfAglJOp7LyS5izktjN25movg=="
       }
     ]
   },
   {
-    "@id": "b3deb1c61815e59d116c990606ede0c95530e6e2750df2095119695da2d0fe6e",
+    "@id": "1123654c5fbd2f9a478ac14bf12a28ddf55bf08a4481617b7bf2983357f8809c",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
     "revision": 5,
@@ -1001,36 +1001,36 @@
         "json",
         "sha256",
         "hex",
-        "4339235aedaef7b8ff2d153586f4b251e6cfd1e1bf4447846ed499a02ca7d396"
+        "3277acaded5a25a01addab118308930a0b4758df25c0e9ea9462410ed219005f"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "abf81faf785e5401f009a5a2ed8c3be708c82a7622bddd8d31cea27336d5e892"
+        "19812c2cb1e039b07be5a79007daf05ab696f7b5b21090640fab91e89dbdb853"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "5de4778a6036d78619a2f600b3a27a318e768f7d231034c49e16b93997f8b15d"
+        "8937a33d341535026d89993a9dfbf861924a6727f0b72ab4e704e45b2b6ff9da"
       ]
     ],
     "parentIds": [
-      "b23002c2178363980a3235ed39c0dd4aaa764a2ea34f59cd54f058535b22f845"
+      "eae408e00fd31e98eface65ae2fc34f96c19e4055ddcc8a3a0fa8f086f6bd86b"
     ],
     "changeSet": {
-      "@id": "a3d5d30de0ee830f9b34dac9e4267a405e074a884fe55ca5ef83285d4392649c",
+      "@id": "04d247176ec428cc25320964155158c14027c2d4f6139e420cd4880193ade65a",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-10-27T17:20:29.555Z",
+      "createdAt": "2026-11-05T19:43:32.047Z",
       "description": {
         "en": "Jena Nord, a DC and an AC station"
       },
       "signatures": [
         {
           "algorithm": "ES256",
-          "keyId": "61506b54a5b74079ba3e9d590c3b444a4ad5e0080119a9531ea59323aaabac24",
-          "value": "QtOvqj2Gg5NLtoEaaftbl3bceQsHb/gAVRVN+8ELDBAa9N6SjRZjixueZ6zRZxclaQuu/L1r3lDzjw8NMdxH/g=="
+          "keyId": "c6f020b57897c76f8dceb2f2c319447fc2f656b4de657b67a2607b8dfb21725e",
+          "value": "MUkUyrnWLyn5k+V+XVoUtmVQTvb475IWYHHgCPuybhlsukkvRJ3z9lP3EqyJuIX3ZKRg2QyA1gmXOww2QY67Sg=="
         }
       ],
       "changes": [
@@ -1064,21 +1064,21 @@
                       "serialNumber": "DCM-2026-003-1",
                       "publicKeys": [
                         {
-                          "@id": "c32f8d00585dfcdbee849bb667b47db17b977c938ff7ae19dbc8ce42ed0124b2",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEl3ui9kih5Zswwkxh9/+WD4uOIXZH6EFfgKAbtwQKAhVgIRdc5jLjcJnL9ZzAfwSMzq57Y89C3Dr7wpYVSJmK+w=="
+                          "@id": "f282844f09a58df1631ae816c81bb225ce9b6baa2717344451b74715c5bae01d",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEdiudEGjtt8su8nBpncbECrvGhFmQGEaA4dGrgqiY1Jy2UvFwpC18hgidWc1YKf0oYrrGWFkkpWMl6bAjg8Y0GA=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_DC"
                       ],
-                      "created": "2026-10-27T17:20:29.543Z",
-                      "lastChange": "2026-10-27T17:20:29.543Z"
+                      "created": "2026-11-05T19:43:32.041Z",
+                      "lastChange": "2026-11-05T19:43:32.041Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_DC"
                     ],
-                    "created": "2026-10-27T17:20:29.543Z",
-                    "lastChange": "2026-10-27T17:20:29.543Z"
+                    "created": "2026-11-05T19:43:32.041Z",
+                    "lastChange": "2026-11-05T19:43:32.041Z"
                   },
                   {
                     "@id": "DE*GEF*E3*2",
@@ -1091,28 +1091,28 @@
                       "serialNumber": "DCM-2026-003-2",
                       "publicKeys": [
                         {
-                          "@id": "436a2841088a6730c2ee3aa8f4163e020eeeb8660435471e18d4fa67d24e6343",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEB6pbhi6hpJwAP2WRCi3N+SLMKQDW3VA4lDz9fugKvo1U+93ygPuVnFYWO4ecfZeRuc6me8i/2ujyuOfYuu61Ug=="
+                          "@id": "23185bff625c54f6160a52a6bc011a64cc91eb926af92e9d752384b71972325f",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEUqgQuXCisME2lRCgzXqnn0exSpHVozaJvIz6nvuUfHjWG+Xt6Y7YOu2PAzjWvVbdb0FVxrMsZvPldXDBRBu/dQ=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_DC"
                       ],
-                      "created": "2026-10-27T17:20:29.545Z",
-                      "lastChange": "2026-10-27T17:20:29.545Z"
+                      "created": "2026-11-05T19:43:32.043Z",
+                      "lastChange": "2026-11-05T19:43:32.043Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_DC"
                     ],
-                    "created": "2026-10-27T17:20:29.545Z",
-                    "lastChange": "2026-10-27T17:20:29.545Z"
+                    "created": "2026-11-05T19:43:32.043Z",
+                    "lastChange": "2026-11-05T19:43:32.043Z"
                   }
                 ],
                 "templateIds": [
                   "DE*GEF*ST_DC"
                 ],
-                "created": "2026-10-27T17:20:29.545Z",
-                "lastChange": "2026-10-27T17:20:29.545Z"
+                "created": "2026-11-05T19:43:32.043Z",
+                "lastChange": "2026-11-05T19:43:32.043Z"
               },
               {
                 "@id": "DE*GEF*S4",
@@ -1128,21 +1128,21 @@
                       "serialNumber": "ACM-2026-004-1",
                       "publicKeys": [
                         {
-                          "@id": "7ff6ac1ce5c671c0f6768ec58727908f5895f625e5500f78e812a2fdb48664c2",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEC+7KYKjvONLQnXaJHJ5HZ2eRn1JpOAS9sYn8m61WAD9GlHgKQj5n/9Z0ssYd92Vuezmx3zQfb8EUQidvJVZn8g=="
+                          "@id": "b7320db1a02bb1fc81ddcc9ced61cf46d583a56fa6101ac632e13c97df417edd",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEd7JtKmJwhOojqtxPldlwzW1IT/JUURu1AIX0wyVFqS0P6EPlEx4iKATF50uLg8ghjbdoBTUPWjhfY8eJAudicw=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_AC"
                       ],
-                      "created": "2026-10-27T17:20:29.547Z",
-                      "lastChange": "2026-10-27T17:20:29.547Z"
+                      "created": "2026-11-05T19:43:32.044Z",
+                      "lastChange": "2026-11-05T19:43:32.044Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_AC"
                     ],
-                    "created": "2026-10-27T17:20:29.548Z",
-                    "lastChange": "2026-10-27T17:20:29.548Z"
+                    "created": "2026-11-05T19:43:32.045Z",
+                    "lastChange": "2026-11-05T19:43:32.045Z"
                   },
                   {
                     "@id": "DE*GEF*E4*2",
@@ -1155,31 +1155,31 @@
                       "serialNumber": "ACM-2026-004-2",
                       "publicKeys": [
                         {
-                          "@id": "bf4c6e09c789214c647338cc225a636747d7bc0744017fe0fa1803683d52c6e2",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEDfFNauZ2eW5SEhIaELvgk5+eB0TlyAfWBfE2Ai3j1NQgeCb2ucDikx6s7Ob7829ZXw4yqpdKBaGU+sC3acxxkA=="
+                          "@id": "d63748ad6719d3963f383b755b4c19652fbd38c9db413a6f032c1b8b93fba8da",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEX8TtjHpaVShWqtiYsVLHNCjdUzEhuR1Ep1HR7uWJ3ayhyqTrO5uE5BWI5TPc2hlukIkfyNYuq8YvTQGjOtZ6Cw=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_AC"
                       ],
-                      "created": "2026-10-27T17:20:29.550Z",
-                      "lastChange": "2026-10-27T17:20:29.550Z"
+                      "created": "2026-11-05T19:43:32.046Z",
+                      "lastChange": "2026-11-05T19:43:32.046Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_AC"
                     ],
-                    "created": "2026-10-27T17:20:29.550Z",
-                    "lastChange": "2026-10-27T17:20:29.550Z"
+                    "created": "2026-11-05T19:43:32.046Z",
+                    "lastChange": "2026-11-05T19:43:32.046Z"
                   }
                 ],
                 "templateIds": [
                   "DE*GEF*ST_AC"
                 ],
-                "created": "2026-10-27T17:20:29.551Z",
-                "lastChange": "2026-10-27T17:20:29.551Z"
+                "created": "2026-11-05T19:43:32.046Z",
+                "lastChange": "2026-11-05T19:43:32.046Z"
               }
             ],
-            "created": "2026-10-27T17:20:29.552Z"
+            "created": "2026-11-05T19:43:32.047Z"
           }
         }
       ],
@@ -1188,13 +1188,13 @@
           "json",
           "sha256",
           "hex",
-          "df1857e145a8dba1f9e53375338c2091eba66f89ae9d8eb41edd928679b45434"
+          "6872049e1b0f1862371afbd39d5b26e33067b687dbfafef08693c86f0fbe3f77"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "f5b5b625dc2e2fa51994b4c7eb5a459ed1a4c03f291cc5996aa1003dca6b4869"
+          "285836daea06b5551d4f799f74edcb72406a5b6eeb04cfd70ca0f9f1fb6a2ec4"
         ]
       ],
       "afterETags": [
@@ -1202,13 +1202,13 @@
           "json",
           "sha256",
           "hex",
-          "4339235aedaef7b8ff2d153586f4b251e6cfd1e1bf4447846ed499a02ca7d396"
+          "3277acaded5a25a01addab118308930a0b4758df25c0e9ea9462410ed219005f"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "abf81faf785e5401f009a5a2ed8c3be708c82a7622bddd8d31cea27336d5e892"
+          "19812c2cb1e039b07be5a79007daf05ab696f7b5b21090640fab91e89dbdb853"
         ]
       ]
     },
@@ -1216,31 +1216,31 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:29.677Z",
+        "signedAt": "2026-11-05T19:43:32.107Z",
         "algorithm": "ES256",
-        "keyId": "b490ecc8d382e99f19bad697b4da30efee50a99f2f8b1149d22756bc736ad7d5",
-        "value": "wlgzW+Q9N6GsdwCNKwQH6g74ORvW7mIPy8eLkIB8UdJUhE3IXXk0IRDy4VRT8NFPgIxgnGkVwATH/ywtMolh9w=="
+        "keyId": "d76d4d4ee6807bce5acc02ab3ec841d00c690fb4dc7c2c9a505508d37252805b",
+        "value": "G4podvi9n5sXHPmdCVP2ynupr73pmn79N+PZ6RyJdwOnYFCQB07r2z23dRtTDhsm3QNJYF38W/bjYPHRUzSQWw=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:29.681Z",
+        "signedAt": "2026-11-05T19:43:32.111Z",
         "algorithm": "ES256",
-        "keyId": "9059fbeb4cb8a8381387d2bc6e6f91f88a3f2933b95acac426b9cd354c8e9567",
-        "value": "LUccmetfGi54JdP10nHW+8C2cuFkB/x8yOd/KmrvH1njgiwNdjS5dDumVbHMiwY/Cjgvk8hBJn1uM681B/XH5A=="
+        "keyId": "c9f38055464600f4ed5e24d1c2c21847924b447b02c9fec892c15aa9174d1591",
+        "value": "JxmFWzjawfahFstI/Msscf8SkS+7rj5jrxzd3d2S7VvK+r8VbiQSnd1Z2S8xjM1UXRSZAtFqXzC8bq8zhy0rsw=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:29.692Z",
+        "signedAt": "2026-11-05T19:43:32.115Z",
         "algorithm": "ES256",
-        "keyId": "b8b98a33d5eadceb30e5b94e27877373fa49476aa601ba7faad6ba0a9f227242",
-        "value": "WJGrsJ92oSPS79TUTku4PdEq7GA+58f4lkv+Veo1akYeIbKBzOFjU8yf4Bc5n9JFzJvlKgCwhkxmvKKfZQ0ZQA=="
+        "keyId": "823d28d540597eb924110cd6247b4b79a207f927c6da6918e9a87df295080b1c",
+        "value": "QDt3frXfsPeyoniXGFQE51Oon2E6KOkE8OOrLzQdotl8Do1zLeAqRlhS1zvWCOCpuNKsRG2yStqvuVLHPgT/EQ=="
       }
     ]
   },
   {
-    "@id": "709425707fcc793978597d1fe2baa23edee7246b11102105eba1f7b960945290",
+    "@id": "3d3ab65504a0758a4a6ad4dfef48d9c2e76882090ff969b3e914e608c2e43961",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
     "revision": 6,
@@ -1249,36 +1249,36 @@
         "json",
         "sha256",
         "hex",
-        "96811ae8440cd27c2c9699108e05b266e9565669e4ca84b50deb9974ad6ac90d"
+        "c391cea678e8e75a9911f97174448c9c26f179d9cea2a80497fa13e8bc13a3d1"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "b248987c693c3fe86062693e0842bfe266d8433d0bd38c819e55f0e46c05000e"
+        "7dd0549346c853df2af7227504d078fd901e9e0907f9ffdbe75d2f8960e12099"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "ffcdc8b5c9ba68bec51ddd866a63af49affead089af9bc795ac00eb07a9dec2a"
+        "ba561387058fe14c5a8c7dd1f61f4ce2d0d6617e4c639ea5538e9934b5b9c7b5"
       ]
     ],
     "parentIds": [
-      "b3deb1c61815e59d116c990606ede0c95530e6e2750df2095119695da2d0fe6e"
+      "1123654c5fbd2f9a478ac14bf12a28ddf55bf08a4481617b7bf2983357f8809c"
     ],
     "changeSet": {
-      "@id": "c447ec03344bbe1319569251dd5d4ab85f932fb2a831b106aaf1e9da44aa5ae1",
+      "@id": "72658e58d1a6a4859bfcd3f19ad6703ef96363ec387fac328002eab2779ce7db",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-10-27T17:20:29.738Z",
+      "createdAt": "2026-11-05T19:43:32.164Z",
       "description": {
         "en": "The DC and the AC charging stations"
       },
       "signatures": [
         {
           "algorithm": "ES256",
-          "keyId": "61506b54a5b74079ba3e9d590c3b444a4ad5e0080119a9531ea59323aaabac24",
-          "value": "JiMw7JQea3AU5hYCTTUwBJfz7/PF/GS1k7fkQg96i4kP5vhxwe2fz2CeSFGqAf1HRN8OwvdV++FIxaCtE+jlxw=="
+          "keyId": "c6f020b57897c76f8dceb2f2c319447fc2f656b4de657b67a2607b8dfb21725e",
+          "value": "ch6xIiPI5tmRsy4s2FfISJDMyLpDFZvNPD89rIBNVr923xfPKNbCtxozgMomW2P3GU9WUKYrv7TmsnW+ffjzrg=="
         }
       ],
       "changes": [
@@ -1295,7 +1295,7 @@
               "DE*GEF*S1",
               "DE*GEF*S3"
             ],
-            "created": "2026-10-27T17:20:29.702Z"
+            "created": "2026-11-05T19:43:32.129Z"
           }
         },
         {
@@ -1311,7 +1311,7 @@
               "DE*GEF*S2",
               "DE*GEF*S4"
             ],
-            "created": "2026-10-27T17:20:29.737Z"
+            "created": "2026-11-05T19:43:32.164Z"
           }
         }
       ],
@@ -1320,13 +1320,13 @@
           "json",
           "sha256",
           "hex",
-          "4339235aedaef7b8ff2d153586f4b251e6cfd1e1bf4447846ed499a02ca7d396"
+          "3277acaded5a25a01addab118308930a0b4758df25c0e9ea9462410ed219005f"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "abf81faf785e5401f009a5a2ed8c3be708c82a7622bddd8d31cea27336d5e892"
+          "19812c2cb1e039b07be5a79007daf05ab696f7b5b21090640fab91e89dbdb853"
         ]
       ],
       "afterETags": [
@@ -1334,13 +1334,13 @@
           "json",
           "sha256",
           "hex",
-          "96811ae8440cd27c2c9699108e05b266e9565669e4ca84b50deb9974ad6ac90d"
+          "c391cea678e8e75a9911f97174448c9c26f179d9cea2a80497fa13e8bc13a3d1"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "b248987c693c3fe86062693e0842bfe266d8433d0bd38c819e55f0e46c05000e"
+          "7dd0549346c853df2af7227504d078fd901e9e0907f9ffdbe75d2f8960e12099"
         ]
       ]
     },
@@ -1348,31 +1348,31 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:29.835Z",
+        "signedAt": "2026-11-05T19:43:32.222Z",
         "algorithm": "ES256",
-        "keyId": "b490ecc8d382e99f19bad697b4da30efee50a99f2f8b1149d22756bc736ad7d5",
-        "value": "JDSG8KVwKmRDSCyigfD7l3vkXXSrpawI8F/M5UM+N3z3R090DHOhPpu1+guzKbxTMlJcnW7PFAZCKaEu/rR3eg=="
+        "keyId": "d76d4d4ee6807bce5acc02ab3ec841d00c690fb4dc7c2c9a505508d37252805b",
+        "value": "/T8/Xc5Bo+pzopjKro0AxK6SerOQ+ZDDkCvHTrV+rxzUn4TOy56PzUBoq4swONGKhKQP/i9FI6pA3oF0or2vGw=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:29.839Z",
+        "signedAt": "2026-11-05T19:43:32.225Z",
         "algorithm": "ES256",
-        "keyId": "9059fbeb4cb8a8381387d2bc6e6f91f88a3f2933b95acac426b9cd354c8e9567",
-        "value": "bRvBgDOCsvVYF2WH/woAeOZ/S86cRLNz+MgKeEx1Y1faSbo65AgWEhNfwVJyVu7ULgGGQhMUDAHwIhS8/hPGOA=="
+        "keyId": "c9f38055464600f4ed5e24d1c2c21847924b447b02c9fec892c15aa9174d1591",
+        "value": "Ee0xAy83xmJbvG+If1lJtJ0soHULHLZoQ07tqHtMeVkSB42XFXHLTY+oXkZhvkh1lRE13Z/s7uyicPbIZJhCFQ=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:29.843Z",
+        "signedAt": "2026-11-05T19:43:32.230Z",
         "algorithm": "ES256",
-        "keyId": "b8b98a33d5eadceb30e5b94e27877373fa49476aa601ba7faad6ba0a9f227242",
-        "value": "F4TNgLOJ1aDe8vx3tYHn7A/wTTd2QvyeGhRlUU+4r6PZluPOWqjOc1XrGA5zkAhYb469k7iuZB85CUIxwFVcTA=="
+        "keyId": "823d28d540597eb924110cd6247b4b79a207f927c6da6918e9a87df295080b1c",
+        "value": "DCzVrinvXf6p8hyA3BNG/gwseot3LrO7e2vp16ibdkWUusOm6Z8LYwBleRFUo9FqMm3iU5/60mGnvqsdZ7MlyA=="
       }
     ]
   },
   {
-    "@id": "59c07905fcbb9cd350ef785ee9dd6e6626cb987d0c4ca051954fa5f33c46a3da",
+    "@id": "ab388affdc010133c5e8ad38ad183eb9c3a68b14eba564b5bd953e984f13a79e",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
     "revision": 7,
@@ -1381,36 +1381,36 @@
         "json",
         "sha256",
         "hex",
-        "814d90e03d35107ff494c5c304e8ca19fbfe8bd1035e8625bb68f396e8dc1fa3"
+        "4007ae7e08ea0d3dd038b380bba5f2be095a2b5b147e56a6dd7fc7391d4b7a49"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "3dcbcdacc050fba01ae62a5a93f912654e8adb424c8b100e9e6a2f249c6f9840"
+        "aeec7b3958a941c8cf5954051cb6d9a61f941c28533efca570bdf8289437a9f3"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "f874f17711040fd330b0b5901c09272a1dc9c453dd6c437a54ac0bc91ca49c6c"
+        "7150baa1c8b91978e6e5c6e722151ca4fa2acf29350b24215cd16e316d9b743f"
       ]
     ],
     "parentIds": [
-      "709425707fcc793978597d1fe2baa23edee7246b11102105eba1f7b960945290"
+      "3d3ab65504a0758a4a6ad4dfef48d9c2e76882090ff969b3e914e608c2e43961"
     ],
     "changeSet": {
-      "@id": "cca40b1ad77ded734e6386943e1ca9fc0d97b79c23b996a2fa18e27fef1a7754",
+      "@id": "73e2bc14eed7138061ce3df1412abeb24d739e70acf192ccfac906dfd624794b",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-10-27T17:20:29.899Z",
+      "createdAt": "2026-11-05T19:43:32.283Z",
       "description": {
         "en": "The DC and the AC EVSEs"
       },
       "signatures": [
         {
           "algorithm": "ES256",
-          "keyId": "61506b54a5b74079ba3e9d590c3b444a4ad5e0080119a9531ea59323aaabac24",
-          "value": "5sC66hsCcWzJzVvQzLpFzLWoymqT+k05Q2k1M80TbNpWkQxjNuJw6vsQ4OVb59EDZQvmQda5/YuOik7ItS80Sg=="
+          "keyId": "c6f020b57897c76f8dceb2f2c319447fc2f656b4de657b67a2607b8dfb21725e",
+          "value": "wTRzjr8dcxb9FHBVjVHHifnRPkwkXSbFRNIAzh9jiKgUw4vt0p7nbHrzUpKZuh0XSk8a2kvXIBYJyqcrVvow5w=="
         }
       ],
       "changes": [
@@ -1429,7 +1429,7 @@
               "DE*GEF*E3*1",
               "DE*GEF*E3*2"
             ],
-            "created": "2026-10-27T17:20:29.859Z"
+            "created": "2026-11-05T19:43:32.244Z"
           }
         },
         {
@@ -1447,7 +1447,7 @@
               "DE*GEF*E4*1",
               "DE*GEF*E4*2"
             ],
-            "created": "2026-10-27T17:20:29.898Z"
+            "created": "2026-11-05T19:43:32.283Z"
           }
         }
       ],
@@ -1456,13 +1456,13 @@
           "json",
           "sha256",
           "hex",
-          "96811ae8440cd27c2c9699108e05b266e9565669e4ca84b50deb9974ad6ac90d"
+          "c391cea678e8e75a9911f97174448c9c26f179d9cea2a80497fa13e8bc13a3d1"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "b248987c693c3fe86062693e0842bfe266d8433d0bd38c819e55f0e46c05000e"
+          "7dd0549346c853df2af7227504d078fd901e9e0907f9ffdbe75d2f8960e12099"
         ]
       ],
       "afterETags": [
@@ -1470,13 +1470,13 @@
           "json",
           "sha256",
           "hex",
-          "814d90e03d35107ff494c5c304e8ca19fbfe8bd1035e8625bb68f396e8dc1fa3"
+          "4007ae7e08ea0d3dd038b380bba5f2be095a2b5b147e56a6dd7fc7391d4b7a49"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "3dcbcdacc050fba01ae62a5a93f912654e8adb424c8b100e9e6a2f249c6f9840"
+          "aeec7b3958a941c8cf5954051cb6d9a61f941c28533efca570bdf8289437a9f3"
         ]
       ]
     },
@@ -1484,31 +1484,31 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:29.987Z",
+        "signedAt": "2026-11-05T19:43:32.342Z",
         "algorithm": "ES256",
-        "keyId": "b490ecc8d382e99f19bad697b4da30efee50a99f2f8b1149d22756bc736ad7d5",
-        "value": "dNHHDd8QIplpI2hF0ToP2NtNBsM0qIgGZ36QWOYBMDIpQuzRd3juksEhgkxgISg4rONPoUJyUBBdlKN4WxAlCQ=="
+        "keyId": "d76d4d4ee6807bce5acc02ab3ec841d00c690fb4dc7c2c9a505508d37252805b",
+        "value": "I8RGPlh85LQeuw5W7o+XZtJ8eoMq7TSYuJ0L4a5CCJauwnRU4qqBm9Aty9jIuudKAgU/cIi9itp7/BRFtRoiOw=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:30.002Z",
+        "signedAt": "2026-11-05T19:43:32.346Z",
         "algorithm": "ES256",
-        "keyId": "9059fbeb4cb8a8381387d2bc6e6f91f88a3f2933b95acac426b9cd354c8e9567",
-        "value": "wUSEsXSgvzzrlEssf4MX80m2f1qwG8hb+6wBfXqWZL1J3DQQa+ivEsPeK05LccLZQKhj3/FMg+wmy+9dR4WNFA=="
+        "keyId": "c9f38055464600f4ed5e24d1c2c21847924b447b02c9fec892c15aa9174d1591",
+        "value": "2xwPvsS0d1tcK2br+oWtdRN/FDY20qzjwph65amls2Fdt2TxmCQJcMNa6v+p2w3w9mkfqcQYAK9JwZ+/DSEePA=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:30.006Z",
+        "signedAt": "2026-11-05T19:43:32.350Z",
         "algorithm": "ES256",
-        "keyId": "b8b98a33d5eadceb30e5b94e27877373fa49476aa601ba7faad6ba0a9f227242",
-        "value": "gPpihBSdpMCFfOdW2L0y1MXgO+WGNsOQMTDdDFastLyRiTyDEpmj2zC4/i8teSucnq4wuRZ9XuI91ETkoZsafQ=="
+        "keyId": "823d28d540597eb924110cd6247b4b79a207f927c6da6918e9a87df295080b1c",
+        "value": "pd7DTMJVzbJFjGSpjGXk2TR3sOJGsg3eDE7fcJV3qtuFt1TN3Zg1Hh5jSNvsKtSirKzI3led87Urzhr6mfdD3g=="
       }
     ]
   },
   {
-    "@id": "a881f22454a53aff9eafb22b683af39be17e2058eeb8d446f8e082fc9feca4e6",
+    "@id": "3b3c38b60146864c79201a1ca4e5322fa4979ec59b77f89ea9e383cbb71a6ecc",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
     "revision": 8,
@@ -1517,36 +1517,36 @@
         "json",
         "sha256",
         "hex",
-        "1e0b5fac8ad3d81e5d225614a074bf7a364862bed9edab0e365d4b3f7ff4b83d"
+        "2f7a19efbdca31f66862d45281fb212cb3a35a483e6268a2762ebfc396e33d69"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "aa7f806f23eae4304419f47f9cfad3663f99d182ab77d0bb256ee30c7c04890c"
+        "1419f0f3ddf130b585bc0d8d9b9d07e4900b73b9b4d82b044e60a945cbe85885"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "6920c38a215648ee00556d513b53e72efc1d15b0b30e9a66302bb06281ba31ca"
+        "06300722ae99d9fc187c0e65980b35d9219d5a49fd68181fd62fd5768703a488"
       ]
     ],
     "parentIds": [
-      "59c07905fcbb9cd350ef785ee9dd6e6626cb987d0c4ca051954fa5f33c46a3da"
+      "ab388affdc010133c5e8ad38ad183eb9c3a68b14eba564b5bd953e984f13a79e"
     ],
     "changeSet": {
-      "@id": "a42f8f79b4ec35bd273539dfa005833efc548b6a16065a965b4eb728d3777d24",
+      "@id": "b4c2b974b721e339e79a43c8a8a2af9b7e2392321811c415cd02f0734cca6311",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-10-27T17:20:30.493Z",
+      "createdAt": "2026-11-05T19:43:32.574Z",
       "description": {
         "en": "Jena Lobeda, a DC and an AC station"
       },
       "signatures": [
         {
           "algorithm": "ES256",
-          "keyId": "61506b54a5b74079ba3e9d590c3b444a4ad5e0080119a9531ea59323aaabac24",
-          "value": "To5zLcVk8HlG0EOiBYwvLWZmAmyk6Fh05k5wfJc3GGkxsleeSn/l6DqlH6+E0d4k+svVCDL9yy4p7i4C3j93/g=="
+          "keyId": "c6f020b57897c76f8dceb2f2c319447fc2f656b4de657b67a2607b8dfb21725e",
+          "value": "63gqmAejOBUrQrvUmw4XynGqCH9+LAuRtJ/Y59PeYsU9GdufXeMi5DC24N9GTtqliVnGg/2LWOBQ14TXOlGvDA=="
         }
       ],
       "changes": [
@@ -1580,21 +1580,21 @@
                       "serialNumber": "DCM-2026-005-1",
                       "publicKeys": [
                         {
-                          "@id": "9cdbabbf41d0ce6c5794db5369fd7c4d0a16baa3ea8660a6d2df6c292d107c89",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEwLrpfZWHnrlcIr4hjvAG3NQotsYeuUZQyeuoQ2hw7cgSpJWilzV3+SfvacfPiRo54DH/xgwtWF9TtA2WCu1Bmg=="
+                          "@id": "ad6c68a849824e3e69df473aa17ed1904b2b0be2127e923c7b45a455d77296e0",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEKqUN3lCcSXftczhGyWR1GCGci/FGfVfgYi/vxagrQkHdsmD+lXXxAbVuUvYJZjd379QB0PlFDH4bnveRNMdP2w=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_DC"
                       ],
-                      "created": "2026-10-27T17:20:30.486Z",
-                      "lastChange": "2026-10-27T17:20:30.486Z"
+                      "created": "2026-11-05T19:43:32.567Z",
+                      "lastChange": "2026-11-05T19:43:32.567Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_DC"
                     ],
-                    "created": "2026-10-27T17:20:30.486Z",
-                    "lastChange": "2026-10-27T17:20:30.486Z"
+                    "created": "2026-11-05T19:43:32.567Z",
+                    "lastChange": "2026-11-05T19:43:32.567Z"
                   },
                   {
                     "@id": "DE*GEF*E5*2",
@@ -1607,28 +1607,28 @@
                       "serialNumber": "DCM-2026-005-2",
                       "publicKeys": [
                         {
-                          "@id": "86e5737f3f8ae065f4aee0182b3cd48ccf34d706782e4872a1c12a88ebda23e1",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEoOY0hjxHIFJs6g3ape2cvZSOsjG6icc6TI6D9AJ1xbFaho0STa4qlv606a9mlXZIAJGjlbHeNZQfsEQAuEHVBg=="
+                          "@id": "df2ca4feecc022fe409d6e4d8b17958764d8a20b401942fbad0f595f6e1fa8be",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE4MU6lfrZE/CkEWXCe3zvAvWFgfwpGtirQhRANlrju4CyzjylV7Q0Q0YAtG8VJGgveHbBN/FuIXRU2llu3YgP0A=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_DC"
                       ],
-                      "created": "2026-10-27T17:20:30.488Z",
-                      "lastChange": "2026-10-27T17:20:30.488Z"
+                      "created": "2026-11-05T19:43:32.569Z",
+                      "lastChange": "2026-11-05T19:43:32.569Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_DC"
                     ],
-                    "created": "2026-10-27T17:20:30.488Z",
-                    "lastChange": "2026-10-27T17:20:30.488Z"
+                    "created": "2026-11-05T19:43:32.569Z",
+                    "lastChange": "2026-11-05T19:43:32.569Z"
                   }
                 ],
                 "templateIds": [
                   "DE*GEF*ST_DC"
                 ],
-                "created": "2026-10-27T17:20:30.488Z",
-                "lastChange": "2026-10-27T17:20:30.488Z"
+                "created": "2026-11-05T19:43:32.569Z",
+                "lastChange": "2026-11-05T19:43:32.569Z"
               },
               {
                 "@id": "DE*GEF*S6",
@@ -1644,21 +1644,21 @@
                       "serialNumber": "ACM-2026-006-1",
                       "publicKeys": [
                         {
-                          "@id": "ff35c5eeb1f82ca0a03adddf1b69cf5a50bd71a2c96b6c051cd2d00b81b88685",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE05NwKjHBFkjhK7JyMQp/ZGgmTYNz6A2JWKfxBbTPt3aMZ0PMQsz2SSWuEXXJZZlL5pok002D/kXhw2cwPzw/kQ=="
+                          "@id": "5c6964d19a794e32bfbf6ce9449bf399b26593c4bff0e5effe17a37e4b166380",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEaA+YRPW+XXOfTyXC7hqgGnN8OhdrNndz93oGtey3GpX4Ggx2vMvLuvdQ6wFaKrnWk6SyoL6yk+SeXQva5rRRIg=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_AC"
                       ],
-                      "created": "2026-10-27T17:20:30.490Z",
-                      "lastChange": "2026-10-27T17:20:30.490Z"
+                      "created": "2026-11-05T19:43:32.571Z",
+                      "lastChange": "2026-11-05T19:43:32.571Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_AC"
                     ],
-                    "created": "2026-10-27T17:20:30.490Z",
-                    "lastChange": "2026-10-27T17:20:30.490Z"
+                    "created": "2026-11-05T19:43:32.571Z",
+                    "lastChange": "2026-11-05T19:43:32.571Z"
                   },
                   {
                     "@id": "DE*GEF*E6*2",
@@ -1671,31 +1671,31 @@
                       "serialNumber": "ACM-2026-006-2",
                       "publicKeys": [
                         {
-                          "@id": "9e748fef8256e485335a764d0445810873337d63517a16190a1ae31c8c5d93b4",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEskxDuzB7O3k0nVNnZ7kvMqYBDtRDkXVqz0m7HnOZppvfUH1LZiGAGLhFQoqtQSb1HgVUWAcpP/ZmVVzQkT/RmQ=="
+                          "@id": "a267108e39326617b7af752c869fddc70f85cb16f68d657ab00f2259f9cc2835",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEcvLhIk/90QmM6vNOWtIgN0HAXvH+Cx6fIaoJ3IWY3bwdCwa6Wns5hniFXffyZ/98CJX0F0XObssTdn4BaN43vA=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_AC"
                       ],
-                      "created": "2026-10-27T17:20:30.492Z",
-                      "lastChange": "2026-10-27T17:20:30.492Z"
+                      "created": "2026-11-05T19:43:32.572Z",
+                      "lastChange": "2026-11-05T19:43:32.572Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_AC"
                     ],
-                    "created": "2026-10-27T17:20:30.492Z",
-                    "lastChange": "2026-10-27T17:20:30.492Z"
+                    "created": "2026-11-05T19:43:32.573Z",
+                    "lastChange": "2026-11-05T19:43:32.573Z"
                   }
                 ],
                 "templateIds": [
                   "DE*GEF*ST_AC"
                 ],
-                "created": "2026-10-27T17:20:30.492Z",
-                "lastChange": "2026-10-27T17:20:30.492Z"
+                "created": "2026-11-05T19:43:32.573Z",
+                "lastChange": "2026-11-05T19:43:32.573Z"
               }
             ],
-            "created": "2026-10-27T17:20:30.492Z"
+            "created": "2026-11-05T19:43:32.573Z"
           }
         }
       ],
@@ -1704,13 +1704,13 @@
           "json",
           "sha256",
           "hex",
-          "814d90e03d35107ff494c5c304e8ca19fbfe8bd1035e8625bb68f396e8dc1fa3"
+          "4007ae7e08ea0d3dd038b380bba5f2be095a2b5b147e56a6dd7fc7391d4b7a49"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "3dcbcdacc050fba01ae62a5a93f912654e8adb424c8b100e9e6a2f249c6f9840"
+          "aeec7b3958a941c8cf5954051cb6d9a61f941c28533efca570bdf8289437a9f3"
         ]
       ],
       "afterETags": [
@@ -1718,13 +1718,13 @@
           "json",
           "sha256",
           "hex",
-          "1e0b5fac8ad3d81e5d225614a074bf7a364862bed9edab0e365d4b3f7ff4b83d"
+          "2f7a19efbdca31f66862d45281fb212cb3a35a483e6268a2762ebfc396e33d69"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "aa7f806f23eae4304419f47f9cfad3663f99d182ab77d0bb256ee30c7c04890c"
+          "1419f0f3ddf130b585bc0d8d9b9d07e4900b73b9b4d82b044e60a945cbe85885"
         ]
       ]
     },
@@ -1732,31 +1732,31 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:30.622Z",
+        "signedAt": "2026-11-05T19:43:32.623Z",
         "algorithm": "ES256",
-        "keyId": "b490ecc8d382e99f19bad697b4da30efee50a99f2f8b1149d22756bc736ad7d5",
-        "value": "3oZysByTDMVoQk0ygPk+spE64ywnG2YXwl3zC9WF1uWJWQdl+gFea1YCAw+ip1+vbFj2n9psDZ3C1q9lzjNpAg=="
+        "keyId": "d76d4d4ee6807bce5acc02ab3ec841d00c690fb4dc7c2c9a505508d37252805b",
+        "value": "yvu9DdSYyi5j4kp44w3QbJztsYuxgJqnaPF9aqpoWOPA18EMZ9NMu36/x8TS/0OiQb473YhC9n9NweIgVuPf1Q=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:30.627Z",
+        "signedAt": "2026-11-05T19:43:32.627Z",
         "algorithm": "ES256",
-        "keyId": "9059fbeb4cb8a8381387d2bc6e6f91f88a3f2933b95acac426b9cd354c8e9567",
-        "value": "T8b+KysY7I/PdH7+eRo1LZU1iOb05ihdjgF0AqsxbqacwejCTjpTubde9ge9qfdab2vRXGlXoDrtcRbR5jr37A=="
+        "keyId": "c9f38055464600f4ed5e24d1c2c21847924b447b02c9fec892c15aa9174d1591",
+        "value": "T7xtdVCDX98XpbDy5ef28Y4txLA4ZevsbX7zlnnTBfQID/7gx0gANfuVvL8qS8WBmApj5nBRAxLzWS6pNE/hBA=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:30.631Z",
+        "signedAt": "2026-11-05T19:43:32.631Z",
         "algorithm": "ES256",
-        "keyId": "b8b98a33d5eadceb30e5b94e27877373fa49476aa601ba7faad6ba0a9f227242",
-        "value": "BrkDxke5I22oSLLnTNeITsADaonFHNch60e/A25STeo6bMbqLFRGedq56CbHvKbDM0Wwe/tEJShQdl82VvCijQ=="
+        "keyId": "823d28d540597eb924110cd6247b4b79a207f927c6da6918e9a87df295080b1c",
+        "value": "ov2N/xxAQTZx5rsJppJIidl+wdchHx3j88YW5W+SMFqsLbkmI7UW+ioz87sZcL8+O8Yu5rjioKR8zsPYajv0+g=="
       }
     ]
   },
   {
-    "@id": "bd9adbdacd4258ff75f94d96ae63545af8bd8d7200f0f532822fa17f6ad5f65d",
+    "@id": "136e12acb3b62fbe1a5d0b6d771a060bc270851d4f8688f144c909d9ac988e9e",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
     "revision": 9,
@@ -1765,36 +1765,36 @@
         "json",
         "sha256",
         "hex",
-        "edfde1d9834748054121d3cb8da9ff763cbb4135a2b209a95d9f726449fef375"
+        "c7cf8efe4c683a4859b1b914a4c4e7c038722845326fd99e0dd41154016826c0"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "f8ec500fe3345d67210c0f32ffdc976d48a2a8995c42f1df69fe40da01f2de4d"
+        "cccaf27845c0db14a72d29c42eb9cbdd50cf975ac3311d4f01ac102299dba0d9"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "679de3356d2543107a87fad85539e52049f7b868d6e7d9c05dd31b065eaa596b"
+        "8265e1fc354893052c5ed9e6e5e04f1b379569226b35472d480dc64cf0a296f8"
       ]
     ],
     "parentIds": [
-      "a881f22454a53aff9eafb22b683af39be17e2058eeb8d446f8e082fc9feca4e6"
+      "3b3c38b60146864c79201a1ca4e5322fa4979ec59b77f89ea9e383cbb71a6ecc"
     ],
     "changeSet": {
-      "@id": "b8bac08bc8978b54f6044a8e5ec81865070351506c93b571f2e2c5cbddf9ed2a",
+      "@id": "53bdc58471d0e971c20398ebe003c118c35b56d9ba5c6a6d1cb465f2dd7daf94",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-10-27T17:20:30.650Z",
+      "createdAt": "2026-11-05T19:43:32.651Z",
       "description": {
         "en": "Jena Winzerla, a DC and an AC station"
       },
       "signatures": [
         {
           "algorithm": "ES256",
-          "keyId": "61506b54a5b74079ba3e9d590c3b444a4ad5e0080119a9531ea59323aaabac24",
-          "value": "mSQ3Gbb+Tf99GoUGnpE9pso5DWwXXuUU7WKdLZruMX9eqx4CF/k+4yqNZiq9ZEEDZWUn2r96fZHX0b0zzOMOMg=="
+          "keyId": "c6f020b57897c76f8dceb2f2c319447fc2f656b4de657b67a2607b8dfb21725e",
+          "value": "6MmqSlrzEuyjr/eJRKBp2SY/sXmB9agRhO5Mvm6wGEScWwKZirP6LR1E2X80P/arUScdjAk6L8d26Zpfs53fwA=="
         }
       ],
       "changes": [
@@ -1828,21 +1828,21 @@
                       "serialNumber": "DCM-2026-007-1",
                       "publicKeys": [
                         {
-                          "@id": "959d54cebc0a8154a763fc48b1f85af02e60b6078c2dc00f2bb24c26cb6e77d0",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE9uq1a6mD0vpAQFxxxN8r5OBMmgxzDkWDITbehLqeM8C1B4nUW5I80rL4apaKl3m7MwSkxbp1qg6pYTvlwhrswQ=="
+                          "@id": "b7e47bc1fb4ea308bf46039404afc220e7dae4424918e459a5ed747b8554ae93",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE2AKQMcrsBzQBgH/klMmSE7q8+6LlCPYZ2eoEixLUbc9i0UYvU5u+kDwhr4u6zGubIxasaF4Wl1oujPLfHSf+vQ=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_DC"
                       ],
-                      "created": "2026-10-27T17:20:30.641Z",
-                      "lastChange": "2026-10-27T17:20:30.641Z"
+                      "created": "2026-11-05T19:43:32.644Z",
+                      "lastChange": "2026-11-05T19:43:32.644Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_DC"
                     ],
-                    "created": "2026-10-27T17:20:30.641Z",
-                    "lastChange": "2026-10-27T17:20:30.641Z"
+                    "created": "2026-11-05T19:43:32.644Z",
+                    "lastChange": "2026-11-05T19:43:32.644Z"
                   },
                   {
                     "@id": "DE*GEF*E7*2",
@@ -1855,28 +1855,28 @@
                       "serialNumber": "DCM-2026-007-2",
                       "publicKeys": [
                         {
-                          "@id": "1bad382148faf7ad881672675e54563badc0a40e100ad3bd9ea047a94bbdb779",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAETovWUI5G9muGTE8YUwp3RXkcKeNTU2DoakJvZSdbWevcgQsjg7sqgzyQU0aHxiP774A02g9QjHt8sj3DJisshw=="
+                          "@id": "b8b928380cff13b404d65daa061bebf592d78784ee1ba817ae03e15eb9fb64f3",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEEsutk/FJwBgWVibCaeVyNMf38jeir8G0o1rxnOCuvrBZj0NffVENhQq3hILcFAWS5a6xQE8zPlSuaSwhczu7ug=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_DC"
                       ],
-                      "created": "2026-10-27T17:20:30.643Z",
-                      "lastChange": "2026-10-27T17:20:30.643Z"
+                      "created": "2026-11-05T19:43:32.646Z",
+                      "lastChange": "2026-11-05T19:43:32.646Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_DC"
                     ],
-                    "created": "2026-10-27T17:20:30.643Z",
-                    "lastChange": "2026-10-27T17:20:30.643Z"
+                    "created": "2026-11-05T19:43:32.646Z",
+                    "lastChange": "2026-11-05T19:43:32.646Z"
                   }
                 ],
                 "templateIds": [
                   "DE*GEF*ST_DC"
                 ],
-                "created": "2026-10-27T17:20:30.644Z",
-                "lastChange": "2026-10-27T17:20:30.644Z"
+                "created": "2026-11-05T19:43:32.647Z",
+                "lastChange": "2026-11-05T19:43:32.647Z"
               },
               {
                 "@id": "DE*GEF*S8",
@@ -1892,21 +1892,21 @@
                       "serialNumber": "ACM-2026-008-1",
                       "publicKeys": [
                         {
-                          "@id": "259b9602427900cfd0b866c4ab3f31cb2562470ce8a0bf4e7e09dd8e14f35e25",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAELE2muJZLq+shX81mHoI6tCUTYJHWgHC6XVR1GpIgdci5H4vRMioXznEu2+7n9nrQmRBZpzjqxpBLFuSfbR3dYw=="
+                          "@id": "c6ce9ea284691aca92c49176fcfa4d13e85712f85dbf85e5a200714a4b3b10da",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEaAPTWxggbXdlgbGPcXY1elcjO6NIPTNkeCu+yNvKiWsmzCeitvdmK54LGxFkhxetLgDyKmfE+ci6/pabRCx80Q=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_AC"
                       ],
-                      "created": "2026-10-27T17:20:30.646Z",
-                      "lastChange": "2026-10-27T17:20:30.646Z"
+                      "created": "2026-11-05T19:43:32.648Z",
+                      "lastChange": "2026-11-05T19:43:32.648Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_AC"
                     ],
-                    "created": "2026-10-27T17:20:30.647Z",
-                    "lastChange": "2026-10-27T17:20:30.647Z"
+                    "created": "2026-11-05T19:43:32.648Z",
+                    "lastChange": "2026-11-05T19:43:32.648Z"
                   },
                   {
                     "@id": "DE*GEF*E8*2",
@@ -1919,31 +1919,31 @@
                       "serialNumber": "ACM-2026-008-2",
                       "publicKeys": [
                         {
-                          "@id": "8ec36824e82f6da5479da636eaf3181f40868edd5e9c267f3e490d0b4d173d41",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEPrxAoQshzz0Cdm4e2PvG26iFUtpDhLnVGdGW5qDF967WT1TJar+eZ0NowDJU+Ns5EF4QyoCKoTyk5j9vcak5og=="
+                          "@id": "fbc165fac7ecdbc520d389f5dbe01f0a7d0959b9dd63e970f81bdbbde9c2ca54",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE1/vUGfB2ZIge4o9LczOyIUfpee+0O+M7ZdElwR1jgwhrj2gqHoDvzPFWeADIjI9Fdhbm4SFf/j24KGDo9s0jGQ=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_AC"
                       ],
-                      "created": "2026-10-27T17:20:30.649Z",
-                      "lastChange": "2026-10-27T17:20:30.649Z"
+                      "created": "2026-11-05T19:43:32.650Z",
+                      "lastChange": "2026-11-05T19:43:32.650Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_AC"
                     ],
-                    "created": "2026-10-27T17:20:30.649Z",
-                    "lastChange": "2026-10-27T17:20:30.649Z"
+                    "created": "2026-11-05T19:43:32.650Z",
+                    "lastChange": "2026-11-05T19:43:32.650Z"
                   }
                 ],
                 "templateIds": [
                   "DE*GEF*ST_AC"
                 ],
-                "created": "2026-10-27T17:20:30.649Z",
-                "lastChange": "2026-10-27T17:20:30.649Z"
+                "created": "2026-11-05T19:43:32.650Z",
+                "lastChange": "2026-11-05T19:43:32.650Z"
               }
             ],
-            "created": "2026-10-27T17:20:30.649Z"
+            "created": "2026-11-05T19:43:32.651Z"
           }
         }
       ],
@@ -1952,13 +1952,13 @@
           "json",
           "sha256",
           "hex",
-          "1e0b5fac8ad3d81e5d225614a074bf7a364862bed9edab0e365d4b3f7ff4b83d"
+          "2f7a19efbdca31f66862d45281fb212cb3a35a483e6268a2762ebfc396e33d69"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "aa7f806f23eae4304419f47f9cfad3663f99d182ab77d0bb256ee30c7c04890c"
+          "1419f0f3ddf130b585bc0d8d9b9d07e4900b73b9b4d82b044e60a945cbe85885"
         ]
       ],
       "afterETags": [
@@ -1966,13 +1966,13 @@
           "json",
           "sha256",
           "hex",
-          "edfde1d9834748054121d3cb8da9ff763cbb4135a2b209a95d9f726449fef375"
+          "c7cf8efe4c683a4859b1b914a4c4e7c038722845326fd99e0dd41154016826c0"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "f8ec500fe3345d67210c0f32ffdc976d48a2a8995c42f1df69fe40da01f2de4d"
+          "cccaf27845c0db14a72d29c42eb9cbdd50cf975ac3311d4f01ac102299dba0d9"
         ]
       ]
     },
@@ -1980,31 +1980,31 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:30.885Z",
+        "signedAt": "2026-11-05T19:43:32.704Z",
         "algorithm": "ES256",
-        "keyId": "b490ecc8d382e99f19bad697b4da30efee50a99f2f8b1149d22756bc736ad7d5",
-        "value": "QDAD5iDfC7fjhg88sPQ5INMonrE1UmFs9iGCEMxd4bwPWZzGqrTTe5nDtCCQZjDVLIQ6fQT9rzZ/PlrZ7iDN9A=="
+        "keyId": "d76d4d4ee6807bce5acc02ab3ec841d00c690fb4dc7c2c9a505508d37252805b",
+        "value": "k6leFLB/92duEqvA8zY34E6KvSLdmMe2BJvmhWD00u00OXoVBKrJRdmGH21/4z4ogYgziIbBcWBABsA/KRrPMg=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:30.889Z",
+        "signedAt": "2026-11-05T19:43:32.709Z",
         "algorithm": "ES256",
-        "keyId": "9059fbeb4cb8a8381387d2bc6e6f91f88a3f2933b95acac426b9cd354c8e9567",
-        "value": "sXl7a92uSFgV/wg05tHilKPgPv/4yKnGJg6TSh4lRH6MLSa1UanoWd8zemx3G8lJiyCB2rKbefSabP0grIQ7wg=="
+        "keyId": "c9f38055464600f4ed5e24d1c2c21847924b447b02c9fec892c15aa9174d1591",
+        "value": "+16gd6nNAI6g/ZDVj5eTZuyf498Pj/XOg803crXr1FnzIas7mINnbmzSPtqJR7M1TQm1EYizaugcufVkKXPiuA=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:30.894Z",
+        "signedAt": "2026-11-05T19:43:32.715Z",
         "algorithm": "ES256",
-        "keyId": "b8b98a33d5eadceb30e5b94e27877373fa49476aa601ba7faad6ba0a9f227242",
-        "value": "4IulyOsV5jGlikF2/cY1fW2huFRicBBNItgwO6dKE+WQrPMNrL0lfwaUdX5uCW7zQFDwGHwoeJLFpU66od62SA=="
+        "keyId": "823d28d540597eb924110cd6247b4b79a207f927c6da6918e9a87df295080b1c",
+        "value": "+XzGbI/KSctzoqDtn7AmuF/i/0I7Ngaa8454+xAIwLFlafGoHFD1DYJoiT/FNwZ0SwL0GqfU0Ig24/S6gL0Uxw=="
       }
     ]
   },
   {
-    "@id": "39cc38003c86c75b3095f98438ead8658326e273bf851ed1a3f07665d8c95571",
+    "@id": "43d3a542cdc58ab715bdffcf0d13c93ba23303364e4f057949d476acf1f32d83",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
     "revision": 10,
@@ -2013,36 +2013,36 @@
         "json",
         "sha256",
         "hex",
-        "393b3964111823d5cc32272bd273f13dbb2eb49fb5ad96f468cee9be342032d9"
+        "7e3d17dad9dcf5c54e57ab017f1557fcb20145abbe71af49039a3973b15dd68b"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "376f5e53e06f8e73412428f699be07685f5f2fd14f0f02cd7c1d9ee6eea5fecb"
+        "35a1ef42988a4f452e3d2acdd06caeea9d28dc9285c28ff1717bd94e80905303"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "0ee4163fd6a8126324ee2f9d8ef072e4bad101a4f12922d745f5dac644e5efa4"
+        "708c2b0d0d9c8e31241aea255de3b3126f261f3fcf5b88eb51759541f070a9bf"
       ]
     ],
     "parentIds": [
-      "bd9adbdacd4258ff75f94d96ae63545af8bd8d7200f0f532822fa17f6ad5f65d"
+      "136e12acb3b62fbe1a5d0b6d771a060bc270851d4f8688f144c909d9ac988e9e"
     ],
     "changeSet": {
-      "@id": "279235199774c8faaa2aef22ad76dcdd603cfe6a187f16e95f20813264cbeacc",
+      "@id": "a67b9bd1bdcb2eb80e1d2cae9155da67d1e35f6be21a9f9e2bab4c0974d103c1",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-10-27T17:20:32.906Z",
+      "createdAt": "2026-11-05T19:43:33.215Z",
       "description": {
         "en": "The AC stations of Jena Lobeda and Jena Winzerla: 22 kW, two EVSEs of 11 kW"
       },
       "signatures": [
         {
           "algorithm": "ES256",
-          "keyId": "61506b54a5b74079ba3e9d590c3b444a4ad5e0080119a9531ea59323aaabac24",
-          "value": "Q07OvnIoRQmPuO6IxQbZ7Yiks1OJh3LZ/exsAvJep1kwVP/TvH101wED32Haj6Hv52uoHTCQxxD6JBdLykagAw=="
+          "keyId": "c6f020b57897c76f8dceb2f2c319447fc2f656b4de657b67a2607b8dfb21725e",
+          "value": "05nzzFyZp7qvHA87vNcFaiOIhjY7mnSRm/McXgyePegmgJgvC9cV3C+VBpgGlMF1kPJjxQPew1WNMJmcVrXNPQ=="
         }
       ],
       "changes": [
@@ -2100,13 +2100,13 @@
           "json",
           "sha256",
           "hex",
-          "edfde1d9834748054121d3cb8da9ff763cbb4135a2b209a95d9f726449fef375"
+          "c7cf8efe4c683a4859b1b914a4c4e7c038722845326fd99e0dd41154016826c0"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "f8ec500fe3345d67210c0f32ffdc976d48a2a8995c42f1df69fe40da01f2de4d"
+          "cccaf27845c0db14a72d29c42eb9cbdd50cf975ac3311d4f01ac102299dba0d9"
         ]
       ],
       "afterETags": [
@@ -2114,13 +2114,13 @@
           "json",
           "sha256",
           "hex",
-          "393b3964111823d5cc32272bd273f13dbb2eb49fb5ad96f468cee9be342032d9"
+          "7e3d17dad9dcf5c54e57ab017f1557fcb20145abbe71af49039a3973b15dd68b"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "376f5e53e06f8e73412428f699be07685f5f2fd14f0f02cd7c1d9ee6eea5fecb"
+          "35a1ef42988a4f452e3d2acdd06caeea9d28dc9285c28ff1717bd94e80905303"
         ]
       ]
     },
@@ -2128,26 +2128,26 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:33.079Z",
+        "signedAt": "2026-11-05T19:43:33.341Z",
         "algorithm": "ES256",
-        "keyId": "b490ecc8d382e99f19bad697b4da30efee50a99f2f8b1149d22756bc736ad7d5",
-        "value": "unmHWt4yFvg2T+WI6TxHgFNOdIEv6uvmZRYKJwm1hGnTgv58x8zu2uxbw8oZ1y+8Gwf/NQE8ZTxp7uCzVstFng=="
+        "keyId": "d76d4d4ee6807bce5acc02ab3ec841d00c690fb4dc7c2c9a505508d37252805b",
+        "value": "FvAQ0EJz7s+qXAMzazd4j0S9XBDUEUCFSQQyJKCNDkq9sXoD4Cqk9nzp3gLUNllVVUGzsiECfNfrBYJyoMSukA=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:33.083Z",
+        "signedAt": "2026-11-05T19:43:33.347Z",
         "algorithm": "ES256",
-        "keyId": "9059fbeb4cb8a8381387d2bc6e6f91f88a3f2933b95acac426b9cd354c8e9567",
-        "value": "MDllVDVU54nprvjxYkMD5iy80UHM+bjKJFkIfIURUE/93iO84WiaKHr9ig4VlPFdr5vlIqTD0S8goo44FKsuNw=="
+        "keyId": "c9f38055464600f4ed5e24d1c2c21847924b447b02c9fec892c15aa9174d1591",
+        "value": "tJaKa92PG5HgUQ6t2dp4B56aqDbhb3h3QHwg+Z9enJALZiBWjHKDQ2CEKD7gJqgtPrN2Q8KY3hBBnSLgM9Kl+w=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-10-27T17:20:33.090Z",
+        "signedAt": "2026-11-05T19:43:33.351Z",
         "algorithm": "ES256",
-        "keyId": "b8b98a33d5eadceb30e5b94e27877373fa49476aa601ba7faad6ba0a9f227242",
-        "value": "lNHsqtWB8yxa0oOwMmeXNNHjc4GvW7izLCqtTqX391I0xNw9dFqM1AwieoFp0Al2Qz/eqMFkjSHnyITI7H2uFA=="
+        "keyId": "823d28d540597eb924110cd6247b4b79a207f927c6da6918e9a87df295080b1c",
+        "value": "m3BhucK4orfnO8+0I2ywZG0D0qBYNrWs11lCdeO1gEF0yKJEXdNtcvo/0UtMEOLYYL11f4M6qxer+mqRevZwEQ=="
       }
     ]
   }

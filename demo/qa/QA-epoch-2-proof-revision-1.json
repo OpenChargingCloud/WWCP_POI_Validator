@@ -1,26 +1,26 @@
 {
   "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/checkpointProof/v1",
-  "checkpointId": "84daf9037028aa81cd0bf5dab851bcf94d23444796f11b9757da003e6a88ee115b64383d7e0a1f7d4181cf5a593d2f76c9f5d8405efa6c776e38432739bcf009",
+  "checkpointId": "4124cadeec9bde605389df2cd2aef0af8cd46c9a8a42d8ac6b5538aa32368d2e93e5a281e7460c8351154b9e6232e74d189379018c3ce313a405296d048484a1",
   "leaf": {
-    "commitId": "ec6468f97f2ce6c8d15bfde102d055849d71458d681681d450a10954e75877055ecc4ec77b40dc8cf093f6e6791095d3069af885ea2ec4d16c498ab0debaac21",
+    "commitId": "82f54a0c7a2b03be8cf3b9f0c564592f6abfcb20299f2edd50e2af9c39a185f0f3369384844d738135392f6c9c0a7a91066844f98d173ef0936e8997d4da2bff",
     "eTags": [
       [
         "json",
         "sha256",
         "hex",
-        "724c42ebf873317541cff95db599fb1db153dbcdbc96796468b1a3bc0b65e12f"
+        "84fce3d1f5e7626f00537792c33f2c130b32a637b8fd2d1e53395f1a95e2fd31"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "00100921a4a02b44297c99cd55928c9ac42a88507171bc3b292360540d57c659"
+        "098fd4473f8311444107729f56d666f174e8f42e39612db640eabe5d7f34dcb9"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "f1da65ae8ac3206432f8d8a805205422fd54b5fafd5f69b0b5b8e0114cd93a24"
+        "35e47272b8866db1ce3e5a9d6d415d92b4c42fa37f93b00c140dc28f692907a3"
       ]
     ],
     "revision": 1
@@ -28,7 +28,7 @@
   "@index": 1,
   "@size": 3,
   "@auditPath": [
-    "71cd7a6f00be38aaf52fd70b19c84efe3560e44e1b8aacdb0fc403320db906851012b8a9537d87be4e8fd5ff1de121c727e0baa74992556fbf8c9a47043f3c84",
-    "b2fcc883c87e2ffd7983dafb4854db53b337ee0f9d7ad05d4807bd7bc1b1fcb1c660e80ce62367f5f9aab72717b96b4e79a8b6427da79810f2d64efa244f9bb1"
+    "71d92528f91a47bec2b7f268a9edfffaabe28f438e38f8a602638a7adef4b84c29725c50b373f1d014b764b2c102e84b695369f301c4e551b68eed881e832029",
+    "2c3cc40419d62ca1168405ec3cd8da425dfc5e2fc7d2e1992eb88158b4abbb082b948c281f18531c1c28cc56dad4c8bd9d70b205d4413df5b0adc310865b6ecf"
   ]
 }

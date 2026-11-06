@@ -89,9 +89,9 @@ test('Everything POI_API serves of the QA network verifies from the trust anchor
     assert.ok(pool.size > 20, `only ${pool.size} documents`);
 
     assert.deepEqual(summary.errors, []);
-    assert.equal(summary.verdict.commits, 24);
+    assert.equal(summary.verdict.commits, 27);
     assert.equal(summary.verdict.checkpoints, 8);
-    assert.deepEqual(summary.head, { epoch: 2, revision: 8 });
+    assert.deepEqual(summary.head, { epoch: 2, revision: 11 });
     assert.deepEqual(summary.proofs, [ true, true ]);
     assert.deepEqual(summary.attestations, [ true, true, true ]);
     assert.equal(summary.archive, true);
@@ -113,7 +113,7 @@ test('A server answering 429 is waited for as long as it asks, and asked again',
     assert.equal(refused, 2);
     assert.ok(progress.includes('GET /history/snapshot?runtimeStatus=true: the server asks to wait (429), asking again in 1 s …'), progress.join('\n'));
     assert.deepEqual(failures.map(document => document.error), []);
-    assert.deepEqual(summaryOf(report).head, { epoch: 2, revision: 8 });
+    assert.deepEqual(summaryOf(report).head, { epoch: 2, revision: 11 });
 
 });
 

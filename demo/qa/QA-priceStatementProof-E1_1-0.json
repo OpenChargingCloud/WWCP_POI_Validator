@@ -1,6 +1,6 @@
 {
   "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/priceStatementProof/v1",
-  "checkpointId": "c79ff2596616642113d52e3649c6ea9a400c6367b6cefba4e3b6e0b332c03803",
+  "checkpointId": "63a87aa7fc6021eea42ef885a2f0619628f1105c6385bb7b9c64adba56cb93d6",
   "priceStatement": {
     "roamingNetworkId": "QA",
     "entityType": "EVSE",
@@ -23,21 +23,21 @@
         }
       ]
     },
-    "validFrom": "2026-10-27T17:20:45.398Z",
-    "validUntil": "2026-10-27T18:20:45.398Z",
+    "validFrom": "2026-11-05T19:43:39.877Z",
+    "validUntil": "2026-11-05T20:43:39.877Z",
     "sequence": 0,
-    "after": "d746e046a99c5ef2f4981fe7e31978513b9237eee63e59e806a2a547526e3047",
+    "after": "97172697344d3ad1b18c70f0155e899e6048d17cb51a409119034327c3ada491",
     "role": "chargingStationOperator",
     "signer": "DE*GEF",
-    "signedAt": "2026-10-27T17:20:45.398Z",
+    "signedAt": "2026-11-05T19:43:39.877Z",
     "algorithm": "ES256",
-    "keyId": "b6f50fff4920d07c49b301fe1b54ab46f8ccaaa1fdda3fd58e70b287f7fd1244",
-    "value": "+n84bYMmXFHMP7VMNMUNsfpWQQO9umTz8f6IUrRuyQvhDXmZeAfXupBhzTG3UyHwGO64mn/jJxu6O0eV6SenIQ=="
+    "keyId": "548c474288fabff893b89bb7d7a62fe52ced94c99e70f2aa20f8d5c1670a56dd",
+    "value": "wWX7zxdvNQwgPVhlAduR+Ucgoq3fudTYy+ZtWiHr/P281Mf13FTE+/nGxjdvIzu2Okn3H6uzY7S9J7MNTVWdhA=="
   },
   "@index": 0,
   "@size": 3,
   "@auditPath": [
-    "8e1ff56b053c2a924f92dc8bef24090b742864a46152a39b2a22033b0767762a",
-    "8328305ded1a97d1c77e6902ccee52d2acbba8a0ddd462067ab0aa0ac18b6b57"
+    "3858d6446f6641c261f8c9353b2102c18e8c2da91d05ad962765e6845e19fb96",
+    "823ef8a841cd6ee30fdd0bbec6c091233d9efbc6e29957b6fccefafdce082613"
   ]
 }

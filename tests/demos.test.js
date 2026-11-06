@@ -12,29 +12,39 @@ import { ownerOfChange } from '../src/analyze.js';
 import { analyzeDemo, readDemo, summaryOf } from './helpers.js';
 
 
-test('QA: the roaming network of the WWCP_POI examples A1 to A14 verifies', async () => {
+test('QA: the roaming network of the WWCP_POI examples A1 to A15 verifies', async () => {
 
-    const summary = summaryOf(await analyzeDemo('qa'));
+    const report  = await analyzeDemo('qa');
+    const summary = summaryOf(report);
 
     assert.deepEqual(summary.errors,   []);
     assert.deepEqual(summary.warnings, []);
-    assert.deepEqual(summary.verdict,  { level: 'ok', commits: 24, checkpoints: 8, errors: 0, warnings: 0 });
+    assert.deepEqual(summary.verdict,  { level: 'ok', commits: 27, checkpoints: 8, errors: 0, warnings: 0 });
     assert.equal(summary.anchor, 'pinned');
-    assert.deepEqual(summary.head, { epoch: 2, revision: 8 });
+    assert.deepEqual(summary.head, { epoch: 2, revision: 11 });
 
     // Two epochs, ECDSA/SHA-256 and then ML-DSA/SHA-512, every commit and checkpoint taken.
     assert.deepEqual(summary.epochs, [
         { number: 1, commits: 16, checkpoints: 7, notTaken: 0 },
-        { number: 2, commits:  8, checkpoints: 1, notTaken: 0 },
+        { number: 2, commits: 11, checkpoints: 1, notTaken: 0 },
     ]);
 
-    assert.deepEqual(summary.proofs,               [ true, true, true, true ]);
+    assert.deepEqual(summary.proofs,               [ true, true, true, true, true ]);
     assert.deepEqual(summary.evidence,             [ true ]);
     assert.deepEqual(summary.commitProofs,         [ true, true, true, true ]);
     assert.deepEqual(summary.priceStatementProofs, [ true ]);
     assert.deepEqual(summary.attestations,         [ true, true, true ]);
     assert.deepEqual(summary.qiDigital,            [ true, true, true, true ]);
     assert.equal(summary.archive, true);
+
+    // EV Taler at the pool DE*GEF*P1 (A15): its EVSEs paid with the exchange in euros, as the proof of revision 11 gives
+    // them; those of the other pools not with EV Taler. The proof of revision 7 is from before DE*GEF had a merchant.
+    const evTaler = (name) => report.proofs.find(result => result.document.name === name).evTaler;
+    assert.equal(evTaler('QA-DE-GEF-E1-1-proof.json'), undefined);
+    assert.equal(evTaler('QA-DE-GEF-E1-1-evTaler-proof.json').merchant.merchantBaseURL, 'https://taler.gef.example/instances/de-gef/');
+    assert.deepEqual(evTaler('QA-DE-GEF-E1-1-evTaler-proof.json').evses.map(({ evseId, exchanges }) => [ evseId, exchanges.map(exchange => paymentOptionName(exchange)[0][1]) ]),
+                     [ [ 'DE*GEF*E1*1', [ 'EV Taler (Example Exchange, EUR)' ] ], [ 'DE*GEF*E1*2', [ 'EV Taler (Example Exchange, EUR)' ] ] ]);
+    assert.ok(evTaler('QA-proof-station-DE_GEF_S6.json').evses.every(({ exchanges }) => exchanges.length === 0));
 
 });
 
@@ -44,11 +54,11 @@ test('QA: a day after the recording, the station proofs are refused, as their at
     const summary      = summaryOf(await analyzeDemo('qa', { settings: { at: Date.parse(manifest.recordedAt) + 24 * 3600 * 1000 } }));
 
     assert.equal(summary.verdict.level, 'error');
-    assert.deepEqual(summary.proofs, [ false, false, false, false ]);
+    assert.deepEqual(summary.proofs, [ false, false, false, false, false ]);
     assert.ok(summary.errors.every(text => /^The proof '.+' does not verify: Valid attestations of trusted keys of 0 holders/.test(text)), summary.errors.join('\n'));
 
     // The history itself does not expire.
-    assert.equal(summary.verdict.commits, 24);
+    assert.equal(summary.verdict.commits, 27);
     assert.equal(summary.verdict.checkpoints, 8);
 
 });
@@ -62,8 +72,8 @@ test('QA: with the trust anchor of the ML-DSA keys of epoch 2, the history is an
     // As with the trust anchor of the genesis: everything verifies.
     assert.deepEqual(summary.errors,   []);
     assert.deepEqual(summary.warnings, []);
-    assert.deepEqual(summary.verdict,  { level: 'ok', commits: 24, checkpoints: 8, errors: 0, warnings: 0 });
-    assert.deepEqual(summary.proofs,   [ true, true, true, true ]);
+    assert.deepEqual(summary.verdict,  { level: 'ok', commits: 27, checkpoints: 8, errors: 0, warnings: 0 });
+    assert.deepEqual(summary.proofs,   [ true, true, true, true, true ]);
     assert.ok(report.proofs.every(result => result.basis === 'pinned'));
 
     // The key statement of the genesis names the keys of epoch 1 only. Checkpoint 0 of epoch 2 is the first one the trust
@@ -94,7 +104,7 @@ test('QA: with a trust anchor no checkpoint carries, the history is refused, and
     assert.equal(report.lateAnchor, undefined);
     assert.match(summary.errors[0], /^The key statement of the roaming network operator of revision 0 of epoch 1 does not verify against the trust anchor: .+ Nor does the trust anchor carry a later checkpoint/);
     assert.equal(report.followedAnchor, undefined);
-    assert.deepEqual(summary.proofs, [ false, false, false, false ]);
+    assert.deepEqual(summary.proofs, [ false, false, false, false, false ]);
 
 });
 

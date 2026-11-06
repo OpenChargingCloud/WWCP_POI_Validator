@@ -46,7 +46,7 @@ const FILES = [
     [ 'published/QA-checkpoint-6.json',                    'Checkpoint 6, the final checkpoint of epoch 1, naming epoch 2 and its profiles' ],
 
     [ 'published/QA-epoch-2-genesis.json',                 'Snapshot of the genesis of epoch 2 as the server published it: SHA-512 identifications, Ed25519 and ML-DSA signatures' ],
-    [ 'proofs/QA-epoch-2-commits-to-head.json',            'Commits 1 to 8 of epoch 2, up to the head: the old keys out, prices, transparency software and its certificates (A13), the calibration laboratory EM-LAB (A14)' ],
+    [ 'proofs/QA-epoch-2-commits-to-head.json',            'Commits 1 to 11 of epoch 2, up to the head: the old keys out, prices, transparency software and its certificates (A13), the calibration laboratory EM-LAB (A14), EV Taler at the pool Jena Paradies: a signing key of DE*GEF for payments, its merchant and the payment option of DE*GEF*P1 (A15)' ],
     [ 'published/QA-epoch-2-checkpoint-0.json',            'Checkpoint 0 of epoch 2, naming the final checkpoint of epoch 1' ],
     [ 'published/QA-epoch-2-checkpoint-0-priceStatements.json', 'The price statement checkpoint 0 of epoch 2 names' ],
 
@@ -57,8 +57,9 @@ const FILES = [
     [ 'published/QA-live-snapshot.json',                   'Snapshot of revision 3 of epoch 2 with the runtime status of every pool, station and EVSE (unsigned)' ],
 
     [ 'published/QA-DE-GEF-E1-1-proof.json',               'Proof of the charging station of the EVSE DE*GEF*E1*1, revision 7 of epoch 2, attested by OCC' ],
+    [ 'published/QA-DE-GEF-E1-1-evTaler-proof.json',       'Proof of the charging station of the EVSE DE*GEF*E1*1, revision 11 of epoch 2: how it is paid with EV Taler (A15)' ],
     [ 'published/QA-priceStatements-DE_GEF_E1_1.json',     'Price statement of the EVSE DE*GEF*E1*1, signed by DE*GEF in epoch 1 with its ECDSA key' ],
-    [ 'proofs/QA-proof-station-DE_GEF_S1.json',            'Proof of the charging station DE*GEF*S1 at the head, revision 8 of epoch 2, ML-DSA attestations' ],
+    [ 'proofs/QA-proof-station-DE_GEF_S1.json',            'Proof of the charging station DE*GEF*S1 at the head, revision 11 of epoch 2, ML-DSA attestations' ],
     [ 'proofs/QA-proof-station-DE_GEF_S6.json',            'Proof of the charging station DE*GEF*S6 at the head' ],
     [ 'proofs/QA-proof-evse-DE_GEF_E3_2.json',             'Proof of the charging station of the EVSE DE*GEF*E3*2 at the head' ],
     [ 'proofs/QA-epoch-2-attestations.json',               'The attestations of the head of epoch 2' ],
@@ -96,10 +97,10 @@ const witnesses = [
 const manifest = {
     id:            'qa',
     title:         'QA, the roaming network of the WWCP_POI examples',
-    description:   `One recorded run of the C# examples A1 to A14 of WWCP_POI at commit ${commit}: a roaming network operator with a quorum of three holders, ` +
+    description:   `One recorded run of the C# examples A1 to A15 of WWCP_POI at commit ${commit}: a roaming network operator with a quorum of three holders, ` +
                    'one charging station operator with 4 pools, 8 stations and 16 EVSEs, manufacturers and their models, transparency software, conformity assessment bodies ' +
                    'and a calibration laboratory, two epochs (ECDSA and SHA-256, then ML-DSA and SHA-512), checkpoints signed by two witnesses, price statements, ' +
-                   'the evidence of a charging session, and the QI-Digital papers of an energy meter.',
+                   'the evidence of a charging session, the QI-Digital papers of an energy meter, and EV Taler at one pool.',
     source:        `https://github.com/OpenChargingCloud/WWCP_POI/tree/${commit}/examples`,
     recordedAt:    AT,
     trustAnchor,
