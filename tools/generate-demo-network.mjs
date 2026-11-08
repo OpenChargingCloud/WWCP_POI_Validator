@@ -415,12 +415,15 @@ const statements = [];       // every price statement made, in their order
 
 const etagsOf = (network) => network.eTags().map(eTag => POI.etagToJSON(eTag));
 
+/** A signature of a commit or checkpoint as WWCP_POI.TS reads it (RoleSignature): its signedAt as the time it names. */
+const roleSignature = (signature) => ({ ...signature, signedAt: Date.parse(signature.signedAt), json: { signedAt: signature.signedAt } });
+
 function commitSignatures(commit, holders = HOLDERS) {
     const parsed = POI.Commit.parse(asPOI(commit));
     return holders.map(holder => {
         const signedAt  = advance(0.01);
         const signature = { role: 'roamingNetworkOperator', signer: RNO_ID, signedAt, algorithm: holder.signing, keyId: holder.signingKey.id };
-        const bytes     = parsed.signingBytes({ ...signature, json: { signedAt } });
+        const bytes     = parsed.signingBytes(roleSignature(signature));
         return { ...signature, value: sign(holder.signingKey, bytes) };
     });
 }
@@ -532,14 +535,14 @@ function checkpoint(priceStatements = []) {
     for (const holder of HOLDERS) {
         const signedAt  = advance(0.02);
         const signature = { role: 'roamingNetworkOperator', signer: RNO_ID, signedAt, algorithm: holder.signing, keyId: holder.signingKey.id };
-        signatures.push({ ...signature, value: sign(holder.signingKey, parsed.signingBytes({ ...signature, json: { signedAt } })) });
+        signatures.push({ ...signature, value: sign(holder.signingKey, parsed.signingBytes(roleSignature(signature))) });
     }
 
     // The witnesses take every commit themselves, then sign (10.2).
     for (const { witness, key } of WITNESSES) {
         const signedAt  = advance(3);
         const signature = { role: 'witness', signer: witness, signedAt, algorithm: key.algorithm, keyId: key.id };
-        signatures.push({ ...signature, value: sign(key, parsed.signingBytes({ ...signature, json: { signedAt } })) });
+        signatures.push({ ...signature, value: sign(key, parsed.signingBytes(roleSignature(signature))) });
     }
 
     json.signatures = signatures;
@@ -878,7 +881,7 @@ const witnessesJSON = WITNESSES.map(({ witness, key }) => ({ witness, key: { '@i
     const history   = POI.History.fromSnapshot(asPOI(genesisSnapshot), {
         unanchored: true,
         verifyCommit: (c, before, after) => { trust.verifyOperatorSignatures(c.signatures, (s, k) => c.verifySignature(s, k), 'the commit'); trust = trust.followedBy(after, at); },
-        verifyCheckpoint: (c) => POI.verifyCheckpointSignatures(c, trust, { witnesses, requiredWitnesses: 2 }),
+        verifyCheckpoint: (c) => POI.verifyCheckpointSignatures(c, trust, { witnesses, requiredWitnesses: 2 }).verified,
     });
     for (const json of commits) {
         history.append(asPOI(json));

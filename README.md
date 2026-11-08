@@ -212,7 +212,7 @@ node "D:\Coding\OpenChargingCloud\WWCP_POI_Validator\tools\mock-poi-server.mjs" 
   its manifest; the run and the time it is checked as of are those of `WWCP_POI.TS/tests/at.ts` (`VECTORS_RUN`, `AT`),
   so that running it again after WWCP_POI.TS moved on to a new run follows it. Its package on npm carries no test
   vectors: they are read from a checkout of WWCP_POI.TS next to the validator, at the tag of the release the validator
-  takes (`v0.2.0` today), or from the path given as its argument:
+  takes (`v0.3.0` today), or from the path given as its argument:
 
   ```bash
   node "D:\Coding\OpenChargingCloud\WWCP_POI_Validator\tools\vendor-qa-demo.mjs"

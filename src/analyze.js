@@ -720,9 +720,12 @@ export async function analyze(pool, settings, onProgress = () => {}) {
                     return;
                 }
 
+                // The checkpoint is taken with the signatures that verify here, as WWCP_POI3 takes it (S39).
+                let verified;
                 try {
                     const result = verifyCheckpointSignatures(checkpoint, trust, { witnesses: report.witnesses, requiredWitnesses: report.requiredWitnesses });
                     step.signatureCheck = { ok: true, ...result, required: trust.requiredConsensus, requiredWitnesses: report.requiredWitnesses };
+                    verified = result.verified;
                 }
                 catch (e) {
                     step.signatureCheck = { ok: false, error: message(e), required: trust.requiredConsensus, requiredWitnesses: report.requiredWitnesses };
@@ -731,6 +734,8 @@ export async function analyze(pool, settings, onProgress = () => {}) {
                 // Taken without an invalid signature, each counted one is valid; otherwise each is checked to tell which.
                 const clean = step.signatureCheck.ok === true && !step.signatureCheck.ignored.some(reason => reason.includes('invalid'));
                 step.signatures = describeRoleSignatures(checkpoint.signatures, trust, report.witnesses, verify, clean ? new Map() : undefined);
+
+                return verified;
 
             },
 
