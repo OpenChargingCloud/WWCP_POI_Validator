@@ -70,17 +70,17 @@ epochs and price statements fit together.
    the witnesses of price publications. What a document is follows from its JSON-LD context, or from its shape. A trust
    anchor, a list of witnesses or a policy among them goes into the settings.
 3. **Demos**:
-   - **QA**, the roaming network of the WWCP_POI examples A1 to A15, one recorded run (public data only), the one
-     WWCP_POI.TS vendors (`tests/vectors/csharp-045e180` today): a quorum of three holders, one operator with 16 EVSEs,
+   - **QA**, the roaming network of the WWCP_POI examples A1 to A16, one recorded run (public data only), the one
+     WWCP_POI.TS vendors (`tests/vectors/csharp-76d3653` today): a quorum of three holders, one operator with 16 EVSEs,
      manufacturers and their models, transparency software and its certificates, a calibration laboratory, two epochs
      (ECDSA/SHA-256, then ML-DSA/SHA-512), witnesses, price statements, evidence, the QI-Digital papers of a meter, and
-     **EV Taler** at one pool (its merchant, changed with a key for payments, and two exchanges, of which the one in
-     euros pays).
+     **EV Taler** at one pool (its merchant, changed with a key for payments, two exchanges, of which the one in
+     euros pays, and the secure dynamic QR code its stations show).
      Besides its own trust anchor it gives the one of the ML-DSA identity keys of epoch 2, to pick in the settings.
    - **Thuringia**, a generated test network of medium size: seven charging station operators, 195 charging pools,
      417 stations and 834 EVSEs on a map; change sets of several owners, a key rotation, a removed pool, a latecomer
-     that takes **EV Taler** at its charging parks along the A4 (its merchant, changed with a key for payments, and two
-     exchanges, of which the one in euros pays); four witnessed checkpoints, price statements and station proofs.
+     that takes **EV Taler** at its charging parks along the A4 (its merchant, changed with a key for payments, two
+     exchanges, of which the one in euros pays, and the secure dynamic QR code of its stations); four witnessed checkpoints, price statements and station proofs.
      Signed with test keys of fixed seeds.
    - **An app: charging sessions and trust transitions**, of the test network `CHARGY-POI-DEMO` WWCP_POI.TS keeps among
      its test vectors (public test keys only). 18 sessions: the meter and its key from the proof of the station, now and
@@ -212,7 +212,7 @@ node "D:\Coding\OpenChargingCloud\WWCP_POI_Validator\tools\mock-poi-server.mjs" 
   its manifest; the run and the time it is checked as of are those of `WWCP_POI.TS/tests/at.ts` (`VECTORS_RUN`, `AT`),
   so that running it again after WWCP_POI.TS moved on to a new run follows it. Its package on npm carries no test
   vectors: they are read from a checkout of WWCP_POI.TS next to the validator, at the tag of the release the validator
-  takes (`v0.3.0` today), or from the path given as its argument:
+  takes (`v0.4.0` today), or from the path given as its argument:
 
   ```bash
   node "D:\Coding\OpenChargingCloud\WWCP_POI_Validator\tools\vendor-qa-demo.mjs"

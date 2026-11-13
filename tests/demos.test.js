@@ -12,7 +12,7 @@ import { ownerOfChange } from '../src/analyze.js';
 import { analyzeDemo, readDemo, summaryOf } from './helpers.js';
 
 
-test('QA: the roaming network of the WWCP_POI examples A1 to A15 verifies', async () => {
+test('QA: the roaming network of the WWCP_POI examples A1 to A16 verifies', async () => {
 
     const report  = await analyzeDemo('qa');
     const summary = summaryOf(report);

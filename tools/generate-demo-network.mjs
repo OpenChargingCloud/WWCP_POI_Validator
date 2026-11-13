@@ -826,7 +826,7 @@ const statementsAfter = [];
 
 checkpoint(statementsAfter);
 
-// EV Taler (WWCP_POI concepts/EVTaler.md, phase 1): the latecomer takes GNU Taler along the A4. Its merchant is changed
+// EV Taler (WWCP_POI concepts/EVTaler.md): the latecomer takes GNU Taler along the A4. Its merchant is changed
 // only with a signing key that may sign 'payments', as whoever changes it redirects the payments of every station (4.4):
 // a key of its own, added by its identity key as every signing key is. After the last checkpoint: the head is two
 // commits beyond it.
@@ -847,10 +847,16 @@ checkpoint(statementsAfter);
         { masterPublicKey: talerKey('exchange Alpen'),      baseURL: 'https://exchange.alpen.example/',      currency: 'CHF', name: { en: 'Alpine Test Exchange' } },
     ].sort((left, right) => ordinal(left.masterPublicKey, right.masterPublicKey));
     const merchant  = { merchantBaseURL: 'https://taler.highway-hpc.example/instances/de-xag/', merchantPublicKey: talerKey(`merchant instance of ${LATECOMER.id}`), exchanges };
+    // A pool naming EV Taler names the secure dynamic QR code of its stations too, here on their displays: an EV Taler
+    // session names the one-time password its EVSE gives right then (EVTaler.md, decision D8).
+    const secureDynamicQRCode = { channels: [ 'Display' ], type: 'SecureDynamicQRCode' };
     const along     = versions.at(-1).content.chargingStationOperators.find(item => item['@id'] === LATECOMER.id).chargingPools.filter((pool, index) => index % 2 === 0);
     commit(`${LATECOMER.name} takes EV Taler at its charging parks along the A4`,
            [ { kind: 'UpdateProperty', entityType: 'ChargingStationOperator', entityId: LATECOMER.id, propertyName: 'evTaler', oldValue: null, newValue: merchant },
-             ...along.map(pool => ({ kind: 'UpdateProperty', entityType: 'ChargingPool', entityId: pool['@id'], propertyName: 'paymentOptions', oldValue: null, newValue: [ 'CreditCard', 'EVTaler' ] })) ],
+             ...along.flatMap(pool => [
+                 { kind: 'UpdateProperty', entityType: 'ChargingPool', entityId: pool['@id'], propertyName: 'paymentOptions',      oldValue: null, newValue: [ 'CreditCard', 'EVTaler' ] },
+                 { kind: 'UpdateProperty', entityType: 'ChargingPool', entityId: pool['@id'], propertyName: 'authenticationModes', oldValue: null, newValue: [ secureDynamicQRCode ] },
+             ]) ],
            [ LATECOMER.paymentsKey, LATECOMER.infrastructureKey ], { minutes: 60 });
 }
 

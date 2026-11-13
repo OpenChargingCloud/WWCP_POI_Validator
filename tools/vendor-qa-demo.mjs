@@ -46,7 +46,7 @@ const FILES = [
     [ 'published/QA-checkpoint-6.json',                    'Checkpoint 6, the final checkpoint of epoch 1, naming epoch 2 and its profiles' ],
 
     [ 'published/QA-epoch-2-genesis.json',                 'Snapshot of the genesis of epoch 2 as the server published it: SHA-512 identifications, Ed25519 and ML-DSA signatures' ],
-    [ 'proofs/QA-epoch-2-commits-to-head.json',            'Commits 1 to 11 of epoch 2, up to the head: the old keys out, prices, transparency software and its certificates (A13), the calibration laboratory EM-LAB (A14), EV Taler at the pool Jena Paradies: a signing key of DE*GEF for payments, its merchant and the payment option of DE*GEF*P1 (A15)' ],
+    [ 'proofs/QA-epoch-2-commits-to-head.json',            'Commits 1 to 11 of epoch 2, up to the head: the old keys out, prices, transparency software and its certificates (A13), the calibration laboratory EM-LAB (A14), EV Taler at the pool Jena Paradies: a signing key of DE*GEF for payments, its merchant, and the payment option of DE*GEF*P1 with the secure dynamic QR code of its stations (A15)' ],
     [ 'published/QA-epoch-2-checkpoint-0.json',            'Checkpoint 0 of epoch 2, naming the final checkpoint of epoch 1' ],
     [ 'published/QA-epoch-2-checkpoint-0-priceStatements.json', 'The price statement checkpoint 0 of epoch 2 names' ],
 
@@ -97,10 +97,10 @@ const witnesses = [
 const manifest = {
     id:            'qa',
     title:         'QA, the roaming network of the WWCP_POI examples',
-    description:   `One recorded run of the C# examples A1 to A15 of WWCP_POI at commit ${commit}: a roaming network operator with a quorum of three holders, ` +
+    description:   `One recorded run of the C# examples A1 to A16 of WWCP_POI at commit ${commit}: a roaming network operator with a quorum of three holders, ` +
                    'one charging station operator with 4 pools, 8 stations and 16 EVSEs, manufacturers and their models, transparency software, conformity assessment bodies ' +
                    'and a calibration laboratory, two epochs (ECDSA and SHA-256, then ML-DSA and SHA-512), checkpoints signed by two witnesses, price statements, ' +
-                   'the evidence of a charging session, the QI-Digital papers of an energy meter, and EV Taler at one pool.',
+                   'the evidence of a charging session, the QI-Digital papers of an energy meter, and EV Taler at one pool, with the secure dynamic QR code of its stations.',
     source:        `https://github.com/OpenChargingCloud/WWCP_POI/tree/${commit}/examples`,
     recordedAt:    AT,
     trustAnchor,

@@ -1,6 +1,6 @@
 {
   "commit": {
-    "@id": "63dc9170b339a612e95dcb0d3869db911dbccd871bd8c8f553516b6783b05cfb",
+    "@id": "3e26f492b833853db1723ee16ed5a39d3b7c056036fd9d720b694a51248e8168",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "TH",
     "revision": 27,
@@ -9,26 +9,26 @@
         "json",
         "sha256",
         "hex",
-        "ee2fd3557a50102e906e2103688f0682da7d784b6496ffb80664a041fe6d3271"
+        "284bbe7da3a29bb449759333f6808ceef1e07df4ed4dfbce6613c57fc6d1dc29"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "be26b6225a13947298565caf3e9d285774c36c21eebff11379ddd0365f2eed89"
+        "01af22db4410dd2427f24e6b33f7b81f295c98a026af1ab41f4f900ab1d9c083"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "efae50a50d520dce078e723191d50f027b45d356b40d00ef8dae2e8c815eb719"
+        "fc523323c7f32b6848cf3a7019727b8726159c73b3f3174b85c2b0c1c7061bc3"
       ]
     ],
     "parentIds": [
       "ed227fa055c427443335b18f7c328d2036a04b1563e5ffb9ff124a0e9ac89748"
     ],
     "changeSet": {
-      "@id": "816fad01e689ba686767cf67e8bb051c314a5da078fc3158279df64544b60d65",
+      "@id": "98704c6d98f6fd184861340d125ee1386389fcb0cc192efad35e890d2cd2d2b9",
       "roamingNetworkId": "TH",
       "createdAt": "2026-09-24T13:29:02.400Z",
       "description": {
@@ -78,12 +78,42 @@
         {
           "kind": "UpdateProperty",
           "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P1",
+          "propertyName": "authenticationModes",
+          "oldValue": null,
+          "newValue": [
+            {
+              "channels": [
+                "Display"
+              ],
+              "type": "SecureDynamicQRCode"
+            }
+          ]
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "ChargingPool",
           "entityId": "DE*XAG*P11",
           "propertyName": "paymentOptions",
           "oldValue": null,
           "newValue": [
             "CreditCard",
             "EVTaler"
+          ]
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P11",
+          "propertyName": "authenticationModes",
+          "oldValue": null,
+          "newValue": [
+            {
+              "channels": [
+                "Display"
+              ],
+              "type": "SecureDynamicQRCode"
+            }
           ]
         },
         {
@@ -100,12 +130,42 @@
         {
           "kind": "UpdateProperty",
           "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P2",
+          "propertyName": "authenticationModes",
+          "oldValue": null,
+          "newValue": [
+            {
+              "channels": [
+                "Display"
+              ],
+              "type": "SecureDynamicQRCode"
+            }
+          ]
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "ChargingPool",
           "entityId": "DE*XAG*P4",
           "propertyName": "paymentOptions",
           "oldValue": null,
           "newValue": [
             "CreditCard",
             "EVTaler"
+          ]
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P4",
+          "propertyName": "authenticationModes",
+          "oldValue": null,
+          "newValue": [
+            {
+              "channels": [
+                "Display"
+              ],
+              "type": "SecureDynamicQRCode"
+            }
           ]
         },
         {
@@ -122,12 +182,42 @@
         {
           "kind": "UpdateProperty",
           "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P6",
+          "propertyName": "authenticationModes",
+          "oldValue": null,
+          "newValue": [
+            {
+              "channels": [
+                "Display"
+              ],
+              "type": "SecureDynamicQRCode"
+            }
+          ]
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "ChargingPool",
           "entityId": "DE*XAG*P8",
           "propertyName": "paymentOptions",
           "oldValue": null,
           "newValue": [
             "CreditCard",
             "EVTaler"
+          ]
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P8",
+          "propertyName": "authenticationModes",
+          "oldValue": null,
+          "newValue": [
+            {
+              "channels": [
+                "Display"
+              ],
+              "type": "SecureDynamicQRCode"
+            }
           ]
         }
       ],
@@ -150,25 +240,25 @@
           "json",
           "sha256",
           "hex",
-          "ee2fd3557a50102e906e2103688f0682da7d784b6496ffb80664a041fe6d3271"
+          "284bbe7da3a29bb449759333f6808ceef1e07df4ed4dfbce6613c57fc6d1dc29"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "be26b6225a13947298565caf3e9d285774c36c21eebff11379ddd0365f2eed89"
+          "01af22db4410dd2427f24e6b33f7b81f295c98a026af1ab41f4f900ab1d9c083"
         ]
       ],
       "signatures": [
         {
           "algorithm": "ES256",
           "keyId": "2c189fe4b5a64b5deb4ddc1643f1a2e2a11a4a6c5e0a1bb1f26a9ec4b4e0e8ac",
-          "value": "lLFEpzEJ2QCn+x+aPTH1oGvjN1D7yuIrkfw+RBa/ylQ6vpaVHDuGK0mhyyKw/DdhYcInMDyvZMK4MGInv/KeAw=="
+          "value": "oDhqwLrw2774HHUWFn7+8btfIQvbERjY//66WrN7KdQqKFgUbqZ1EpUPvAeSwpv76XTV6Jx0GaJYaFih49EcKg=="
         },
         {
           "algorithm": "ES256",
           "keyId": "87d7a0f8d7c18d01caa8142a640293826c05b41660837b9c04562d0d1afd9c45",
-          "value": "CT8VZRFN61thC/7CP8w4RXNFO3rb1Vgl2A8j0bQeY0bcvAukLw5CN+bXEF6wpZLiW5sF5qD8MYKlN1nFf2IXHw=="
+          "value": "i8h6QcDHHueFv7ZhQXBV8gswoj/dE2FhixjtbIVHRzOHo9jDg6q8El3XmS6QFLcMd2Gu32bs0sg42Ok3pPxaPA=="
         }
       ]
     },
@@ -179,7 +269,7 @@
         "signedAt": "2026-09-24T13:29:33.000Z",
         "algorithm": "ES256",
         "keyId": "0b5a6fc3bb3ff0d07b75895466c933c99065b45ffc24d9a5e539b4b18f4dbbc4",
-        "value": "hhhKwx6dnOa18UjVE7W2hJbBSCG3/vFewDgTgF1A7Z2HjFHaUrno3L+H4vs+ZdWC7uF06lWMIs4YsfHl9c73HA=="
+        "value": "l5ZVK+dybEZk45RtK1nPszhH1LkR7wZATexKn32m1TFY2xU3Tn/PG4WMrDYYdg4RTvGhozMHBgkxg9z4B+YVDg=="
       },
       {
         "role": "roamingNetworkOperator",
@@ -187,7 +277,7 @@
         "signedAt": "2026-09-24T13:29:33.600Z",
         "algorithm": "ES256",
         "keyId": "45cc7c4c3bfbd2985a9f9384998b41b0caecceecf4f521a2f0d856a5e776ed14",
-        "value": "kI1FXiLaCtzakLNSLA1vWICvJmZKYULkIQd8jUtMbjR1Ho3UD5FGzHuD3KqgPeAbhzbBi6Of5SiCYswJcw5iUg=="
+        "value": "mYUhBKSDtkqkZ/gWr9DGQla1z4jvMPjPuOQlxrrnM16pwOgYhgLi0sFIexf8IjAKZehmnXdB29WLkzzSQtwt+w=="
       },
       {
         "role": "roamingNetworkOperator",
@@ -195,7 +285,7 @@
         "signedAt": "2026-09-24T13:29:34.200Z",
         "algorithm": "ES256",
         "keyId": "dffa220da4a30fc3cc51f13896900a42155df4143f3981d84706ef09de6b69b1",
-        "value": "Dtw0CmaLxtggfXp3YEh1im0vQ4apJq3Yvtu2uRcc4YqHJPMC7hUTuB3UM+8qsGEoMGi3Mqz+7iSCPw4ZEPefEg=="
+        "value": "O+pI98jhIH955pp3RVeVeLnKb/uytmyJwrJGXNJc5l9+QNQ5LxZ8vtMlqN28h/YepazlZiQmqPSFoJQy1oQFDg=="
       }
     ]
   },
@@ -12707,6 +12797,14 @@
             "paymentOptions": [
               "CreditCard",
               "EVTaler"
+            ],
+            "authenticationModes": [
+              {
+                "channels": [
+                  "Display"
+                ],
+                "type": "SecureDynamicQRCode"
+              }
             ]
           },
           {
@@ -12877,6 +12975,14 @@
             "paymentOptions": [
               "CreditCard",
               "EVTaler"
+            ],
+            "authenticationModes": [
+              {
+                "channels": [
+                  "Display"
+                ],
+                "type": "SecureDynamicQRCode"
+              }
             ]
           },
           {
@@ -13024,6 +13130,14 @@
             "paymentOptions": [
               "CreditCard",
               "EVTaler"
+            ],
+            "authenticationModes": [
+              {
+                "channels": [
+                  "Display"
+                ],
+                "type": "SecureDynamicQRCode"
+              }
             ]
           },
           {
@@ -13194,6 +13308,14 @@
             "paymentOptions": [
               "CreditCard",
               "EVTaler"
+            ],
+            "authenticationModes": [
+              {
+                "channels": [
+                  "Display"
+                ],
+                "type": "SecureDynamicQRCode"
+              }
             ]
           },
           {
@@ -13341,6 +13463,14 @@
             "paymentOptions": [
               "CreditCard",
               "EVTaler"
+            ],
+            "authenticationModes": [
+              {
+                "channels": [
+                  "Display"
+                ],
+                "type": "SecureDynamicQRCode"
+              }
             ]
           },
           {
@@ -13511,6 +13641,14 @@
             "paymentOptions": [
               "CreditCard",
               "EVTaler"
+            ],
+            "authenticationModes": [
+              {
+                "channels": [
+                  "Display"
+                ],
+                "type": "SecureDynamicQRCode"
+              }
             ]
           },
           {

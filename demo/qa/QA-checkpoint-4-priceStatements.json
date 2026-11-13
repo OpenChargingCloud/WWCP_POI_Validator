@@ -22,16 +22,16 @@
         }
       ]
     },
-    "validFrom": "2026-11-05T19:43:39.877Z",
-    "validUntil": "2026-11-05T20:43:39.877Z",
+    "validFrom": "2026-11-12T21:54:32.328Z",
+    "validUntil": "2026-11-12T22:54:32.328Z",
     "sequence": 0,
-    "after": "97172697344d3ad1b18c70f0155e899e6048d17cb51a409119034327c3ada491",
+    "after": "13b611cd1a94ad788ea34fc721dbbcc3720ed2b533cba53d6f67cfe84185c6f8",
     "role": "chargingStationOperator",
     "signer": "DE*GEF",
-    "signedAt": "2026-11-05T19:43:39.877Z",
+    "signedAt": "2026-11-12T21:54:32.328Z",
     "algorithm": "ES256",
-    "keyId": "548c474288fabff893b89bb7d7a62fe52ced94c99e70f2aa20f8d5c1670a56dd",
-    "value": "wWX7zxdvNQwgPVhlAduR+Ucgoq3fudTYy+ZtWiHr/P281Mf13FTE+/nGxjdvIzu2Okn3H6uzY7S9J7MNTVWdhA=="
+    "keyId": "90207193e9fb9f7e950920b2bf97d2b9d9247dbc8cf7107f01d432735a46d15f",
+    "value": "rNd/OJpNjMGMuoRE3ctczSTR3tSuu6QIcIF4tUAko0PTEivEYbL/9+ZMAAmT9y5ao7mtIspUy13OuzEwEz4yOA=="
   },
   {
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/priceStatement/v1",
@@ -56,17 +56,17 @@
         }
       ]
     },
-    "validFrom": "2026-11-05T19:43:39.878Z",
-    "validUntil": "2026-11-05T20:43:39.877Z",
+    "validFrom": "2026-11-12T21:54:32.329Z",
+    "validUntil": "2026-11-12T22:54:32.328Z",
     "sequence": 1,
-    "previous": "0af15106c79c8e8a0ca3d49fa3c0b6cb0e4122d93b2bf700e9f8a8adb85aa0fa",
-    "after": "97172697344d3ad1b18c70f0155e899e6048d17cb51a409119034327c3ada491",
+    "previous": "b544fded17843474b3bf893fb6b41f2d74d78308ef2808a1d118775523b2c9ad",
+    "after": "13b611cd1a94ad788ea34fc721dbbcc3720ed2b533cba53d6f67cfe84185c6f8",
     "role": "chargingStationOperator",
     "signer": "DE*GEF",
-    "signedAt": "2026-11-05T19:43:39.878Z",
+    "signedAt": "2026-11-12T21:54:32.329Z",
     "algorithm": "ES256",
-    "keyId": "548c474288fabff893b89bb7d7a62fe52ced94c99e70f2aa20f8d5c1670a56dd",
-    "value": "5HhiykN47hRYO6sBkKVUD0iyqzf3qUZqVtLBfDOQ+GO042AtzsEf92/ZcKb9PpDkpk2p63hKElQeIHPnfPOnDw=="
+    "keyId": "90207193e9fb9f7e950920b2bf97d2b9d9247dbc8cf7107f01d432735a46d15f",
+    "value": "P+NmUnCTJa5Y0y9SN6jqiuo2MaWrmlcFp3Ah3OfibjPdB4OsXo3yuEgQJSgFAJh//PvE6bEHjG3coCyJiYVOCg=="
   },
   {
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/priceStatement/v1",
@@ -91,15 +91,15 @@
         }
       ]
     },
-    "validFrom": "2026-11-05T19:43:39.877Z",
-    "validUntil": "2026-11-05T20:43:39.877Z",
+    "validFrom": "2026-11-12T21:54:32.328Z",
+    "validUntil": "2026-11-12T22:54:32.328Z",
     "sequence": 0,
-    "after": "97172697344d3ad1b18c70f0155e899e6048d17cb51a409119034327c3ada491",
+    "after": "13b611cd1a94ad788ea34fc721dbbcc3720ed2b533cba53d6f67cfe84185c6f8",
     "role": "chargingStationOperator",
     "signer": "DE*GEF",
-    "signedAt": "2026-11-05T19:43:39.877Z",
+    "signedAt": "2026-11-12T21:54:32.328Z",
     "algorithm": "ES256",
-    "keyId": "548c474288fabff893b89bb7d7a62fe52ced94c99e70f2aa20f8d5c1670a56dd",
-    "value": "4s/cUvsBJNlwMn6XcbSrn5t1ZIIuXGoxnvlPaRZzmP2r73ZtmaXFSs4C/eAhqKo6iMhxfBHOmojFNQrXKxvn8A=="
+    "keyId": "90207193e9fb9f7e950920b2bf97d2b9d9247dbc8cf7107f01d432735a46d15f",
+    "value": "YbTKRL6nrcpEhx2b1kCrjjmjcF2fub5Izi0MSnrszp/pdsu3MgiEbjZJycw+XJsUKhsfe9prYnNqKNLY3M73/A=="
   }
 ]

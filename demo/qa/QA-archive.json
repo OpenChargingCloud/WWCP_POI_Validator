@@ -2,34 +2,34 @@
   {
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/archiveSegmentInfo/v1",
     "number": 1,
-    "rootId": "42d013cf5a94124c8a952d0fa98033d449438dcb75cbf622b4dc2360e3c7280f",
-    "endId": "ab388affdc010133c5e8ad38ad183eb9c3a68b14eba564b5bd953e984f13a79e",
+    "rootId": "5491d293240c61e071ee0bf3801566603e5bbf1be84d7e86858546cffab110ce",
+    "endId": "39cf357f092da1f9d70ebb358d2d7e42d00fe35fba310135bf7dd8e002e277b7",
     "fromRevision": 0,
     "toRevision": 7,
     "size": 7,
-    "archivedAt": "2026-11-05T19:43:37.859Z",
+    "archivedAt": "2026-11-12T21:54:31.034Z",
     "commitIds": [
-      "c29fb4af2a943d67b85266348636ff0e13168392eb634c09ec3f5dc130e9c918",
-      "f47963f4d4428153b9420d2b27a19e70b8256f19f09afa9f79739d69ba2918cb",
-      "a21b333e02874102161146b70fd8d3374b76401b63a6ec4753d46f0b1154a9bf",
-      "eae408e00fd31e98eface65ae2fc34f96c19e4055ddcc8a3a0fa8f086f6bd86b",
-      "1123654c5fbd2f9a478ac14bf12a28ddf55bf08a4481617b7bf2983357f8809c",
-      "3d3ab65504a0758a4a6ad4dfef48d9c2e76882090ff969b3e914e608c2e43961",
-      "ab388affdc010133c5e8ad38ad183eb9c3a68b14eba564b5bd953e984f13a79e"
+      "5248bf2c59ed50e2b176bb0be64d3e4f7b21780f8b9f89a2011ccd8d0b4af3c0",
+      "db934da22dd7926fb4873b5101fd86e2e06ba0d50eafa677486299621c3a37c5",
+      "d46d32144ded23cfdc775ee455ec2517dfc09743c0b29fd429946c2587fec2eb",
+      "dfd567760ecc901d80782dd1e162ed5a1c3f94f1c90af218260dfd19ec810411",
+      "0cf4e85eb12ee75dcaae3d5e98828417115506236beb6936b3fa06654d58eaf6",
+      "a1b2fc80e4dc2cb83e861d953f9943bfeecffa863ab672ff15934b622ca7f2f6",
+      "39cf357f092da1f9d70ebb358d2d7e42d00fe35fba310135bf7dd8e002e277b7"
     ]
   },
   {
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/archiveSegmentInfo/v1",
     "number": 2,
-    "rootId": "ab388affdc010133c5e8ad38ad183eb9c3a68b14eba564b5bd953e984f13a79e",
-    "endId": "136e12acb3b62fbe1a5d0b6d771a060bc270851d4f8688f144c909d9ac988e9e",
+    "rootId": "39cf357f092da1f9d70ebb358d2d7e42d00fe35fba310135bf7dd8e002e277b7",
+    "endId": "0a87c12c3d9a7a117bc9dd51f848386125479069fbed96fda2996f85ca3ca5f1",
     "fromRevision": 7,
     "toRevision": 9,
     "size": 2,
-    "archivedAt": "2026-11-05T19:43:38.168Z",
+    "archivedAt": "2026-11-12T21:54:31.099Z",
     "commitIds": [
-      "3b3c38b60146864c79201a1ca4e5322fa4979ec59b77f89ea9e383cbb71a6ecc",
-      "136e12acb3b62fbe1a5d0b6d771a060bc270851d4f8688f144c909d9ac988e9e"
+      "3322c7146788ee30ff50c4d12507f9bb2630f5f34f93372153d206190c3c8877",
+      "0a87c12c3d9a7a117bc9dd51f848386125479069fbed96fda2996f85ca3ca5f1"
     ]
   }
 ]
