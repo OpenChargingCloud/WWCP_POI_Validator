@@ -111,8 +111,10 @@ function networkCard(report) {
             [ 'Holders', operator ? [ ...new Set(operator.identityKeys.map(key => key.holderOrUnnamed)) ].sort().join(', ') : undefined ],
             [ 'Quorum', operator ? `${operator.minConsensus} of ${new Set(operator.identityKeys.map(key => key.holderOrUnnamed)).size} holders` : undefined ],
             [ 'Tree hashes', network.treeHashAlgorithms.join(', ') ],
+            [ 'Copies', network.urls?.length ? h('div', 'stack', ...network.urls.map(url => h('code', null, String(url)))) : undefined ],
         ]),
-        h('p', 'note', 'As the verified head says it: the name and the description are part of the root the operator signs.'));
+        h('p', 'note', 'As the verified head says it: the name and the description are part of the root the operator signs' +
+                       (network.urls?.length ? ', and so are the URLs of its copies. Naming a copy does not make it trusted: what it serves is verified as everything else is.' : '.')));
 }
 
 

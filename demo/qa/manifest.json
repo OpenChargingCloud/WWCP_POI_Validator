@@ -1,47 +1,55 @@
 {
   "id": "qa",
   "title": "QA, the roaming network of the WWCP_POI examples",
-  "description": "One recorded run of the C# examples A1 to A16 of WWCP_POI at commit 76d3653: a roaming network operator with a quorum of three holders, one charging station operator with 4 pools, 8 stations and 16 EVSEs, manufacturers and their models, transparency software, conformity assessment bodies and a calibration laboratory, two epochs (ECDSA and SHA-256, then ML-DSA and SHA-512), checkpoints signed by two witnesses, price statements, the evidence of a charging session, the QI-Digital papers of an energy meter, and EV Taler at one pool, with the secure dynamic QR code of its stations.",
-  "source": "https://github.com/OpenChargingCloud/WWCP_POI/tree/76d3653/examples",
-  "recordedAt": "2026-11-12T21:55:00.000Z",
-  "trustAnchor": "WWCP/TA-2:B7LJ683VCBCACVCC$C6REF6BV91JL18Y88/3$O10.D80MD*ECM3O 4ERR4D5.%NWK8$BEX/2F6BPH20*RVOLL4I6RP$V4/CW/JFV+7M2SQ8P8PFWROFWADR0Q1LF6B5/KL05REO2GVR6O2%1R6D4EN$0QDUDZ5BTB4O 49ZTYF2$BSFVCBEC7%CYJCD/DIDAAEC-ED3EFFC8$QEVKE:.D  C6%E/VDOGGXF4MWEW9E0G7%:5I9E -DNPCGECD3D3/D+%5*VD$$E9:5D-98:54C8D68-3E7WEBAFB9FA9DIWENPEJ/5/3E1$C+%5 8D$KEZED:1DRPC34E.TCUPCG/DB$CLWE10684F98E0LEBECZEDV2D7$CK4F-KE/:56LE QEAC8NPC04E006$G66VCJQE*KEX9E EDG:DYJCK/D:K4+8DQ44S3EJ$D3/DM447$CK4F-KEN44:+CAWEDZCB$CBECP9E6$C$VDZEDSN8F/D1$C$QECOE",
+  "description": "One recorded run of the C# examples A1 to A16 of WWCP_POI at commit c1b641b: a roaming network operator whose three holders join one by one, two of three in the end, one charging station operator with 4 pools, 8 stations and 16 EVSEs, manufacturers and their models, transparency software, conformity assessment bodies and a calibration laboratory, two epochs (ECDSA and SHA-256, then ML-DSA and SHA-512), checkpoints signed by two witnesses, price statements, the evidence of a charging session, the QI-Digital papers of an energy meter, and EV Taler at one pool, with the secure dynamic QR code of its stations.",
+  "source": "https://github.com/OpenChargingCloud/WWCP_POI/tree/c1b641b/examples",
+  "recordedAt": "2026-11-16T20:31:00.000Z",
+  "trustAnchor": "WWCP/TA-2:B7LJ683VCBCACVCC$C6REF6B-D5F*CZ7HZ+TPLOACK/$COPOLZN8/BXW5-QEICB%C2%+7-G2F6BUXDIJKE4UE5ITFOT+UI6OLIO$EGGC4MY2W4U.L40G0+G1K6FF6B.EV*6A9XN* EA0G3RLL14XMB8GH-F6TB3-YTJ0I/QEM6F$XOFVCBEC7%CYJCD/DIDAAEC-ED3EFFC8$QEVKE:.D  C6%E/VD-RGRQ3MWEW9E0G7O:5+VD 8D.%5$9FQ$DTVD9:5D-98:5KC8-K3MWEW9E0G7P:57$C%CCB$CBECP9ESZCAIACPEBCAD8FA9DIWENPEJ/553DN$D%CCB$CBECP9ESZCAIACPEBCA38DUPCG/DB$CQWEA19MWEW9E0G7%:5I9E -DNPCGECD3D3/D+%5*VD$$EQ:5-3E7WEBAFCPES4FVPC-:5S3EJ$D3/D:+9PWE04EYODKWE7%EGVE:.D59DQJEI.E.PD6$CXPC$EDBWE-3E4IK1$CK8F8UADZC0LEBECZEDU1D1/DPWE04EJODX3ES44+8DD44$9FQ$DTVDSQEJ$DC.D-3ELQEF/D7%E20",
   "alternativeTrustAnchors": [
     {
       "label": "QA after example A11 (ML-DSA identity keys of epoch 2)",
-      "text": "WWCP/TA-2:B7LJ683VCBCACVCC$C6REF6BPH20*RVOLL4I6RP$V4/CW/JFV+7M2SQ8P8PFWROFWADR0Q1LF6B09A3B5HJ8GOP.42DJ70 62O01.5H+OD4M.RP17D611X.K5KEF6BC%FZ.22SF5QJYNKMFQ:2V.NT*XAYUU1CN%044DI-7KGL3TDFFVCBEC7%CYJCD/DIDAAEC-ED3EFFC8$QEVKE:.D  C6%E/VDOGGXF4MWEW9E0G7%:5I9E -DNPCGECD3D3/D+%5*VD$$E9:5D-98:54C8D68-3E7WEBAFB9FA9DIWENPEJ/5/3E1$C+%5 8D$KEZED:1DRPC34E.TCUPCG/DB$CLWE10684F98E0LEBECZEDV2D7$CK4F-KE/:56LE QEAC8NPC04E006$G66VCJQE*KEX9E EDG:DYJCK/D:K4+8DQ44S3EJ$D3/DM447$CK4F-KEN44:+CAWEDZCB$CBECP9E6$C$VDZEDSN8F/D1$C$QECOE"
+      "text": "WWCP/TA-2:B7LJ683VCBCACVCC$C6REF6BI00-PAI866+T4+1FLJSLG KVI7KSFS0V2B8O*B9K$SQO93M1F6B4H7%F5YB58LKQ0VKH60ZB+FT/J3LS7 WN4PI32G$.L6PUOFLF6B.EV*6A9XN* EA0G3RLL14XMB8GH-F6TB3-YTJ0I/QEM6F$XOFVCBEC7%CYJCD/DIDAAEC-ED3EFFC8$QEVKE:.D  C6%E/VD-RGRQ3MWEW9E0G7O:5+VD 8D.%5$9FQ$DTVD9:5D-98:5KC8-K3MWEW9E0G7P:57$C%CCB$CBECP9ESZCAIACPEBCAD8FA9DIWENPEJ/553DN$D%CCB$CBECP9ESZCAIACPEBCA38DUPCG/DB$CQWEA19MWEW9E0G7%:5I9E -DNPCGECD3D3/D+%5*VD$$EQ:5-3E7WEBAFCPES4FVPC-:5S3EJ$D3/D:+9PWE04EYODKWE7%EGVE:.D59DQJEI.E.PD6$CXPC$EDBWE-3E4IK1$CK8F8UADZC0LEBECZEDU1D1/DPWE04EJODX3ES44+8DD44$9FQ$DTVDSQEJ$DC.D-3ELQEF/D7%E20"
+    },
+    {
+      "label": "QA at its genesis (AlphaOrg alone, one of one)",
+      "text": "WWCP/TA-2:P1LJ683VCBCACVCC$C4REF6BUXDIJKE4UE5ITFOT+UI6OLIO$EGGC4MY2W4U.L40G0+G1K6FFVCBEC7%CYJCD/DIDAAEC-ED3EFFC8$QEVKE:.D  C6%E/VDOGGRQ3MWEW9E0G7O:5+VD 8D.%5$9FQ$DTVD9:5D-98:54C8D68-3E7WEBAFB9FA9DIWENPEJ/5/3E1$C+%5 8D$KEZED:1DRPC34E.TCUPCG/DB$CLWE10684F98E0LEBECZEDV2D7$CK4F-KE/:56LE QEAC8NPC04E006$G66VCJQE*KEX9E EDG:DYJCK/D:K4+8DQ44S3EJ$D3/DM447$CK4F-KEN44:+CAWEDZCB$CBECP9E6$C"
+    },
+    {
+      "label": "QA at revision 1 (AlphaOrg and BetaOrg, two of two)",
+      "text": "WWCP/TA-2:B7LJ683VCBCACVCC$C5REF6B-D5F*CZ7HZ+TPLOACK/$COPOLZN8/BXW5-QEICB%C2%+7-G2F6BUXDIJKE4UE5ITFOT+UI6OLIO$EGGC4MY2W4U.L40G0+G1K6FFVCBEC7%CYJCD/DIDAAEC-ED3EFFC8$QEVKE:.D  C6%E/VDAMGRQ3MWEW9E0G7O:5+VD 8D.%5$9FQ$DTVD9:5D-98:5KC8-K3MWEW9E0G7P:57$C%CCB$CBECP9ESZCAIACPEBCA38DUPCG/DB$CQWEA19MWEW9E0G7%:5I9E -DNPCGECD3D3/D+%5*VD$$EQ:5-3E7WEBAFCPES4FVPC-:5S3EJ$D3/D:+9PWE04EYODKWE7%EGVE:.D59DQJEI.E.PD6$CXPC$EDBWE-3E4IK1$CK8F8UADZC0LEBECZEDU1D1/DPWE04EJODX3ES44+8DD44$9FQ$DTVDSQEJ$DC.D-3ELQEF/D7%E20"
     }
   ],
   "witnesses": [
     {
       "witness": "calibration.example",
       "key": {
-        "@id": "7754f236c5efba3d745086ae1221169135dc3a16c3c3fcfed689a6618b6a4b65",
+        "@id": "1c7c02513a3a940e2f31ebf3441b9cd952ea22cfa37b58350873cbf48ae2dfd0",
         "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/publicKey/v1",
-        "key": "owEBIAYhWCA2T0BelYLdkdpGOMA2HU5UVEFYfXKf+z9jXG26rtQK0Q=="
+        "key": "owEBIAYhWCDfZrKQzW1iJHA4UrI3uvrKdMOFThSNussTkoi7iogMsA=="
       }
     },
     {
       "witness": "association.example",
       "key": {
-        "@id": "6af3483db6d45a2f661332663e6c80ef60f5ac1f38d721cabe11ff898cd744c7",
+        "@id": "9142ef1507b7d938d7c75af70a7641d65e34c2ba42f978024e460070594dbbc1",
         "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/publicKey/v1",
-        "key": "pAECIAIhWDCv4+VJ27+9su/lgBOomdT8qKEWDrUY8l3C7Q5kL+CaDl6cV/9dfRhJDVPNMX1ZoS8iWDAz99C6rG1SMKDVP4Jw/1LCd92gGkmdas+bVaA6rV9eLwGwrUqVZiORbAgEMf3ycAM="
+        "key": "pAECIAIhWDCQ0uwUYHn1feiL6NlhPQHJJhk3AP6vE8HDVxxAig7scDXnXYRJItYb44GRyuIXk68iWDAChLBvQmO0WNO9gj/RaPeo0aZnop4vGDRwjE2Q3s7Fhl5Mir37WZDiPRtKDY3Qj/g="
       }
     },
     {
       "witness": "calibration.example",
       "key": {
-        "@id": "c1ce8bcfe7897aa7ccf9007bca57954bbc3750383451caf75c1376a0ecc21ca0",
+        "@id": "64ba918643e1c3ff28db48ef03e08ddd4be94b39b20493582d2ada8ab89d827e",
         "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/publicKey/v1",
-        "key": "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"
+        "key": "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"
       }
     },
     {
       "witness": "association.example",
       "key": {
-        "@id": "982ad2b5ee04bf3580308922c031531f65eca506ed42b34769283ba6cafa2e45",
+        "@id": "bc49f867ced3b46eb4a122a5e81f2f77abe7d75983751ac508f2b17bb0848b60",
         "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/publicKey/v1",
-        "key": "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"
+        "key": "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"
       }
     }
   ],
@@ -49,23 +57,23 @@
   "files": [
     {
       "path": "QA-genesis.json",
-      "description": "Snapshot of the genesis of epoch 1: revision 0, the roaming network QA, its operator OCC and the key statement of its three holders"
+      "description": "Snapshot of the genesis of epoch 1: revision 0, the roaming network QA, its operator OCC and its key statement, of AlphaOrg alone"
     },
     {
       "path": "QA-commits-since-genesis.json",
-      "description": "Commits 1 to 10 of epoch 1: parties, models, templates, pools, groups"
+      "description": "Commits 1 to 12 of epoch 1: BetaOrg joins AlphaOrg, two of two, then GammaOrg, two of three (A1); parties, models, templates, pools, groups"
     },
     {
       "path": "QA-commits-since-checkpoint-2.json",
-      "description": "Commits 11 to 13 of epoch 1: charging tariffs and their prices"
+      "description": "Commits 13 to 15 of epoch 1: charging tariffs and their prices"
     },
     {
       "path": "QA-commits-since-checkpoint-4.json",
-      "description": "Commit 14 of epoch 1: the DC tariff"
+      "description": "Commit 16 of epoch 1: the DC tariff"
     },
     {
       "path": "QA-commits-since-checkpoint-5.json",
-      "description": "Commits 15 and 16 of epoch 1: OCC and DE*GEF move to ML-DSA keys (example A11)"
+      "description": "Commits 17 and 18 of epoch 1: OCC and DE*GEF move to ML-DSA keys (example A11)"
     },
     {
       "path": "QA-checkpoint-0.json",
@@ -125,11 +133,11 @@
     },
     {
       "path": "QA-archive-1.json",
-      "description": "Archive segment 1: the genesis and commits 1 to 7"
+      "description": "Archive segment 1: the genesis and commits 1 to 9"
     },
     {
       "path": "QA-archive-2.json",
-      "description": "Archive segment 2: revision 7 and commits 8 and 9"
+      "description": "Archive segment 2: revision 9 and commits 10 and 11"
     },
     {
       "path": "QA-live-snapshot.json",
@@ -164,16 +172,16 @@
       "description": "The attestations of the head of epoch 2"
     },
     {
-      "path": "QA-proof-revision-4.json",
-      "description": "Proof that commit 4 of epoch 1 is part of checkpoint 0 (section 10.4)"
-    },
-    {
-      "path": "QA-proof-revision-8.json",
-      "description": "Proof that commit 8 of epoch 1 is part of checkpoint 1"
+      "path": "QA-proof-revision-6.json",
+      "description": "Proof that commit 6 of epoch 1 is part of checkpoint 0 (section 10.4)"
     },
     {
       "path": "QA-proof-revision-10.json",
-      "description": "Proof that commit 10 of epoch 1 is part of checkpoint 2"
+      "description": "Proof that commit 10 of epoch 1 is part of checkpoint 1"
+    },
+    {
+      "path": "QA-proof-revision-12.json",
+      "description": "Proof that commit 12 of epoch 1 is part of checkpoint 2"
     },
     {
       "path": "QA-epoch-2-proof-revision-1.json",

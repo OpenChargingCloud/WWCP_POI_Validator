@@ -166,7 +166,7 @@ function commitDetail(report, epoch, step, actions) {
     const directory = keyDirectory(step.before, { witnesses: report.witnesses });
 
     const operatorSummary = step.operatorCheck?.ok === true
-        ? h('span', null, badge('quorum reached', 'ok'), ` ${step.operatorCheck.holders.join(', ')} — ${step.operatorCheck.required} of the holders required`)
+        ? h('span', null, badge('quorum reached', 'ok'), ` ${step.operatorCheck.holders.join(', ')} — ${step.operatorCheck.required} of the holders required${step.operatorCheck.byKeysStatedAnew ? ', as this commit states the keys of the operator anew' : ''}`)
         : step.operatorCheck?.ok === false
             ? h('span', null, badge('quorum not reached', 'error'), ' ', step.operatorCheck.error)
             : h('span', 'muted', step.operatorCheck?.detail ?? 'not checked');
@@ -367,7 +367,7 @@ function rootDetail(report, epoch, step, actions) {
         step.operatorSignatures ? h('div', null,
             h('h3', null, 'Signatures of its commit'),
             h('div', 'operator-check', h('strong', null, 'Signed by the roaming network operator: '),
-                step.operatorCheck?.ok === true ? h('span', null, badge('quorum reached', 'ok'), ` ${step.operatorCheck.holders.join(', ')} — ${step.operatorCheck.required} of the holders required`)
+                step.operatorCheck?.ok === true ? h('span', null, badge('quorum reached', 'ok'), ` ${step.operatorCheck.holders.join(', ')} — ${step.operatorCheck.required} of the holders required${step.operatorCheck.byKeysStatedAnew ? ', as this commit states the keys of the operator anew' : ''}`)
                 : step.operatorCheck?.ok === false ? h('span', null, badge('quorum not reached', 'error'), ' ', step.operatorCheck.error)
                 : h('span', 'muted', step.operatorCheck?.detail ?? 'not checked')),
             roleSignatureTable(step.operatorSignatures, keyDirectory(step.network, { witnesses: report.witnesses })),

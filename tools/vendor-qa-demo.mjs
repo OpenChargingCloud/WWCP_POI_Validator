@@ -10,7 +10,7 @@
  * Nothing is changed: the documents are signed, and the validator checks them as they were published.
  */
 
-import { copyFileSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, join, resolve } from 'node:path';
 
 const here     = import.meta.dirname;
@@ -29,11 +29,11 @@ const target   = join(here, '..', 'demo', 'qa');
 /** The documents of the demo, in the order the validator lists them, with what each one is. */
 const FILES = [
 
-    [ 'published/QA-genesis.json',                         'Snapshot of the genesis of epoch 1: revision 0, the roaming network QA, its operator OCC and the key statement of its three holders' ],
-    [ 'published/QA-commits-since-genesis.json',           'Commits 1 to 10 of epoch 1: parties, models, templates, pools, groups' ],
-    [ 'published/QA-commits-since-checkpoint-2.json',      'Commits 11 to 13 of epoch 1: charging tariffs and their prices' ],
-    [ 'published/QA-commits-since-checkpoint-4.json',      'Commit 14 of epoch 1: the DC tariff' ],
-    [ 'published/QA-commits-since-checkpoint-5.json',      'Commits 15 and 16 of epoch 1: OCC and DE*GEF move to ML-DSA keys (example A11)' ],
+    [ 'published/QA-genesis.json',                         'Snapshot of the genesis of epoch 1: revision 0, the roaming network QA, its operator OCC and its key statement, of AlphaOrg alone' ],
+    [ 'published/QA-commits-since-genesis.json',           'Commits 1 to 12 of epoch 1: BetaOrg joins AlphaOrg, two of two, then GammaOrg, two of three (A1); parties, models, templates, pools, groups' ],
+    [ 'published/QA-commits-since-checkpoint-2.json',      'Commits 13 to 15 of epoch 1: charging tariffs and their prices' ],
+    [ 'published/QA-commits-since-checkpoint-4.json',      'Commit 16 of epoch 1: the DC tariff' ],
+    [ 'published/QA-commits-since-checkpoint-5.json',      'Commits 17 and 18 of epoch 1: OCC and DE*GEF move to ML-DSA keys (example A11)' ],
 
     [ 'published/QA-checkpoint-0.json',                    'Checkpoint 0 of epoch 1, signed by OCC and two witnesses' ],
     [ 'published/QA-checkpoint-1.json',                    'Checkpoint 1 of epoch 1' ],
@@ -51,8 +51,8 @@ const FILES = [
     [ 'published/QA-epoch-2-checkpoint-0-priceStatements.json', 'The price statement checkpoint 0 of epoch 2 names' ],
 
     [ 'published/QA-archive.json',                         'The segments of the archive of epoch 1 (compaction, section 10.6)' ],
-    [ 'published/QA-archive-1.json',                       'Archive segment 1: the genesis and commits 1 to 7' ],
-    [ 'published/QA-archive-2.json',                       'Archive segment 2: revision 7 and commits 8 and 9' ],
+    [ 'published/QA-archive-1.json',                       'Archive segment 1: the genesis and commits 1 to 9' ],
+    [ 'published/QA-archive-2.json',                       'Archive segment 2: revision 9 and commits 10 and 11' ],
 
     [ 'published/QA-live-snapshot.json',                   'Snapshot of revision 3 of epoch 2 with the runtime status of every pool, station and EVSE (unsigned)' ],
 
@@ -64,9 +64,9 @@ const FILES = [
     [ 'proofs/QA-proof-evse-DE_GEF_E3_2.json',             'Proof of the charging station of the EVSE DE*GEF*E3*2 at the head' ],
     [ 'proofs/QA-epoch-2-attestations.json',               'The attestations of the head of epoch 2' ],
 
-    [ 'published/QA-proof-revision-4.json',                'Proof that commit 4 of epoch 1 is part of checkpoint 0 (section 10.4)' ],
-    [ 'published/QA-proof-revision-8.json',                'Proof that commit 8 of epoch 1 is part of checkpoint 1' ],
-    [ 'published/QA-proof-revision-10.json',               'Proof that commit 10 of epoch 1 is part of checkpoint 2' ],
+    [ 'published/QA-proof-revision-6.json',                'Proof that commit 6 of epoch 1 is part of checkpoint 0 (section 10.4)' ],
+    [ 'published/QA-proof-revision-10.json',               'Proof that commit 10 of epoch 1 is part of checkpoint 1' ],
+    [ 'published/QA-proof-revision-12.json',               'Proof that commit 12 of epoch 1 is part of checkpoint 2' ],
     [ 'proofs/QA-epoch-2-proof-revision-1.json',           'Proof that commit 1 of epoch 2 is part of checkpoint 0 of epoch 2' ],
     [ 'published/QA-priceStatementProof-E1_1-0.json',      'Proof that the first price statement of DE*GEF*E1*1 is named by checkpoint 4' ],
 
@@ -79,6 +79,12 @@ const FILES = [
 
 ];
 
+// Before anything is removed: a run that names its documents otherwise is one this list has to follow first.
+const missing = FILES.map(([ file ]) => file).filter(file => !existsSync(join(run, file)));
+
+if (missing.length > 0)
+    throw new Error(`The run ${runName} has no ${missing.join(', ')}: the documents of the demo, FILES, have to follow it`);
+
 rmSync(target, { recursive: true, force: true });
 mkdirSync(target, { recursive: true });
 
@@ -87,6 +93,9 @@ for (const [ file ] of FILES)
 
 const trustAnchor   = readFileSync(join(run, 'published', 'QA-trustAnchor.txt'),       'utf8').trim();
 const trustAnchorPQ = readFileSync(join(run, 'published', 'QA-trustAnchor-mldsa.txt'), 'utf8').trim();
+
+// The trust anchors of the first revisions, as example A1 published them while the holders of OCC joined one by one.
+const trustAnchorOf = (revision) => readFileSync(join(run, 'published', `QA-trustAnchor-revision${revision}.txt`), 'utf8').trim();
 
 // The witnesses a verifier trusts by configuration: those of example A6, and their ML-DSA keys of example A11.
 const witnesses = [
@@ -97,7 +106,7 @@ const witnesses = [
 const manifest = {
     id:            'qa',
     title:         'QA, the roaming network of the WWCP_POI examples',
-    description:   `One recorded run of the C# examples A1 to A16 of WWCP_POI at commit ${commit}: a roaming network operator with a quorum of three holders, ` +
+    description:   `One recorded run of the C# examples A1 to A16 of WWCP_POI at commit ${commit}: a roaming network operator whose three holders join one by one, two of three in the end, ` +
                    'one charging station operator with 4 pools, 8 stations and 16 EVSEs, manufacturers and their models, transparency software, conformity assessment bodies ' +
                    'and a calibration laboratory, two epochs (ECDSA and SHA-256, then ML-DSA and SHA-512), checkpoints signed by two witnesses, price statements, ' +
                    'the evidence of a charging session, the QI-Digital papers of an energy meter, and EV Taler at one pool, with the secure dynamic QR code of its stations.',
@@ -105,7 +114,9 @@ const manifest = {
     recordedAt:    AT,
     trustAnchor,
     alternativeTrustAnchors: [
-        { label: 'QA after example A11 (ML-DSA identity keys of epoch 2)', text: trustAnchorPQ }
+        { label: 'QA after example A11 (ML-DSA identity keys of epoch 2)', text: trustAnchorPQ },
+        { label: 'QA at its genesis (AlphaOrg alone, one of one)',         text: trustAnchorOf(0) },
+        { label: 'QA at revision 1 (AlphaOrg and BetaOrg, two of two)',    text: trustAnchorOf(1) }
     ],
     witnesses,
     requiredWitnesses: 2,

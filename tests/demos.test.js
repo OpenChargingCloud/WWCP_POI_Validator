@@ -19,13 +19,30 @@ test('QA: the roaming network of the WWCP_POI examples A1 to A16 verifies', asyn
 
     assert.deepEqual(summary.errors,   []);
     assert.deepEqual(summary.warnings, []);
-    assert.deepEqual(summary.verdict,  { level: 'ok', commits: 27, checkpoints: 8, errors: 0, warnings: 0 });
+    assert.deepEqual(summary.verdict,  { level: 'ok', commits: 29, checkpoints: 8, errors: 0, warnings: 0 });
     assert.equal(summary.anchor, 'pinned');
     assert.deepEqual(summary.head, { epoch: 2, revision: 11 });
 
+    // The genesis is of AlphaOrg alone, which the trust anchor of the three holders of today does not verify as it is:
+    // the history is anchored at the first checkpoint the trust anchor carries, checkpoint 0 of epoch 1 at revision 9.
+    const { from, epoch, sequence, revision, commits } = report.lateAnchor;
+    assert.deepEqual({ from, epoch, sequence, revision, commits }, { from: { epoch: 1, revision: 0 }, epoch: 1, sequence: 0, revision: 9, commits: 10 });
+
+    // The holders of OCC join one by one (A1): revision 1 is signed by AlphaOrg and BetaOrg, two of two, revision 2 by
+    // all three, two of three, each by the keys it states anew; every commit since by the keys trusted before it.
+    const signed = report.epochs[0].steps.filter(step => step.type === 'commit').map(step => step.operatorCheck);
+    assert.deepEqual(signed.slice(0, 3).map(({ ok, holders, required, byKeysStatedAnew }) => ({ ok, holders, required, byKeysStatedAnew })),
+                     [ { ok: true, holders: [ 'AlphaOrg', 'BetaOrg' ],             required: 2, byKeysStatedAnew: true      },
+                       { ok: true, holders: [ 'AlphaOrg', 'BetaOrg', 'GammaOrg' ], required: 2, byKeysStatedAnew: true      },
+                       { ok: true, holders: [ 'AlphaOrg', 'BetaOrg', 'GammaOrg' ], required: 2, byKeysStatedAnew: undefined } ]);
+    assert.ok(signed.slice(2).every(check => check.ok === true && check.byKeysStatedAnew === undefined));
+
+    // The URLs of its copies, part of what the operator signs.
+    assert.deepEqual(readDemo('qa').manifest.alternativeTrustAnchors.map(anchor => TrustAnchor.parse(anchor.text).urls.length), [ 3, 1, 2 ]);
+
     // Two epochs, ECDSA/SHA-256 and then ML-DSA/SHA-512, every commit and checkpoint taken.
     assert.deepEqual(summary.epochs, [
-        { number: 1, commits: 16, checkpoints: 7, notTaken: 0 },
+        { number: 1, commits: 18, checkpoints: 7, notTaken: 0 },
         { number: 2, commits: 11, checkpoints: 1, notTaken: 0 },
     ]);
 
@@ -58,7 +75,7 @@ test('QA: a day after the recording, the station proofs are refused, as their at
     assert.ok(summary.errors.every(text => /^The proof '.+' does not verify: Valid attestations of trusted keys of 0 holders/.test(text)), summary.errors.join('\n'));
 
     // The history itself does not expire.
-    assert.equal(summary.verdict.commits, 27);
+    assert.equal(summary.verdict.commits, 29);
     assert.equal(summary.verdict.checkpoints, 8);
 
 });
@@ -72,15 +89,15 @@ test('QA: with the trust anchor of the ML-DSA keys of epoch 2, the history is an
     // As with the trust anchor of the genesis: everything verifies.
     assert.deepEqual(summary.errors,   []);
     assert.deepEqual(summary.warnings, []);
-    assert.deepEqual(summary.verdict,  { level: 'ok', commits: 27, checkpoints: 8, errors: 0, warnings: 0 });
+    assert.deepEqual(summary.verdict,  { level: 'ok', commits: 29, checkpoints: 8, errors: 0, warnings: 0 });
     assert.deepEqual(summary.proofs,   [ true, true, true, true, true ]);
     assert.ok(report.proofs.every(result => result.basis === 'pinned'));
 
     // The key statement of the genesis names the keys of epoch 1 only. Checkpoint 0 of epoch 2 is the first one the trust
-    // anchor carries: it binds the genesis of epoch 1, its 16 commits and 7 checkpoints, and the derived genesis of epoch 2
+    // anchor carries: it binds the genesis of epoch 1, its 18 commits and 7 checkpoints, and the derived genesis of epoch 2
     // with its first 2 commits.
     const { from, epoch, sequence, revision, commits, checkpoints, hashes } = report.lateAnchor;
-    assert.deepEqual({ from, epoch, sequence, revision, commits, checkpoints, hashes }, { from: { epoch: 1, revision: 0 }, epoch: 2, sequence: 0, revision: 2, commits: 20, checkpoints: 7, hashes: [ 'sha256', 'sha512' ] });
+    assert.deepEqual({ from, epoch, sequence, revision, commits, checkpoints, hashes }, { from: { epoch: 1, revision: 0 }, epoch: 2, sequence: 0, revision: 2, commits: 22, checkpoints: 7, hashes: [ 'sha256', 'sha512' ] });
     assert.equal(report.epochs[0].steps[0].trust.basis, 'later');
 
     const bound = (step) => step.checks.some(check => check.label.startsWith('Bound by checkpoint 0 of epoch 2'));
@@ -90,6 +107,31 @@ test('QA: with the trust anchor of the ML-DSA keys of epoch 2, the history is an
 
     // Before it, each commit is signed by the quorum of the keys the history states itself.
     assert.ok(report.epochs[0].steps.filter(step => step.type === 'commit').every(step => step.operatorCheck.ok === true));
+
+});
+
+test('QA: with the trust anchor of its genesis, of AlphaOrg alone, the history is followed to the keys of today', async () => {
+
+    const { manifest } = readDemo('qa');
+    const anchor       = manifest.alternativeTrustAnchors.find(({ label }) => label.startsWith('QA at its genesis'));
+    const report       = await analyzeDemo('qa', { settings: { trustAnchorText: anchor.text } });
+    const summary      = summaryOf(report);
+
+    // One holder, one of one: the genesis verifies against it as it is, nothing is anchored later.
+    assert.equal(TrustAnchor.parse(anchor.text).keys.length, 1);
+    assert.equal(report.lateAnchor, undefined);
+    assert.equal(report.epochs[0].steps[0].trust.basis, 'pinned');
+
+    // Each key statement since is signed by the quorum trusted before it (8.6): BetaOrg and GammaOrg joining, the ML-DSA
+    // keys of epoch 2. Everything verifies, the proofs of today among it.
+    assert.deepEqual(summary.errors,   []);
+    assert.deepEqual(summary.warnings, []);
+    assert.deepEqual(summary.verdict,  { level: 'ok', commits: 29, checkpoints: 8, errors: 0, warnings: 0 });
+    assert.deepEqual(summary.proofs,   [ true, true, true, true, true ]);
+
+    const followed = report.epochs[0].steps.filter(step => step.trustFollowed !== undefined).slice(0, 2);
+    assert.deepEqual(followed.map(step => [ step.trustFollowed.ok, step.trustFollowed.identityKeys.map(key => key.holder).sort() ]),
+                     [ [ true, [ 'AlphaOrg', 'BetaOrg' ] ], [ true, [ 'AlphaOrg', 'BetaOrg', 'GammaOrg' ] ] ]);
 
 });
 

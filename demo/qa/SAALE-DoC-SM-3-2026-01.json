@@ -63,9 +63,9 @@
     "role": "Managing director"
   },
   "signature": {
-    "signedAt": "2026-11-12T21:54:39.847Z",
+    "signedAt": "2026-11-16T20:30:20.929Z",
     "algorithm": "ES256",
-    "keyId": "6cc3641043963f94cfe2f2a4cbe48bef2d992ad5ae4aa634285c69edfd23bd2e",
-    "value": "e7I6ODnDjgqfwlGhPiew6qy63NT1oxPYTX8rkhVkFyHwcCikxVmfXZawbC6UzGxo/Mvx25TPIKgWv2fj8jaR4w=="
+    "keyId": "1360d7c4d860947be696dfaa748e134801632a3f04ab0753e5d9351179417e18",
+    "value": "Y6Wc+kI6x1suOZTguckDr1UvdDhsKkVe6It5JydiRF27BxQXOYEo/NI0+Z27t2EfauwBWd7WUP7rflNcUy8BhQ=="
   }
 }

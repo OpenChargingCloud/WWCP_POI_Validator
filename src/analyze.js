@@ -673,28 +673,14 @@ export async function analyze(pool, settings, onProgress = () => {}) {
 
                 const step = currentStep;
 
-                if (trust === undefined)
-                    step.operatorCheck = { ok: undefined, detail: 'The roaming network operator is not trusted: its signatures are not checked.' };
-                else {
-                    try {
-                        const holders = trust.verifyOperatorSignatures(commit.signatures, (signature, key) => commit.verifySignature(signature, key), 'the commit');
-                        step.operatorCheck = { ok: true, holders: [ ...holders ].sort(), required: trust.requiredConsensus };
-                    }
-                    catch (e) {
-                        step.operatorCheck = { ok: false, error: message(e), required: trust.requiredConsensus };
-                    }
-                }
-
-                // Every signature by a trusted key is valid where the library took them; otherwise each is checked to tell which.
-                step.operatorSignatures = describeRoleSignatures(commit.signatures, trust, report.witnesses, (signature, key) => commit.verifySignature(signature, key),
-                                                                 step.operatorCheck.ok === true ? new Map() : undefined);
-
                 // The keys the operator states anew are followed when the trusted ones signed their statement (8.6, Succession).
                 // The commit of a snapshot has no version before it here: its statement is the one trusted already.
                 const statementBefore = before?.operator?.keyStatement;
                 const statementAfter  = after.operator?.keyStatement;
                 const changed         = before !== undefined && statementAfter !== undefined &&
                                         (statementBefore === undefined || canonicalJSON(statementBefore.json) !== canonicalJSON(statementAfter.json));
+
+                const trustBefore = trust;
 
                 if (trust !== undefined) {
                     try {
@@ -706,6 +692,39 @@ export async function analyze(pool, settings, onProgress = () => {}) {
                         step.trustFollowed = { ok: false, error: message(e) };
                     }
                 }
+
+                // The commit is signed by the quorum of the keys trusted before it or, where it changes the holders of these
+                // keys, e.g. as a holder joins and signs with the others, by the quorum of the keys it states and the trust
+                // followed (4.1, Holders joining and leaving).
+                let signedIn = trustBefore;
+
+                if (trustBefore === undefined)
+                    step.operatorCheck = { ok: undefined, detail: 'The roaming network operator is not trusted: its signatures are not checked.' };
+                else {
+                    const signedBy = (trusted) => {
+                        const holders = trusted.verifyOperatorSignatures(commit.signatures, (signature, key) => commit.verifySignature(signature, key), 'the commit');
+                        return { ok: true, holders: [ ...holders ].sort(), required: trusted.requiredConsensus };
+                    };
+                    try {
+                        step.operatorCheck = signedBy(trustBefore);
+                    }
+                    catch (e) {
+                        step.operatorCheck = { ok: false, error: message(e), required: trustBefore.requiredConsensus };
+                        if (trust !== trustBefore) {
+                            try {
+                                step.operatorCheck = { ...signedBy(trust), byKeysStatedAnew: true };
+                                signedIn           = trust;
+                            }
+                            catch {
+                                // Refused as the keys trusted before refuse it.
+                            }
+                        }
+                    }
+                }
+
+                // Every signature by a trusted key is valid where the library took them; otherwise each is checked to tell which.
+                step.operatorSignatures = describeRoleSignatures(commit.signatures, signedIn, report.witnesses, (signature, key) => commit.verifySignature(signature, key),
+                                                                 step.operatorCheck.ok === true ? new Map() : undefined);
 
             },
 

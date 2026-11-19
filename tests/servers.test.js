@@ -89,7 +89,7 @@ test('Everything POI_API serves of the QA network verifies from the trust anchor
     assert.ok(pool.size > 20, `only ${pool.size} documents`);
 
     assert.deepEqual(summary.errors, []);
-    assert.equal(summary.verdict.commits, 27);
+    assert.equal(summary.verdict.commits, 29);
     assert.equal(summary.verdict.checkpoints, 8);
     assert.deepEqual(summary.head, { epoch: 2, revision: 11 });
     assert.deepEqual(summary.proofs, [ true, true ]);

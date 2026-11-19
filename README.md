@@ -71,12 +71,15 @@ epochs and price statements fit together.
    anchor, a list of witnesses or a policy among them goes into the settings.
 3. **Demos**:
    - **QA**, the roaming network of the WWCP_POI examples A1 to A16, one recorded run (public data only), the one
-     WWCP_POI.TS vendors (`tests/vectors/csharp-76d3653` today): a quorum of three holders, one operator with 16 EVSEs,
+     WWCP_POI.TS vendors (`tests/vectors/csharp-c1b641b` today): a roaming network operator whose three holders join one by one (one of
+     one, two of two, two of three), the URLs of the copies of the network, one operator with 16 EVSEs,
      manufacturers and their models, transparency software and its certificates, a calibration laboratory, two epochs
      (ECDSA/SHA-256, then ML-DSA/SHA-512), witnesses, price statements, evidence, the QI-Digital papers of a meter, and
      **EV Taler** at one pool (its merchant, changed with a key for payments, two exchanges, of which the one in
      euros pays, and the secure dynamic QR code its stations show).
-     Besides its own trust anchor it gives the one of the ML-DSA identity keys of epoch 2, to pick in the settings.
+     Besides its own trust anchor it gives the one of the ML-DSA identity keys of epoch 2 and those of its first two
+     revisions, of AlphaOrg alone and of AlphaOrg and BetaOrg, to pick in the settings: from the one of its genesis
+     the history is followed key statement by key statement to the keys of today.
    - **Thuringia**, a generated test network of medium size: seven charging station operators, 195 charging pools,
      417 stations and 834 EVSEs on a map; change sets of several owners, a key rotation, a removed pool, a latecomer
      that takes **EV Taler** at its charging parks along the A4 (its merchant, changed with a key for payments, two
@@ -212,7 +215,7 @@ node "D:\Coding\OpenChargingCloud\WWCP_POI_Validator\tools\mock-poi-server.mjs" 
   its manifest; the run and the time it is checked as of are those of `WWCP_POI.TS/tests/at.ts` (`VECTORS_RUN`, `AT`),
   so that running it again after WWCP_POI.TS moved on to a new run follows it. Its package on npm carries no test
   vectors: they are read from a checkout of WWCP_POI.TS next to the validator, at the tag of the release the validator
-  takes (`v0.4.0` today), or from the path given as its argument:
+  takes (`v0.5.0` today), or from the path given as its argument:
 
   ```bash
   node "D:\Coding\OpenChargingCloud\WWCP_POI_Validator\tools\vendor-qa-demo.mjs"

@@ -1,6 +1,6 @@
 [
   {
-    "@id": "5248bf2c59ed50e2b176bb0be64d3e4f7b21780f8b9f89a2011ccd8d0b4af3c0",
+    "@id": "e8f7b46f639dd8a2addff6822f71336b6bdbe567c14bd4892423463ec2f1a755",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
     "revision": 1,
@@ -9,66 +9,663 @@
         "json",
         "sha256",
         "hex",
-        "6a3522b05552696797d7027cb145ffde47588482e3b8a1e817faada7bea86e24"
+        "a263eb2d55441548eb73593a32d01edb9b2cc7a7b38153ef6c998a506e11ba71"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "7fd9011ae8b4626a8c29929397ceed2cac7608da5b443af632bbe980fbbe8658"
+        "7109f203086ccbd34207607bb72553742c1e5800e329448cea4b05493caed7be"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "75f4f3665dc1b8c71ac81946c95d0ae7dcf4cfd8fc8d717b49037a1ad4192b81"
+        "4c80f7922ae6057e38ad974eff68740719dffb32a74c39e11e4fa99ddc2a982d"
       ]
     ],
     "parentIds": [
-      "5491d293240c61e071ee0bf3801566603e5bbf1be84d7e86858546cffab110ce"
+      "b444c6e0e157ea9f56fec121b0e90cf6ab27a46b9e8d78798afc16b01d029098"
     ],
     "changeSet": {
-      "@id": "762f2175b6d0a910e9bc2886c38b9e45ae08301db44a8df45a30e6f961804eec",
+      "@id": "411cdc66e65d2b99db3281c88f1c168693024cf9ea5356c25f4d8e143c696a54",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-11-12T21:54:25.367Z",
+      "createdAt": "2026-11-16T20:30:07.743Z",
+      "description": {
+        "en": "BetaOrg joins AlphaOrg: two of two"
+      },
+      "signatures": [
+        {
+          "algorithm": "ES512",
+          "keyId": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
+          "value": "Aa7GflyRCcNmc89iifTlp+CYy0dZ2JoY5FUiw5/CFcaBFirN1uAekx0z5VuYpmSAHPv5lOIgaTSju/Y2q0Mv9kvoAOr9URk8+JvKI/grWsrRhOFF+i/fHauWjVGO/eCjkY8OPumz41e9xB+rc+sH9ALGhcwzHJVMPdN8Vg3jZc3U/a29"
+        },
+        {
+          "algorithm": "ES256",
+          "keyId": "6a6ff3e7ba92f072bedfef920756c233b2325a5acfd6a53b19585cedacf36003",
+          "value": "JeNlX3yU6r+c/Bbkm1g4mMVAuKQjqi6qgB6aF/APVHmBSHR19FIQgeSh6HN0ps3p0w/7vJQQf55Lf9TelC6qvA=="
+        },
+        {
+          "algorithm": "Ed448",
+          "keyId": "29ff65d687d7ec90c1a2a05a6598c255bc2b5e9a2d4e7379593112143e8d12cb",
+          "value": "pYO/w4mU8u0EGuH87Z5LC5i/8wA7HBuqZl4mwESX3oU73O2rgDaqUioGAdmBUm5LCE5tAdizPrAAl7MSLGXCAqvw7hKo7ey8lTmITk34hLK+zimem81ymaiKuNjZKrnyRmH8bOJHPMVEk4kaeA4dRh4A"
+        }
+      ],
+      "changes": [
+        {
+          "kind": "UpdateProperty",
+          "entityType": "RoamingNetworkOperator",
+          "entityId": "OCC",
+          "propertyName": "identityKeys",
+          "oldValue": [
+            {
+              "@id": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
+              "key": "pAECIAMhWEIBEoSWSkH0yN0X+J4eLgFloofiomcf/5cFLeYsh4XMg52qCkkwQ4/vta6fudmyOQ6jCP32mOYQ8fvbHFLZKrTzbCciWEIAw6/U3j/puwsbkDJ5B9GYgQYmFVqnSsg4FI6rt0MLoWAITZ7S3wkjHi7b3XLqxm8tfjX5v6MGgznqMqt7Xs5ncNM=",
+              "holder": "AlphaOrg"
+            }
+          ],
+          "newValue": [
+            {
+              "@id": "29ff65d687d7ec90c1a2a05a6598c255bc2b5e9a2d4e7379593112143e8d12cb",
+              "key": "owEBIAchWDnO4diZ7BcDg+P/8aBoAw+58LPB/odjXMpRRve6bZwFPt4qNnH2pVd1PPAMMV6WX0/uZ1pR2KVYOoA=",
+              "holder": "BetaOrg"
+            },
+            {
+              "@id": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
+              "key": "pAECIAMhWEIBEoSWSkH0yN0X+J4eLgFloofiomcf/5cFLeYsh4XMg52qCkkwQ4/vta6fudmyOQ6jCP32mOYQ8fvbHFLZKrTzbCciWEIAw6/U3j/puwsbkDJ5B9GYgQYmFVqnSsg4FI6rt0MLoWAITZ7S3wkjHi7b3XLqxm8tfjX5v6MGgznqMqt7Xs5ncNM=",
+              "holder": "AlphaOrg"
+            }
+          ]
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "RoamingNetworkOperator",
+          "entityId": "OCC",
+          "propertyName": "keyStatement",
+          "oldValue": {
+            "roamingNetworkId": "QA",
+            "roamingNetworkOperatorId": "OCC",
+            "identityKeys": [
+              {
+                "@id": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
+                "key": "pAECIAMhWEIBEoSWSkH0yN0X+J4eLgFloofiomcf/5cFLeYsh4XMg52qCkkwQ4/vta6fudmyOQ6jCP32mOYQ8fvbHFLZKrTzbCciWEIAw6/U3j/puwsbkDJ5B9GYgQYmFVqnSsg4FI6rt0MLoWAITZ7S3wkjHi7b3XLqxm8tfjX5v6MGgznqMqt7Xs5ncNM=",
+                "holder": "AlphaOrg"
+              }
+            ],
+            "minConsensus": 1,
+            "signedAt": "2026-11-16T20:30:07.059Z",
+            "validUntil": "2027-11-16T20:30:07.059Z",
+            "signatures": [
+              {
+                "algorithm": "ES512",
+                "keyId": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
+                "value": "AKia6+v458oNGilNLfo49QSQqgPQk8T8qSSbLFg1nokjsHkfO8ycDnC4E938+JcVmvbgE+JocWU39QbQQJ9jeJY5AMvCk6O4pPAXdV0bF1/pazZDhfAuZ8HeoSVo1O4JGFFwb6OOVgAdWw7dZf3mWILjbZw5jbqdJ26cyXcTTW8KWD73"
+              }
+            ]
+          },
+          "newValue": {
+            "roamingNetworkId": "QA",
+            "roamingNetworkOperatorId": "OCC",
+            "identityKeys": [
+              {
+                "@id": "29ff65d687d7ec90c1a2a05a6598c255bc2b5e9a2d4e7379593112143e8d12cb",
+                "key": "owEBIAchWDnO4diZ7BcDg+P/8aBoAw+58LPB/odjXMpRRve6bZwFPt4qNnH2pVd1PPAMMV6WX0/uZ1pR2KVYOoA=",
+                "holder": "BetaOrg"
+              },
+              {
+                "@id": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
+                "key": "pAECIAMhWEIBEoSWSkH0yN0X+J4eLgFloofiomcf/5cFLeYsh4XMg52qCkkwQ4/vta6fudmyOQ6jCP32mOYQ8fvbHFLZKrTzbCciWEIAw6/U3j/puwsbkDJ5B9GYgQYmFVqnSsg4FI6rt0MLoWAITZ7S3wkjHi7b3XLqxm8tfjX5v6MGgznqMqt7Xs5ncNM=",
+                "holder": "AlphaOrg"
+              }
+            ],
+            "minConsensus": 2,
+            "signedAt": "2026-11-16T20:30:07.690Z",
+            "validUntil": "2027-11-16T20:30:07.059Z",
+            "signatures": [
+              {
+                "algorithm": "ES512",
+                "keyId": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
+                "value": "AJIsnP8QZUaIKdS3gZNOBtD57CsVDubnJcNMLcFnMOMG+gRxzveL4aZ/s3Zq8BsK91qsS3r/9zHz8BDAkrwjk5omAZbAWtE/C1BFszM/0VQJ4Y8IwvlOdawbpD7MJmF3bNi4LnQ6uT/O8lqmukWDnGB+lXMiPzT0HRZXScq1IirxOUov"
+              },
+              {
+                "algorithm": "Ed448",
+                "keyId": "29ff65d687d7ec90c1a2a05a6598c255bc2b5e9a2d4e7379593112143e8d12cb",
+                "value": "ywI4ND9VvjT9L1uaewY302Bedx1HAwbdoke+bcGZ13KjVJFLmHH8jG/Qra/JLJbLSAdNUIu4qTyAokf3YTMrNZ0E6IOQZEDkS4qUu1mckd2MiFXTl6SyGegkA35em9I4wL27FP4K1MDulz8HVH0iWDMA"
+              }
+            ]
+          }
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "RoamingNetworkOperator",
+          "entityId": "OCC",
+          "propertyName": "signingKeyCertificates",
+          "oldValue": [
+            {
+              "roamingNetworkOperatorId": "OCC",
+              "signingKey": {
+                "@id": "6a6ff3e7ba92f072bedfef920756c233b2325a5acfd6a53b19585cedacf36003",
+                "key": "pAECIAEhWCACkk6N+wcanjvBRXkpRu85JNL4Iymiw3k4onu8saTyHiJYIGkfz4ye1iJaofdvhJE+hV3ha+A7Qe9wx1kLqwupbIQR",
+                "notAfter": "2027-11-16T20:30:07.059Z",
+                "holder": "AlphaOrg",
+                "usages": [
+                  "party"
+                ]
+              },
+              "signedAt": "2026-11-16T20:30:07.059Z",
+              "algorithm": "ES512",
+              "keyId": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
+              "value": "AIUQ/0rMiJVXutWAuk2UhGfMqFWTnsFgvzYcSqCpIGi8QqFR2k2Qil5Bmzy2zFtvN1roaXjDHwxCR/ER2xJmvXCGAQ80KZYsj5K00fO7c6WKhUWNZnP+T6hFhim251BUqZpmF5+J2noKGqgqhiscH0CwSJFRgL8WYEGjVf/CSZuxuWJ+"
+            }
+          ],
+          "newValue": [
+            {
+              "roamingNetworkOperatorId": "OCC",
+              "signingKey": {
+                "@id": "6a6ff3e7ba92f072bedfef920756c233b2325a5acfd6a53b19585cedacf36003",
+                "key": "pAECIAEhWCACkk6N+wcanjvBRXkpRu85JNL4Iymiw3k4onu8saTyHiJYIGkfz4ye1iJaofdvhJE+hV3ha+A7Qe9wx1kLqwupbIQR",
+                "notAfter": "2027-11-16T20:30:07.059Z",
+                "holder": "AlphaOrg",
+                "usages": [
+                  "party"
+                ]
+              },
+              "signedAt": "2026-11-16T20:30:07.059Z",
+              "algorithm": "ES512",
+              "keyId": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
+              "value": "AIUQ/0rMiJVXutWAuk2UhGfMqFWTnsFgvzYcSqCpIGi8QqFR2k2Qil5Bmzy2zFtvN1roaXjDHwxCR/ER2xJmvXCGAQ80KZYsj5K00fO7c6WKhUWNZnP+T6hFhim251BUqZpmF5+J2noKGqgqhiscH0CwSJFRgL8WYEGjVf/CSZuxuWJ+"
+            },
+            {
+              "roamingNetworkOperatorId": "OCC",
+              "signingKey": {
+                "@id": "d90428693b08fbbd31b5340f55acdbb6a1bc57304467b41c9424d7be6befbb32",
+                "key": "pAECIAEhWCB4uUgO9weo8nA33QKR+DD8xnRoOBU2Z48+Uj8Q7rKxuiJYIB1Opq3X6PdIP/HXptUC324DzrUyRzuaXBtucjjoe7/x",
+                "notAfter": "2027-11-16T20:30:07.059Z",
+                "holder": "BetaOrg",
+                "usages": [
+                  "party"
+                ]
+              },
+              "signedAt": "2026-11-16T20:30:07.059Z",
+              "algorithm": "Ed448",
+              "keyId": "29ff65d687d7ec90c1a2a05a6598c255bc2b5e9a2d4e7379593112143e8d12cb",
+              "value": "lXeSg1txpcWcI+paQ+ilCxWgmc0QiFlKgZdcU/vam8WD+j2wgz+EZMepsC3ghZXPycflQiYjx2IAscSIgNJOxiXAGbjbSJ7i0PfHDQZdPpEspQ+QyHhqxDdGIYQaGD0NygIlz/88tzjGPxumf6KIixIA"
+            }
+          ]
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "RoamingNetworkOperator",
+          "entityId": "OCC",
+          "propertyName": "minConsensus",
+          "oldValue": null,
+          "newValue": 2
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "RoamingNetwork",
+          "entityId": "QA",
+          "propertyName": "urls",
+          "oldValue": [
+            "https://alpha.example/RNs/QA"
+          ],
+          "newValue": [
+            "https://alpha.example/RNs/QA",
+            "https://beta.example/RNs/QA"
+          ]
+        }
+      ],
+      "beforeETags": [
+        [
+          "json",
+          "sha256",
+          "hex",
+          "81a9f56099d6570b5859c481c44fa860bb959aaa6831daff5efbf89e758171f4"
+        ],
+        [
+          "cbor",
+          "sha256",
+          "hex",
+          "1436a333c01eb8f993b007fc5ff38e95bed2ea0fc92c27aecf534aade4d1f236"
+        ]
+      ],
+      "afterETags": [
+        [
+          "json",
+          "sha256",
+          "hex",
+          "a263eb2d55441548eb73593a32d01edb9b2cc7a7b38153ef6c998a506e11ba71"
+        ],
+        [
+          "cbor",
+          "sha256",
+          "hex",
+          "7109f203086ccbd34207607bb72553742c1e5800e329448cea4b05493caed7be"
+        ]
+      ]
+    },
+    "signatures": [
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "OCC",
+        "signedAt": "2026-11-16T20:30:07.947Z",
+        "algorithm": "ES256",
+        "keyId": "6a6ff3e7ba92f072bedfef920756c233b2325a5acfd6a53b19585cedacf36003",
+        "value": "6zbI3LrETlTvgnOl6F8TfOP6wFIGMxproG2s7wAxm0OEdH22GFw0X5GZyJG6ceVzeqtAaDrVjvOcpfw6N8uP0A=="
+      },
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "OCC",
+        "signedAt": "2026-11-16T20:30:07.950Z",
+        "algorithm": "ES256",
+        "keyId": "d90428693b08fbbd31b5340f55acdbb6a1bc57304467b41c9424d7be6befbb32",
+        "value": "RrMythuIcGi5OHNo6kiUXpL0eNv5fo0RtedVFpKb/czgfcAtS1tHG6jFjE0BUjDYc2RmUeKlj8GY0Ptxg3G/ag=="
+      }
+    ]
+  },
+  {
+    "@id": "9e3b83bc60587f2cfe9b67e4919b35728f4c9da80dab2d541539329acd7b5893",
+    "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
+    "roamingNetworkId": "QA",
+    "revision": 2,
+    "eTags": [
+      [
+        "json",
+        "sha256",
+        "hex",
+        "26c588e262ff63a55dd7fff4c1e3b58b2eb10de97429ae0c3fd98452873ec279"
+      ],
+      [
+        "cbor",
+        "sha256",
+        "hex",
+        "1357b7bc25a268f0ee46516e83dbcf900e3d2b531b93eb130bc45c71a3dec0d9"
+      ],
+      [
+        "effectiveTree",
+        "sha256",
+        "hex",
+        "f287359da284a0a9c0630f5226aa9600bd250ef165294d47ac0d6453526aed44"
+      ]
+    ],
+    "parentIds": [
+      "e8f7b46f639dd8a2addff6822f71336b6bdbe567c14bd4892423463ec2f1a755"
+    ],
+    "changeSet": {
+      "@id": "ccef84dbe51c457d701952ef9e90769c5a0bf76db8cc8f43fb9593b94de79e20",
+      "roamingNetworkId": "QA",
+      "createdAt": "2026-11-16T20:30:08.045Z",
+      "description": {
+        "en": "GammaOrg joins AlphaOrg and BetaOrg: two of three"
+      },
+      "signatures": [
+        {
+          "algorithm": "ML-DSA-65",
+          "keyId": "f7d7504fbbc575397e9aaadf1fe65b028951324219c7eb888e75737b77cbc3ca",
+          "value": "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"
+        },
+        {
+          "algorithm": "ES512",
+          "keyId": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
+          "value": "AC3yHIio2ZN377BaYeETW0vwiLfSfRcP0voMpI/8a3+Lk3QPahgq4QQJ+3N9gNBIwPxx2cVyjY7FIfZ4onk+iur1AMo6wPbsmLl92+x5VWbTWpmeUvCGgnfJ8N/z6giS1LQbnTp3PtqmVxDY0ekNkzI+uG6hlVpmHOAO2REfEw12SCO7"
+        },
+        {
+          "algorithm": "ES256",
+          "keyId": "6a6ff3e7ba92f072bedfef920756c233b2325a5acfd6a53b19585cedacf36003",
+          "value": "lO2l1o1rdZPaH8a9HDojI5r6+rjBgQfZDNQkK7dshPltuNwzbu9dzwUyMhFQYoNWY+SQgFtZuTYPKF7ExwomKQ=="
+        },
+        {
+          "algorithm": "Ed448",
+          "keyId": "29ff65d687d7ec90c1a2a05a6598c255bc2b5e9a2d4e7379593112143e8d12cb",
+          "value": "A6pA0DE8mAs7WFf4Yf3aUoussI5Z4RDA389vtesJqt7JQESGhDpJ2tx8exMYp+Rv2bzI6ZGWjukAsRCajGp/XO/2DAojh97nTHoZMU+xaJ6mqyBjXh2mik2DDJDOrBsPEETcp/6yBJ+FoZOcPbatYgAA"
+        },
+        {
+          "algorithm": "ES256",
+          "keyId": "d90428693b08fbbd31b5340f55acdbb6a1bc57304467b41c9424d7be6befbb32",
+          "value": "KXc978l6GIfe0J8di9/YTV5q7KjpZBpUft51xozZXx2YfqkWR+TyyClakkr9QCp2K9qK+41ll2k2pQydmMjCLQ=="
+        }
+      ],
+      "changes": [
+        {
+          "kind": "UpdateProperty",
+          "entityType": "RoamingNetworkOperator",
+          "entityId": "OCC",
+          "propertyName": "identityKeys",
+          "oldValue": [
+            {
+              "@id": "29ff65d687d7ec90c1a2a05a6598c255bc2b5e9a2d4e7379593112143e8d12cb",
+              "key": "owEBIAchWDnO4diZ7BcDg+P/8aBoAw+58LPB/odjXMpRRve6bZwFPt4qNnH2pVd1PPAMMV6WX0/uZ1pR2KVYOoA=",
+              "holder": "BetaOrg"
+            },
+            {
+              "@id": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
+              "key": "pAECIAMhWEIBEoSWSkH0yN0X+J4eLgFloofiomcf/5cFLeYsh4XMg52qCkkwQ4/vta6fudmyOQ6jCP32mOYQ8fvbHFLZKrTzbCciWEIAw6/U3j/puwsbkDJ5B9GYgQYmFVqnSsg4FI6rt0MLoWAITZ7S3wkjHi7b3XLqxm8tfjX5v6MGgznqMqt7Xs5ncNM=",
+              "holder": "AlphaOrg"
+            }
+          ],
+          "newValue": [
+            {
+              "@id": "29ff65d687d7ec90c1a2a05a6598c255bc2b5e9a2d4e7379593112143e8d12cb",
+              "key": "owEBIAchWDnO4diZ7BcDg+P/8aBoAw+58LPB/odjXMpRRve6bZwFPt4qNnH2pVd1PPAMMV6WX0/uZ1pR2KVYOoA=",
+              "holder": "BetaOrg"
+            },
+            {
+              "@id": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
+              "key": "pAECIAMhWEIBEoSWSkH0yN0X+J4eLgFloofiomcf/5cFLeYsh4XMg52qCkkwQ4/vta6fudmyOQ6jCP32mOYQ8fvbHFLZKrTzbCciWEIAw6/U3j/puwsbkDJ5B9GYgQYmFVqnSsg4FI6rt0MLoWAITZ7S3wkjHi7b3XLqxm8tfjX5v6MGgznqMqt7Xs5ncNM=",
+              "holder": "AlphaOrg"
+            },
+            {
+              "@id": "f7d7504fbbc575397e9aaadf1fe65b028951324219c7eb888e75737b77cbc3ca",
+              "key": "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",
+              "holder": "GammaOrg"
+            }
+          ]
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "RoamingNetworkOperator",
+          "entityId": "OCC",
+          "propertyName": "keyStatement",
+          "oldValue": {
+            "roamingNetworkId": "QA",
+            "roamingNetworkOperatorId": "OCC",
+            "identityKeys": [
+              {
+                "@id": "29ff65d687d7ec90c1a2a05a6598c255bc2b5e9a2d4e7379593112143e8d12cb",
+                "key": "owEBIAchWDnO4diZ7BcDg+P/8aBoAw+58LPB/odjXMpRRve6bZwFPt4qNnH2pVd1PPAMMV6WX0/uZ1pR2KVYOoA=",
+                "holder": "BetaOrg"
+              },
+              {
+                "@id": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
+                "key": "pAECIAMhWEIBEoSWSkH0yN0X+J4eLgFloofiomcf/5cFLeYsh4XMg52qCkkwQ4/vta6fudmyOQ6jCP32mOYQ8fvbHFLZKrTzbCciWEIAw6/U3j/puwsbkDJ5B9GYgQYmFVqnSsg4FI6rt0MLoWAITZ7S3wkjHi7b3XLqxm8tfjX5v6MGgznqMqt7Xs5ncNM=",
+                "holder": "AlphaOrg"
+              }
+            ],
+            "minConsensus": 2,
+            "signedAt": "2026-11-16T20:30:07.690Z",
+            "validUntil": "2027-11-16T20:30:07.059Z",
+            "signatures": [
+              {
+                "algorithm": "ES512",
+                "keyId": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
+                "value": "AJIsnP8QZUaIKdS3gZNOBtD57CsVDubnJcNMLcFnMOMG+gRxzveL4aZ/s3Zq8BsK91qsS3r/9zHz8BDAkrwjk5omAZbAWtE/C1BFszM/0VQJ4Y8IwvlOdawbpD7MJmF3bNi4LnQ6uT/O8lqmukWDnGB+lXMiPzT0HRZXScq1IirxOUov"
+              },
+              {
+                "algorithm": "Ed448",
+                "keyId": "29ff65d687d7ec90c1a2a05a6598c255bc2b5e9a2d4e7379593112143e8d12cb",
+                "value": "ywI4ND9VvjT9L1uaewY302Bedx1HAwbdoke+bcGZ13KjVJFLmHH8jG/Qra/JLJbLSAdNUIu4qTyAokf3YTMrNZ0E6IOQZEDkS4qUu1mckd2MiFXTl6SyGegkA35em9I4wL27FP4K1MDulz8HVH0iWDMA"
+              }
+            ]
+          },
+          "newValue": {
+            "roamingNetworkId": "QA",
+            "roamingNetworkOperatorId": "OCC",
+            "identityKeys": [
+              {
+                "@id": "29ff65d687d7ec90c1a2a05a6598c255bc2b5e9a2d4e7379593112143e8d12cb",
+                "key": "owEBIAchWDnO4diZ7BcDg+P/8aBoAw+58LPB/odjXMpRRve6bZwFPt4qNnH2pVd1PPAMMV6WX0/uZ1pR2KVYOoA=",
+                "holder": "BetaOrg"
+              },
+              {
+                "@id": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
+                "key": "pAECIAMhWEIBEoSWSkH0yN0X+J4eLgFloofiomcf/5cFLeYsh4XMg52qCkkwQ4/vta6fudmyOQ6jCP32mOYQ8fvbHFLZKrTzbCciWEIAw6/U3j/puwsbkDJ5B9GYgQYmFVqnSsg4FI6rt0MLoWAITZ7S3wkjHi7b3XLqxm8tfjX5v6MGgznqMqt7Xs5ncNM=",
+                "holder": "AlphaOrg"
+              },
+              {
+                "@id": "f7d7504fbbc575397e9aaadf1fe65b028951324219c7eb888e75737b77cbc3ca",
+                "key": "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",
+                "holder": "GammaOrg"
+              }
+            ],
+            "minConsensus": 2,
+            "signedAt": "2026-11-16T20:30:07.993Z",
+            "validUntil": "2027-11-16T20:30:07.059Z",
+            "signatures": [
+              {
+                "algorithm": "ES512",
+                "keyId": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
+                "value": "APmYUj9vjVbZEXAmyH++VBk8Ho3sdnrWVCMKcEx0GTyNLNmhrUki2ZWwhB4q0Fzfdp9hI3MRvIhPaFMMm3BzETqUAJ8Oiu14Xy+W9SIKfHzGgi6l8yTyPF8JUwbKMrzvwD8YS8ScBcdsw2dOW7emdckz2yb3ItT40z/s8RPxMcQn4EK9"
+              },
+              {
+                "algorithm": "Ed448",
+                "keyId": "29ff65d687d7ec90c1a2a05a6598c255bc2b5e9a2d4e7379593112143e8d12cb",
+                "value": "kVZCjIr0b93lsm0fNZ2vWrSgVHzrPpoyDGT+jh1pOgVMnHyfB3reTvvDoMOVQx1oIZ8M72UXYEaAp744S9ugHLDP799Hv7G36YZ3OAId73nrTo23rLgIy6vPCX6O1hJPSVeD69YOaSQLwFCPXrP9bDgA"
+              }
+            ]
+          }
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "RoamingNetworkOperator",
+          "entityId": "OCC",
+          "propertyName": "signingKeyCertificates",
+          "oldValue": [
+            {
+              "roamingNetworkOperatorId": "OCC",
+              "signingKey": {
+                "@id": "6a6ff3e7ba92f072bedfef920756c233b2325a5acfd6a53b19585cedacf36003",
+                "key": "pAECIAEhWCACkk6N+wcanjvBRXkpRu85JNL4Iymiw3k4onu8saTyHiJYIGkfz4ye1iJaofdvhJE+hV3ha+A7Qe9wx1kLqwupbIQR",
+                "notAfter": "2027-11-16T20:30:07.059Z",
+                "holder": "AlphaOrg",
+                "usages": [
+                  "party"
+                ]
+              },
+              "signedAt": "2026-11-16T20:30:07.059Z",
+              "algorithm": "ES512",
+              "keyId": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
+              "value": "AIUQ/0rMiJVXutWAuk2UhGfMqFWTnsFgvzYcSqCpIGi8QqFR2k2Qil5Bmzy2zFtvN1roaXjDHwxCR/ER2xJmvXCGAQ80KZYsj5K00fO7c6WKhUWNZnP+T6hFhim251BUqZpmF5+J2noKGqgqhiscH0CwSJFRgL8WYEGjVf/CSZuxuWJ+"
+            },
+            {
+              "roamingNetworkOperatorId": "OCC",
+              "signingKey": {
+                "@id": "d90428693b08fbbd31b5340f55acdbb6a1bc57304467b41c9424d7be6befbb32",
+                "key": "pAECIAEhWCB4uUgO9weo8nA33QKR+DD8xnRoOBU2Z48+Uj8Q7rKxuiJYIB1Opq3X6PdIP/HXptUC324DzrUyRzuaXBtucjjoe7/x",
+                "notAfter": "2027-11-16T20:30:07.059Z",
+                "holder": "BetaOrg",
+                "usages": [
+                  "party"
+                ]
+              },
+              "signedAt": "2026-11-16T20:30:07.059Z",
+              "algorithm": "Ed448",
+              "keyId": "29ff65d687d7ec90c1a2a05a6598c255bc2b5e9a2d4e7379593112143e8d12cb",
+              "value": "lXeSg1txpcWcI+paQ+ilCxWgmc0QiFlKgZdcU/vam8WD+j2wgz+EZMepsC3ghZXPycflQiYjx2IAscSIgNJOxiXAGbjbSJ7i0PfHDQZdPpEspQ+QyHhqxDdGIYQaGD0NygIlz/88tzjGPxumf6KIixIA"
+            }
+          ],
+          "newValue": [
+            {
+              "roamingNetworkOperatorId": "OCC",
+              "signingKey": {
+                "@id": "0aa7772c8a98533b2f6cd0e2f151e8528405ad6ca8a40ab1ec43218dd5323ee8",
+                "key": "pAECIAEhWCCsHNsD3YpIogcsHwqVlo/aT2wo651QLfBA6b9toIyvWCJYIDVcMBO6rbPxZjntJzIOiI1kE3u9lI3cdLPAt7Kfp2tk",
+                "notAfter": "2027-11-16T20:30:07.059Z",
+                "holder": "GammaOrg",
+                "usages": [
+                  "party"
+                ]
+              },
+              "signedAt": "2026-11-16T20:30:07.059Z",
+              "algorithm": "ML-DSA-65",
+              "keyId": "f7d7504fbbc575397e9aaadf1fe65b028951324219c7eb888e75737b77cbc3ca",
+              "value": "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"
+            },
+            {
+              "roamingNetworkOperatorId": "OCC",
+              "signingKey": {
+                "@id": "6a6ff3e7ba92f072bedfef920756c233b2325a5acfd6a53b19585cedacf36003",
+                "key": "pAECIAEhWCACkk6N+wcanjvBRXkpRu85JNL4Iymiw3k4onu8saTyHiJYIGkfz4ye1iJaofdvhJE+hV3ha+A7Qe9wx1kLqwupbIQR",
+                "notAfter": "2027-11-16T20:30:07.059Z",
+                "holder": "AlphaOrg",
+                "usages": [
+                  "party"
+                ]
+              },
+              "signedAt": "2026-11-16T20:30:07.059Z",
+              "algorithm": "ES512",
+              "keyId": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
+              "value": "AIUQ/0rMiJVXutWAuk2UhGfMqFWTnsFgvzYcSqCpIGi8QqFR2k2Qil5Bmzy2zFtvN1roaXjDHwxCR/ER2xJmvXCGAQ80KZYsj5K00fO7c6WKhUWNZnP+T6hFhim251BUqZpmF5+J2noKGqgqhiscH0CwSJFRgL8WYEGjVf/CSZuxuWJ+"
+            },
+            {
+              "roamingNetworkOperatorId": "OCC",
+              "signingKey": {
+                "@id": "d90428693b08fbbd31b5340f55acdbb6a1bc57304467b41c9424d7be6befbb32",
+                "key": "pAECIAEhWCB4uUgO9weo8nA33QKR+DD8xnRoOBU2Z48+Uj8Q7rKxuiJYIB1Opq3X6PdIP/HXptUC324DzrUyRzuaXBtucjjoe7/x",
+                "notAfter": "2027-11-16T20:30:07.059Z",
+                "holder": "BetaOrg",
+                "usages": [
+                  "party"
+                ]
+              },
+              "signedAt": "2026-11-16T20:30:07.059Z",
+              "algorithm": "Ed448",
+              "keyId": "29ff65d687d7ec90c1a2a05a6598c255bc2b5e9a2d4e7379593112143e8d12cb",
+              "value": "lXeSg1txpcWcI+paQ+ilCxWgmc0QiFlKgZdcU/vam8WD+j2wgz+EZMepsC3ghZXPycflQiYjx2IAscSIgNJOxiXAGbjbSJ7i0PfHDQZdPpEspQ+QyHhqxDdGIYQaGD0NygIlz/88tzjGPxumf6KIixIA"
+            }
+          ]
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "RoamingNetwork",
+          "entityId": "QA",
+          "propertyName": "urls",
+          "oldValue": [
+            "https://alpha.example/RNs/QA",
+            "https://beta.example/RNs/QA"
+          ],
+          "newValue": [
+            "https://alpha.example/RNs/QA",
+            "https://beta.example/RNs/QA",
+            "https://gamma.example/RNs/QA"
+          ]
+        }
+      ],
+      "beforeETags": [
+        [
+          "json",
+          "sha256",
+          "hex",
+          "a263eb2d55441548eb73593a32d01edb9b2cc7a7b38153ef6c998a506e11ba71"
+        ],
+        [
+          "cbor",
+          "sha256",
+          "hex",
+          "7109f203086ccbd34207607bb72553742c1e5800e329448cea4b05493caed7be"
+        ]
+      ],
+      "afterETags": [
+        [
+          "json",
+          "sha256",
+          "hex",
+          "26c588e262ff63a55dd7fff4c1e3b58b2eb10de97429ae0c3fd98452873ec279"
+        ],
+        [
+          "cbor",
+          "sha256",
+          "hex",
+          "1357b7bc25a268f0ee46516e83dbcf900e3d2b531b93eb130bc45c71a3dec0d9"
+        ]
+      ]
+    },
+    "signatures": [
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "OCC",
+        "signedAt": "2026-11-16T20:30:08.144Z",
+        "algorithm": "ES256",
+        "keyId": "6a6ff3e7ba92f072bedfef920756c233b2325a5acfd6a53b19585cedacf36003",
+        "value": "wj3+rqfVaX2WYA4Ti0Lsw7Op3yI+fehBNGTQtm0xP8arVrJZ48QbVMuiyxUFelXjTUOuD6AzF1BqsK0BhVi7Rw=="
+      },
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "OCC",
+        "signedAt": "2026-11-16T20:30:08.147Z",
+        "algorithm": "ES256",
+        "keyId": "d90428693b08fbbd31b5340f55acdbb6a1bc57304467b41c9424d7be6befbb32",
+        "value": "FR//iHIvsjMOhD1Rb9AJCKAGZKxbMXIdyDbHIwdL7JvnL6MjnvsYgzkhVsChyehmtHKglIq3xsrX60xzkWYGIQ=="
+      },
+      {
+        "role": "roamingNetworkOperator",
+        "signer": "OCC",
+        "signedAt": "2026-11-16T20:30:08.150Z",
+        "algorithm": "ES256",
+        "keyId": "0aa7772c8a98533b2f6cd0e2f151e8528405ad6ca8a40ab1ec43218dd5323ee8",
+        "value": "lufb4xsxw9v4RkrT3xz8rG+OV8NrFryFO0BdZRrnBTnv+8m3ITnbiYmUaRBsxKGAQ2epWiJsjB6FurKo8jiBhA=="
+      }
+    ]
+  },
+  {
+    "@id": "14f230771ef717b1dcb2cc43bffc83105d096765f9f6f0cb5b3982fa5084b251",
+    "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
+    "roamingNetworkId": "QA",
+    "revision": 3,
+    "eTags": [
+      [
+        "json",
+        "sha256",
+        "hex",
+        "37e2ed411662115847840ff52598c664c8123b437470f38ef65146ac258de098"
+      ],
+      [
+        "cbor",
+        "sha256",
+        "hex",
+        "82c1a52d1d6c16471988099dcb8160d704baeb6537f1942d131897a4df58bd7c"
+      ],
+      [
+        "effectiveTree",
+        "sha256",
+        "hex",
+        "22bd399b68578d48f2e72502fcaeb7decffaf92e6d35f4606c8d7999720276ce"
+      ]
+    ],
+    "parentIds": [
+      "9e3b83bc60587f2cfe9b67e4919b35728f4c9da80dab2d541539329acd7b5893"
+    ],
+    "changeSet": {
+      "@id": "2f749d5a4238dbc7dbec74893e265da1bbc9e3d8e90174d1204a3648c7b0deb5",
+      "roamingNetworkId": "QA",
+      "createdAt": "2026-11-16T20:30:08.697Z",
       "description": {
         "en": "DE*GEF, GraphDefined Charging Solutions, and the manufacturers of its charging stations and energy meters"
       },
       "signatures": [
         {
           "algorithm": "ES512",
-          "keyId": "8e249e50e87f9136c2fa1feed535ade2aa5dae61aff10067033223e48e7bd35d",
-          "value": "AQIfaKOPsfWp9F5Rzjt5tZHXYybEivCYdTru0qkKSgtZy1Rwfb2/stWHUzuXSsnZorbiJEElTRwviRLI+0YB61xhAdfKz5RtlSaQBO5A9JgtgHhpgg3jqmduoSEd2o9Mw7MTZlgiTku5qvGC/mK7v5GN4XYb6LrY3wpHexlq+97FjkC5"
+          "keyId": "ddec7d47e7c716153835a1a338076364870bcefdae9c980f02510d7071421f8e",
+          "value": "AKiOJZYhqvkHASE/lwkq/LZmxsr4AflM5MPdHIOvKj3yp6F0g0yBGbkOhqsvRK+tVRv4poFotR9E5hLv1crvzFfEAIb+kAoDPhqCiNj/9ZU1ZgQ68i7d/vE43J6xuEDvCgRLhCLt1XiV2ctEkP3NDCw16J2XJWtZ1tBMGZUsXyNKEbp0"
         },
         {
           "algorithm": "Ed448",
-          "keyId": "cdd9e22d19597b8845f8deda9e0208a24841a1a5c87a51999f06836713eb51a5",
-          "value": "4/71CnCYZ+yoUiklVPeGTuKaE+WiMmfBlI3M0ej7nxLYUFhQAPZtT2gGdedok8gwohFV2LjLxiEA0B3jVdAmSPy8C5sd3RfX+gUu9reKv7QEWHBUcuVyVUuC8IOE48msvJV2PRc5F1rS7x/r78pzuS8A"
+          "keyId": "cd57c436383b23ab282a7c5d7fd8496efbc511cbdac49ed1a2be38deb2243c9e",
+          "value": "HEYZVRA052sD+eGXzLD/hvc7/vegi2tI3fiHORchUXgXA1f8DDprOlOCOWTYIXgaVkbVPdX2BgWAoG55gKoiCWh6/NFLRQAlK2N4WqYg3HtxRtJxtmvOq2r4g5g7s9wewoIw5HpIdvboyJZFNyp95gIA"
         },
         {
           "algorithm": "ES512",
-          "keyId": "ec53905b826f38f19052b30efd3e2d4df9f24e3cb7505860cbd3d5b50568e45b",
-          "value": "AUwq1QckRkzOruIE6nrckQTWk7InQNurBZ1Gk8qwp/Im8xBkHikugN3ZfiSgjQOdtk0NIESm3KdRMwMwzicz0SSvAbiaRNZVHMTvtHcM6bSol0+fWT/EnJQ9PVAdD6IznXjvqO1wedm/QYtfOF48rA62OklaweZth3+ueRtvJClIXt8s"
+          "keyId": "e35b17378bd12e215133f043aa2478c5b09f23829dafe62c9c2fe6b383e4b83b",
+          "value": "ACZw89hOWlTxFQGQl7/Ozk+984BBfiHMFUmROXSeEYcthHd506JR8jhoxKsLDHxBvs34u6BGjRud7TC40uB1NUngANOFeZJmMvY06S3Zznm5DxCNBymE+38vSHGl6OOExBOOzYUyAg8rWiNs6d/bQEJrYv3Q0AX9XeoR49KVhrIeGJXG"
         },
         {
           "algorithm": "ES512",
-          "keyId": "5eeb9e848f056067efa7ec01ce1fe01ce39d30e66a3fd8400a8fc7932c7e6f22",
-          "value": "AYEZ4WdsndcdGKwYX4iLeN2Y20yaM2HZbB9rNiWSxeVu4adFuSNwfrnlFBqUL77KyHGKTEf8A/rUusuNbG5L/iFZAAm+DhwAMJruLTPZOjanXTVskpdrR3KTaNvCnDYNyqS49Eaws3PMZ7Mok81clCEaM1vyomFBGykKAE8rmrfwnE//"
+          "keyId": "97fba1317fe11785d2bb3ea288f9ea5a7269d52d2d4e9a979e6fe231921a6727",
+          "value": "AUcGBZcgwlgwiOOjx+6cWQdtvevrR3+VJM0oOagRezSI260IGXXfKyZXFh3ogsd7p1EmHQnzFFHzMZBcz0h6mpHiATfuMlWcpVh7cc14jHxdSuQzGDPTp9zl6WwFVCYMcgOyUMK27iqCNr3i8MtGnc46PZO7I3QhF5kzHDCp9YFn4q89"
         },
         {
           "algorithm": "ES512",
-          "keyId": "3bc7f2591f902d9e41595ec8c2a3a1a446e1fc04eca641a517da579a4cff328c",
-          "value": "AOq4kzuCTEWT3K8kDpNtShw3B5JrH8PrZqOWgeLaGhj0yhHH7rLEbrX7C5ZgiML/B2/6IJpiq9tsqQS+rItdTwf2AJmIONyPuk2FHVXj9fdOfrstJTyi4MxN1lpZj4zl/kdxXFMjCuRssN6vHxdPB4aJomIcj/aRBlzT9uRv3EHKSrxx"
+          "keyId": "048aeb6d766d08e76c29e1e44698e0a5357f07296a9e835d21ff34350e1b198f",
+          "value": "ALt+gjlzVTaamlBU8A2w6vQkcmlU8fMF5OcRaXXKw7B/ETuzVEp+F6gJMB2BIM5PUhJIHQroGlgWDoto/ciWMrbrAQF4nVAgbnq2vbK9V1kCAgILh8FIF5HWm4U1eYlQ48+8GKyfPyqncJdL2j0slRmLiwDb975GhHeTHynM0e7gC1ph"
         },
         {
           "algorithm": "ES256",
-          "keyId": "032a1055c27686ea6f6afe47a84e33c96c39431c0fa3a0dcddc4b31c53b5f05e",
-          "value": "7hm7tKRr78hwvWPZqpMnWqKpkGqw/tsTr0eqpqxsnZRD08aC1SdrdlGRoJkX51UtHONQn9m5c2fB3Tlb92OQBg=="
+          "keyId": "6a6ff3e7ba92f072bedfef920756c233b2325a5acfd6a53b19585cedacf36003",
+          "value": "4hmHHVqFAFXUPLkTxAkwJIU/pTFvJkvREb1sECGdP+fx7yOdL81pgrk4xb23hHXYMnM668i7xzbB1KM0Ve2hLQ=="
         },
         {
           "algorithm": "ES256",
-          "keyId": "ad3b940d38dfca04a56c7f25ae056d5d1698bda77b4fb3648f79dbf4a412c1b7",
-          "value": "B6PMtxr8G358Z3LZoZ+nIG1UkEUP0bWreyDtUdrnT9BKIOUB3AhYf173tC2no6aI58dIWbcvOo7Im8WVJe732A=="
+          "keyId": "d90428693b08fbbd31b5340f55acdbb6a1bc57304467b41c9424d7be6befbb32",
+          "value": "ifYGY1KvxBE1DktgFnjdkW98As/dHJhgupZbuEI5efL1WR84OOl7d9Ek6VNO1qSwboq1NazGiv7yExU+XFmbBw=="
         }
       ],
       "changes": [
@@ -86,26 +683,26 @@
             },
             "signingKeys": [
               {
-                "@id": "90207193e9fb9f7e950920b2bf97d2b9d9247dbc8cf7107f01d432735a46d15f",
-                "key": "pAECIAEhWCCWVrUN/S9WRxVEvIdVlddZ4aKJ0EKO0FM72rRUZPuoDCJYIOU+yNMKNZpdM/1uFrY7gTcx8Z0ZHZKqzD9sXqCLKigS",
-                "notAfter": "2027-11-12T21:54:24.897Z",
+                "@id": "20dd53280b75220ae75bcdc957bfe759bc408b0d24841a2416e72f7692297390",
+                "key": "pAECIAEhWCBn6W4j/6/AzAe2jEkL+3tZ6ksVwoKrHYKWHvATOASciSJYIPAn1XL/mVjzJ5JWiDr29SWKgQGBMkOFJKj99GewVzGY",
+                "notAfter": "2027-11-16T20:30:08.297Z",
+                "usages": [
+                  "party"
+                ]
+              },
+              {
+                "@id": "8c0c6670e6e6745b83fe76f132c20d17c29dd5fef0dd206191b3058b7081e873",
+                "key": "pAECIAEhWCDx224Ht2gIjltzONRPRMV7imAbMpOeTQK6mzRXzUk9eCJYIImF9fRGqX49470bnaPnk1P/yCG+CLxaaDE86IKwT3nr",
+                "notAfter": "2027-11-16T20:30:08.297Z",
                 "usages": [
                   "priceStatements",
                   "tariffs"
                 ]
               },
               {
-                "@id": "d0e7d72465abd495b98c9f94e172510bc211f14c9aca776298d3d913837575d5",
-                "key": "pAECIAEhWCAUNt7IKajw0gy3h6oaV7YMlBvpOBqNBVdEoQ5C3ND9tSJYIM3PejSItRkdmYbhj4s5VY4vMtkbfPtU8orFL0O7lgIR",
-                "notAfter": "2027-11-12T21:54:24.897Z",
-                "usages": [
-                  "party"
-                ]
-              },
-              {
-                "@id": "ff8a51dcdf5bb8c62b8123e1f5df979a6403eceff743c730cfb3fb6189c3287f",
-                "key": "pAECIAEhWCArbrJtvgj0jS1aAlaQkPn8jBjN/PxF6RI4dksDDAOhyCJYIADmJoFbWz09vTcvDZ0o1zNHoyXlaHRbkMhzS58A+KOj",
-                "notAfter": "2027-11-12T21:54:24.897Z",
+                "@id": "a0e9f8b6ddcf26dd986d3594a12b6154fd5305bd4901056bbf8a69ace3b106cf",
+                "key": "pAECIAEhWCDFpGn2GWriJjvVeEOw/ahniS60fHzY3EUdMyFaqoF4iCJYIDLEqy3ovHrl4gr3tkIRivZoLQOiweLZVOr/2H/OLBJc",
+                "notAfter": "2027-11-16T20:30:08.297Z",
                 "usages": [
                   "infrastructure"
                 ]
@@ -113,15 +710,15 @@
             ],
             "identityKeys": [
               {
-                "@id": "8e249e50e87f9136c2fa1feed535ade2aa5dae61aff10067033223e48e7bd35d",
-                "key": "pAECIAMhWEIB/YBf2eu3IBJFgu9Cv1I7VHRXzPXlz9HT8t9C/0HRXVbaCRgPk/Nbt5XQeXCGD4k+7pwGK8n6G66iD/oZIyT4ICEiWEIBZFPFv3MKuQMCy5TeTL3RE5MD9NcxlDKM+zppIwtvleZg7o6MC7TVoPaKgUJP9VXOT+I9wTKfa5cBlXQV6vmOuBo="
+                "@id": "cd57c436383b23ab282a7c5d7fd8496efbc511cbdac49ed1a2be38deb2243c9e",
+                "key": "owEBIAchWDlPDq0/+YEZo4m0ie84SvWmYZZdu2MGIsAatamXuY93lP+Zg31lqfUdafWNk/DAjTXca7+unbSidYA="
               },
               {
-                "@id": "cdd9e22d19597b8845f8deda9e0208a24841a1a5c87a51999f06836713eb51a5",
-                "key": "owEBIAchWDlG1kL/axJBqw/5eCw44ENOfaPfZqrIWOWDPsQluLDNnCWXDPuZiUDeuq+fwuVW8FjQ6l6ncOe1dIA="
+                "@id": "ddec7d47e7c716153835a1a338076364870bcefdae9c980f02510d7071421f8e",
+                "key": "pAECIAMhWEIAGT/LO4D0ZoCNd1Q3Gz8l3m39sChNCsOX7I32h29SHFKL/GXwHpc6vY8dxkHy3yb+1J5rJ04ddCF6hwxugVNLMdIiWEIBJzIA/28b0u158RyDo6F4lvkg8kJkYcghWlmKMnc2zQFDFD0vyPhAaRG0AEjunTHYbVYtZ9sbz9OJWzXbEoERC5o="
               }
             ],
-            "created": "2026-11-12T21:54:25.024Z"
+            "created": "2026-11-16T20:30:08.403Z"
           }
         },
         {
@@ -136,17 +733,17 @@
             "homepage": "https://stations.graphdefined.example",
             "signingKeys": [
               {
-                "@id": "0718513d4c1d50d17692b1ed8a44ac188dfb224e3eff6103dc503516282ddcbf",
-                "key": "pAECIAEhWCBaeRnnR96apoH5wqzHIf1wljMXBy8F0Pl8xzncDqoc/yJYINMGzV06mxZfR0HOBL37C/hima53Kkf4gBDHE/thIyL3",
-                "notAfter": "2027-11-12T21:54:24.897Z",
+                "@id": "1d5b25a3934dfe6a9d101f102aa4713998a5276c2b93a43cdea9f9859c4689b7",
+                "key": "pAECIAEhWCB0C2C5O0FpOliEf2PmcIgCh2KM3QiqaANfrZzk7LuOxyJYIBS0QByZ2P2JwB4k5tWDNfHf50kUFNEal9HZ/rssksff",
+                "notAfter": "2027-11-16T20:30:08.297Z",
                 "usages": [
                   "party"
                 ]
               },
               {
-                "@id": "835450058d36fb428b8e5039f0f1dcf2bfe683b535c6de1da4b0acabaae682ca",
-                "key": "pAECIAEhWCBLDGKALlsKAfstWtmj6rOtiZS4oIoWd39nA5FcTNMXSSJYIAgxv0WDeEpkzi8Ob20H26OTPiv7X5PAclDzh5qpwrOO",
-                "notAfter": "2027-11-12T21:54:24.897Z",
+                "@id": "84fc1b0b74b7bc0d77214993ab9a3b9e4211bdcee461c3352e97061af1c78d89",
+                "key": "pAECIAEhWCB4dAiZJQTgCPcruFFQihykjnc6jPVT/R/kbZA9vV+nuiJYIH6ycZKrCwvegNnuQAyKsXPKSLmwmNHZcOmwhMtJdd9h",
+                "notAfter": "2027-11-16T20:30:08.297Z",
                 "usages": [
                   "models"
                 ]
@@ -154,11 +751,11 @@
             ],
             "identityKeys": [
               {
-                "@id": "ec53905b826f38f19052b30efd3e2d4df9f24e3cb7505860cbd3d5b50568e45b",
-                "key": "pAECIAMhWEIBVnAaeN0blWp/2YenZHVBx+2u6fJEuw7PhF9PfvF6dJpXhChqAzUxuGrW2T5ps8raSqW78QPcZ7Vs6a1Yi8vpvqIiWEIBrOLM+cASzmtKhOYLTXtMy7oA3VXs94G+1d9Dfd1XzJvtp0GOIkvG1eykhfLazk0dUiz8ZFGjw25wSkC8wZzkKJw="
+                "@id": "e35b17378bd12e215133f043aa2478c5b09f23829dafe62c9c2fe6b383e4b83b",
+                "key": "pAECIAMhWEIB5D4ZGcRASswmo72GFNTKUdJ006WexUKfjKrgLhJdKdlwWSaiDs1ygySFjdHJGcp80HfN4wdPIAAf7xHCx41nrUkiWEIBvO2x923M8/MVQh78/rNKShYGMlxdbNdUPaua1ZTzvG/qvJwN57hJbyaNCOSk2U9dgWMxag1B0RnrSWckJkbzAl8="
               }
             ],
-            "created": "2026-11-12T21:54:25.245Z"
+            "created": "2026-11-16T20:30:08.588Z"
           }
         },
         {
@@ -176,29 +773,29 @@
             "homepage": "https://saale-metering.example",
             "signingKeys": [
               {
-                "@id": "3ded4ef7f05e797d3f9b446aa15be44c8041dee82b7568b426cadc92e92d42c1",
-                "key": "pAECIAEhWCB3QFhu2CyZEmU0k6UR/toPrTTNRR2dDsgV9L/UlECkcCJYIEIfx6RKhJRzKXeJMsT/F6Y6GmXwrGQp4bwqz1oDt52o",
-                "notAfter": "2027-11-12T21:54:24.897Z",
+                "@id": "1360d7c4d860947be696dfaa748e134801632a3f04ab0753e5d9351179417e18",
+                "key": "pAECIAEhWCCqN4j1zQUE7ZbPQCHcuE7obuseWC8Ys/w7kq3wynMNlyJYIF+KNbUP6080bn5wgPlpqZIN4oqDJPsBe5kBlIph2rXF",
+                "notAfter": "2027-11-16T20:30:08.297Z",
                 "usages": [
-                  "party"
+                  "models"
                 ]
               },
               {
-                "@id": "6cc3641043963f94cfe2f2a4cbe48bef2d992ad5ae4aa634285c69edfd23bd2e",
-                "key": "pAECIAEhWCDeuEnMQhIlmOAMgZeWKuZwQWSRPdaBH72i0eNj5rhvZCJYIDTKNeTUbqKe9VBKh66jAtsBVF4/EjDwAWte8xHHIoK2",
-                "notAfter": "2027-11-12T21:54:24.897Z",
+                "@id": "e3e996232d990ea2e55ac609eede380d8023dd57ef58564151506fcb1b8dde7f",
+                "key": "pAECIAEhWCCg5eNPwYbHxFYcuEwEacGHrmMJ1lUcemmlipldINrCxCJYIB9AJF9V4oTmWPaLgeGBuwKljLS6JTpx+EAKlBpr3tJZ",
+                "notAfter": "2027-11-16T20:30:08.297Z",
                 "usages": [
-                  "models"
+                  "party"
                 ]
               }
             ],
             "identityKeys": [
               {
-                "@id": "5eeb9e848f056067efa7ec01ce1fe01ce39d30e66a3fd8400a8fc7932c7e6f22",
-                "key": "pAECIAMhWEIBL8dAVOo7MGwxAbRpYdwthz+5hCVLwh8cCD39BYW95cORPHnCOFsoST/mqHC7q4UZ3FAr68hSAuxGxZuE4kIXiwAiWEIBj6T9yGmbd9kwwH7h/QtQgiStL2tEkV2luCpMzZG2tv1AIy2kOFKkqwuvjEce+V0BwJ2wZeI1KDicEAhm8LlFgvc="
+                "@id": "97fba1317fe11785d2bb3ea288f9ea5a7269d52d2d4e9a979e6fe231921a6727",
+                "key": "pAECIAMhWEIAIRmvvDI2KWyGGP8JvuxPP/AHciWihKMPRqYLw73CyKGJqjgq5DEmKpkgnqcQAp0OI1uqjpOb9+dTdVJCAjSISA0iWEIBs6YMK946UhGVGCVAyryntPsLqUuOBQbpGPC3AYrZPijGmhz2d2h3pkbsup2C0MoG6COmr4w3KJD9aH315MIbxno="
               }
             ],
-            "created": "2026-11-12T21:54:25.303Z"
+            "created": "2026-11-16T20:30:08.637Z"
           }
         },
         {
@@ -216,29 +813,29 @@
             "homepage": "https://kernberg-metering.example",
             "signingKeys": [
               {
-                "@id": "2b377be28ffae1bce15f82f5351392c4f87017dd23e5a58c6f5ccac5c61a5048",
-                "key": "pAECIAEhWCCSQb2HosIpHi4N0Y+gihe47OQMZxzAB7m1rGYv4XJWkSJYIEHPAS6kvtudSS5ykABaDYWXCYwWAQmewPMWiZa7WsyC",
-                "notAfter": "2027-11-12T21:54:24.897Z",
+                "@id": "193c3a4ed330fc9e8cd86f545c300e01adf7e8cf65ad77610bd04feb4f9a5003",
+                "key": "pAECIAEhWCCtfTXVTjin2MLD7/7xu8Qz66BZ+4GD5wMS1sleguRS0CJYIISDjaoEUvDrnAEvMXPxdBqjZiCT7PzNqL0WU8E3xVvU",
+                "notAfter": "2027-11-16T20:30:08.297Z",
                 "usages": [
-                  "models"
+                  "party"
                 ]
               },
               {
-                "@id": "f1f1c28e090a3962f6694022d974dce146d354ba9b04a324412424ab9f51f945",
-                "key": "pAECIAEhWCBAvOzW3Vo7A3mVBEJIAsbdOavLatPWkrWrI3AIebfQqyJYIHWXLPOpCLEu1EN2qJHEPxtfFj0kNyKj32kP6NjDfi6H",
-                "notAfter": "2027-11-12T21:54:24.897Z",
+                "@id": "ebb323608708bc08e1d2aaf02fbd328b25846113bbaf728d17925fd360a6170e",
+                "key": "pAECIAEhWCBIcwD8jg+d6NfCXt8mq8Rz/Plj1PcaJ9Oxw2eTVltYdiJYIPo/N3qEoD3VDoJSVTZGq2RQY9F+A8JnyFQkVEFJVXS1",
+                "notAfter": "2027-11-16T20:30:08.297Z",
                 "usages": [
-                  "party"
+                  "models"
                 ]
               }
             ],
             "identityKeys": [
               {
-                "@id": "3bc7f2591f902d9e41595ec8c2a3a1a446e1fc04eca641a517da579a4cff328c",
-                "key": "pAECIAMhWEIAtUH7N7X5pLBUWI1dkHOCecCBZcWGcnfPBOPaZNANvPFwGpEpt3PSBsEz5McWhIkj4FZ/LeDKrFkrXMT0YDSs3EYiWEIBP3wzAQZYUvB8x2gkOu7qZxLL6J8ciEU7dEl+hO9k/ED6Q76svXJy8LT1foiUyFXGlWP00tfd1IaSomnjESztLo4="
+                "@id": "048aeb6d766d08e76c29e1e44698e0a5357f07296a9e835d21ff34350e1b198f",
+                "key": "pAECIAMhWEIAMI85D5jzj9youGFCI81y96AKX9lUvYmL0iu/kGwZWmoZcXcxooJdliu3khGzTg+gGuQeZvFHmg2gSe0o29pFoMsiWEIBFPKJVDJtCin+kaiH0dImy+1KyYetzsau1pt6p462XoZ63+JE+K1Td7bDMhOo0QUUIJ2ppgRRDDBXVRXTxzHRe+o="
               }
             ],
-            "created": "2026-11-12T21:54:25.353Z"
+            "created": "2026-11-16T20:30:08.686Z"
           }
         }
       ],
@@ -247,13 +844,13 @@
           "json",
           "sha256",
           "hex",
-          "a791271f6a3423374c6025e00cf29824ef177c05acb3cba2abfd923e11b804f1"
+          "26c588e262ff63a55dd7fff4c1e3b58b2eb10de97429ae0c3fd98452873ec279"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "0817cf30042396fd6322d5ade279248ce80d0a7bc3dc96f39e3bfefd82b8be1e"
+          "1357b7bc25a268f0ee46516e83dbcf900e3d2b531b93eb130bc45c71a3dec0d9"
         ]
       ],
       "afterETags": [
@@ -261,13 +858,13 @@
           "json",
           "sha256",
           "hex",
-          "6a3522b05552696797d7027cb145ffde47588482e3b8a1e817faada7bea86e24"
+          "37e2ed411662115847840ff52598c664c8123b437470f38ef65146ac258de098"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "7fd9011ae8b4626a8c29929397ceed2cac7608da5b443af632bbe980fbbe8658"
+          "82c1a52d1d6c16471988099dcb8160d704baeb6537f1942d131897a4df58bd7c"
         ]
       ]
     },
@@ -275,79 +872,79 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:25.699Z",
+        "signedAt": "2026-11-16T20:30:08.908Z",
         "algorithm": "ES256",
-        "keyId": "032a1055c27686ea6f6afe47a84e33c96c39431c0fa3a0dcddc4b31c53b5f05e",
-        "value": "NfwP941bhW3LcQ9JlmV3X9yW9QxO+GxYGauYolc5IKUVB7bipYZce2nx5aCxcNxXejbAQXXOCJ1jc/pNwZhfvg=="
+        "keyId": "6a6ff3e7ba92f072bedfef920756c233b2325a5acfd6a53b19585cedacf36003",
+        "value": "yq7CRfEqeXO4HhSJVZH5sb/ZlJGNZVhjO7qvKY9Q8c7G/J4Saamo8sChaA3v30/tHB2iC2hfqI3cZkfum3XTUw=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:25.703Z",
+        "signedAt": "2026-11-16T20:30:08.911Z",
         "algorithm": "ES256",
-        "keyId": "ad3b940d38dfca04a56c7f25ae056d5d1698bda77b4fb3648f79dbf4a412c1b7",
-        "value": "JbxD//HxwCq91cTctn9GTmSXxUL+eMw94ZZi0KKNVXbbS1d911UrPi+BXmLgu8WFurMd4acyW46ij8FUWAJWTQ=="
+        "keyId": "d90428693b08fbbd31b5340f55acdbb6a1bc57304467b41c9424d7be6befbb32",
+        "value": "Je33A3mYDq6I9jHlU/L/ln7waS1IpNtGxNmIW9qecRkXLWw7+LnJthG6F+gCdhhedU3hzp7npq7xKwowMQUHoA=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:25.707Z",
+        "signedAt": "2026-11-16T20:30:08.914Z",
         "algorithm": "ES256",
-        "keyId": "bbc5f8209bab9973a1c80df1cb22a1a857122d2dba26dc032a9ac84a5260e8bf",
-        "value": "TxsefcK1mmvwUvsv7xGCJrWWRi88DbPTu2q5G8bYC27Dj/TNEIRC9ZOndVh3DEgvvPu5t2hM4sP/tZlMTG4AAQ=="
+        "keyId": "0aa7772c8a98533b2f6cd0e2f151e8528405ad6ca8a40ab1ec43218dd5323ee8",
+        "value": "O0uOMysdyfGuyY83fVaIZCD3MDqR+VUDE1rtbWkpHmpoPq5LDPvwCNlJocO0uPj5RU+Gb38qgfwwPNjIozNtEQ=="
       }
     ]
   },
   {
-    "@id": "db934da22dd7926fb4873b5101fd86e2e06ba0d50eafa677486299621c3a37c5",
+    "@id": "6facbeb7e29da3b10597dea02663a947e2160bb753c2d445551ecf98cf9695df",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
-    "revision": 2,
+    "revision": 4,
     "eTags": [
       [
         "json",
         "sha256",
         "hex",
-        "0da644dae3e84598c555e79bea0e0e7198932f061137c39aa7357a43f725fcd9"
+        "edf762329b7a26790f103fd5bb44f759153453a072322c6f24738168062ca009"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "13677dc444cf7f616508f3abd66df54c0e63513b01591e4c2d9d270ab14a40a0"
+        "7e15bfd08a83290b8ec6d9b85e6197b1bb78e577cf52a5ae7716c6bedf7b22c9"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "6dc7f5754167fea875d881fef5755dd01f53a9c87a4471b023d2c5353f8f1a98"
+        "1a0bdb794e0fac38ae38b51c337ee136b26bf6bba872dce7c2ddeb4f1f0fd088"
       ]
     ],
     "parentIds": [
-      "5248bf2c59ed50e2b176bb0be64d3e4f7b21780f8b9f89a2011ccd8d0b4af3c0"
+      "14f230771ef717b1dcb2cc43bffc83105d096765f9f6f0cb5b3982fa5084b251"
     ],
     "changeSet": {
-      "@id": "90863bf8feefa13940225fab961207a05ef670c765a7f97c11e9c3924e70d1d7",
+      "@id": "6b27b7feb14dd21b6249efafc02e4c0490f2815e5a88ad0c2cb4f1d59cc7bf14",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-11-12T21:54:25.756Z",
+      "createdAt": "2026-11-16T20:30:08.947Z",
       "description": {
         "en": "The models of GraphDefined, KERNBERG and SAALE"
       },
       "signatures": [
         {
           "algorithm": "ES256",
-          "keyId": "835450058d36fb428b8e5039f0f1dcf2bfe683b535c6de1da4b0acabaae682ca",
-          "value": "MvbW/9F3I2OXZNfaWwNnevLtkEX3GcL6Gi98ybteov9VdiBB+dd9/d2SbROQegyMTePq+GNJ4aVSu3s3Nu/igg=="
+          "keyId": "84fc1b0b74b7bc0d77214993ab9a3b9e4211bdcee461c3352e97061af1c78d89",
+          "value": "bupO9gmMw4A4egWZD1g4UUSU3ZOG4zfXa6giC9uAicgUWhJTo6OROHvcBbqpNCTcAxxIGRYuGgstU9I9m9omSA=="
         },
         {
           "algorithm": "ES256",
-          "keyId": "2b377be28ffae1bce15f82f5351392c4f87017dd23e5a58c6f5ccac5c61a5048",
-          "value": "UwErLalr9LjSUXCA5B2yokXQS9bJPUsr26zRdfUJ+HA8Zh0v4oKw+MXYeTCfDsuK/Xt8iA20Amusc+3JebT/eg=="
+          "keyId": "ebb323608708bc08e1d2aaf02fbd328b25846113bbaf728d17925fd360a6170e",
+          "value": "1p8Pqm2HaEzHhHT40D34dYm4s29LciSXYnQQOGR+LqhuMSLpwGW5EX8rH+WiJRAwBrei8BOPA2fdLdw2/Nz4ig=="
         },
         {
           "algorithm": "ES256",
-          "keyId": "6cc3641043963f94cfe2f2a4cbe48bef2d992ad5ae4aa634285c69edfd23bd2e",
-          "value": "s0f+cD5H+dkgQyWPEqFRMRE/XkJr5dlXZOyU6294h4kSNMTnH0ndMPi0VX4EhCLaVyjD8OLtCtwb0xe4hgflyw=="
+          "keyId": "1360d7c4d860947be696dfaa748e134801632a3f04ab0753e5d9351179417e18",
+          "value": "bsbOVaK6eAEh3GAtIvQ8eew2aEF1iW35jfS88oav9ddGiPZWC4V+KIbGs/SIEauZZA8uC11UDriFrVzfrfJEvw=="
         }
       ],
       "changes": [
@@ -476,13 +1073,13 @@
           "json",
           "sha256",
           "hex",
-          "6a3522b05552696797d7027cb145ffde47588482e3b8a1e817faada7bea86e24"
+          "37e2ed411662115847840ff52598c664c8123b437470f38ef65146ac258de098"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "7fd9011ae8b4626a8c29929397ceed2cac7608da5b443af632bbe980fbbe8658"
+          "82c1a52d1d6c16471988099dcb8160d704baeb6537f1942d131897a4df58bd7c"
         ]
       ],
       "afterETags": [
@@ -490,13 +1087,13 @@
           "json",
           "sha256",
           "hex",
-          "0da644dae3e84598c555e79bea0e0e7198932f061137c39aa7357a43f725fcd9"
+          "edf762329b7a26790f103fd5bb44f759153453a072322c6f24738168062ca009"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "13677dc444cf7f616508f3abd66df54c0e63513b01591e4c2d9d270ab14a40a0"
+          "7e15bfd08a83290b8ec6d9b85e6197b1bb78e577cf52a5ae7716c6bedf7b22c9"
         ]
       ]
     },
@@ -504,69 +1101,69 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:25.862Z",
+        "signedAt": "2026-11-16T20:30:09.037Z",
         "algorithm": "ES256",
-        "keyId": "032a1055c27686ea6f6afe47a84e33c96c39431c0fa3a0dcddc4b31c53b5f05e",
-        "value": "pRrjyK4xAIrL+H4C3u6DbUFxr9FtnAbfXs5fTS5a1X44eVQxaaV+IQn61vLEkKWG7DrzTRIQYnzL/dZHBFM00g=="
+        "keyId": "6a6ff3e7ba92f072bedfef920756c233b2325a5acfd6a53b19585cedacf36003",
+        "value": "/hdfxiCFd8lO87lK+1d6sFQbHsL2Gdmk32+bRcnnYFS1aUKjlAe5vGiv33OmZod31bolQLAnImZ/v7PzvaDKWg=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:25.865Z",
+        "signedAt": "2026-11-16T20:30:09.040Z",
         "algorithm": "ES256",
-        "keyId": "ad3b940d38dfca04a56c7f25ae056d5d1698bda77b4fb3648f79dbf4a412c1b7",
-        "value": "MqyHa5l9JxLoy6l0GTt4NHG/J9OV0v6uMKmSk3/QKzqm5j5EgnjMMFkCIzoQ15ueN23uRuactMNXhFjV9CZ6ug=="
+        "keyId": "d90428693b08fbbd31b5340f55acdbb6a1bc57304467b41c9424d7be6befbb32",
+        "value": "DSXFodNPXXdxplLjctWjV1F0oxJP5myepiYBjcURhHnTJEOTdLvAEB+OIW1R/s796m0jG/H4l+NMII0rlNizmQ=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:25.868Z",
+        "signedAt": "2026-11-16T20:30:09.042Z",
         "algorithm": "ES256",
-        "keyId": "bbc5f8209bab9973a1c80df1cb22a1a857122d2dba26dc032a9ac84a5260e8bf",
-        "value": "qr9+zbQG95RYOTszCbDysJ1gHm4PgpxopBdkIN1iNouYYz02OCosjv05kSs/uBzfDNdvFyZxmIfyG9uCAQkc5w=="
+        "keyId": "0aa7772c8a98533b2f6cd0e2f151e8528405ad6ca8a40ab1ec43218dd5323ee8",
+        "value": "L9P+zwzP+M2rUGfsfuh3r2/0pCIjkLiALfqGNVTd7fi8eRg+dcGqc3JdwG7+H3SwwjEjOcCQSXncwUupKcYmog=="
       }
     ]
   },
   {
-    "@id": "d46d32144ded23cfdc775ee455ec2517dfc09743c0b29fd429946c2587fec2eb",
+    "@id": "134774897e85a23dc05c9178c334652a34a6000566f7ef18b7fde4cb326f8e75",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
-    "revision": 3,
+    "revision": 5,
     "eTags": [
       [
         "json",
         "sha256",
         "hex",
-        "5e978043d03721411d19fab0b251a7545b39c52408bd2b2b558a61e788276df7"
+        "aa473355ca8193c7ffddbde64a05d1490ab9c4abc8201e4e9c844c9077d2f08e"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "e1b0e60632c3d6686eb18cd3be9a341320464a51e5425e1e71d5209fb7481649"
+        "f474004cb082060f07173fe2f452de5a29913a20768c8d2f3ad2ccac459e571e"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "05ad8d3ca5b5abfcc5fbe2978580c9dcfb7e3cf4b15ac9d02bdcedf8c3b9b82a"
+        "8e3053629ee86ca912fc9394df2109bf858788b8d8f71896254b154b2d95ed9d"
       ]
     ],
     "parentIds": [
-      "db934da22dd7926fb4873b5101fd86e2e06ba0d50eafa677486299621c3a37c5"
+      "6facbeb7e29da3b10597dea02663a947e2160bb753c2d445551ecf98cf9695df"
     ],
     "changeSet": {
-      "@id": "3eb6d22d68634fb6fc3ae8e566c2e8b3c3459523b4d3b4e58b4546af45e4e39f",
+      "@id": "886e892e4da249ac77bee4c1865110c85561e21f17c34a4fa4e2b576a54b5a5c",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-11-12T21:54:25.977Z",
+      "createdAt": "2026-11-16T20:30:09.150Z",
       "description": {
         "en": "The templates of the DC and the AC stations, EVSEs and energy meters"
       },
       "signatures": [
         {
           "algorithm": "ES256",
-          "keyId": "ff8a51dcdf5bb8c62b8123e1f5df979a6403eceff743c730cfb3fb6189c3287f",
-          "value": "StNcXfJ50lh7hUBYUEqBK2aqLp/LmhjXjXU/Z5aGLwB8b++zgT4imeekA6KRs7+3nAcOlJ73QCSxbEKs0s17jg=="
+          "keyId": "a0e9f8b6ddcf26dd986d3594a12b6154fd5305bd4901056bbf8a69ace3b106cf",
+          "value": "udwhS1fuKYLG30RZYKLkzthr0g2N1FCXeekCkVQn9FP5ugTLh29UgkJMxMQ2saTIl/+wJIed+ZRq5w9Hh2U6Vg=="
         }
       ],
       "changes": [
@@ -584,7 +1181,7 @@
             "hardwareRevision": "1.0",
             "firmwareVersion": "2.5.0",
             "maxPower": 300000,
-            "created": "2026-11-12T21:54:25.951Z"
+            "created": "2026-11-16T20:30:09.121Z"
           }
         },
         {
@@ -601,7 +1198,7 @@
             "hardwareRevision": "1.0",
             "firmwareVersion": "1.8.2",
             "maxPower": 44000,
-            "created": "2026-11-12T21:54:25.962Z"
+            "created": "2026-11-16T20:30:09.133Z"
           }
         },
         {
@@ -620,7 +1217,7 @@
                 "format": "CABLE"
               }
             ],
-            "created": "2026-11-12T21:54:25.967Z"
+            "created": "2026-11-16T20:30:09.139Z"
           }
         },
         {
@@ -639,7 +1236,7 @@
                 "format": "SOCKET"
               }
             ],
-            "created": "2026-11-12T21:54:25.974Z"
+            "created": "2026-11-16T20:30:09.148Z"
           }
         },
         {
@@ -661,7 +1258,7 @@
             "signatureMethods": [
               "OCMF"
             ],
-            "created": "2026-11-12T21:54:25.975Z"
+            "created": "2026-11-16T20:30:09.148Z"
           }
         },
         {
@@ -683,7 +1280,7 @@
             "signatureMethods": [
               "OCMF"
             ],
-            "created": "2026-11-12T21:54:25.976Z"
+            "created": "2026-11-16T20:30:09.149Z"
           }
         }
       ],
@@ -692,13 +1289,13 @@
           "json",
           "sha256",
           "hex",
-          "0da644dae3e84598c555e79bea0e0e7198932f061137c39aa7357a43f725fcd9"
+          "edf762329b7a26790f103fd5bb44f759153453a072322c6f24738168062ca009"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "13677dc444cf7f616508f3abd66df54c0e63513b01591e4c2d9d270ab14a40a0"
+          "7e15bfd08a83290b8ec6d9b85e6197b1bb78e577cf52a5ae7716c6bedf7b22c9"
         ]
       ],
       "afterETags": [
@@ -706,13 +1303,13 @@
           "json",
           "sha256",
           "hex",
-          "5e978043d03721411d19fab0b251a7545b39c52408bd2b2b558a61e788276df7"
+          "aa473355ca8193c7ffddbde64a05d1490ab9c4abc8201e4e9c844c9077d2f08e"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "e1b0e60632c3d6686eb18cd3be9a341320464a51e5425e1e71d5209fb7481649"
+          "f474004cb082060f07173fe2f452de5a29913a20768c8d2f3ad2ccac459e571e"
         ]
       ]
     },
@@ -720,69 +1317,69 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:26.083Z",
+        "signedAt": "2026-11-16T20:30:09.241Z",
         "algorithm": "ES256",
-        "keyId": "032a1055c27686ea6f6afe47a84e33c96c39431c0fa3a0dcddc4b31c53b5f05e",
-        "value": "k1SgYUEPskMugG9TNmsOINabWSo+XherNN4aW3DJFTf1RekrQ4h87yLkx1rPy7aDRuzHuMPrz+WtLopDi1V97g=="
+        "keyId": "6a6ff3e7ba92f072bedfef920756c233b2325a5acfd6a53b19585cedacf36003",
+        "value": "V2GkGm1yrWGsv1IMB5LyN7JRrRj8zPIIiT8Zx0S/Pt8e1P/BrK9CKFGdUf2Slf9ZTJYoqid/bPv9IUqfNhTKxQ=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:26.087Z",
+        "signedAt": "2026-11-16T20:30:09.243Z",
         "algorithm": "ES256",
-        "keyId": "ad3b940d38dfca04a56c7f25ae056d5d1698bda77b4fb3648f79dbf4a412c1b7",
-        "value": "FrexaPgBwEM4/M9nF0jQkhiqef9w6yCMPtY9r6dHWnctkiUGkG3W7SEqDgNPWsar5pNdf3+XxA9ZbWLJuJfnvw=="
+        "keyId": "d90428693b08fbbd31b5340f55acdbb6a1bc57304467b41c9424d7be6befbb32",
+        "value": "iGfGo79+XZtAso7TYX20lCLXPqpijod2cKcE7hQA8agMOjTmSiKtApBmXTso0yYzkseSdm21s8Bbr3xV3MTt9Q=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:26.090Z",
+        "signedAt": "2026-11-16T20:30:09.246Z",
         "algorithm": "ES256",
-        "keyId": "bbc5f8209bab9973a1c80df1cb22a1a857122d2dba26dc032a9ac84a5260e8bf",
-        "value": "J3t0BzUk7Pmvci7QDw3KgFnMnKX6eRUj2dL2ms5BUZg4bdQOBzZobcowlygt4ftz77AVZCBA0F/rXqKn03WJpA=="
+        "keyId": "0aa7772c8a98533b2f6cd0e2f151e8528405ad6ca8a40ab1ec43218dd5323ee8",
+        "value": "DfOx2h7l+HXKzqkF8VZm8MlB8szJGjYYRuPxmsTlgjBMGitlL8uDm7ji8XIibNDyzX9KT5zWLLWegPYMU0MRkA=="
       }
     ]
   },
   {
-    "@id": "dfd567760ecc901d80782dd1e162ed5a1c3f94f1c90af218260dfd19ec810411",
+    "@id": "24cdb41f691b97b2be68a819156df0d183797519406115e4057ad6458354ea7d",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
-    "revision": 4,
+    "revision": 6,
     "eTags": [
       [
         "json",
         "sha256",
         "hex",
-        "49f25e640a9b233cbf8952da0173dfc6578e03c15f001ece5622492f0e691817"
+        "be833f85e145f32d4150fa635be8de7cfef6712347002f6ee8af6625e6679a61"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "e19614c5a8f4e88bfba3c8ac9569053d5767535fe93a8e569d5e13d4a5266247"
+        "c19c4408d4014b9a0c47925d504449585e5a58fd53dc2c91e7b153ab6c0d5a27"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "ad3d53c850d5e3b205e78b2233ce5117b096100eba569465cd44a1fce885ec85"
+        "2b85579e19a0c56b1802b0f3042b66f40484aa41672c1965865cf0feab697331"
       ]
     ],
     "parentIds": [
-      "d46d32144ded23cfdc775ee455ec2517dfc09743c0b29fd429946c2587fec2eb"
+      "134774897e85a23dc05c9178c334652a34a6000566f7ef18b7fde4cb326f8e75"
     ],
     "changeSet": {
-      "@id": "c3650ef0273ee96c1e4d4bc9838d97a90aa48d5376ece74f6e4b721b244cca4c",
+      "@id": "ca405395093b7743b513f6def6c9dcb0a317799f2631e4bbb45973bbddffbedd",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-11-12T21:54:26.517Z",
+      "createdAt": "2026-11-16T20:30:09.585Z",
       "description": {
         "en": "Jena Paradies, a DC and an AC station"
       },
       "signatures": [
         {
           "algorithm": "ES256",
-          "keyId": "ff8a51dcdf5bb8c62b8123e1f5df979a6403eceff743c730cfb3fb6189c3287f",
-          "value": "pt9zz7YQYg5JzSy0gZFA3NnRu3N4WgbpWkXBX+mnOEdgx1+Va/WlbnnsaYD8xNpfa/pMps5GDQ+jDuBlQIJpQQ=="
+          "keyId": "a0e9f8b6ddcf26dd986d3594a12b6154fd5305bd4901056bbf8a69ace3b106cf",
+          "value": "ZOWeqgOyX15PxkQ+U3e3iOhPsMibSoW4/YS0H5AfvWaTRbSCai6fiRcrQPeS5wW6pgw2g9ac0OuOVsmoJr2Rrg=="
         }
       ],
       "changes": [
@@ -816,21 +1413,21 @@
                       "serialNumber": "DCM-2026-001-1",
                       "publicKeys": [
                         {
-                          "@id": "c191068ceb198f5c77a7192d22f9ecd9bbb12a177cbbc675659394efa747cf93",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAERkDyBJZvp0rqUdlwSI+CAy/gtH5Re07BreKdxbxlgrDuFry6PAmRUx9HVIgc50hdpnboPKtvDDBGhVtOR7eyTw=="
+                          "@id": "b729f68ac2883c4ff7aa42f7acfea964036b95bde152e14bb521823ce7f61047",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAENY7T1Rd/FLAlcGvfM/AnTlhyCAE1YBEWHQQnoMDw754wTG1hFCGZEGAWj7L46dDkiLwUUDuBcUrHxXf4rfyYUA=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_DC"
                       ],
-                      "created": "2026-11-12T21:54:26.511Z",
-                      "lastChange": "2026-11-12T21:54:26.511Z"
+                      "created": "2026-11-16T20:30:09.581Z",
+                      "lastChange": "2026-11-16T20:30:09.581Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_DC"
                     ],
-                    "created": "2026-11-12T21:54:26.511Z",
-                    "lastChange": "2026-11-12T21:54:26.511Z"
+                    "created": "2026-11-16T20:30:09.581Z",
+                    "lastChange": "2026-11-16T20:30:09.581Z"
                   },
                   {
                     "@id": "DE*GEF*E1*2",
@@ -843,28 +1440,28 @@
                       "serialNumber": "DCM-2026-001-2",
                       "publicKeys": [
                         {
-                          "@id": "b25f6f9fcb4044bdb01a25795569404420bcb42da0f345092d7a238a7031aa27",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAErfjauV2KlorSCbLN9AXjODuYq7/IVU5rZLobAdFo9yXUcpybYHDGiLyR8agwyjPK5xIy4e/7A2cS7Gadc0lSlw=="
+                          "@id": "4cd2464d01e50f11aac37cd46dfb16d8d80d46388d83fead374826195e506f74",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEx/JQORsTFv04WQYkyuXlDOHPBBFLeIGDfoZldALmuTjUxfgaqJYR5XCiP7uENJAi5cu3jfCFIsGVkeEEktr0Lg=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_DC"
                       ],
-                      "created": "2026-11-12T21:54:26.513Z",
-                      "lastChange": "2026-11-12T21:54:26.513Z"
+                      "created": "2026-11-16T20:30:09.582Z",
+                      "lastChange": "2026-11-16T20:30:09.582Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_DC"
                     ],
-                    "created": "2026-11-12T21:54:26.513Z",
-                    "lastChange": "2026-11-12T21:54:26.513Z"
+                    "created": "2026-11-16T20:30:09.582Z",
+                    "lastChange": "2026-11-16T20:30:09.582Z"
                   }
                 ],
                 "templateIds": [
                   "DE*GEF*ST_DC"
                 ],
-                "created": "2026-11-12T21:54:26.513Z",
-                "lastChange": "2026-11-12T21:54:26.513Z"
+                "created": "2026-11-16T20:30:09.582Z",
+                "lastChange": "2026-11-16T20:30:09.582Z"
               },
               {
                 "@id": "DE*GEF*S2",
@@ -880,21 +1477,21 @@
                       "serialNumber": "ACM-2026-002-1",
                       "publicKeys": [
                         {
-                          "@id": "8856f38ed1d375d1b142bfd1a2c604a9e0b8da4311eed1bfc53c5b3144a4858c",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE4ct5EDeihI590vUj1jm5Q7OmnU/qnCpoMMUo3AihXECY1fJHuashdY0B9C7mrJ8HW3ZQa6cv287BgskOkHkXDw=="
+                          "@id": "261fcf21f2b0edec173cb2053899a4d7cc3f5d9e4def5805f7ca3e87851445f6",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEIubDiuy2LQf0jy2V/+lupKICghZ/Kt8AOF4VqZX+8qvY6Ry+1o2LUXOGcWSIq+OhRjdHwpuwnggpaZwq8F80hw=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_AC"
                       ],
-                      "created": "2026-11-12T21:54:26.515Z",
-                      "lastChange": "2026-11-12T21:54:26.515Z"
+                      "created": "2026-11-16T20:30:09.583Z",
+                      "lastChange": "2026-11-16T20:30:09.583Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_AC"
                     ],
-                    "created": "2026-11-12T21:54:26.515Z",
-                    "lastChange": "2026-11-12T21:54:26.515Z"
+                    "created": "2026-11-16T20:30:09.583Z",
+                    "lastChange": "2026-11-16T20:30:09.583Z"
                   },
                   {
                     "@id": "DE*GEF*E2*2",
@@ -907,31 +1504,31 @@
                       "serialNumber": "ACM-2026-002-2",
                       "publicKeys": [
                         {
-                          "@id": "c7dacea7fa39c23fd04ff969dad203a702a48f1920f2807859073fbcb649e0a6",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEFp6/5TUgKFHTSzVs1CDo0miE3EO9eElCCQQ6pN6NMr6882iuty0mfd5sF3Ho7pmhuClGQHb/JxeTMrm5Bb3XoQ=="
+                          "@id": "1faa3dfb0789f93ebab59d05380071772498b0db4ec34693dd49d941067ffecf",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEB8ITAOoxZbQfRk7XPqDYTjskxkvPcAq1Eej+u7/cwMdekEZZKffR1apjtdtFDVTjGBEXYLihO3+5RHX2zFpUEQ=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_AC"
                       ],
-                      "created": "2026-11-12T21:54:26.517Z",
-                      "lastChange": "2026-11-12T21:54:26.517Z"
+                      "created": "2026-11-16T20:30:09.584Z",
+                      "lastChange": "2026-11-16T20:30:09.584Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_AC"
                     ],
-                    "created": "2026-11-12T21:54:26.517Z",
-                    "lastChange": "2026-11-12T21:54:26.517Z"
+                    "created": "2026-11-16T20:30:09.585Z",
+                    "lastChange": "2026-11-16T20:30:09.585Z"
                   }
                 ],
                 "templateIds": [
                   "DE*GEF*ST_AC"
                 ],
-                "created": "2026-11-12T21:54:26.517Z",
-                "lastChange": "2026-11-12T21:54:26.517Z"
+                "created": "2026-11-16T20:30:09.585Z",
+                "lastChange": "2026-11-16T20:30:09.585Z"
               }
             ],
-            "created": "2026-11-12T21:54:26.517Z"
+            "created": "2026-11-16T20:30:09.585Z"
           }
         }
       ],
@@ -940,13 +1537,13 @@
           "json",
           "sha256",
           "hex",
-          "5e978043d03721411d19fab0b251a7545b39c52408bd2b2b558a61e788276df7"
+          "aa473355ca8193c7ffddbde64a05d1490ab9c4abc8201e4e9c844c9077d2f08e"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "e1b0e60632c3d6686eb18cd3be9a341320464a51e5425e1e71d5209fb7481649"
+          "f474004cb082060f07173fe2f452de5a29913a20768c8d2f3ad2ccac459e571e"
         ]
       ],
       "afterETags": [
@@ -954,13 +1551,13 @@
           "json",
           "sha256",
           "hex",
-          "49f25e640a9b233cbf8952da0173dfc6578e03c15f001ece5622492f0e691817"
+          "be833f85e145f32d4150fa635be8de7cfef6712347002f6ee8af6625e6679a61"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "e19614c5a8f4e88bfba3c8ac9569053d5767535fe93a8e569d5e13d4a5266247"
+          "c19c4408d4014b9a0c47925d504449585e5a58fd53dc2c91e7b153ab6c0d5a27"
         ]
       ]
     },
@@ -968,69 +1565,69 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:26.546Z",
+        "signedAt": "2026-11-16T20:30:09.608Z",
         "algorithm": "ES256",
-        "keyId": "032a1055c27686ea6f6afe47a84e33c96c39431c0fa3a0dcddc4b31c53b5f05e",
-        "value": "lPkD9GFbbbi3K5sPu72q/hc2E9F0l4iXkb9RCjKAKLRwZRfg6khhJ4Ia7H73yJPpaJJc5Y4WSdqm6p9d9Pv5Rg=="
+        "keyId": "6a6ff3e7ba92f072bedfef920756c233b2325a5acfd6a53b19585cedacf36003",
+        "value": "Udy2Ingj7BrugKrJutV9cF5E0r1Z4kK/gW4BViyTKCszmpkPl1GLbf2luUKHk+4QvigwLsY7Jn02yBUg5lWnkg=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:26.549Z",
+        "signedAt": "2026-11-16T20:30:09.611Z",
         "algorithm": "ES256",
-        "keyId": "ad3b940d38dfca04a56c7f25ae056d5d1698bda77b4fb3648f79dbf4a412c1b7",
-        "value": "Ee1Y5p1IwNmxIOHi9Ptc2Hxj86FsnaHsxLUVRAsiVHTKvdM4T69yhseMWuzjOTNKbnKu4dJTkvj5aTO8e9OEPg=="
+        "keyId": "d90428693b08fbbd31b5340f55acdbb6a1bc57304467b41c9424d7be6befbb32",
+        "value": "lwCzIorgmL5dlpJSgQ4qJgj5frjtng3Nzh7oMN3cVPxMLSZVj4GFGjTw9YdndseYl/B6XfLcLToZ0+X0kzyelQ=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:26.552Z",
+        "signedAt": "2026-11-16T20:30:09.618Z",
         "algorithm": "ES256",
-        "keyId": "bbc5f8209bab9973a1c80df1cb22a1a857122d2dba26dc032a9ac84a5260e8bf",
-        "value": "+tTY7Ybz3BdRRjzAvyszinvyHC2XiChd/Da3b6zHXwPO1Gkpc1S3fmi6u+1yDJ6cEDWDL9+j1CCDiYdp3V/WHQ=="
+        "keyId": "0aa7772c8a98533b2f6cd0e2f151e8528405ad6ca8a40ab1ec43218dd5323ee8",
+        "value": "u5O9GOCjeASekLJTOulo4bE11+Ra6HSDIoH0WD/42lWE8z77Y7Rz4Egru9hl6lhk5X6YUh4Pt09FDi5D2DxbQQ=="
       }
     ]
   },
   {
-    "@id": "0cf4e85eb12ee75dcaae3d5e98828417115506236beb6936b3fa06654d58eaf6",
+    "@id": "3d6dfc07ddf2c1f7c88c02fad05315f4854dd34725bc05b419ef272f1032d222",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
-    "revision": 5,
+    "revision": 7,
     "eTags": [
       [
         "json",
         "sha256",
         "hex",
-        "f122aadf3bd1f55cd371fa83efa5f06ee90ff840fec04d9b53615ca555be1f7e"
+        "c4d3a902785a9645462206d65a6e59c630ae6a5ebaed3e322916d373041cf253"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "602ff262e384f1e240c10d358bebb6f0ba95e37081bb5d1e2d5bae1c9894d2c1"
+        "f70694bd8c7f33cf9dc23b2891c881b561c06d034837e26494c743bb33e4d9b8"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "78af92c4dfd4632a82a02bdc42c00e4e0cc819de77c79cd1434a4fc14a63335c"
+        "228c24de6d14fd97f31066e0dcca9aa0b41bd722a451934e6d6b90eb3cddce7b"
       ]
     ],
     "parentIds": [
-      "dfd567760ecc901d80782dd1e162ed5a1c3f94f1c90af218260dfd19ec810411"
+      "24cdb41f691b97b2be68a819156df0d183797519406115e4057ad6458354ea7d"
     ],
     "changeSet": {
-      "@id": "ee3207d93b9f44c9c241bf7a67a59b3f0e2e35058933fd4f86c7f2896ac4a014",
+      "@id": "4430ba2a48582d470b029fee0b415105269757808efbfdf6d44ad5568cdb7ad6",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-11-12T21:54:26.582Z",
+      "createdAt": "2026-11-16T20:30:09.641Z",
       "description": {
         "en": "Jena Nord, a DC and an AC station"
       },
       "signatures": [
         {
           "algorithm": "ES256",
-          "keyId": "ff8a51dcdf5bb8c62b8123e1f5df979a6403eceff743c730cfb3fb6189c3287f",
-          "value": "9dLt3a7+t5YO+Lkv4GfH2noG/J9GP2s6fYX3ab9LHpE//k9sPd5kClvePMcDr+MwTUEhpqAZfyE8dvNsi9cHmA=="
+          "keyId": "a0e9f8b6ddcf26dd986d3594a12b6154fd5305bd4901056bbf8a69ace3b106cf",
+          "value": "uNfYmSIivTMwMlk5wTAWHSGb8mAmfbgQFSimmDkpf+C96sk1mxyo2cMGBrzCXaTTt3shbpoaaihZN/A8wLtV+w=="
         }
       ],
       "changes": [
@@ -1064,21 +1661,21 @@
                       "serialNumber": "DCM-2026-003-1",
                       "publicKeys": [
                         {
-                          "@id": "814436cc24f4e2c7b7b9cb835882a3af86e2d9dcab1c76e7bf64800260342402",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE7lG5/EPhjMnqxXTpo4mv1kka/CTqa6udaocd5yfGYG8S0iiX0lrAC8hCV9SyUuiQN+41GF4SdIQdcFPm0aMufw=="
+                          "@id": "a5e206401e6dc4a65712cc4762c44f252be08278c0bf69c302894bddec88f96d",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAESr8As0+yxhuPqSy6wR/AcJfbH9XSAVqtjdObFspZFUkWFUY3Eo8JmZPxIuEgOJ9HrEOKcQuShYC0gGyAdCHzTg=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_DC"
                       ],
-                      "created": "2026-11-12T21:54:26.576Z",
-                      "lastChange": "2026-11-12T21:54:26.576Z"
+                      "created": "2026-11-16T20:30:09.636Z",
+                      "lastChange": "2026-11-16T20:30:09.636Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_DC"
                     ],
-                    "created": "2026-11-12T21:54:26.576Z",
-                    "lastChange": "2026-11-12T21:54:26.576Z"
+                    "created": "2026-11-16T20:30:09.637Z",
+                    "lastChange": "2026-11-16T20:30:09.637Z"
                   },
                   {
                     "@id": "DE*GEF*E3*2",
@@ -1091,28 +1688,28 @@
                       "serialNumber": "DCM-2026-003-2",
                       "publicKeys": [
                         {
-                          "@id": "4d1fb9373d00d0727c8c5f9f7330be45cd3aac42d10f963242fda1cd22db3851",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAElKzsN7cwyDyvdIh+iQzzypAeqlfFZkSf1MfnypJ729FCBkG5MrpQdLNSPrXgXFauiMajyfRacOb2aoRenaCd1g=="
+                          "@id": "62b4ace87ae555591c1155a018f0f1b1535e6381c4c71a51692853c810c2b43a",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEDsLkBbmPJzHmzHZ9udhSsfypLzTRizWlPkxd4GSdwqLw8F9Gx/jR5UTjVoJOQBJMSveTlzsJI8U4TS/YnMxGzQ=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_DC"
                       ],
-                      "created": "2026-11-12T21:54:26.577Z",
-                      "lastChange": "2026-11-12T21:54:26.577Z"
+                      "created": "2026-11-16T20:30:09.638Z",
+                      "lastChange": "2026-11-16T20:30:09.638Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_DC"
                     ],
-                    "created": "2026-11-12T21:54:26.578Z",
-                    "lastChange": "2026-11-12T21:54:26.578Z"
+                    "created": "2026-11-16T20:30:09.638Z",
+                    "lastChange": "2026-11-16T20:30:09.638Z"
                   }
                 ],
                 "templateIds": [
                   "DE*GEF*ST_DC"
                 ],
-                "created": "2026-11-12T21:54:26.578Z",
-                "lastChange": "2026-11-12T21:54:26.578Z"
+                "created": "2026-11-16T20:30:09.638Z",
+                "lastChange": "2026-11-16T20:30:09.638Z"
               },
               {
                 "@id": "DE*GEF*S4",
@@ -1128,21 +1725,21 @@
                       "serialNumber": "ACM-2026-004-1",
                       "publicKeys": [
                         {
-                          "@id": "0eee4244cc815e52005d86d75d1e23577f069da33899996789d71a0cba227319",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEeSlVy6e4hj6gN4uF0M3DayYignKTT8LNpcz7Lt3e7qeTqH6Ure7dzFqovBLPzD6qA3B8UbrEjAPI1FsMVdritA=="
+                          "@id": "373cdeefc934691bc40ea2dd4e805ae2bc919a9f20e7fcc80380c6c0997d09ec",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEEBGj6Tl4bVhJDCSF5CoDf+33RrqtPKHmsQF/ld4SZs0JZ1qQYE8R5W/h3ibrgquilLc0E9Y/RUMwQAyPxPrU2Q=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_AC"
                       ],
-                      "created": "2026-11-12T21:54:26.579Z",
-                      "lastChange": "2026-11-12T21:54:26.579Z"
+                      "created": "2026-11-16T20:30:09.639Z",
+                      "lastChange": "2026-11-16T20:30:09.639Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_AC"
                     ],
-                    "created": "2026-11-12T21:54:26.579Z",
-                    "lastChange": "2026-11-12T21:54:26.579Z"
+                    "created": "2026-11-16T20:30:09.639Z",
+                    "lastChange": "2026-11-16T20:30:09.639Z"
                   },
                   {
                     "@id": "DE*GEF*E4*2",
@@ -1155,31 +1752,31 @@
                       "serialNumber": "ACM-2026-004-2",
                       "publicKeys": [
                         {
-                          "@id": "32c9d2ce965e7ef508808fd8f4605046d7983c92c7de4d7290252d15c53d783d",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEg/i2R2CohKw28/WhsuvOF0ffs+RoXk9Lib+gHlURZO8qntHnsMZszZjqmlGZ5JssjbprFDmLAnB13YtK3ineiA=="
+                          "@id": "33650446bc6b785e5766a4a45810e7a63c1fd3362221eb4d07870cc9e6c7a513",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE6Uwn15+xuzdLsz77dvxQakqYimYzCqYIFF/bsjEYvDIJ4xj5Zyo7BVcTKt1fx1rZsT39AZK9qpyAdRfxQHZAuQ=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_AC"
                       ],
-                      "created": "2026-11-12T21:54:26.581Z",
-                      "lastChange": "2026-11-12T21:54:26.581Z"
+                      "created": "2026-11-16T20:30:09.640Z",
+                      "lastChange": "2026-11-16T20:30:09.640Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_AC"
                     ],
-                    "created": "2026-11-12T21:54:26.581Z",
-                    "lastChange": "2026-11-12T21:54:26.581Z"
+                    "created": "2026-11-16T20:30:09.640Z",
+                    "lastChange": "2026-11-16T20:30:09.640Z"
                   }
                 ],
                 "templateIds": [
                   "DE*GEF*ST_AC"
                 ],
-                "created": "2026-11-12T21:54:26.581Z",
-                "lastChange": "2026-11-12T21:54:26.581Z"
+                "created": "2026-11-16T20:30:09.640Z",
+                "lastChange": "2026-11-16T20:30:09.640Z"
               }
             ],
-            "created": "2026-11-12T21:54:26.581Z"
+            "created": "2026-11-16T20:30:09.640Z"
           }
         }
       ],
@@ -1188,13 +1785,13 @@
           "json",
           "sha256",
           "hex",
-          "49f25e640a9b233cbf8952da0173dfc6578e03c15f001ece5622492f0e691817"
+          "be833f85e145f32d4150fa635be8de7cfef6712347002f6ee8af6625e6679a61"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "e19614c5a8f4e88bfba3c8ac9569053d5767535fe93a8e569d5e13d4a5266247"
+          "c19c4408d4014b9a0c47925d504449585e5a58fd53dc2c91e7b153ab6c0d5a27"
         ]
       ],
       "afterETags": [
@@ -1202,13 +1799,13 @@
           "json",
           "sha256",
           "hex",
-          "f122aadf3bd1f55cd371fa83efa5f06ee90ff840fec04d9b53615ca555be1f7e"
+          "c4d3a902785a9645462206d65a6e59c630ae6a5ebaed3e322916d373041cf253"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "602ff262e384f1e240c10d358bebb6f0ba95e37081bb5d1e2d5bae1c9894d2c1"
+          "f70694bd8c7f33cf9dc23b2891c881b561c06d034837e26494c743bb33e4d9b8"
         ]
       ]
     },
@@ -1216,69 +1813,69 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:26.623Z",
+        "signedAt": "2026-11-16T20:30:09.674Z",
         "algorithm": "ES256",
-        "keyId": "032a1055c27686ea6f6afe47a84e33c96c39431c0fa3a0dcddc4b31c53b5f05e",
-        "value": "P3GAxn4s+E+uJQsoT1Eh+vH1+YE7AKkvHowJRUtPSPmHG3f57Zz5YXD3858SOlci2YXvO6ADgpXnx0X7F4Rb6A=="
+        "keyId": "6a6ff3e7ba92f072bedfef920756c233b2325a5acfd6a53b19585cedacf36003",
+        "value": "KsE8OAAWHY+dUXwqAjWq6dooIkXUSSjgr0wPXTWG93QVRfS1heG8vujnjxzVucBuTTAeJc6ea+o1Tfj+2kZsbQ=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:26.628Z",
+        "signedAt": "2026-11-16T20:30:09.677Z",
         "algorithm": "ES256",
-        "keyId": "ad3b940d38dfca04a56c7f25ae056d5d1698bda77b4fb3648f79dbf4a412c1b7",
-        "value": "7vRDk7xayzIy7z2kJVkr5/U8LVw/Bpgdg34Tavg1Ei+u4kfALXMXCdW4htX2z6gtWNe11rzBTrfKsMlQhlZAOg=="
+        "keyId": "d90428693b08fbbd31b5340f55acdbb6a1bc57304467b41c9424d7be6befbb32",
+        "value": "X70wi3xljZKBI13hQTulwLZIFsTg4EK3XcrkMtZYMK6Qsv4uZbjE2EBfoYdOVFa20U18VpsC/ueFLC6ssnMyiA=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:26.632Z",
+        "signedAt": "2026-11-16T20:30:09.680Z",
         "algorithm": "ES256",
-        "keyId": "bbc5f8209bab9973a1c80df1cb22a1a857122d2dba26dc032a9ac84a5260e8bf",
-        "value": "vhnRw+6h1NgKk2Emxz2J7rKrkN63UxpnyONM+PTSzxKTbWXrgSi5HM1pHEI/YWZ9wIdGUqewyoFadM+6h5me6w=="
+        "keyId": "0aa7772c8a98533b2f6cd0e2f151e8528405ad6ca8a40ab1ec43218dd5323ee8",
+        "value": "3prQ+eAjobuJVE3798AsKbN+p60DgRVsMpV7vG1g8R44LMuCGq40hlSy3Khfctm4xnHbtbSsIVe+keKyaBPB/Q=="
       }
     ]
   },
   {
-    "@id": "a1b2fc80e4dc2cb83e861d953f9943bfeecffa863ab672ff15934b622ca7f2f6",
+    "@id": "72645d868f0fda2622ed8cf38af406139566e0cabefdfdbd2dbbf7ab47be21b0",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
-    "revision": 6,
+    "revision": 8,
     "eTags": [
       [
         "json",
         "sha256",
         "hex",
-        "18da3f21ca3cb2167fee45f783c109cabc82875bb55fb89a3fd935a1a461e8fc"
+        "d64c7d5698e62e4939b0aa0126ccc721ccbe8f67975b88abda5dff8c60feaf0b"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "e543d302d0dea38244a552caff676e6f89579b2811bd3a61a86795bd576b0068"
+        "4fc857370939e4c17dadc75e0ca08e80a07629d3e3519220c362c5246fd6f20e"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "a7cc52b0fb624fd3e6da380d57bcf62711e3803c381ae919480e13f40bdcf333"
+        "f952c84b7ee55f3f00635d73008e140c9169179e191c8a7eaae719b54ed61e91"
       ]
     ],
     "parentIds": [
-      "0cf4e85eb12ee75dcaae3d5e98828417115506236beb6936b3fa06654d58eaf6"
+      "3d6dfc07ddf2c1f7c88c02fad05315f4854dd34725bc05b419ef272f1032d222"
     ],
     "changeSet": {
-      "@id": "1f59192808f9985fe9e6471a6a27c9241a835fbe99017fa861083c8f79b14814",
+      "@id": "c5d390d7eb9ff9dbd5e07003f9847a83b01ad91d362162b90a0a093e07fe79e5",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-11-12T21:54:26.669Z",
+      "createdAt": "2026-11-16T20:30:09.708Z",
       "description": {
         "en": "The DC and the AC charging stations"
       },
       "signatures": [
         {
           "algorithm": "ES256",
-          "keyId": "ff8a51dcdf5bb8c62b8123e1f5df979a6403eceff743c730cfb3fb6189c3287f",
-          "value": "IK7CCxqzgb+zH5PedOl+nOkvTGKC0VlKXMnOW8JQIEYyf7oR3aeSoyTtvZyAtsroSHnoFUjcEnG9CYDQw+8GTA=="
+          "keyId": "a0e9f8b6ddcf26dd986d3594a12b6154fd5305bd4901056bbf8a69ace3b106cf",
+          "value": "oe5NqKYkkshVWKDvhR2Qyw0gzT+2RVSAPfWrrXunmR7VDu4t7idZ38WolixlFGHCUrYpEOag8D2r66o1+L89+Q=="
         }
       ],
       "changes": [
@@ -1295,7 +1892,7 @@
               "DE*GEF*S1",
               "DE*GEF*S3"
             ],
-            "created": "2026-11-12T21:54:26.643Z"
+            "created": "2026-11-16T20:30:09.687Z"
           }
         },
         {
@@ -1311,7 +1908,7 @@
               "DE*GEF*S2",
               "DE*GEF*S4"
             ],
-            "created": "2026-11-12T21:54:26.668Z"
+            "created": "2026-11-16T20:30:09.707Z"
           }
         }
       ],
@@ -1320,13 +1917,13 @@
           "json",
           "sha256",
           "hex",
-          "f122aadf3bd1f55cd371fa83efa5f06ee90ff840fec04d9b53615ca555be1f7e"
+          "c4d3a902785a9645462206d65a6e59c630ae6a5ebaed3e322916d373041cf253"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "602ff262e384f1e240c10d358bebb6f0ba95e37081bb5d1e2d5bae1c9894d2c1"
+          "f70694bd8c7f33cf9dc23b2891c881b561c06d034837e26494c743bb33e4d9b8"
         ]
       ],
       "afterETags": [
@@ -1334,13 +1931,13 @@
           "json",
           "sha256",
           "hex",
-          "18da3f21ca3cb2167fee45f783c109cabc82875bb55fb89a3fd935a1a461e8fc"
+          "d64c7d5698e62e4939b0aa0126ccc721ccbe8f67975b88abda5dff8c60feaf0b"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "e543d302d0dea38244a552caff676e6f89579b2811bd3a61a86795bd576b0068"
+          "4fc857370939e4c17dadc75e0ca08e80a07629d3e3519220c362c5246fd6f20e"
         ]
       ]
     },
@@ -1348,69 +1945,69 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:26.708Z",
+        "signedAt": "2026-11-16T20:30:09.740Z",
         "algorithm": "ES256",
-        "keyId": "032a1055c27686ea6f6afe47a84e33c96c39431c0fa3a0dcddc4b31c53b5f05e",
-        "value": "Qb2/dXuFz6XjWMAzloJgWMA3+pnyuWsuWPuN2Hyx21RYyRyZlhk1UnSwzArWc3HQNYP32Fz2K1p5smGATb//xw=="
+        "keyId": "6a6ff3e7ba92f072bedfef920756c233b2325a5acfd6a53b19585cedacf36003",
+        "value": "91csHDB55HCPZOz+ficjQMQnORIyXITjdOQr3TbckXg4cRkTXlV3F+3ccZh5wlPganWeEUqFnaL6aATrCy3ziQ=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:26.713Z",
+        "signedAt": "2026-11-16T20:30:09.743Z",
         "algorithm": "ES256",
-        "keyId": "ad3b940d38dfca04a56c7f25ae056d5d1698bda77b4fb3648f79dbf4a412c1b7",
-        "value": "RkdWxyVTZ6m2EOiIHmc73w712my+uW+fCxWWPhOL9rAE02gmWfqoJ0Rj62rfgAIi6tZNXtxoxL5aIRgPU0i2dA=="
+        "keyId": "d90428693b08fbbd31b5340f55acdbb6a1bc57304467b41c9424d7be6befbb32",
+        "value": "K2TBi165nnF8j+fvXxM4eYYaDvHFnaukgEcjCNG1HOOoXroPGEJGN9lzS2OLrFBVhwgtDoPZZ0DvN7BtEAt1uQ=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:26.715Z",
+        "signedAt": "2026-11-16T20:30:09.746Z",
         "algorithm": "ES256",
-        "keyId": "bbc5f8209bab9973a1c80df1cb22a1a857122d2dba26dc032a9ac84a5260e8bf",
-        "value": "8A+IN2gOLeSelHUbGAoYPFGfZ5Tf04NrKUf8KBmkmFMCs5xYnEn/6/IEMBrNaLm3vy9JBvHl3DIvuzed2x9ODw=="
+        "keyId": "0aa7772c8a98533b2f6cd0e2f151e8528405ad6ca8a40ab1ec43218dd5323ee8",
+        "value": "MSvDF4SOc0ukqifutDQbeY7LHxezmoP1vYskti5nVmYvaraG696D6HO05JGVlqBAUOtXeFI+n458mj5bamPRdw=="
       }
     ]
   },
   {
-    "@id": "39cf357f092da1f9d70ebb358d2d7e42d00fe35fba310135bf7dd8e002e277b7",
+    "@id": "0c63b42cb371816d30f157ec8db665d54dca6ed1b9daf12c69c28c556b796e7d",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
-    "revision": 7,
+    "revision": 9,
     "eTags": [
       [
         "json",
         "sha256",
         "hex",
-        "d515384a05a7f90376b9ff8d619e0e43949c29bf0347a42c31b3c8ff4c6ed464"
+        "f6941facc21b8265211317386d82be520df647ccd36bab7edf57e2ad8bd80a9f"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "5cb13c60bed601e34a6015ac887105ed6f292dd8f653df04901ac46b23e6ea5b"
+        "c0f57b6985be4c7dc00dbede501ef9f75d1d8e1edaf44ee590edb0423cc80182"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "28c61dd1479fd802bf77696ce9d6d82f550f2463a1c373d62d810851f559640a"
+        "34f869363ae2d704c8aa672562a6f134e33ac31710ec2b68a78e1d9e27d1778c"
       ]
     ],
     "parentIds": [
-      "a1b2fc80e4dc2cb83e861d953f9943bfeecffa863ab672ff15934b622ca7f2f6"
+      "72645d868f0fda2622ed8cf38af406139566e0cabefdfdbd2dbbf7ab47be21b0"
     ],
     "changeSet": {
-      "@id": "de53959788f10b518477b21b0d1c1fe0e8c22c817541809887a7867a7da957c5",
+      "@id": "66243783e175eeeb9088e63347d1e99cde429cd35207b25794bca5dd70a46856",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-11-12T21:54:26.747Z",
+      "createdAt": "2026-11-16T20:30:09.776Z",
       "description": {
         "en": "The DC and the AC EVSEs"
       },
       "signatures": [
         {
           "algorithm": "ES256",
-          "keyId": "ff8a51dcdf5bb8c62b8123e1f5df979a6403eceff743c730cfb3fb6189c3287f",
-          "value": "4GuQMPneHqaxO+ge2u3zQ8iqNhgn7i8zdqh1+w0yU2ELrD3sMvBHkC6PTjVnERvAX+WXaGhbJelwWu0cASaUag=="
+          "keyId": "a0e9f8b6ddcf26dd986d3594a12b6154fd5305bd4901056bbf8a69ace3b106cf",
+          "value": "pfnVuJEVaquHLiVm7HBjGwivN6ptGNfugrmAS5lRk55anj5BPKmUEFn3hgP+Aub5wB882WOTi1NH8v7ZCFWu8A=="
         }
       ],
       "changes": [
@@ -1429,7 +2026,7 @@
               "DE*GEF*E3*1",
               "DE*GEF*E3*2"
             ],
-            "created": "2026-11-12T21:54:26.724Z"
+            "created": "2026-11-16T20:30:09.754Z"
           }
         },
         {
@@ -1447,7 +2044,7 @@
               "DE*GEF*E4*1",
               "DE*GEF*E4*2"
             ],
-            "created": "2026-11-12T21:54:26.747Z"
+            "created": "2026-11-16T20:30:09.776Z"
           }
         }
       ],
@@ -1456,13 +2053,13 @@
           "json",
           "sha256",
           "hex",
-          "18da3f21ca3cb2167fee45f783c109cabc82875bb55fb89a3fd935a1a461e8fc"
+          "d64c7d5698e62e4939b0aa0126ccc721ccbe8f67975b88abda5dff8c60feaf0b"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "e543d302d0dea38244a552caff676e6f89579b2811bd3a61a86795bd576b0068"
+          "4fc857370939e4c17dadc75e0ca08e80a07629d3e3519220c362c5246fd6f20e"
         ]
       ],
       "afterETags": [
@@ -1470,13 +2067,13 @@
           "json",
           "sha256",
           "hex",
-          "d515384a05a7f90376b9ff8d619e0e43949c29bf0347a42c31b3c8ff4c6ed464"
+          "f6941facc21b8265211317386d82be520df647ccd36bab7edf57e2ad8bd80a9f"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "5cb13c60bed601e34a6015ac887105ed6f292dd8f653df04901ac46b23e6ea5b"
+          "c0f57b6985be4c7dc00dbede501ef9f75d1d8e1edaf44ee590edb0423cc80182"
         ]
       ]
     },
@@ -1484,69 +2081,69 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:26.784Z",
+        "signedAt": "2026-11-16T20:30:09.809Z",
         "algorithm": "ES256",
-        "keyId": "032a1055c27686ea6f6afe47a84e33c96c39431c0fa3a0dcddc4b31c53b5f05e",
-        "value": "cLSY+ZegASLAd17Asg22TUGUZzwEAgjSJfq29sqriqMOOw5mS9XiahnqHdZ0kFSRFfL8sGZlOYza9DmamrKDFA=="
+        "keyId": "6a6ff3e7ba92f072bedfef920756c233b2325a5acfd6a53b19585cedacf36003",
+        "value": "OE64qDj7/xk3nnVUtULY1YNCiIoXZPvBIUoHbTBs28rfH/f/7G8ZcSQQk7CGwdlrYItRjgcOKQqEKwUJRhMuBg=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:26.787Z",
+        "signedAt": "2026-11-16T20:30:09.813Z",
         "algorithm": "ES256",
-        "keyId": "ad3b940d38dfca04a56c7f25ae056d5d1698bda77b4fb3648f79dbf4a412c1b7",
-        "value": "6upgbZMuDmcD7SDvrt1ywpy3Lx8y8zBJN4Ag960iZV6TiLHskTPXKDpeuTwfdP75HFS/tWzoUdU25VEgULUkDQ=="
+        "keyId": "d90428693b08fbbd31b5340f55acdbb6a1bc57304467b41c9424d7be6befbb32",
+        "value": "XCVCZAecsLcG/d1ZFHc324+AhirY/lvIZzs3MXUt+hySUBtNC/FgNqtdXzgAX2i0zGcPSwVZVA2VHfreVLTXpA=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:26.790Z",
+        "signedAt": "2026-11-16T20:30:09.815Z",
         "algorithm": "ES256",
-        "keyId": "bbc5f8209bab9973a1c80df1cb22a1a857122d2dba26dc032a9ac84a5260e8bf",
-        "value": "X+8KUe1viYG4pdiVF2spjEd1KB2eYChyysNtBZY+xJcDr75QOHbkp9CGGKv/eCkeKgsNCUc2HzoNkr09mMIKzQ=="
+        "keyId": "0aa7772c8a98533b2f6cd0e2f151e8528405ad6ca8a40ab1ec43218dd5323ee8",
+        "value": "RuFxU9UD1OOgu+XVyiraNx53p58+WmFawIipwP+E9vX6cw2LmsVAuBnscUH9zOfIxg065BjD5zM1DjN2nBA4Pw=="
       }
     ]
   },
   {
-    "@id": "3322c7146788ee30ff50c4d12507f9bb2630f5f34f93372153d206190c3c8877",
+    "@id": "0cd7705f32b15771b76b612b0785353a454333056447f89f66575a74faac0719",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
-    "revision": 8,
+    "revision": 10,
     "eTags": [
       [
         "json",
         "sha256",
         "hex",
-        "5210b3e5db2b89a9847006897aed2c8a08e8085c2c26f56ced0fcb3ee22bcef8"
+        "50e47bbe4047b9550f738d1b4dc7ab789c2f71c270f0d27234487b230ec0432e"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "d34cc3fd2c46dc2b8bd5c365fedc5f4b4c0129cc07a1fbad1cb70a109f9e3006"
+        "000ca1861f6683e5ba3c7d61e621271dc8f481ed4e64816f3644a0bf55c55dc0"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "8eb50c0f5841f1a535d540a941134e1ac47ce7a8600ad6c02cb21b7ac774c5c4"
+        "7469aaf2c9a53fd2aeb6d3495c05212cf813d83d57dca02d86dcb5e04e5ec366"
       ]
     ],
     "parentIds": [
-      "39cf357f092da1f9d70ebb358d2d7e42d00fe35fba310135bf7dd8e002e277b7"
+      "0c63b42cb371816d30f157ec8db665d54dca6ed1b9daf12c69c28c556b796e7d"
     ],
     "changeSet": {
-      "@id": "9d171b53fb5a19e23329c2001969e26a5926c1452bc15b113d9af7ab0fa2a7c2",
+      "@id": "6197b97a435c0ab97482e876688305804c72914882b20c24a61d9ba5e29020cf",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-11-12T21:54:26.935Z",
+      "createdAt": "2026-11-16T20:30:09.956Z",
       "description": {
         "en": "Jena Lobeda, a DC and an AC station"
       },
       "signatures": [
         {
           "algorithm": "ES256",
-          "keyId": "ff8a51dcdf5bb8c62b8123e1f5df979a6403eceff743c730cfb3fb6189c3287f",
-          "value": "BUM1gH8mev35mFicGRY/LjUdcX7nhdpmkwirLSWg0ralkA3YBnnGE175RCJYBS2/3FS20PH3tkWD1r05SdWoxQ=="
+          "keyId": "a0e9f8b6ddcf26dd986d3594a12b6154fd5305bd4901056bbf8a69ace3b106cf",
+          "value": "0EQT7eI+zec4lta+GNPyuIL1KAAPbdukJJL2oM3dIUNgo6euTn/8pYKBW9Frkv7bjRnxVqOqiH7k/99mb6ourg=="
         }
       ],
       "changes": [
@@ -1580,21 +2177,21 @@
                       "serialNumber": "DCM-2026-005-1",
                       "publicKeys": [
                         {
-                          "@id": "23a199b91107cbcb7d0bfba0e4345d52c0b2b5a4b9b31f25c6046fd4c15df9ad",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEC/vKmlPbwJZa/dvZU4p8CxnJfPJhT6TKTnS26LgfGrwyriZtOPWig97R22+xx/TJ4zJVWJfQ8WSPfw3QrhvmYQ=="
+                          "@id": "654bfe9729356b7278096f98ea9c9a745a21f0032d434435ffa0a6533690d34f",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE3FTVfN6+ILEHuPbEjZOZXjl9AFueoWESYGmFZ2u/wyZepNwk2P6z9+94aikVlZatnKVCVmDnw3odZbV7t6CRpg=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_DC"
                       ],
-                      "created": "2026-11-12T21:54:26.929Z",
-                      "lastChange": "2026-11-12T21:54:26.929Z"
+                      "created": "2026-11-16T20:30:09.952Z",
+                      "lastChange": "2026-11-16T20:30:09.952Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_DC"
                     ],
-                    "created": "2026-11-12T21:54:26.929Z",
-                    "lastChange": "2026-11-12T21:54:26.929Z"
+                    "created": "2026-11-16T20:30:09.952Z",
+                    "lastChange": "2026-11-16T20:30:09.952Z"
                   },
                   {
                     "@id": "DE*GEF*E5*2",
@@ -1607,28 +2204,28 @@
                       "serialNumber": "DCM-2026-005-2",
                       "publicKeys": [
                         {
-                          "@id": "5efc5624d5470e762559473a5e9859c94bc4d212e1f84f8397820262262387c2",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAECpacvem+d0a30x8zARcxMv6QalT9Wjx2r/xJWWiMUTHFy6H6NXnVh2IIyLaSeFXpTpvkgmcRWLGuyUk1njX4SQ=="
+                          "@id": "9e125a2d3f2ca759c00a8760b71b42929a9c96b69e9a92c53278cb67a78508e0",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEBEX1lTyemgj+g7ZXHjzZHemQKd9dTGqUIY8inrmK1H0WjzPLZ9sWRQjcm4jQvBvwxiCVW5AVd0PcsCPdjdNtAQ=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_DC"
                       ],
-                      "created": "2026-11-12T21:54:26.930Z",
-                      "lastChange": "2026-11-12T21:54:26.930Z"
+                      "created": "2026-11-16T20:30:09.953Z",
+                      "lastChange": "2026-11-16T20:30:09.953Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_DC"
                     ],
-                    "created": "2026-11-12T21:54:26.930Z",
-                    "lastChange": "2026-11-12T21:54:26.930Z"
+                    "created": "2026-11-16T20:30:09.953Z",
+                    "lastChange": "2026-11-16T20:30:09.953Z"
                   }
                 ],
                 "templateIds": [
                   "DE*GEF*ST_DC"
                 ],
-                "created": "2026-11-12T21:54:26.930Z",
-                "lastChange": "2026-11-12T21:54:26.930Z"
+                "created": "2026-11-16T20:30:09.953Z",
+                "lastChange": "2026-11-16T20:30:09.953Z"
               },
               {
                 "@id": "DE*GEF*S6",
@@ -1644,21 +2241,21 @@
                       "serialNumber": "ACM-2026-006-1",
                       "publicKeys": [
                         {
-                          "@id": "f6113fb0be75a1fe79852beae8e8163f3bcba35b78987a1ba52128c6368ff8c2",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEmdah4GzD2pVdCwVl8xqEPZEV3jlqM2UVsT1u7n1efiY9fkY03Ai0uWCyh7h9iBgQBjAayklsIZytwsckaSkGCQ=="
+                          "@id": "6dec3fcb8a5eeec0e291bf79c605c627f0b703aa6bef1dbd9c905483078a0fe1",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAECwzl8my2l8qe3Bb7N2BQ2cLOulqwB4q34bJBSqLZXWQxsKddDyY3w5e0+/W8ZwEYEoPJj66c/Y1+QJsMsi9Wqw=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_AC"
                       ],
-                      "created": "2026-11-12T21:54:26.932Z",
-                      "lastChange": "2026-11-12T21:54:26.932Z"
+                      "created": "2026-11-16T20:30:09.954Z",
+                      "lastChange": "2026-11-16T20:30:09.954Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_AC"
                     ],
-                    "created": "2026-11-12T21:54:26.932Z",
-                    "lastChange": "2026-11-12T21:54:26.932Z"
+                    "created": "2026-11-16T20:30:09.954Z",
+                    "lastChange": "2026-11-16T20:30:09.954Z"
                   },
                   {
                     "@id": "DE*GEF*E6*2",
@@ -1671,31 +2268,31 @@
                       "serialNumber": "ACM-2026-006-2",
                       "publicKeys": [
                         {
-                          "@id": "8d68c9c92f9e3be019d02edd1548e8eae441f1f19923483365468c3e6c4e7c2b",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEVLCPQl+pjxhZZ3sJGgeXkM2boKyTx8K1iNjjP9XKO/3Vx8e7dBlRa2qFh8BvJwRLA4dXSGHP2JurtRm9Y3SPOQ=="
+                          "@id": "c6a160800c3d3822baecbed6f064f382417ad688863cd83d92e36149fc82b090",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEVZTkKcmHtW79DBKd8tmfYcKFyUU350XQliRSoF37Mv35AjwfLMzX1gcdojgRjYOpDn/qP3hTU1XXJNbEOOGgnQ=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_AC"
                       ],
-                      "created": "2026-11-12T21:54:26.933Z",
-                      "lastChange": "2026-11-12T21:54:26.933Z"
+                      "created": "2026-11-16T20:30:09.956Z",
+                      "lastChange": "2026-11-16T20:30:09.956Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_AC"
                     ],
-                    "created": "2026-11-12T21:54:26.934Z",
-                    "lastChange": "2026-11-12T21:54:26.934Z"
+                    "created": "2026-11-16T20:30:09.956Z",
+                    "lastChange": "2026-11-16T20:30:09.956Z"
                   }
                 ],
                 "templateIds": [
                   "DE*GEF*ST_AC"
                 ],
-                "created": "2026-11-12T21:54:26.934Z",
-                "lastChange": "2026-11-12T21:54:26.934Z"
+                "created": "2026-11-16T20:30:09.956Z",
+                "lastChange": "2026-11-16T20:30:09.956Z"
               }
             ],
-            "created": "2026-11-12T21:54:26.934Z"
+            "created": "2026-11-16T20:30:09.956Z"
           }
         }
       ],
@@ -1704,13 +2301,13 @@
           "json",
           "sha256",
           "hex",
-          "d515384a05a7f90376b9ff8d619e0e43949c29bf0347a42c31b3c8ff4c6ed464"
+          "f6941facc21b8265211317386d82be520df647ccd36bab7edf57e2ad8bd80a9f"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "5cb13c60bed601e34a6015ac887105ed6f292dd8f653df04901ac46b23e6ea5b"
+          "c0f57b6985be4c7dc00dbede501ef9f75d1d8e1edaf44ee590edb0423cc80182"
         ]
       ],
       "afterETags": [
@@ -1718,13 +2315,13 @@
           "json",
           "sha256",
           "hex",
-          "5210b3e5db2b89a9847006897aed2c8a08e8085c2c26f56ced0fcb3ee22bcef8"
+          "50e47bbe4047b9550f738d1b4dc7ab789c2f71c270f0d27234487b230ec0432e"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "d34cc3fd2c46dc2b8bd5c365fedc5f4b4c0129cc07a1fbad1cb70a109f9e3006"
+          "000ca1861f6683e5ba3c7d61e621271dc8f481ed4e64816f3644a0bf55c55dc0"
         ]
       ]
     },
@@ -1732,69 +2329,69 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:26.968Z",
+        "signedAt": "2026-11-16T20:30:09.986Z",
         "algorithm": "ES256",
-        "keyId": "032a1055c27686ea6f6afe47a84e33c96c39431c0fa3a0dcddc4b31c53b5f05e",
-        "value": "YAFM2V61fi3NFkWXAFXTFizXI7Kib6VX28YhvI7dMSS8Ldpe6WxqZq9HFQSdDYqxWt8hrtdg4DQpFMPco2vnzA=="
+        "keyId": "6a6ff3e7ba92f072bedfef920756c233b2325a5acfd6a53b19585cedacf36003",
+        "value": "88IMfs23Mnl00QVPu/urcY4V5DOQk3WXhSahchyNg3JvWM0JLITtennCcKH8rJFWZS1QA/TF5sdavqWa/Sw5IA=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:26.973Z",
+        "signedAt": "2026-11-16T20:30:09.988Z",
         "algorithm": "ES256",
-        "keyId": "ad3b940d38dfca04a56c7f25ae056d5d1698bda77b4fb3648f79dbf4a412c1b7",
-        "value": "CQAODHgk4N8T/vtQnqDszps6WMC1kn6nkAXHiAxp83bMGKYIJET+as7FeJDv8oGRbH3gjT8zuTsYEqtKhflrkg=="
+        "keyId": "d90428693b08fbbd31b5340f55acdbb6a1bc57304467b41c9424d7be6befbb32",
+        "value": "knG77Wj6QYGFvcbwZXieY38tyVMn9Am5xELBraT/lCn36uR5pNRSJMC0f5Mx2T+uvh1DbKhqQGB6C88AtxcgIw=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:26.976Z",
+        "signedAt": "2026-11-16T20:30:09.991Z",
         "algorithm": "ES256",
-        "keyId": "bbc5f8209bab9973a1c80df1cb22a1a857122d2dba26dc032a9ac84a5260e8bf",
-        "value": "ylBylcK8jey2RSEyBjSRAHyzX5rOcl35s/9wpxY0nRFG2122rQiOLtFNCdJs6A5VymAeDwBq2MFbqvO2bH9w3w=="
+        "keyId": "0aa7772c8a98533b2f6cd0e2f151e8528405ad6ca8a40ab1ec43218dd5323ee8",
+        "value": "NR5BSXgyLQWgzRxo+Iw1UwPR9L39FkSMGoNIeLNXGNRHzKdOl9Mb/SrpiD+A3tC5JtMrS+eLASweqhyM/q7jyg=="
       }
     ]
   },
   {
-    "@id": "0a87c12c3d9a7a117bc9dd51f848386125479069fbed96fda2996f85ca3ca5f1",
+    "@id": "8d5447bd5433275bf3f7694310de40cdb75c2bbbbaacabb8fe30ba2d719d866e",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
-    "revision": 9,
+    "revision": 11,
     "eTags": [
       [
         "json",
         "sha256",
         "hex",
-        "8c97ad7171d3347a9673772ed7de5af119a2af7859908a45f22b495c3e7caecb"
+        "1815ecb8277024ab9e009e037f1995cfa534f5e22a06c0184da31e3e9cca4acb"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "c6ba02b18fb52cc39213e81bc78a2601b3a4acd3803a8726b0a302bd64f2650c"
+        "81237e778f2d12cb1f269f9773d85e675752293cd777c5c4603e76b8a846f254"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "7bb0c3da6aff55e7d3507f763c68b604cec7756b9c5479285bbcb63e73dcf9c9"
+        "9fab2e4c7f9ade5cc52b83fe86cdc082602c1b8141fa0576c4c62165846578a1"
       ]
     ],
     "parentIds": [
-      "3322c7146788ee30ff50c4d12507f9bb2630f5f34f93372153d206190c3c8877"
+      "0cd7705f32b15771b76b612b0785353a454333056447f89f66575a74faac0719"
     ],
     "changeSet": {
-      "@id": "1e82cfd9af2972bfd53a8aec7ff87b8bd5c64dfee38a0f240adf2b5b94c5e08c",
+      "@id": "b7d087f599220db00f458c1feaa10f7eb1cc54084e1695eff7c19be7aa796919",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-11-12T21:54:26.987Z",
+      "createdAt": "2026-11-16T20:30:10.002Z",
       "description": {
         "en": "Jena Winzerla, a DC and an AC station"
       },
       "signatures": [
         {
           "algorithm": "ES256",
-          "keyId": "ff8a51dcdf5bb8c62b8123e1f5df979a6403eceff743c730cfb3fb6189c3287f",
-          "value": "NX6ZrKvBrb7iFloCRwsfPz41rrQjd4Svhjc0WP7XgTawEYQOxlJPgH3XYrXjLYCoo/y4e4xCdTroTiahD1MFaA=="
+          "keyId": "a0e9f8b6ddcf26dd986d3594a12b6154fd5305bd4901056bbf8a69ace3b106cf",
+          "value": "H2m1gBZCDVxpzGue7kXmzOcblo+H60tWAruJP/y7j5eo4zQrqnR6qdyrqWLB9GPjCckRh296jbjbhq7NiEyhBg=="
         }
       ],
       "changes": [
@@ -1828,21 +2425,21 @@
                       "serialNumber": "DCM-2026-007-1",
                       "publicKeys": [
                         {
-                          "@id": "fd5e1cb159908062b3a827f595be8c2f82560fa6e650318d12defe6edd7cac90",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEc08PdSx0yS5MVkZ9nw6mts5bDcYnM5A51LL0vS9HTq0vn6EUFF0y0XgfM1+vKaQKCQoBVG++9VNsA5XCdGjwrA=="
+                          "@id": "ef7d2383b12cb08f90e4d47e4034eec2fc9c36d1f907cadd907dbfbef6f2f8e6",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEmqS8ccRAs7hXwjROsN4J6nCytxBJf7dJF4AfoAMjHov/iAQqMorMk2+InfeXKVy/58r1N8hwiTBOCN+iiA+Ulw=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_DC"
                       ],
-                      "created": "2026-11-12T21:54:26.983Z",
-                      "lastChange": "2026-11-12T21:54:26.983Z"
+                      "created": "2026-11-16T20:30:09.998Z",
+                      "lastChange": "2026-11-16T20:30:09.998Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_DC"
                     ],
-                    "created": "2026-11-12T21:54:26.983Z",
-                    "lastChange": "2026-11-12T21:54:26.983Z"
+                    "created": "2026-11-16T20:30:09.998Z",
+                    "lastChange": "2026-11-16T20:30:09.998Z"
                   },
                   {
                     "@id": "DE*GEF*E7*2",
@@ -1855,28 +2452,28 @@
                       "serialNumber": "DCM-2026-007-2",
                       "publicKeys": [
                         {
-                          "@id": "89fb348612b4c492edd265f6f78f19b97fa34daefac9fef2dd970640e763e128",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE+US49wPtNwO7hmRJLOCdaWrn25HpzWdcBrx0QQH7/ws7fNNSIl6b9XpLskeBRTv7aTIq4mxT7W8cE/QjL3de0A=="
+                          "@id": "5416d93ecb7c58550d6636047f9374d6512bde0e79d63427f2e62b62feb3183d",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAElxESyJhC+4i6tnkGy9BJ+6oILkvXFcjRJ7z7Pd66kCTSFT+YsdnA0UBu/TLA8COgsJW+OFAx7frdSg0iU4uW/w=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_DC"
                       ],
-                      "created": "2026-11-12T21:54:26.984Z",
-                      "lastChange": "2026-11-12T21:54:26.984Z"
+                      "created": "2026-11-16T20:30:09.999Z",
+                      "lastChange": "2026-11-16T20:30:09.999Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_DC"
                     ],
-                    "created": "2026-11-12T21:54:26.984Z",
-                    "lastChange": "2026-11-12T21:54:26.984Z"
+                    "created": "2026-11-16T20:30:09.999Z",
+                    "lastChange": "2026-11-16T20:30:09.999Z"
                   }
                 ],
                 "templateIds": [
                   "DE*GEF*ST_DC"
                 ],
-                "created": "2026-11-12T21:54:26.984Z",
-                "lastChange": "2026-11-12T21:54:26.984Z"
+                "created": "2026-11-16T20:30:09.999Z",
+                "lastChange": "2026-11-16T20:30:09.999Z"
               },
               {
                 "@id": "DE*GEF*S8",
@@ -1892,21 +2489,21 @@
                       "serialNumber": "ACM-2026-008-1",
                       "publicKeys": [
                         {
-                          "@id": "b6872445d6a660fca5dfcaeb2da9f3f994fbbfd706eb83ef47d752d9cd853c6e",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE8A8j5vrKGbGk/vb9Xvpf0bySxZ4QD9yi/F5oHcCfEjfNY9Glx20cWPtwF8RbI6tnP4Qo5C1jGMVcwGcG5CPdjQ=="
+                          "@id": "6c5fdb084e9c3b214dec876cd59397dfad8c069bab5b9459f46831d12f7c997c",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE1pbMJ72j0FvqGIaoU2ewD4kdXg3eveiyS3h1EC+/dqJi5qIvtQqhSIS7UhYl8InngE/EwP6Z7FqDsemq2TP1bg=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_AC"
                       ],
-                      "created": "2026-11-12T21:54:26.986Z",
-                      "lastChange": "2026-11-12T21:54:26.986Z"
+                      "created": "2026-11-16T20:30:10.000Z",
+                      "lastChange": "2026-11-16T20:30:10.000Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_AC"
                     ],
-                    "created": "2026-11-12T21:54:26.986Z",
-                    "lastChange": "2026-11-12T21:54:26.986Z"
+                    "created": "2026-11-16T20:30:10.000Z",
+                    "lastChange": "2026-11-16T20:30:10.000Z"
                   },
                   {
                     "@id": "DE*GEF*E8*2",
@@ -1919,31 +2516,31 @@
                       "serialNumber": "ACM-2026-008-2",
                       "publicKeys": [
                         {
-                          "@id": "cd38791a1f92e3bf9020e79e1d3c47253265e22ab9b76ae821809d5c05a858ab",
-                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEV5Htaz4XVTOTwhGEmFya3MyCNJdQ24nVf25o3ZUD3H4P9XEdAGZ1Z0mwOaKn3ndmfGg327CpHdiQTZTaP2N4/A=="
+                          "@id": "e783dd032f8ccd15979d07dfa1dfd59ad663b4f01cd22b9d9b0640bba888c1f0",
+                          "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEK7ABzRYT1eWglGaM/BIUubNNmJ/Nzk+/lPvD06XxGmCeqlqx3iO9czX4Uh/NL4ShvHUHU17g9PmyXXZQF7B62Q=="
                         }
                       ],
                       "templateIds": [
                         "DE*GEF*EMT_AC"
                       ],
-                      "created": "2026-11-12T21:54:26.987Z",
-                      "lastChange": "2026-11-12T21:54:26.987Z"
+                      "created": "2026-11-16T20:30:10.001Z",
+                      "lastChange": "2026-11-16T20:30:10.001Z"
                     },
                     "templateIds": [
                       "DE*GEF*ET_AC"
                     ],
-                    "created": "2026-11-12T21:54:26.987Z",
-                    "lastChange": "2026-11-12T21:54:26.987Z"
+                    "created": "2026-11-16T20:30:10.002Z",
+                    "lastChange": "2026-11-16T20:30:10.002Z"
                   }
                 ],
                 "templateIds": [
                   "DE*GEF*ST_AC"
                 ],
-                "created": "2026-11-12T21:54:26.987Z",
-                "lastChange": "2026-11-12T21:54:26.987Z"
+                "created": "2026-11-16T20:30:10.002Z",
+                "lastChange": "2026-11-16T20:30:10.002Z"
               }
             ],
-            "created": "2026-11-12T21:54:26.987Z"
+            "created": "2026-11-16T20:30:10.002Z"
           }
         }
       ],
@@ -1952,13 +2549,13 @@
           "json",
           "sha256",
           "hex",
-          "5210b3e5db2b89a9847006897aed2c8a08e8085c2c26f56ced0fcb3ee22bcef8"
+          "50e47bbe4047b9550f738d1b4dc7ab789c2f71c270f0d27234487b230ec0432e"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "d34cc3fd2c46dc2b8bd5c365fedc5f4b4c0129cc07a1fbad1cb70a109f9e3006"
+          "000ca1861f6683e5ba3c7d61e621271dc8f481ed4e64816f3644a0bf55c55dc0"
         ]
       ],
       "afterETags": [
@@ -1966,13 +2563,13 @@
           "json",
           "sha256",
           "hex",
-          "8c97ad7171d3347a9673772ed7de5af119a2af7859908a45f22b495c3e7caecb"
+          "1815ecb8277024ab9e009e037f1995cfa534f5e22a06c0184da31e3e9cca4acb"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "c6ba02b18fb52cc39213e81bc78a2601b3a4acd3803a8726b0a302bd64f2650c"
+          "81237e778f2d12cb1f269f9773d85e675752293cd777c5c4603e76b8a846f254"
         ]
       ]
     },
@@ -1980,69 +2577,69 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:27.022Z",
+        "signedAt": "2026-11-16T20:30:10.032Z",
         "algorithm": "ES256",
-        "keyId": "032a1055c27686ea6f6afe47a84e33c96c39431c0fa3a0dcddc4b31c53b5f05e",
-        "value": "wsLJLOYxceey1FG7IqzsAYgxt/TNk/lx+SRe0oeRrEn2E0eEsYS7PHfMZua93k2bGy+HGfcmrqBFA4ZXeQ6ANQ=="
+        "keyId": "6a6ff3e7ba92f072bedfef920756c233b2325a5acfd6a53b19585cedacf36003",
+        "value": "KTcZ1nqBCsy6FpfKMOQavrLEmHCWMVBuOFU2EgoroA9KgrhmWcbc2yZuGz046MM2Y1BqBkshKiVmeI4CrBFFqQ=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:27.026Z",
+        "signedAt": "2026-11-16T20:30:10.034Z",
         "algorithm": "ES256",
-        "keyId": "ad3b940d38dfca04a56c7f25ae056d5d1698bda77b4fb3648f79dbf4a412c1b7",
-        "value": "z0TBUx+o2TOEXpfSh5DZBZ8jmRMrLO67T4NgztnJKIHFSFplqA+9Ri7f4eqLxkEKe34k77NFEZzBc6aD8GH6Gg=="
+        "keyId": "d90428693b08fbbd31b5340f55acdbb6a1bc57304467b41c9424d7be6befbb32",
+        "value": "ki43f67c81NbCYmLYy9XlPcqHdRoTHFw5jS8smItgYndl/EvlqnxRT4A7F8QSMirh3FbLyjh2d0RzRWtIZa1Vg=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:27.029Z",
+        "signedAt": "2026-11-16T20:30:10.037Z",
         "algorithm": "ES256",
-        "keyId": "bbc5f8209bab9973a1c80df1cb22a1a857122d2dba26dc032a9ac84a5260e8bf",
-        "value": "JFy6cWb6Z7zu//l/XQfUxCv2hF+vSgOHwytlsbVuv9cF4+R2k9PuKHOa6LCjDFvLE38MybpQ1KTU2YfBOLdtgQ=="
+        "keyId": "0aa7772c8a98533b2f6cd0e2f151e8528405ad6ca8a40ab1ec43218dd5323ee8",
+        "value": "nNvG66p0QqyMizlO4bLrSzo1d/L9weskwxqmDSjfk1VMuoq3gVq/FY5dahB1shUyEDpppczjp2ax7dhQ7WdRbA=="
       }
     ]
   },
   {
-    "@id": "520a7e738589cd3a58874e2f2b545491983a9ae42fad2a76b9457626db59e990",
+    "@id": "df69d336b53aa72f6c5968b360bde337d0b403d85182264d9c40852d002bf3c5",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "QA",
-    "revision": 10,
+    "revision": 12,
     "eTags": [
       [
         "json",
         "sha256",
         "hex",
-        "72e7e6afd98fdf6ef1d67a26f92d09d3c7c17b3fd380fff9c20a9f427556e6a3"
+        "09845f4a656cf2acef98b8154e51388fac1e2266d6a63de24d006774617f40ab"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "150a6a95839896fc49e320881aa221799a0d56af882f8c15b8b21445eb18a909"
+        "a68da20ea998eca716da2bda2d0633a03bde48d1b79eaabbde2220d7c6773af1"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "8dab631879dd5ee2e436fc192ac1c2c66c8037509987807ce5de4829c9463f54"
+        "f8716de818fa188caabd5147bd0428c6ebfb46da582d204a38ea0621623f177e"
       ]
     ],
     "parentIds": [
-      "0a87c12c3d9a7a117bc9dd51f848386125479069fbed96fda2996f85ca3ca5f1"
+      "8d5447bd5433275bf3f7694310de40cdb75c2bbbbaacabb8fe30ba2d719d866e"
     ],
     "changeSet": {
-      "@id": "ffb576f81c02de4cb42605a2428030ca89bb79c0e832fade36f749780cc69700",
+      "@id": "05d3a6bb884b1ebd9bc155752918b4c9ef6e0b2372da5d315e7e36446f781bc2",
       "roamingNetworkId": "QA",
-      "createdAt": "2026-11-12T21:54:27.387Z",
+      "createdAt": "2026-11-16T20:30:10.359Z",
       "description": {
         "en": "The AC stations of Jena Lobeda and Jena Winzerla: 22 kW, two EVSEs of 11 kW"
       },
       "signatures": [
         {
           "algorithm": "ES256",
-          "keyId": "ff8a51dcdf5bb8c62b8123e1f5df979a6403eceff743c730cfb3fb6189c3287f",
-          "value": "LVB4BT7906X0zINIR3Bs4rxgYQnNDYwJQ5296VoCM70s+DEY1blIU3PQOdE9E3T5ECBnCvN6mRpot9BGvptCTQ=="
+          "keyId": "a0e9f8b6ddcf26dd986d3594a12b6154fd5305bd4901056bbf8a69ace3b106cf",
+          "value": "pBFrBjU7MHHvcazHJwchTkFWyfsotPNfENJwDMpjAFek3h45TxKPOKzFqt9eF8Zlp7jBQHxIuXf+gOT20Tu7UQ=="
         }
       ],
       "changes": [
@@ -2100,13 +2697,13 @@
           "json",
           "sha256",
           "hex",
-          "8c97ad7171d3347a9673772ed7de5af119a2af7859908a45f22b495c3e7caecb"
+          "1815ecb8277024ab9e009e037f1995cfa534f5e22a06c0184da31e3e9cca4acb"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "c6ba02b18fb52cc39213e81bc78a2601b3a4acd3803a8726b0a302bd64f2650c"
+          "81237e778f2d12cb1f269f9773d85e675752293cd777c5c4603e76b8a846f254"
         ]
       ],
       "afterETags": [
@@ -2114,13 +2711,13 @@
           "json",
           "sha256",
           "hex",
-          "72e7e6afd98fdf6ef1d67a26f92d09d3c7c17b3fd380fff9c20a9f427556e6a3"
+          "09845f4a656cf2acef98b8154e51388fac1e2266d6a63de24d006774617f40ab"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "150a6a95839896fc49e320881aa221799a0d56af882f8c15b8b21445eb18a909"
+          "a68da20ea998eca716da2bda2d0633a03bde48d1b79eaabbde2220d7c6773af1"
         ]
       ]
     },
@@ -2128,26 +2725,26 @@
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:27.462Z",
+        "signedAt": "2026-11-16T20:30:10.431Z",
         "algorithm": "ES256",
-        "keyId": "032a1055c27686ea6f6afe47a84e33c96c39431c0fa3a0dcddc4b31c53b5f05e",
-        "value": "bevd+ePvaI56JNhmFDTBJiRDju7o3SrxAihzE/nUVg+wVpnLqWDlj7b+R/5ONGY20lI5o32I1JUsAg9iY9f5Fg=="
+        "keyId": "6a6ff3e7ba92f072bedfef920756c233b2325a5acfd6a53b19585cedacf36003",
+        "value": "CenkIyUjDTFZb0/5Fg1fWaXbPQwDZQmeyZfux7LdlYdbdMj7p0jhnuQnpUpyTg8pK1r7Jc0iYAZ3NUAHfqmlDQ=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:27.465Z",
+        "signedAt": "2026-11-16T20:30:10.434Z",
         "algorithm": "ES256",
-        "keyId": "ad3b940d38dfca04a56c7f25ae056d5d1698bda77b4fb3648f79dbf4a412c1b7",
-        "value": "JcoGFfrfagVYjVq+oE6GBanJCh9EbRsLzaSYYlc/B2SlUwnURajT1XUqFHMQWXW2/3iAlQOiadJ9M5xirOTawg=="
+        "keyId": "d90428693b08fbbd31b5340f55acdbb6a1bc57304467b41c9424d7be6befbb32",
+        "value": "EbVz4ccfhG8X1JapL/6VSZ6CTUWjpEq0+Waq6HVhUb4WoSQqlZOblyaIKakqpPiXUtVxkyiIbKJVMQsUB0GJDw=="
       },
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-12T21:54:27.468Z",
+        "signedAt": "2026-11-16T20:30:10.438Z",
         "algorithm": "ES256",
-        "keyId": "bbc5f8209bab9973a1c80df1cb22a1a857122d2dba26dc032a9ac84a5260e8bf",
-        "value": "B5jmuPH1TBuBx0UzlNyQvMnVKn5P0mZ99ADn5SVujttHFI2debz/dfyLIr71To8zmmh4xIIsNA0HhJKq7C+E4g=="
+        "keyId": "0aa7772c8a98533b2f6cd0e2f151e8528405ad6ca8a40ab1ec43218dd5323ee8",
+        "value": "WrD4DyHL2DlhyQ1e8mtPPFS7KruNBMjkSOklgSW8Ot0xaY8yoC53M5ZpFxrdbOs2mJZteaOFI/0NVXBLTJ9jUw=="
       }
     ]
   }

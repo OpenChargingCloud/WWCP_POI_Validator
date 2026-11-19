@@ -1,26 +1,26 @@
 {
   "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/checkpointProof/v1",
-  "checkpointId": "a479ec604e668288c1ee4ee2832f534eed15780860f91c5b48ad273cceacac52f0a392737d5575a60649aa121514bafe11eb97a118b65d5a6f43047a9207528c",
+  "checkpointId": "3f89ed1462aac47c93f6f14e254caa8e18ed7866667f5dceaa81f248a0e1c9841a0acf71039d081ab9eb33327f83c318bb3a1d106c4dc52387209a9c333a3a5a",
   "leaf": {
-    "commitId": "c52c5d24a754e49b8d877ee05c15d4b0f31b24de19775cd747f6647e16eb3d76f28e1ef30cc01424ed3131861de180840fd7313ed53bcfefadc5149a2a7141e6",
+    "commitId": "b20c21a7b747222f5a58e824db254961abea260b81e9c4ab789d4722c72ab0b725b26c55291ba417a6531bc6cc68a2ff6f124f83c5ee063fe69e3888fb56997a",
     "eTags": [
       [
         "json",
         "sha256",
         "hex",
-        "df2d0f48762b54c454b7ed5b2e0737be3263aaf6b2224cceed130c2c7e118314"
+        "fc2dedd2c21d05d11f3d2a3f10f5c2ad06f1536e65d08d0750b35d39431fcfe4"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "0254d48758b81245df1606d76e94185bb3c7a45dbe969d5d1bc47415257adaed"
+        "b83a50ec555780894752f58d54982f3ea93d2bf8d2b9f5ce20bcb76f6851c825"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "553439b492cac1026dc139ba34855770adcef6a6f4ad5e56d98d55c1f8f98e1e"
+        "6133e85a5cea3e11e1a06080fa642fecb20b247734187d0dfa7760b3be406322"
       ]
     ],
     "revision": 1
@@ -28,7 +28,7 @@
   "@index": 1,
   "@size": 3,
   "@auditPath": [
-    "b0c5fa82a0485428b5fc796256b94d421f5d483d16436f2d686259f895284edbccf61f3c6af83bed12c1c8601495183bc51880414d0ad77ecef2c88051dfb1d0",
-    "9c34c8c39a591bb0e826bbf2b4030e840c36a3264ae6fd2c990141dc60ed9e3d029bd5931e0897334d2ada37a3de3ae2ad0469b97476a18095a6919ffca63c77"
+    "35f593c303e81df87148f7aeeb1d1e6d5e185dadc20dd490234e37fd85eaec5044fd93de3be64e76c8bba609d091e8a338a9dc26c790ebd6899a26c55bf99983",
+    "7bba70cf6afbec2276a608744b43dd94be1ae002bf5c0399dfe65eafedebcb51be68422e1bf182bce6048f2a6a06c60b215e4423ba8fc6e52db577fb3d7686f2"
   ]
 }
