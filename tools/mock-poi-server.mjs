@@ -1,7 +1,7 @@
 /*
  * A stand-in for a POI_API server, for trying the validator's "Load from its servers" without a server of WWCP_POI:
  * it serves the documents of a demo below the paths POI_API serves them (README of WWCP_POI, specification 10.5, 10.6,
- * 11.5, 12.5), with CORS, so that a page of another origin may read them.
+ * 11.5, 12.5, and the key statements of 8.6), with CORS, so that a page of another origin may read them.
  *
  *   node tools/mock-poi-server.mjs [demo] [port] [heavy reads per minute]    e.g.  node tools/mock-poi-server.mjs qa 8139
  *
@@ -108,6 +108,19 @@ const epochJSON = (number) => {
 };
 
 const snapshotOf = (version, extra = {}) => ({ commit: version.commit.json, roamingNetwork: version.network.content, ...extra });
+
+// The key statements of the operator one after the other, the oldest first, as the versions of the history state them:
+// what POI_API serves of them, at most the last 100.
+const keyStatements = [];
+
+for (const number of [ ...epochs.keys() ].sort((left, right) => left - right)) {
+    const entry = epochs.get(number);
+    for (const version of [ entry.history.root, ...entry.commits.map(commit => entry.history.versionOf(String(commit['@id']))) ]) {
+        const statement = version?.network.operator?.keyStatement?.json;
+        if (statement !== undefined && !keyStatements.some(known => POI.canonicalJSON(known) === POI.canonicalJSON(statement)))
+            keyStatements.push(statement);
+    }
+}
 
 const runtimeStatus = pool.ofType('snapshot').map(document => document.json['runtimeStatus']).find(Boolean);
 
@@ -226,6 +239,9 @@ function route(path, query) {
         const document = pool.ofType('attestations')[0];
         return [ 200, { attestations: document ? (POI.isArray(document.json) ? document.json : document.json['attestations']) : [] } ];
     }
+
+    if (rest === '/keyStatements')
+        return [ 200, { keyStatements: keyStatements.slice(-100) } ];
 
     if (rest === '/history/priceStatements')
         return [ 200, { priceStatements: currentStatements() } ];

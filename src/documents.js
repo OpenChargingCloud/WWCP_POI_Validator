@@ -65,6 +65,7 @@ export const TYPE_LABELS = {
     epoch:                'Epoch',
     epochs:               'Epochs',
     keyStatement:         'Key statement',
+    keyStatements:        'Key statements, one after the other',
     calibrationCertificate:   'QI-Digital: calibration certificate',
     certificateOfConformity:  'QI-Digital: certificate of conformity',
     declarationOfConformity:  'QI-Digital: declaration of conformity',
@@ -144,6 +145,13 @@ function typeOfObject(json) {
 
     if ('priceStatements' in json && isArray(json['priceStatements']))
         return 'priceStatements';
+
+    // What a server gives as the key statements of its operator, the oldest first (8.6).
+    if ('keyStatements' in json && isArray(json['keyStatements']))
+        return 'keyStatements';
+
+    if ('roamingNetworkOperatorId' in json && 'identityKeys' in json && 'minConsensus' in json && 'validUntil' in json)
+        return 'keyStatement';
 
     if ('attestations' in json && isArray(json['attestations']) && !('roamingNetwork' in json))
         return 'attestations';
@@ -286,6 +294,14 @@ export function summarize(type, json) {
 
             case 'changeSet':
                 return i18n(json['description']) ?? String(json['@id']);
+
+            case 'keyStatement':
+                return `of ${json['roamingNetworkOperatorId']} of ${json['roamingNetworkId']}: ${plural(json['identityKeys']?.length ?? 0, 'identity key')}, minConsensus ${json['minConsensus']}`;
+
+            case 'keyStatements': {
+                const list = json['keyStatements'];
+                return `${plural(list.length, 'statement')}${list.length ? ` of ${list[0]['roamingNetworkOperatorId']} of ${list[0]['roamingNetworkId']}, minConsensus ${list.map(item => item['minConsensus']).join(', ')}` : ''}`;
+            }
 
             case 'calibrationCertificate':
                 return `${json['@id']} of ${json['item']?.['type'] === 'ChargingStation' ? 'the charging station' : 'the energy meter'} ${json['item']?.['id']}, by ${json['calibrationLaboratoryId']}`;

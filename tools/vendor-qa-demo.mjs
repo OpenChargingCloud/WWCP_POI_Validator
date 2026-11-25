@@ -50,6 +50,8 @@ const FILES = [
     [ 'published/QA-epoch-2-checkpoint-0.json',            'Checkpoint 0 of epoch 2, naming the final checkpoint of epoch 1' ],
     [ 'published/QA-epoch-2-checkpoint-0-priceStatements.json', 'The price statement checkpoint 0 of epoch 2 names' ],
 
+    [ 'published/QA-keyStatements.json',                   'The key statements of OCC one after the other, as its server gives them: of AlphaOrg alone, of AlphaOrg and BetaOrg, of all three (section 8.6)' ],
+
     [ 'published/QA-archive.json',                         'The segments of the archive of epoch 1 (compaction, section 10.6)' ],
     [ 'published/QA-archive-1.json',                       'Archive segment 1: the genesis and commits 1 to 9' ],
     [ 'published/QA-archive-2.json',                       'Archive segment 2: revision 9 and commits 10 and 11' ],

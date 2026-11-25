@@ -3,7 +3,7 @@
  *
  * Every source only fills the document pool. The servers are asked what POI_API serves (README of WWCP_POI, sections 10.5,
  * 10.6, 11.5 and 12.5 of its specification) - the epochs, their checkpoints, the snapshot to join from, the commits since,
- * the archive, the attestations and the current price statements - and nothing they answer is trusted: the analysis checks
+ * the archive, the attestations, the current price statements and the key statements of the operator - and nothing they answer is trusted: the analysis checks
  * it like any file.
  */
 
@@ -254,6 +254,10 @@ export async function loadFromServers(trustAnchorText, pool, { onProgress, signa
         // What an app sees of the head: the attestations, the current price statements, proofs of the stations asked for.
         await get('/attestations', 'attestations', { optional: true });
         await get('/history/priceStatements', 'current price statements', { optional: true });
+
+        // The key statements of the operator one after the other (8.6): how an old trust anchor comes to the keys of today.
+        // A server older than WWCP_POI c1b641b does not serve them.
+        await get('/keyStatements', 'key statements', { optional: true });
 
         for (const stationId of stationIds) {
             const kind = stationId.split('*').length >= 4 ? 'EVSEs' : 'CSs';

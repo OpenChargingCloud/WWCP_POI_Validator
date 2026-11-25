@@ -21,7 +21,10 @@ epochs and price statements fit together.
 - **Overview** — the verdict, the roaming network as its verified head names it, the trust anchor with its QR code, the
   head with its ETags, what the network holds, a timeline of the history and every finding.
 - **Trust** — your trust decisions: which identity keys of the trust anchor you trust (below); trust transitions to
-  other identity keys or the next epoch, signed by the holders of both (below); the chain from the identity keys the
+  other identity keys or the next epoch, signed by the holders of both (below); the key statements of the operator
+  one after the other, as a server gives them at `~/RNs/{RN_Id}/keyStatements`, followed from the trust anchor to the
+  keys of today (`KeyStatement.verifyChain`): which one the trust anchor verifies, which ones before it are passed
+  over, who signed each, and where the history states it; the chain from the identity keys the
   trust anchor pins to the key statement of the roaming network operator, its holders and the certificates of their
   signing keys; who signed how many commits, checkpoints and attestations; how the keys moved on (key succession,
   epochs); the keys of every party; the trusted witnesses.
@@ -79,7 +82,9 @@ epochs and price statements fit together.
      euros pays, and the secure dynamic QR code its stations show).
      Besides its own trust anchor it gives the one of the ML-DSA identity keys of epoch 2 and those of its first two
      revisions, of AlphaOrg alone and of AlphaOrg and BetaOrg, to pick in the settings: from the one of its genesis
-     the history is followed key statement by key statement to the keys of today.
+     the history is followed key statement by key statement to the keys of today. Its `QA-keyStatements.json` gives
+     the three key statements of example A1 one after the other, as its server served them: each of these trust
+     anchors follows them to the three holders, the one of the ML-DSA keys takes none of them.
    - **Thuringia**, a generated test network of medium size: seven charging station operators, 195 charging pools,
      417 stations and 834 EVSEs on a map; change sets of several owners, a key rotation, a removed pool, a latecomer
      that takes **EV Taler** at its charging parks along the A4 (its merchant, changed with a key for payments, two
@@ -183,7 +188,7 @@ npm --prefix "D:\Coding\OpenChargingCloud\WWCP_POI_Validator" install --no-save 
 A page may read the answers of a server of another origin only when the server allows it
 (`Access-Control-Allow-Origin`). POI_API of WWCP_POI lets every origin read what it serves to everyone (CORS `*`): the
 entities, and every read of a history — its head, snapshots, commits, checkpoints, epochs, the archive, proofs, price
-statements, attestations — an error as well; what changes something it allows no other origin. A server in front of
+statements, attestations, the key statements of its operator — an error as well; what changes something it allows no other origin. A server in front of
 it, or another implementation, may not: then *Load from its servers* works with a server that adds the header (e.g. a
 reverse proxy), or with the validator served from the same origin as POI_API.
 
@@ -258,7 +263,10 @@ npm --prefix "D:\Coding\OpenChargingCloud\WWCP_POI_Validator" test
   does it: a change set (its commit is refused, the commits after it are not taken), a signature of the operator, a
   witness signature removed, no trust anchor, a price statement among the current ones and in the list a checkpoint
   names.
-- `tests/servers.test.js`: *Load from its servers* against `tools/mock-poi-server.mjs`, and how it waits on 429.
+- `tests/servers.test.js`: *Load from its servers* against `tools/mock-poi-server.mjs`, the key statements it serves
+  among it, and how it waits on 429.
+- `tests/keyStatements.test.js`: the key statements of the QA demo followed from each of its trust anchors; one the
+  quorum before it did not sign is refused; without a trust anchor they are not checked.
 - `tests/sessions.test.js`: every session of the sessions demo as an app checks it; receipts counted once per
   organization and only before the start; without the policy of the settings no receipt counts; the trust anchor a
   session brings, or one holder short of the quorum, gives no trust context; station proofs with two of three holders
@@ -290,6 +298,7 @@ of its release:
 | `src/analyze.js` | the analysis with WWCP_POI.TS: trust, history, checkpoints, epochs, proofs, prices, evidence, archive |
 | `src/sessions.js` | charging sessions as an app checks them: their readings, trust context, meter key, historical evidence, prices |
 | `src/transitions.js` | trust transitions, verified from the trust anchor of the settings, a later one from the one it continues |
+| `src/keyStatements.js` | the key statements of the operator one after the other, followed from the trust anchor of the settings |
 | `src/journal.js` | what an app keeps of the versions it observed: its journal, and what it refuses |
 | `src/keys.js` | who holds a key: the directory of all keys of a version |
 | `src/entities.js` | the entities of a version: tree, provenance of effective values, Merkle paths, entity history |

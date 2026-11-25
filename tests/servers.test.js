@@ -96,6 +96,15 @@ test('Everything POI_API serves of the QA network verifies from the trust anchor
     assert.deepEqual(summary.attestations, [ true, true, true ]);
     assert.equal(summary.archive, true);
 
+    // Its key statements one after the other (8.6): the three of example A1 and the ML-DSA keys of example A11, from the
+    // trust anchor to the one the head states.
+    const [ chain ] = report.keyStatementChains;
+    assert.equal(chain.document.url.endsWith('/keyStatements'), true);
+    assert.equal(chain.ok, true);
+    assert.equal(chain.head, 'same');
+    assert.deepEqual(chain.statements.map(item => item.status).slice(0, 3), [ 'passedOver', 'trusted', 'followed' ]);
+    assert.ok(chain.statements.length > 3 && chain.statements.every(item => item.statedAt !== undefined));
+
 });
 
 test('A server answering 429 is waited for as long as it asks, and asked again', async () => {

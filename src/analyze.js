@@ -25,6 +25,7 @@ import {
 import { keyDirectory } from './keys.js';
 import { analyzeSessions } from './sessions.js';
 import { analyzeTransitions } from './transitions.js';
+import { analyzeKeyStatements } from './keyStatements.js';
 import { observeVersions } from './journal.js';
 import { plural, yieldToBrowser } from './dom.js';
 
@@ -347,6 +348,7 @@ export async function analyze(pool, settings, onProgress = () => {}) {
         evidence:          [],
         sessions:          [],
         transitions:       [],
+        keyStatementChains: [],
         journal:           undefined,
         trustedIdentityKeyIds: settings.trustedIdentityKeyIds,
         publicationPolicy: undefined,
@@ -1161,6 +1163,11 @@ export async function analyze(pool, settings, onProgress = () => {}) {
 
     const verifiedTransitions = report.transitions.filter(item => item.verified !== undefined);
 
+    // The key statements of the operator one after the other, as a server gives them: from the trust anchor of the
+    // settings and the keys trusted there to the keys of today (8.6), without the history.
+    report.keyStatementChains = analyzeKeyStatements(pool.ofType('keyStatements', 'keyStatement'),
+                                                     { anchor, trustedIdentityKeyIds: settings.trustedIdentityKeyIds, at, versions: [ ...report.versions.values() ], head: report.head?.version }, issue);
+
     for (const document of pool.ofType('stationProof')) {
 
         const result = { document, ok: false };
@@ -1589,7 +1596,7 @@ function verdictOf(report) {
     const commits  = report.epochs.reduce((sum, epoch) => sum + epoch.steps.filter(step => step.type === 'commit').length, 0);
     const cps      = report.epochs.reduce((sum, epoch) => sum + epoch.steps.filter(step => step.type === 'checkpoint').length, 0);
 
-    if (report.head === undefined && report.proofs.length === 0 && report.evidence.length === 0 && report.sessions.length === 0 && report.transitions.length === 0)
+    if (report.head === undefined && report.proofs.length === 0 && report.evidence.length === 0 && report.sessions.length === 0 && report.transitions.length === 0 && report.keyStatementChains.length === 0)
         return { level: errors > 0 ? 'error' : 'info', commits, checkpoints: cps, errors, warnings };
 
     return { level: errors > 0 ? 'error' : warnings > 0 ? 'warn' : 'ok', commits, checkpoints: cps, errors, warnings };

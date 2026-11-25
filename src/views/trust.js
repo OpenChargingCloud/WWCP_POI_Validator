@@ -286,6 +286,62 @@ function transitionsSection(report, actions) {
 
 }
 
+/** The key statements of the operator one after the other, as a server gives them: from the trust anchor to the keys of today. */
+function keyStatementsSection(report, actions) {
+
+    if (report.keyStatementChains.length === 0)
+        return null;
+
+    const STATUS = {
+        passedOver:  [ 'passed over',                     'info',  'Older than what the trust anchor names, or not signed by its quorum: not trusted, and not needed' ],
+        trusted:     [ 'verified by the trust anchor',    'ok',    'Signed by the identity keys the trust anchor pins, of as many holders as it requires' ],
+        followed:    [ 'follows the one before',          'ok',    'Signed by the quorum of the statement before it, and by its own' ],
+        refused:     [ 'refused',                         'error' ],
+        unchecked:   [ 'not checked',                     'warn' ],
+    };
+
+    const cards = report.keyStatementChains.map(item => {
+
+        const table = h('table', 'grid');
+        table.append(h('thead', null, h('tr', null, h('th', 'num', '#'), h('th', null, 'Signed'), h('th', null, 'Holders of its identity keys'), h('th', 'num', 'Quorum'),
+                                                      h('th', null, 'Signed by'), h('th', null, 'In the history'), h('th', null, 'From the trust anchor'))));
+
+        table.append(h('tbody', null, ...item.statements.map(({ index, statement, holders, signedBy, statedAt, status }) => h('tr', null,
+            h('td', 'num', index + 1),
+            h('td', 'small', formatTime(statement.signedAt), h('div', 'muted', `until ${formatTime(statement.validUntil)}`)),
+            h('td', null, holders.join(', ')),
+            h('td', 'num', `${statement.minConsensus} of ${holders.length}`),
+            h('td', null, signedBy.join(', ')),
+            h('td', 'small', statedAt ? `epoch ${statedAt.epoch}, revision ${statedAt.revision}` : h('span', 'muted', 'not stated by a version loaded')),
+            h('td', null, badge(...STATUS[status]))))));
+
+        const last = item.verified;
+
+        return h('div', `card proof-card ${item.ok === false ? 'error-card' : ''}`,
+            h('div', 'card-title-row', h('h3', null, item.document.name), item.ok === true ? badge('verified', 'ok') : item.ok === false ? badge('refused', 'error') : badge('not checked', 'warn')),
+            item.document.description ? h('p', 'muted', item.document.description) : null,
+            item.error ? h('p', 'error-text', item.error) : null,
+            item.detail ? h('p', 'muted', item.detail) : null,
+            item.statements.length ? table : null,
+            last ? facts([
+                [ 'The keys they lead to', `${plural(last.identityKeys.length, 'identity key')} of ${[ ...new Set(item.holderOf.values()) ].sort().join(', ')}, a quorum of ${last.minConsensus}` ],
+                [ 'Valid', `until ${formatTime(last.validUntil)}` ],
+                [ 'The head of the history', item.head === 'same'  ? h('span', null, badge('states the same key statement', 'ok'))
+                                           : item.head === 'other' ? h('span', null, badge('states another key statement', 'info', 'Whoever gave these key statements was at another version than the history loaded'))
+                                           : undefined ],
+            ]) : null);
+
+    });
+
+    return section(`Key statements, one after the other (${report.keyStatementChains.length})`,
+        h('div', 'proof-cards', ...cards),
+        h('p', 'note', 'What a server gives at ~/RNs/{RN_Id}/keyStatements, the oldest first (8.6): an app that scanned a trust anchor some time ago follows them to the keys of today ' +
+                       'without the history. The first one the identity keys of the trust anchor verify is where it starts, those before it are passed over; every later one must be signed ' +
+                       'by the quorum of the one before it, so a second holder joins the only one and one of three leaves, and by its own. Checked with the trust anchor of the settings ' +
+                       'and the keys trusted there. It replays no history: what else changed between is not shown.'));
+
+}
+
 export function renderTrust(container, state, actions) {
 
     const report  = state.report;
@@ -299,6 +355,10 @@ export function renderTrust(container, state, actions) {
     const transitions = transitionsSection(report, actions);
     if (transitions)
         container.append(transitions);
+
+    const keyStatements = keyStatementsSection(report, actions);
+    if (keyStatements)
+        container.append(keyStatements);
 
     if (version === undefined) {
         container.append(section('Trust', h('p', null, 'No version was taken: there are no keys of a history to show.')));

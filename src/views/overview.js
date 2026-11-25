@@ -189,6 +189,7 @@ function appCard(report, actions) {
         [ 'QI-Digital papers',         report.qiDigital ],
         [ 'Charging sessions',         report.sessions ],
         [ 'Trust transitions',         report.transitions ],
+        [ 'Key statements, one after the other', report.keyStatementChains.filter(item => item.ok !== undefined) ],
     ].filter(([ , list ]) => list.length > 0);
     if (rows.length === 0)
         return null;
@@ -199,7 +200,8 @@ function appCard(report, actions) {
             return [ label, h('span', null, badge(`${ok} of ${list.length} verify`, ok === list.length ? 'ok' : 'error')) ];
         })),
         h('div', 'card-actions', linkButton('Proofs & prices →', () => actions.switchTab('proofs')),
-                                 report.sessions.length ? linkButton('Sessions →', () => actions.switchTab('sessions')) : null));
+                                 report.sessions.length ? linkButton('Sessions →', () => actions.switchTab('sessions')) : null,
+                                 report.transitions.length || report.keyStatementChains.length ? linkButton('Trust →', () => actions.switchTab('trust')) : null));
 }
 
 

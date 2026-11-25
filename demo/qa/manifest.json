@@ -128,6 +128,10 @@
       "description": "The price statement checkpoint 0 of epoch 2 names"
     },
     {
+      "path": "QA-keyStatements.json",
+      "description": "The key statements of OCC one after the other, as its server gives them: of AlphaOrg alone, of AlphaOrg and BetaOrg, of all three (section 8.6)"
+    },
+    {
       "path": "QA-archive.json",
       "description": "The segments of the archive of epoch 1 (compaction, section 10.6)"
     },
