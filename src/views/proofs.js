@@ -362,6 +362,88 @@ function evidenceCard(report, result, actions) {
 }
 
 
+const AMOUNT_CHECKS = {
+    exact:       [ 'recalculated', 'ok',   'What the step covers at the price of the session, rounded up; in step 1 with the flat fee, the rest a reserve' ],
+    estimate:    [ 'estimate',     'info', 'The session is priced by energy and time: the amount is at least what the step covers, the rest an estimate' ],
+    unsupported: [ 'not recalculated', 'warn', 'The prices of the session are not of the simple profile: the amount is not recalculated' ],
+};
+
+const amountCheck = (check) => badge(AMOUNT_CHECKS[check]?.[0] ?? check, AMOUNT_CHECKS[check]?.[1] ?? 'info', AMOUNT_CHECKS[check]?.[2]);
+
+/**
+ * The file an app kept of a session paid with EV Taler (example A16): the four questions a dispute asks, each answered
+ * from the file alone, and the steps as their contract terms say them.
+ */
+function evTalerEvidenceCard(result, actions) {
+
+    const { station, steps, settlement, verification } = result;
+    const first    = steps[0]?.verified;
+    const money    = (amount, currency) => amount === undefined ? '—' : `${amount.toFixed(2)} ${currency}`;
+    const kWh      = (value) => `${value.toString()} kWh`;
+    const time     = (millis) => formatTime(new Date(millis).toISOString());
+    const basis    = { pinned: 'the trust anchor', followed: 'the identity keys the history followed — the trust anchor names older ones', tofu: 'the keys the head states itself (no trust anchor)',
+                       context: 'the identity keys of the trust anchor trusted in the settings' }[result.basis];
+
+    const table = h('table', 'grid');
+    table.append(h('thead', null, h('tr', null, h('th', 'num', 'Step'), h('th', null, 'Order'), h('th', null, 'Covers'), h('th', 'num', 'Amount'), h('th', null, 'Of which'), h('th', null, 'Pay until'), h('th', null, 'Verdict'))));
+    table.append(h('tbody', null, ...steps.map(step => {
+        const verified = step.verified;
+        const terms    = step.terms;
+        const parts    = verified === undefined ? [] : [
+            verified.stepPrice ? `the step ${money(verified.stepPrice, verified.currency)}` : null,
+            verified.flatFee && verified.flatFee.toFixed(2) !== '0.00' ? `flat fee ${money(verified.flatFee, verified.currency)}`   : null,
+            verified.reserve   ? `reserve ${money(verified.reserve, verified.currency)}`    : null,
+        ].filter(Boolean);
+        return h('tr', step.ok ? null : 'error-row',
+            h('td', 'num', step.index + 1),
+            h('td', null, h('code', null, step.orderId ?? '?'), verified?.start ? h('div', 'muted small', `starts at ${kWh(verified.start.reading.energy)}, signed by ${verified.start.signedBy}`) : null),
+            h('td', null, terms ? terms.step.covers.toString() : '—'),
+            h('td', 'num nowrap', terms ? money(terms.amount, terms.currency) : '—'),
+            h('td', 'small', parts.length ? parts.join(', ') : '—'),
+            h('td', 'small', terms ? time(terms.payDeadline) : '—'),
+            h('td', null, step.ok ? h('span', null, badge('verified', 'ok'), ' ', amountCheck(verified.amountCheck)) : h('span', null, badge('refused', 'error'), h('div', 'error-text small', step.error))));
+    })));
+
+    const diagnostics = [ ...steps.flatMap(step => step.verified?.diagnostics ?? []), ...(verification?.diagnostics ?? []) ];
+
+    return h('div', `card ${result.ok === false ? 'error-card' : ''}`,
+        h('div', 'card-title-row', h('h3', null, `A session paid with EV Taler at ${result.evseId || '?'}`),
+            result.ok === true ? badge('verified', 'ok') : result.ok === false ? badge('refused', 'error') : badge('not settled', 'warn')),
+        result.ok === false ? h('p', 'error-text', `At ${result.failedAt}: ${result.error}`) : null,
+        result.detail ? h('p', 'note', result.detail) : null,
+
+        facts([
+            [ 'Session started', result.sessionStarted ? formatTime(result.sessionStarted) : undefined ],
+            [ 'Station', station ? h('span', null, `${String(station.chargingStation['@id'])}, revision ${station.revision}, attested by ${station.attestedBy.join(', ')}`,
+                                         h('div', 'muted small', `Verified against ${basis}, as of the time the session started: its attestations end minutes after they are signed.`)) : undefined ],
+            [ 'Was this the operator\'s price?', first ? h('span', null, h('code', null, first.step.chargingTariffId),
+                                                             first.rates?.energyPerKWh ? ` · ${first.rates.energyPerKWh.toString()} ${first.currency} per kWh` : '',
+                                                             first.rates?.timePerHour  ? ` · ${first.rates.timePerHour.toString()} ${first.currency} per hour` : '',
+                                                             first.rates?.flatFee      ? ` · flat fee ${first.rates.flatFee.toString()} ${first.currency}` : '',
+                                                             h('div', 'muted small', first.priceStatement
+                                                                 ? h('span', null, 'by the price statement ', shortId(first.priceStatement.digest, 12), ' of the operator, current as the session started')
+                                                                 : 'by the charging tariff itself, as the proof gives it: no price statement priced it')) : undefined ],
+            [ 'Was the operator paid?', first ? h('span', null, `${plural(steps.length, 'order')}, each of the merchant `, shortId(first.merchant.merchantPublicKey, 16), ' the station proof gives',
+                                                    h('div', 'muted small', `at ${first.merchant.merchantBaseURL}, with exchanges of its EV Taler merchant in ${first.currency}`)) : undefined ],
+            [ 'Was it delivered?', verification ? h('span', null, `${kWh(verification.start.reading.energy)} to ${kWh(verification.end.reading.energy)}: `, h('strong', null, kWh(verification.energy)),
+                                                      h('div', 'muted small', `${time(verification.start.reading.timestamp)} to ${time(verification.end.reading.timestamp)}; both signed by ${verification.start.signedBy}, meter ${verification.start.reading.meterSerialNumber}, with the measurement key `, shortId(verification.start.keyId, 12), ' the proof gives')) : undefined ],
+            [ 'Was the rest refunded?', settlement ? h('span', null, h('strong', null, money(settlement.price, settlement.currency)), ` of ${money(settlement.paid, settlement.currency)} paid, `, h('strong', null, `${money(settlement.refunded, settlement.currency)} refunded`), ' ',
+                                                         verification ? amountCheck(verification.priceCheck) : null,
+                                                         h('div', 'muted small', `settlement statement signed by ${settlement.signer} at ${time(settlement.signedAt)} with the key `, shortId(settlement.keyId, 12), ', which may sign payments')) : undefined ],
+            [ 'Document', h('span', null, linkButton(result.document.name, () => actions.showDocument(result.document)), ` (${formatBytes(result.document.size)})`) ],
+        ]),
+
+        steps.length ? h('h4', null, 'Its steps, as their contract terms say them') : null,
+        steps.length ? table : null,
+        diagnostics.length ? h('ul', 'warnings', ...diagnostics.map(text => h('li', null, badge('note', 'info'), ' ', text))) : null,
+
+        h('p', 'note', 'Months later, when the session is disputed, this file alone decides it (EVTaler.md 7): the station proof as the session began gives the merchant, the tariff and the measurement keys; every step names the roaming network, the EVSE, that tariff and the price statement current then, follows the step before, and its amount is recalculated where the prices are of the simple profile; ' +
+                       'the settlement statement of the operator names the orders, both signed meter values and what was refunded. A part that fails ends it, since each builds on the one before. ' +
+                       'The signed meter values are OCMF, verified here as far as the example needs it (one good reading in kWh, ECDSA-secp256r1-SHA256); Chargy verifies OCMF in full. Not checked: that the wallet paid these orders and got the refund, which only the wallet and the exchange know.'));
+
+}
+
+
 function commitProofTable(report, actions) {
     const table = h('table', 'grid');
     table.append(h('thead', null, h('tr', null, h('th', null, 'Commit'), h('th', null, 'Checkpoint'), h('th', 'num', 'Index'), h('th', 'num', 'Size'), h('th', 'num', 'Audit path'), h('th', null, 'Verdict'))));
@@ -473,6 +555,9 @@ export function renderProofs(container, state, actions) {
 
     if (report.evidence.length > 0)
         container.append(section(`Evidence of charging sessions (${report.evidence.length})`, ...report.evidence.map(result => evidenceCard(report, result, actions))));
+
+    if (report.evTalerEvidence.length > 0)
+        container.append(section(`Sessions paid with EV Taler (${report.evTalerEvidence.length})`, ...report.evTalerEvidence.map(result => evTalerEvidenceCard(result, actions))));
 
     if (report.commitProofs.length > 0)
         container.append(section(`Proofs of commits in checkpoints (${report.commitProofs.length})`, commitProofTable(report, actions)));

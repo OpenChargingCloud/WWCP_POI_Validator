@@ -48,7 +48,9 @@ epochs and price statements fit together.
   with EV Taler (the merchant the proof gives, where it is asked for offers, the EV Taler tariff of each EVSE and the
   exchanges in its currency,
   [concepts/EVTaler.md](https://github.com/OpenChargingCloud/WWCP_POI/blob/master/concepts/EVTaler.md));
-  the web payment page of the station; price statements; the evidence of a charging session; proofs of commits and price statements
+  the web payment page of the station; price statements; the evidence of a charging session; the file an app kept of a session paid with EV Taler (WWCP_POI
+  example A16: its station as the session began, its steps one after the other, the settlement statement of the operator
+  with both signed meter values, and what was refunded); proofs of commits and price statements
   in checkpoints; attestations; the archive; the **QI-Digital** papers of meters (example A14): digital calibration
   certificates, certificates of conformity and declarations of conformity, each checked against the network and against
   each other; and what an app keeps of the versions it observed (`compareObservedVersions`): each proof, its price
@@ -262,6 +264,10 @@ npm --prefix "D:\Coding\OpenChargingCloud\WWCP_POI_Validator" test
   expired; with the ML-DSA trust anchor of epoch 2, the QA history is anchored at checkpoint 0 of epoch 2, and with a
   trust anchor no checkpoint carries it is refused; the proof of a station along the A4 says how its EVSEs are paid with
   EV Taler, where offers are asked for and which web payment page applies.
+- `tests/evTaler.test.js`: the session of example A16 verifies from the file alone, with the trust anchor of the demo
+  and with the ML-DSA one; a settlement statement changed after it was signed, a step at less than its price and a
+  station proof nothing verifies are refused, each at its part; without a settlement statement the steps verify; a
+  signed meter value in OCMF verifies with its key only as it was signed.
 - `tests/payments.test.js`: the web payment page of a station, its pool and their operator, in that order, and the URL
   an app asks an EV Taler merchant for offers at.
 - `tests/tampering.test.js`: one document of the Thuringia demo changed after it was signed, as *Edit and verify again*
@@ -303,6 +309,7 @@ of its release:
 | `src/analyze.js` | the analysis with WWCP_POI.TS: trust, history, checkpoints, epochs, proofs, prices, evidence, archive |
 | `src/sessions.js` | charging sessions as an app checks them: their readings, trust context, meter key, historical evidence, prices |
 | `src/transitions.js` | trust transitions, verified from the trust anchor of the settings, a later one from the one it continues |
+| `src/evTaler.js` | the file an app kept of a session paid with EV Taler: its station, its steps and its settlement statement in the order an app checks them, and the OCMF verifier the library asks for |
 | `src/payments.js` | the web payment page that applies to a station, a pool and their operator, and where an EV Taler merchant is asked for offers |
 | `src/keyStatements.js` | the key statements of the operator one after the other, followed from the trust anchor of the settings |
 | `src/journal.js` | what an app keeps of the versions it observed: its journal, and what it refuses |

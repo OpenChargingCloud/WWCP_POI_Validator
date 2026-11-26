@@ -56,6 +56,7 @@ export const TYPE_LABELS = {
     commitProof:          'Proof of a commit in a checkpoint',
     priceStatementProof:  'Proof of a price statement in a checkpoint',
     evidence:             'Evidence of a charging session',
+    evTalerEvidence:      'Evidence of a session paid with EV Taler',
     chargingSession:      'Charging session (Chargy)',
     witnesses:            'Trusted witnesses',
     publicationPolicy:    'Witnesses of price publications (policy)',
@@ -103,6 +104,10 @@ function typeOfObject(json) {
 
     if ('trustAnchor' in json && 'EVSEId' in json && 'chargingStationProof' in json)
         return 'evidence';
+
+    // The file an app kept of a session paid with EV Taler (WWCP_POI example A16).
+    if ('EVSEId' in json && 'stationProof' in json && 'contractTerms' in json)
+        return 'evTalerEvidence';
 
     if ('hashAlgorithm' in json && 'roamingNetwork' in json)
         return 'stationProof';
@@ -260,6 +265,9 @@ export function summarize(type, json) {
 
             case 'evidence':
                 return `EVSE ${json['EVSEId']}, charging started ${json['chargingStarted']}`;
+
+            case 'evTalerEvidence':
+                return `EVSE ${json['EVSEId']}, session started ${json['sessionStarted']}: ${plural(isArray(json['contractTerms']) ? json['contractTerms'].length : 0, 'step')}${json['settlement'] ? ', settled' : ', not settled'}`;
 
             case 'chargingSession': {
                 const evidence = json['poiEvidence'];

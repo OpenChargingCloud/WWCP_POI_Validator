@@ -72,6 +72,7 @@ const FILES = [
     [ 'proofs/QA-epoch-2-proof-revision-1.json',           'Proof that commit 1 of epoch 2 is part of checkpoint 0 of epoch 2' ],
     [ 'published/QA-priceStatementProof-E1_1-0.json',      'Proof that the first price statement of DE*GEF*E1*1 is named by checkpoint 4' ],
 
+    [ 'driver/evidence-DE_GEF_E1_1-evTaler.json',          'The file a driver\'s app kept of a session at DE*GEF*E1*1 paid with EV Taler in two steps, with the settlement statement of DE*GEF (example A16)' ],
     [ 'driver/evidence-DE_GEF_E1_1.json',                  'The evidence a driver\'s app kept of a charging session at DE*GEF*E1*1 (example A10)' ],
 
     [ 'published/PTB-DE-26-M-PTB-0108.json',               'QI-Digital: the EU-type examination certificate (module B) of the energy meter model SM-3 of SAALE, issued by the PTB (example A14)' ],
@@ -111,7 +112,8 @@ const manifest = {
     description:   `One recorded run of the C# examples A1 to A16 of WWCP_POI at commit ${commit}: a roaming network operator whose three holders join one by one, two of three in the end, ` +
                    'one charging station operator with 4 pools, 8 stations and 16 EVSEs, manufacturers and their models, transparency software, conformity assessment bodies ' +
                    'and a calibration laboratory, two epochs (ECDSA and SHA-256, then ML-DSA and SHA-512), checkpoints signed by two witnesses, price statements, ' +
-                   'the evidence of a charging session, the QI-Digital papers of an energy meter, and EV Taler at one pool, with the secure dynamic QR code of its stations.',
+                   'the evidence of a charging session, the QI-Digital papers of an energy meter, and EV Taler at one pool, with the secure dynamic QR code of its stations ' +
+                   'and the file an app kept of a session paid there in two steps.',
     source:        `https://github.com/OpenChargingCloud/WWCP_POI/tree/${commit}/examples`,
     recordedAt:    AT,
     trustAnchor,

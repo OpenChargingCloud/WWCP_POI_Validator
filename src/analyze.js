@@ -27,6 +27,7 @@ import { analyzeSessions } from './sessions.js';
 import { analyzeTransitions } from './transitions.js';
 import { analyzeKeyStatements } from './keyStatements.js';
 import { webPaymentPageOf } from './payments.js';
+import { analyzeEVTalerEvidence } from './evTaler.js';
 import { observeVersions } from './journal.js';
 import { plural, yieldToBrowser } from './dom.js';
 
@@ -370,6 +371,7 @@ export async function analyze(pool, settings, onProgress = () => {}) {
         head:              undefined,
         proofs:            [],
         evidence:          [],
+        evTalerEvidence:   [],
         sessions:          [],
         transitions:       [],
         keyStatementChains: [],
@@ -1167,12 +1169,12 @@ export async function analyze(pool, settings, onProgress = () => {}) {
     const restricted = anchor !== undefined && settings.trustedIdentityKeyIds !== undefined;
 
     /** The key statement a proof gives, against the given identity keys of the given trust anchor: a trust evaluation. */
-    const evaluateProof = (json, trustAnchor, trustedIdentityKeyIds) => {
+    const evaluateProof = (json, trustAnchor, trustedIdentityKeyIds, time = at) => {
         const network  = get(json, 'roamingNetwork');
         const operator = RoamingNetworkOperator.parse(get(network ?? {}, 'operator'), String(get(network ?? {}, '@id')));
         if (operator.keyStatement === undefined)
             throw new Error('Its roaming network operator gives no key statement.');
-        return TrustContext.evaluate(trustAnchor, operator.keyStatement, { trustedIdentityKeyIds, otherIdentityKeys: operator.identityKeys, at });
+        return TrustContext.evaluate(trustAnchor, operator.keyStatement, { trustedIdentityKeyIds, otherIdentityKeys: operator.identityKeys, at: time });
     };
 
     // Trust transitions, from the trust anchor of the settings; the operators they may start from are those the documents
@@ -1366,6 +1368,29 @@ export async function analyze(pool, settings, onProgress = () => {}) {
             issue('error', `The evidence '${document.name}' does not verify: ${message(e)}`, document);
         }
     }
+
+    // Sessions paid with EV Taler, as the app that kept the file checks them: the station at the time the session began,
+    // with the keys trusted here, the trust anchor, or the identity keys the history followed it to.
+    report.evTalerEvidence = analyzeEVTalerEvidence(pool.ofType('evTalerEvidence'), {
+        verifyStation: (json, options) => {
+            if (proofAnchor === undefined)
+                throw new Error('There is no trust anchor to check it against.');
+            if (restricted) {
+                const evaluation = evaluateProof(json, anchor, settings.trustedIdentityKeyIds, options.at);
+                if (evaluation.context === undefined)
+                    throw new Error(`The identity keys trusted here give no trust context for its key statement: ${(evaluation.verificationError ?? 'signatures, signers, quorum or validity do not hold.').replace(/[^.!?]$/, '$&.')}`);
+                return { station: verifyChargingStation(evaluation.context, json, options), basis: 'context' };
+            }
+            try {
+                return { station: verifyChargingStation(proofAnchor, json, options), basis: anchor !== undefined ? 'pinned' : 'tofu' };
+            }
+            catch (e) {
+                if (followedAnchor === undefined)
+                    throw e;
+                return { station: verifyChargingStation(followedAnchor, json, options), basis: 'followed' };
+            }
+        },
+    }, issue);
 
     // Charging sessions, as an app checks them: with the trust anchor of the settings and the keys trusted there.
     report.sessions = analyzeSessions(pool.ofType('chargingSession'), {
@@ -1623,7 +1648,7 @@ function verdictOf(report) {
     const commits  = report.epochs.reduce((sum, epoch) => sum + epoch.steps.filter(step => step.type === 'commit').length, 0);
     const cps      = report.epochs.reduce((sum, epoch) => sum + epoch.steps.filter(step => step.type === 'checkpoint').length, 0);
 
-    if (report.head === undefined && report.proofs.length === 0 && report.evidence.length === 0 && report.sessions.length === 0 && report.transitions.length === 0 && report.keyStatementChains.length === 0)
+    if (report.head === undefined && report.proofs.length === 0 && report.evidence.length === 0 && report.evTalerEvidence.length === 0 && report.sessions.length === 0 && report.transitions.length === 0 && report.keyStatementChains.length === 0)
         return { level: errors > 0 ? 'error' : 'info', commits, checkpoints: cps, errors, warnings };
 
     return { level: errors > 0 ? 'error' : warnings > 0 ? 'warn' : 'ok', commits, checkpoints: cps, errors, warnings };

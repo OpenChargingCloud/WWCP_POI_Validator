@@ -183,6 +183,7 @@ function appCard(report, actions) {
     const rows = [
         [ 'Station proofs',            report.proofs ],
         [ 'Evidence of sessions',      report.evidence ],
+        [ 'Sessions paid with EV Taler', report.evTalerEvidence.filter(item => item.ok !== undefined) ],
         [ 'Proofs of commits',         report.commitProofs ],
         [ 'Proofs of price statements', report.priceStatementProofs ],
         [ 'Attestations',              report.attestations ],
