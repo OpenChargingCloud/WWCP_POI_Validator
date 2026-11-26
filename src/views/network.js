@@ -11,7 +11,8 @@ import { etagToText, evTalerExchangesAt, evTalerMerchantOf, evTalerTariffOf, get
 import { badge, button, facts, formatTime, h, i18n, jsonText, jsonView, plural, section, shortId } from '../dom.js';
 import { ARRAY_TYPES, entityAt, entityHistory, entityLabel, entityTree, merklePath, provenance } from '../entities.js';
 import { PARTY_LABELS } from '../keys.js';
-import { changeChip, emptyState, evTalerMerchant, evTalerName, headKey, linkButton, versionSelect } from './common.js';
+import { offersSessionsURL, webPaymentPageOf } from '../payments.js';
+import { changeChip, emptyState, evTalerMerchant, evTalerName, headKey, linkButton, versionSelect, webPaymentPage } from './common.js';
 import { priceSummary } from './history.js';
 import { QI_DIGITAL_KINDS, papersOf } from './qidigital.js';
 
@@ -435,15 +436,47 @@ function evTalerOfEvse(effectiveContent, path, evse) {
     const tariff   = evTalerTariffOf(station, id);
     const exchanges = evTalerExchangesAt(station, id);
     const options  = isArray(pool?.['paymentOptions']) ? pool['paymentOptions'].map(String) : [];
+    const merchant = evTalerMerchantOf(operator['evTaler']);
 
     return h('div', null,
         h('h3', null, 'EV Taler'),
         exchanges.length
             ? h('p', null, ...exchanges.map(exchange => badge(evTalerName(exchange), 'ok')), ' by its tariff ', h('code', null, String(tariff['@id'])), i18n(tariff['name']) ? ` · ${i18n(tariff['name'])}` : '')
+            : null,
+        exchanges.length
+            ? (typeof merchant !== 'string' && merchant.offersURL !== undefined
+                   ? h('p', null, 'An app asks for a session here, and gets its steps as offers: POST ', h('code', null, offersSessionsURL(merchant.offersURL, id)))
+                   : h('p', 'muted', 'Its operator names no offers URL: these data say no place to ask for offers for it.'))
             : h('p', 'muted', options.some(option => option.toLowerCase() === 'evtaler')
                                   ? 'Its pool names the payment option EVTaler, but it has no EV Taler tariff, or no exchange of its operator is in the currency of that tariff.'
                                   : 'Not with EV Taler: its pool does not name the payment option EVTaler, though its operator is an EV Taler merchant.'),
         h('p', 'note', 'Its tariff of the type AD_HOC_PAYMENT, or else the one without a type, unless that one names payment means other than EV_TALER, with the exchanges in its currency (EVTaler.md 4.3).'));
+
+}
+
+/**
+ * The web payment page of an operator, and the one that applies to a pool, a station or an EVSE of it in this version:
+ * for a station its own first, then that of its pool, then the operator's, each as it is effective here; none for an
+ * operator naming none, nor outside an operator.
+ */
+function webPaymentSection(effectiveContent, node) {
+
+    const depth = { ChargingStationOperator: 1, ChargingPool: 2, ChargingStation: 3, EVSE: 3 }[node.type];
+
+    if (depth === undefined || node.path[0]?.array !== 'chargingStationOperators')
+        return null;
+
+    const [ operator, chargingPool, chargingStation ] = [ 1, 2, 3 ].map(length => length <= depth ? entityAt(effectiveContent, node.path.slice(0, length)) : undefined);
+    const page = webPaymentPageOf({ operator, chargingPool, chargingStation });
+
+    if (page === undefined && node.type === 'ChargingStationOperator')
+        return null;
+
+    return h('div', null,
+        h('h3', null, 'Web payment page'),
+        webPaymentPage(page, node.type),
+        h('p', 'note', 'Where an EV driver pays ad hoc, without an e-mobility provider, and starts a session: for a charging station its own comes first, then that of its pool, then the operator\'s, each with what its templates give. ' +
+                       'It is not the URL in the dynamic QR code of a station, which is of one EVSE and never part of these data. Whoever changes it redirects payments: only a signing key that may sign payments does.'));
 
 }
 
@@ -584,6 +617,7 @@ function entityDetail(report, version, node, mode, runtime, actions, onSelect) {
         origin ? h('p', 'note', 'The effective member takes, of every property a template may give, its own value, else the one of the first of its templates giving one; arrays are united (9.2). Proofs and apps see the effective member.') : null,
 
         node.type === 'EVSE' && mode === 'effective' ? h('div', null, h('h3', null, 'Charging tariffs it takes'), tariffsOfEvse(effective, node.path, json) ?? h('p', 'muted', 'none')) : null,
+        mode === 'effective' ? webPaymentSection(effective, node) : null,
         node.type === 'EVSE' && mode === 'effective' ? evTalerOfEvse(effective, node.path, json) : null,
         node.type === 'ChargingStationOperator' && json['evTaler'] !== undefined ? merchantSection(json['evTaler']) : null,
 

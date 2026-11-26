@@ -7,7 +7,8 @@
 import { CHILD_ARRAYS, etagToText, get, isArray, isObject } from '@open-charging-cloud/wwcp-poi';
 
 import { badge, button, facts, formatBytes, formatTime, h, i18n, jsonText, jsonView, plural, section, shortId } from '../dom.js';
-import { emptyState, evTalerMerchant, evTalerName, linkButton } from './common.js';
+import { offersSessionsURL } from '../payments.js';
+import { emptyState, evTalerMerchant, evTalerName, linkButton, webPaymentPage } from './common.js';
 import { priceSummary } from './history.js';
 import { qiDigitalCard } from './qidigital.js';
 
@@ -209,12 +210,15 @@ function documentKeysPart(result) {
 /** How the EVSEs of a verified station are paid for with EV Taler: the merchant its proof gives, and each EVSE's tariff. */
 function evTalerSection(evTaler) {
 
+    const offersURL = evTaler.merchant?.offersURL;
+
     const table = h('table', 'grid');
-    table.append(h('thead', null, h('tr', null, h('th', null, 'EVSE'), h('th', null, 'EV Taler tariff'), h('th', null, 'Paid with'))));
+    table.append(h('thead', null, h('tr', null, h('th', null, 'EVSE'), h('th', null, 'EV Taler tariff'), h('th', null, 'Paid with'), offersURL !== undefined ? h('th', null, 'Offers asked for at') : null)));
     table.append(h('tbody', null, ...evTaler.evses.map(({ evseId, tariff, exchanges }) => h('tr', null,
         h('td', null, h('code', null, evseId)),
         h('td', null, tariff ? h('span', null, h('code', null, String(tariff['@id'])), i18n(tariff['name']) ? ` · ${i18n(tariff['name'])}` : '', ` · ${String(tariff['currency'])}`) : h('span', 'muted', 'none')),
-        h('td', null, exchanges.length ? h('div', 'stack', ...exchanges.map(exchange => h('span', null, badge(evTalerName(exchange), 'ok')))) : h('span', 'muted', 'not with EV Taler'))))));
+        h('td', null, exchanges.length ? h('div', 'stack', ...exchanges.map(exchange => h('span', null, badge(evTalerName(exchange), 'ok')))) : h('span', 'muted', 'not with EV Taler')),
+        offersURL !== undefined ? h('td', null, exchanges.length ? h('code', 'small', `POST ${offersSessionsURL(offersURL, evseId)}`) : h('span', 'muted', '—')) : null))));
 
     return h('div', null,
         h('h4', null, 'EV Taler'),
@@ -284,6 +288,7 @@ function proofCard(report, result, actions) {
             [ 'Roaming network', `${station.roamingNetwork.name ?? ''} (${station.roamingNetwork.id})` ],
             [ 'Operator', `${String(station.operator['@id'])}${i18n(station.operator['name']) ? ' · ' + i18n(station.operator['name']) : ''}` ],
             [ 'Charging pool', `${String(station.chargingPool['@id'])}${i18n(station.chargingPool['name']) ? ' · ' + i18n(station.chargingPool['name']) : ''}` ],
+            [ 'Web payment page', webPaymentPage(result.webPaymentPage, 'ChargingStation') ],
             [ 'Manufacturer', station.manufacturer ? `${String(station.manufacturer.manufacturer['@id'])}${station.manufacturer.model ? ', model ' + String(station.manufacturer.model['@id']) : ''}` : undefined ],
             [ 'Version', h('span', null, `revision ${station.revision}, commit `, shortId(station.commitId, 12), version ? h('span', null, ' ', linkButton(`epoch ${version.epoch}`, () => actions.showEntity(version.epoch, version.revision, { type: 'ChargingStation', id: String(station.chargingStation['@id']) }))) : null) ],
             [ 'Root', h('code', 'small', etagToText(station.eTag)) ],

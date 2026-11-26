@@ -9,6 +9,7 @@ import assert from 'node:assert/strict';
 import { TrustAnchor, paymentOptionName } from '@open-charging-cloud/wwcp-poi';
 
 import { ownerOfChange } from '../src/analyze.js';
+import { offersSessionsURL, webPaymentPageOf } from '../src/payments.js';
 import { analyzeDemo, readDemo, summaryOf } from './helpers.js';
 
 
@@ -185,5 +186,26 @@ test('Thuringia: the latecomer takes EV Taler along the A4, and the proof of its
 
     // The merchant is changed with a key for payments (EVTaler.md 4.4).
     assert.equal(ownerOfChange({ kind: 'UpdateProperty', entityType: 'ChargingStationOperator', entityId: 'DE*XAG', propertyName: 'evTaler' }).usage, 'payments');
+
+    // Where an app asks it for offers, and where a driver pays ad hoc at this station: at the page of its charging park,
+    // which comes before the operator's.
+    assert.equal(highway.evTaler.merchant.offersURL, 'https://poi.highway-hpc.example/RNs/TH/');
+    assert.equal(offersSessionsURL(highway.evTaler.merchant.offersURL, 'DE*XAG*E1*1'), 'https://poi.highway-hpc.example/RNs/TH/EVSEs/DE*XAG*E1*1/evTaler/sessions');
+    assert.deepEqual(highway.webPaymentPage, { url: 'https://pay.highway-hpc.example/parks/P1', type: 'ChargingPool', id: 'DE*XAG*P1' });
+    assert.equal(proofOf('DE*XAB').webPaymentPage, undefined);
+
+    // At its other charging parks the operator's, as the head of the history has them.
+    const operator = report.head.version.network.effectiveContent.chargingStationOperators.find(item => item['@id'] === 'DE*XAG');
+    assert.deepEqual(webPaymentPageOf({ operator, chargingPool: operator.chargingPools[1], chargingStation: operator.chargingPools[1].chargingStations[0] }),
+                     { url: 'https://pay.highway-hpc.example/', type: 'ChargingStationOperator', id: 'DE*XAG' });
+
+    // A web payment page is changed with a key for payments, and a pool is added with one by a key for both.
+    const before = { content: report.head.version.network.content };
+    assert.equal(ownerOfChange({ kind: 'UpdateProperty', entityType: 'ChargingStationOperator', entityId: 'DE*XAG',    propertyName: 'webPaymentURL' }, before).usage, 'payments');
+    assert.equal(ownerOfChange({ kind: 'UpdateProperty', entityType: 'ChargingPool',            entityId: 'DE*XAG*P2', propertyName: 'webPaymentURL' }, before).usage, 'payments');
+    assert.equal(ownerOfChange({ kind: 'UpdateProperty', entityType: 'ChargingPool',            entityId: 'DE*XAG*P2', propertyName: 'hotline' },       before).usage, 'infrastructure');
+    assert.equal(ownerOfChange({ kind: 'Add', entityType: 'ChargingPool', entityId: 'DE*XAG*P99', newValue: { '@id': 'DE*XAG*P99', chargingStations: [ { '@id': 'DE*XAG*S99', webPaymentURL: 'https://pay.highway-hpc.example/s99' } ] } }, before).usage,
+                 'infrastructure and payments');
+    assert.equal(ownerOfChange({ kind: 'Add', entityType: 'ChargingPool', entityId: 'DE*XAG*P98', newValue: { '@id': 'DE*XAG*P98' } }, before).usage, 'infrastructure');
 
 });

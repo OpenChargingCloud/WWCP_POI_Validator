@@ -26,6 +26,7 @@ import { keyDirectory } from './keys.js';
 import { analyzeSessions } from './sessions.js';
 import { analyzeTransitions } from './transitions.js';
 import { analyzeKeyStatements } from './keyStatements.js';
+import { webPaymentPageOf } from './payments.js';
 import { observeVersions } from './journal.js';
 import { plural, yieldToBrowser } from './dom.js';
 
@@ -56,13 +57,13 @@ export function ownerOfChange(change, before) {
     if (change.entityType === 'RoamingNetworkOperator' || change.entityType === 'RoamingNetwork')
         return { type: 'RoamingNetworkOperator', id: before?.operator?.id, keys: [ 'identityKeys', 'minConsensus' ].includes(change.propertyName) ? 'identity keys' : 'signing keys', usage: 'party' };
 
-    // The EV Taler merchant of a charging station operator by a key that may sign 'payments': whoever changes it redirects
-    // the payments of every station (EVTaler.md 4.4).
+    // The EV Taler merchant of a charging station operator and its web payment page by a key that may sign 'payments':
+    // whoever changes them redirects the payments of every station (EVTaler.md 4.4, "Web payment page").
     if (PARTY_TYPES.has(change.entityType))
         return change.kind === 'Add' || change.kind === 'Remove'
                    ? { type: 'RoamingNetworkOperator', id: before?.operator?.id, keys: 'signing keys', usage: 'party', note: 'decides who is a member' }
                    : { type: change.entityType, id: change.entityId, keys: change.propertyName === 'identityKeys' ? 'identity keys' : 'signing keys',
-                       usage: change.entityType === 'ChargingStationOperator' && change.propertyName === 'evTaler' ? 'payments' : 'party' };
+                       usage: change.entityType === 'ChargingStationOperator' && [ 'evTaler', 'webPaymentURL' ].includes(change.propertyName) ? 'payments' : 'party' };
 
     const child = PARTY_CHILDREN[change.entityType];
     if (child !== undefined)
@@ -71,7 +72,30 @@ export function ownerOfChange(change, before) {
     if (change.entityType === 'EnergyMeterTemplate' || change.entityType === 'EnergyMeterGroup')
         return { type: change.parentEntityType ?? 'ChargingStationOperator', id: change.parentEntityId ?? operatorIdOf(content, change.entityId), keys: 'signing keys', usage: 'infrastructure' };
 
-    return { type: 'ChargingStationOperator', id: operatorIdOf(content, change.entityId), keys: 'signing keys', usage: TARIFF_TYPES.has(change.entityType) ? 'tariffs' : 'infrastructure' };
+    // The web payment page of a pool, a station and their templates: changed by a key that may sign 'payments', and one of
+    // them added with one, a pool by one of its stations as well, by a key that may sign 'infrastructure' too.
+    const usage = TARIFF_TYPES.has(change.entityType)                                             ? 'tariffs'
+                : WEB_PAYMENT_TYPES.has(change.entityType) && change.propertyName === 'webPaymentURL' ? 'payments'
+                : addsWebPaymentURL(change)                                                       ? 'infrastructure and payments'
+                :                                                                                   'infrastructure';
+
+    return { type: 'ChargingStationOperator', id: operatorIdOf(content, change.entityId), keys: 'signing keys', usage };
+
+}
+
+const WEB_PAYMENT_TYPES = new Set([ 'ChargingPool', 'ChargingStation', 'ChargingPoolTemplate', 'ChargingStationTemplate' ]);
+
+function addsWebPaymentURL(change) {
+
+    const entity = change.newValue;
+
+    if (change.kind !== 'Add' || !WEB_PAYMENT_TYPES.has(change.entityType) || !isObject(entity))
+        return false;
+
+    const named    = (item) => isObject(item) && item['webPaymentURL'] !== undefined && item['webPaymentURL'] !== null;
+    const stations = entity['chargingStations'];
+
+    return named(entity) || (change.entityType === 'ChargingPool' && isArray(stations) && stations.some(named));
 
 }
 
@@ -1314,6 +1338,9 @@ export async function analyze(pool, settings, onProgress = () => {}) {
                     evses:    station.evses.map(evse => String(evse['@id'])).map(evseId => ({ evseId, tariff: evTalerTariffOf(station, evseId), exchanges: evTalerExchangesAt(station, evseId) })),
                 };
             }
+
+            // Where a driver pays ad hoc at it: its own web payment page, else that of its pool, else the operator's.
+            result.webPaymentPage = webPaymentPageOf(station);
 
         }
 

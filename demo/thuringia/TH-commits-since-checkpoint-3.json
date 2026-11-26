@@ -152,7 +152,7 @@
     ]
   },
   {
-    "@id": "3e26f492b833853db1723ee16ed5a39d3b7c056036fd9d720b694a51248e8168",
+    "@id": "d6d872cfbc16cb1d1b6c7dc2489ba8ba069b7134f67a35c456946a1e11a67a01",
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/commit/v3",
     "roamingNetworkId": "TH",
     "revision": 27,
@@ -161,26 +161,26 @@
         "json",
         "sha256",
         "hex",
-        "284bbe7da3a29bb449759333f6808ceef1e07df4ed4dfbce6613c57fc6d1dc29"
+        "6f83c7d51ada9a2231e88b505bca009000ff37091caa4b27b175ddc4c1d7398d"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "01af22db4410dd2427f24e6b33f7b81f295c98a026af1ab41f4f900ab1d9c083"
+        "b34b2240402e364199c8ce2e1c939acc497b4b8392df0b5bc6d28fd144bf8b10"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "fc523323c7f32b6848cf3a7019727b8726159c73b3f3174b85c2b0c1c7061bc3"
+        "2e3f03aafdf477148f073eccf72d200041a650627a0835a96ec0c860573ef34d"
       ]
     ],
     "parentIds": [
       "ed227fa055c427443335b18f7c328d2036a04b1563e5ffb9ff124a0e9ac89748"
     ],
     "changeSet": {
-      "@id": "98704c6d98f6fd184861340d125ee1386389fcb0cc192efad35e890d2cd2d2b9",
+      "@id": "bf0ef315298c719daa33867bbb1d350f145e3ddff9fe44561a893a3f6779babb",
       "roamingNetworkId": "TH",
       "createdAt": "2026-09-24T13:29:02.400Z",
       "description": {
@@ -213,8 +213,25 @@
                   "en": "Thuringia Test Exchange"
                 }
               }
-            ]
+            ],
+            "offersURL": "https://poi.highway-hpc.example/RNs/TH/"
           }
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "ChargingStationOperator",
+          "entityId": "DE*XAG",
+          "propertyName": "webPaymentURL",
+          "oldValue": null,
+          "newValue": "https://pay.highway-hpc.example/"
+        },
+        {
+          "kind": "UpdateProperty",
+          "entityType": "ChargingPool",
+          "entityId": "DE*XAG*P1",
+          "propertyName": "webPaymentURL",
+          "oldValue": null,
+          "newValue": "https://pay.highway-hpc.example/parks/P1"
         },
         {
           "kind": "UpdateProperty",
@@ -392,25 +409,25 @@
           "json",
           "sha256",
           "hex",
-          "284bbe7da3a29bb449759333f6808ceef1e07df4ed4dfbce6613c57fc6d1dc29"
+          "6f83c7d51ada9a2231e88b505bca009000ff37091caa4b27b175ddc4c1d7398d"
         ],
         [
           "cbor",
           "sha256",
           "hex",
-          "01af22db4410dd2427f24e6b33f7b81f295c98a026af1ab41f4f900ab1d9c083"
+          "b34b2240402e364199c8ce2e1c939acc497b4b8392df0b5bc6d28fd144bf8b10"
         ]
       ],
       "signatures": [
         {
           "algorithm": "ES256",
           "keyId": "2c189fe4b5a64b5deb4ddc1643f1a2e2a11a4a6c5e0a1bb1f26a9ec4b4e0e8ac",
-          "value": "oDhqwLrw2774HHUWFn7+8btfIQvbERjY//66WrN7KdQqKFgUbqZ1EpUPvAeSwpv76XTV6Jx0GaJYaFih49EcKg=="
+          "value": "W/0spEWDInLhWioFsTnooAL7A6rbFyQjRyTHoDJBfmSjEViy4yXFRaiopID8yxNXs0leh6Sx+r8bV/y29rUH6A=="
         },
         {
           "algorithm": "ES256",
           "keyId": "87d7a0f8d7c18d01caa8142a640293826c05b41660837b9c04562d0d1afd9c45",
-          "value": "i8h6QcDHHueFv7ZhQXBV8gswoj/dE2FhixjtbIVHRzOHo9jDg6q8El3XmS6QFLcMd2Gu32bs0sg42Ok3pPxaPA=="
+          "value": "XxXH+wbzkNfc7jj1nuQZj/kbZ/DmOSipXSkufvizRO7uoMxTPZ7mKjSitrdNznf6nPt+FvEy//BVgkoooPZHQw=="
         }
       ]
     },
@@ -421,7 +438,7 @@
         "signedAt": "2026-09-24T13:29:33.000Z",
         "algorithm": "ES256",
         "keyId": "0b5a6fc3bb3ff0d07b75895466c933c99065b45ffc24d9a5e539b4b18f4dbbc4",
-        "value": "l5ZVK+dybEZk45RtK1nPszhH1LkR7wZATexKn32m1TFY2xU3Tn/PG4WMrDYYdg4RTvGhozMHBgkxg9z4B+YVDg=="
+        "value": "tf/0E/1myjHurs+pY/1Vf4gHHGEorzk/5+TdZiizZfoNIjvR8dlXTds/CjI65tscIWarv34lRO3XWpi3hMdNZw=="
       },
       {
         "role": "roamingNetworkOperator",
@@ -429,7 +446,7 @@
         "signedAt": "2026-09-24T13:29:33.600Z",
         "algorithm": "ES256",
         "keyId": "45cc7c4c3bfbd2985a9f9384998b41b0caecceecf4f521a2f0d856a5e776ed14",
-        "value": "mYUhBKSDtkqkZ/gWr9DGQla1z4jvMPjPuOQlxrrnM16pwOgYhgLi0sFIexf8IjAKZehmnXdB29WLkzzSQtwt+w=="
+        "value": "wjTyI95lDwy8Rgp3svxV2o3cH7nbNR8v+vBddt/gQqsS3qcbw9pkUD506TItIT1Wg4WXItnyXDZMK6aZxmnBXw=="
       },
       {
         "role": "roamingNetworkOperator",
@@ -437,7 +454,7 @@
         "signedAt": "2026-09-24T13:29:34.200Z",
         "algorithm": "ES256",
         "keyId": "dffa220da4a30fc3cc51f13896900a42155df4143f3981d84706ef09de6b69b1",
-        "value": "O+pI98jhIH955pp3RVeVeLnKb/uytmyJwrJGXNJc5l9+QNQ5LxZ8vtMlqN28h/YepazlZiQmqPSFoJQy1oQFDg=="
+        "value": "RLp0eTzNtzox/4/wOIiLrxJ05bxWsQvvEj7ll9nkMGQwtfJ/dP7kw8g24ivtonG6m7nZrHPyc/dJubRsnKQ/9w=="
       }
     ]
   }

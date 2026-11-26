@@ -36,16 +36,19 @@ epochs and price statements fit together.
   are shown where they would have been, with the reason.
 - **Network** — any version, effective (as proofs and apps see it) or as stored; a map of the charging pools; for each
   entity where its values come from (its own or a template, 9.2), the tariffs an EVSE takes and whether it is paid
-  with EV Taler, the EV Taler merchant of an operator, the groups it is a member of, its runtime status, the commits
+  with EV Taler and where an app asks for offers for it (`offersURL`), the EV Taler merchant of an operator, the web
+  payment page that applies (`webPaymentURL`: of a station its own, else that of its pool, else the operator's), the
+  groups it is a member of, its runtime status, the commits
   that changed it, and its path through the effective tree up to the root the commit names — the audit paths a proof of
   it would give.
 - **Proofs & prices** — station proofs as an app checks them, with how they are pruned, their key statement against the
   keys you trust (signatures, signers, quorum and validity apart), the models, hardware revisions, firmware versions and
   serial numbers of the station and its meters, the certificates they name and the transparency software proven by
   them, the keys of the operator that may sign charging documents (`chargeTransparencyRecords`); how its EVSEs are paid
-  with EV Taler (the merchant the proof gives, the EV Taler tariff of each EVSE and the exchanges in its currency,
+  with EV Taler (the merchant the proof gives, where it is asked for offers, the EV Taler tariff of each EVSE and the
+  exchanges in its currency,
   [concepts/EVTaler.md](https://github.com/OpenChargingCloud/WWCP_POI/blob/master/concepts/EVTaler.md));
-  price statements; the evidence of a charging session; proofs of commits and price statements
+  the web payment page of the station; price statements; the evidence of a charging session; proofs of commits and price statements
   in checkpoints; attestations; the archive; the **QI-Digital** papers of meters (example A14): digital calibration
   certificates, certificates of conformity and declarations of conformity, each checked against the network and against
   each other; and what an app keeps of the versions it observed (`compareObservedVersions`): each proof, its price
@@ -88,7 +91,7 @@ epochs and price statements fit together.
    - **Thuringia**, a generated test network of medium size: seven charging station operators, 195 charging pools,
      417 stations and 834 EVSEs on a map; change sets of several owners, a key rotation, a removed pool, a latecomer
      that takes **EV Taler** at its charging parks along the A4 (its merchant, changed with a key for payments, two
-     exchanges, of which the one in euros pays, and the secure dynamic QR code of its stations); four witnessed checkpoints, price statements and station proofs.
+     exchanges, of which the one in euros pays, its offers URL, and the secure dynamic QR code of its stations) and names its web payment page, with one of its own for its first charging park; four witnessed checkpoints, price statements and station proofs.
      Signed with test keys of fixed seeds.
    - **An app: charging sessions and trust transitions**, of the test network `CHARGY-POI-DEMO` WWCP_POI.TS keeps among
      its test vectors (public test keys only). 18 sessions: the meter and its key from the proof of the station, now and
@@ -258,7 +261,9 @@ npm --prefix "D:\Coding\OpenChargingCloud\WWCP_POI_Validator" test
   attestation and QI-Digital document; a day later the station proofs of the QA demo are refused, their attestations
   expired; with the ML-DSA trust anchor of epoch 2, the QA history is anchored at checkpoint 0 of epoch 2, and with a
   trust anchor no checkpoint carries it is refused; the proof of a station along the A4 says how its EVSEs are paid with
-  EV Taler.
+  EV Taler, where offers are asked for and which web payment page applies.
+- `tests/payments.test.js`: the web payment page of a station, its pool and their operator, in that order, and the URL
+  an app asks an EV Taler merchant for offers at.
 - `tests/tampering.test.js`: one document of the Thuringia demo changed after it was signed, as *Edit and verify again*
   does it: a change set (its commit is refused, the commits after it are not taken), a signature of the operator, a
   witness signature removed, no trust anchor, a price statement among the current ones and in the list a checkpoint
@@ -298,6 +303,7 @@ of its release:
 | `src/analyze.js` | the analysis with WWCP_POI.TS: trust, history, checkpoints, epochs, proofs, prices, evidence, archive |
 | `src/sessions.js` | charging sessions as an app checks them: their readings, trust context, meter key, historical evidence, prices |
 | `src/transitions.js` | trust transitions, verified from the trust anchor of the settings, a later one from the one it continues |
+| `src/payments.js` | the web payment page that applies to a station, a pool and their operator, and where an EV Taler merchant is asked for offers |
 | `src/keyStatements.js` | the key statements of the operator one after the other, followed from the trust anchor of the settings |
 | `src/journal.js` | what an app keeps of the versions it observed: its journal, and what it refuses |
 | `src/keys.js` | who holds a key: the directory of all keys of a version |

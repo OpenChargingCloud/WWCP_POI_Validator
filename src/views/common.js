@@ -6,6 +6,7 @@ import { etagToText, paymentOptionName } from '@open-charging-cloud/wwcp-poi';
 
 import { badge, formatTime, h, i18n, shortId, statusIcon } from '../dom.js';
 import { PARTY_LABELS } from '../keys.js';
+import { offersSessionsURL } from '../payments.js';
 
 
 /** Every version the report holds, in their order: `{ key: 'epoch:revision', label, version }`. */
@@ -188,7 +189,24 @@ export function evTalerMerchant(merchant) {
     return h('div', null,
         h('dl', 'facts',
             h('dt', null, 'Merchant'),            h('dd', null, h('code', 'small', merchant.merchantBaseURL)),
-            h('dt', null, 'Its public key'),      h('dd', null, shortId(merchant.merchantPublicKey, 16))),
+            h('dt', null, 'Its public key'),      h('dd', null, shortId(merchant.merchantPublicKey, 16)),
+            h('dt', null, 'Offers'),              h('dd', null, merchant.offersURL !== undefined
+                                                                    ? h('span', null, h('code', 'small', merchant.offersURL),
+                                                                          h('div', 'muted small', 'An app asks here for a session at an EVSE, and gets its steps as offers: POST ', h('code', null, offersSessionsURL(merchant.offersURL, '{EVSE_Id}')), ' (EVTaler.md 6).'))
+                                                                    : h('span', 'muted', 'It names no offers URL: an app learns no place to ask it for offers from these data.'))),
         table);
 
+}
+
+const OF_WHOM = { ChargingStation: 'charging station', ChargingPool: 'charging pool', ChargingStationOperator: 'charging station operator' };
+
+/**
+ * The web payment page that applies to an entity of the given type (`webPaymentPageOf`): its URL, and whose it is;
+ * that none is named otherwise. Never a link: the page tells where a driver would pay, it leads nobody there.
+ */
+export function webPaymentPage(page, type) {
+    return page === undefined
+               ? h('div', 'muted', 'None is named: neither its own nor one of those above it.')
+               : h('div', null, h('code', null, page.url), ' ',
+                     page.type === type ? badge('its own', 'ok') : h('span', null, badge(`of its ${OF_WHOM[page.type]}`, 'info'), ' ', h('code', null, page.id)));
 }
