@@ -2,36 +2,36 @@
   {
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/archiveSegmentInfo/v1",
     "number": 1,
-    "rootId": "b444c6e0e157ea9f56fec121b0e90cf6ab27a46b9e8d78798afc16b01d029098",
-    "endId": "0c63b42cb371816d30f157ec8db665d54dca6ed1b9daf12c69c28c556b796e7d",
+    "rootId": "72bc5352d5ca91c893b549ffa72e802a0a667a9cbfb9604fb022e513f059386a",
+    "endId": "39310f0ff8c5ac545a20e6def38924a298622961c3dbf5b4bc00d3e2b8418b41",
     "fromRevision": 0,
     "toRevision": 9,
     "size": 9,
-    "archivedAt": "2026-11-16T20:30:13.865Z",
+    "archivedAt": "2026-11-27T01:28:03.104Z",
     "commitIds": [
-      "e8f7b46f639dd8a2addff6822f71336b6bdbe567c14bd4892423463ec2f1a755",
-      "9e3b83bc60587f2cfe9b67e4919b35728f4c9da80dab2d541539329acd7b5893",
-      "14f230771ef717b1dcb2cc43bffc83105d096765f9f6f0cb5b3982fa5084b251",
-      "6facbeb7e29da3b10597dea02663a947e2160bb753c2d445551ecf98cf9695df",
-      "134774897e85a23dc05c9178c334652a34a6000566f7ef18b7fde4cb326f8e75",
-      "24cdb41f691b97b2be68a819156df0d183797519406115e4057ad6458354ea7d",
-      "3d6dfc07ddf2c1f7c88c02fad05315f4854dd34725bc05b419ef272f1032d222",
-      "72645d868f0fda2622ed8cf38af406139566e0cabefdfdbd2dbbf7ab47be21b0",
-      "0c63b42cb371816d30f157ec8db665d54dca6ed1b9daf12c69c28c556b796e7d"
+      "1f6e76d8210d5f0c001f42675732fa719dd2491ceebf12a6e2fe579f07c39019",
+      "8b3cabad2d06aaf89d4c6b53ce04f1a3d37db0f6111728b38a0c4be377f03991",
+      "fb7ff7f4d7b0990ca21522c0ccdc3e41a61dfa412b83226f6c5d077fa529e371",
+      "58c414054ab793a08a27cee57d9095c6cef6780bc105ede8c4f951ba402c49bd",
+      "3b2bae432138aeb49f0064d04a59cee42bc2efffa024619724f09f2378b5464a",
+      "c6a319fcdb2fec7c7093b9eed82985aa724445467692a8b2def6034b8afde1c2",
+      "ee997a95cd64ebff5fff29bbeb7df79c2c897d51f5c7e56313689e0de4632696",
+      "8c40fb8f8d6bc8d3460bf5a78ae081763e8340a8f81e04c82cef80424984d1d3",
+      "39310f0ff8c5ac545a20e6def38924a298622961c3dbf5b4bc00d3e2b8418b41"
     ]
   },
   {
     "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/archiveSegmentInfo/v1",
     "number": 2,
-    "rootId": "0c63b42cb371816d30f157ec8db665d54dca6ed1b9daf12c69c28c556b796e7d",
-    "endId": "8d5447bd5433275bf3f7694310de40cdb75c2bbbbaacabb8fe30ba2d719d866e",
+    "rootId": "39310f0ff8c5ac545a20e6def38924a298622961c3dbf5b4bc00d3e2b8418b41",
+    "endId": "468a5283885151ebe9dea32254667a7d7d7debd9fcf20705f4b55a14509f967f",
     "fromRevision": 9,
     "toRevision": 11,
     "size": 2,
-    "archivedAt": "2026-11-16T20:30:13.932Z",
+    "archivedAt": "2026-11-27T01:28:03.193Z",
     "commitIds": [
-      "0cd7705f32b15771b76b612b0785353a454333056447f89f66575a74faac0719",
-      "8d5447bd5433275bf3f7694310de40cdb75c2bbbbaacabb8fe30ba2d719d866e"
+      "0c8003fe4935fad1ece4ff6af35717cff6b7b21b3a986bb4fab993d6194b4995",
+      "468a5283885151ebe9dea32254667a7d7d7debd9fcf20705f4b55a14509f967f"
     ]
   }
 ]

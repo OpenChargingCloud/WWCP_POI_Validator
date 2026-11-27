@@ -1,26 +1,26 @@
 {
   "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/checkpointProof/v1",
-  "checkpointId": "3f89ed1462aac47c93f6f14e254caa8e18ed7866667f5dceaa81f248a0e1c9841a0acf71039d081ab9eb33327f83c318bb3a1d106c4dc52387209a9c333a3a5a",
+  "checkpointId": "8f5497e70dceb683d2d6dce5d283d22eff42080d511056dfc7dd046dd2903e35c9ebaea93ad61801b88aa1ae423c1d4069ec0d23d4aa4291fab70a770d215fd6",
   "leaf": {
-    "commitId": "b20c21a7b747222f5a58e824db254961abea260b81e9c4ab789d4722c72ab0b725b26c55291ba417a6531bc6cc68a2ff6f124f83c5ee063fe69e3888fb56997a",
+    "commitId": "df7a04d854d1cd962d75278e0c6b526b99f9fca1036f95a4a89b812207907eeb938a56469909b6e0ee462644ac1b06a9e27eb586437fac5e3a0cf51fdb3139e6",
     "eTags": [
       [
         "json",
         "sha256",
         "hex",
-        "fc2dedd2c21d05d11f3d2a3f10f5c2ad06f1536e65d08d0750b35d39431fcfe4"
+        "89bc2983c6a15fe63e400b5b478ad511829eba7025fff574f1c49f761391f5e6"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "b83a50ec555780894752f58d54982f3ea93d2bf8d2b9f5ce20bcb76f6851c825"
+        "8b3ae8499453c146abc20f29fc90ca0003216527d46cea42a0e74047fbca2524"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "6133e85a5cea3e11e1a06080fa642fecb20b247734187d0dfa7760b3be406322"
+        "97cf741037125e753f1e65b0dd8100a4fee6e74d6a25cbfbdd75e667d5132832"
       ]
     ],
     "revision": 1
@@ -28,7 +28,7 @@
   "@index": 1,
   "@size": 3,
   "@auditPath": [
-    "35f593c303e81df87148f7aeeb1d1e6d5e185dadc20dd490234e37fd85eaec5044fd93de3be64e76c8bba609d091e8a338a9dc26c790ebd6899a26c55bf99983",
-    "7bba70cf6afbec2276a608744b43dd94be1ae002bf5c0399dfe65eafedebcb51be68422e1bf182bce6048f2a6a06c60b215e4423ba8fc6e52db577fb3d7686f2"
+    "945e8067b39cc7cebe47e601d4d255b1411cbb6778b5bf2b121f23508e76673e3394596095145844475439855fb6e38571068b144fcedf5551ff11760a9be85a",
+    "6472d21b4615fc0ad53f6afea4a5ecf61502fbed5ff1fef072543a4e2213a401c497beaa719083dca2ed6c77f794f007c1ffff663c387a26a37d30e9171634d3"
   ]
 }

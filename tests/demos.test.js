@@ -64,6 +64,15 @@ test('QA: the roaming network of the WWCP_POI examples A1 to A16 verifies', asyn
                      [ [ 'DE*GEF*E1*1', [ 'EV Taler (Example Exchange, EUR)' ] ], [ 'DE*GEF*E1*2', [ 'EV Taler (Example Exchange, EUR)' ] ] ]);
     assert.ok(evTaler('QA-proof-station-DE_GEF_S6.json').evses.every(({ exchanges }) => exchanges.length === 0));
 
+    // Where an app asks DE*GEF for offers, and where a driver pays ad hoc: at the page of Jena Paradies for its
+    // stations, before the one of DE*GEF, which is the one of every other station. Revision 7 knew neither.
+    const webPaymentPage = (name) => report.proofs.find(result => result.document.name === name).webPaymentPage;
+    assert.equal(evTaler('QA-DE-GEF-E1-1-evTaler-proof.json').merchant.offersURL, 'https://poi.gef.example/RNs/QA/');
+    assert.equal(offersSessionsURL(evTaler('QA-DE-GEF-E1-1-evTaler-proof.json').merchant.offersURL, 'DE*GEF*E1*1'), 'https://poi.gef.example/RNs/QA/EVSEs/DE*GEF*E1*1/evTaler/sessions');
+    assert.deepEqual(webPaymentPage('QA-DE-GEF-E1-1-evTaler-proof.json'), { url: 'https://pay.gef.example/pools/P1', type: 'ChargingPool',            id: 'DE*GEF*P1' });
+    assert.deepEqual(webPaymentPage('QA-proof-station-DE_GEF_S6.json'),   { url: 'https://pay.gef.example/',         type: 'ChargingStationOperator', id: 'DE*GEF' });
+    assert.equal(webPaymentPage('QA-DE-GEF-E1-1-proof.json'), undefined);
+
 });
 
 test('QA: a day after the recording, the station proofs are refused, as their attestations expired', async () => {

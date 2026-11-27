@@ -37,7 +37,7 @@ test('EV Taler, A16: the session paid in two steps verifies from the file alone'
     // Two steps of 5 kWh each, the second after the first, both recalculated.
     assert.deepEqual(session.steps.map(step => [ step.ok, step.terms.orderId, step.terms.step.covers.toString(), step.terms.amount.toFixed(2), step.verified.amountCheck ]),
                      [ [ true, '2026.309-01GEF1', '0 to 5 kWh', '3.95', 'exact' ], [ true, '2026.309-02GEF1', '5 to 10 kWh', '2.95', 'exact' ] ]);
-    assert.equal(session.steps[0].verified.priceStatement.digest, '8d96537e64fe90933dcc0f6d257e9318843f7b2372e5d96c0aba50a1e925ec9e');
+    assert.equal(session.steps[0].verified.priceStatement.digest, '23199b6f67f325f95b572a1eff86fdfcef5ce43675df9edaa306749b3223ea9b');
     assert.equal(session.steps[1].verified.start.reading.energy.toString(), '1234.567');
 
     // 8.214 kWh by the signed meter values, 4.85 of 6.90 paid, 2.05 refunded.
@@ -122,7 +122,7 @@ test('OCMF: a signed meter value verifies with its key, and not after its readin
 
     assert.equal(reading.meterSerialNumber, 'DCM-2026-001-1');
     assert.equal(reading.energy.toString(), '1234.567');
-    assert.equal(reading.timestamp, Date.parse('2026-11-16T20:31:22.000Z'));
+    assert.equal(reading.timestamp, Date.parse('2026-11-27T01:29:11.000Z'));
 
     const changed = new TextDecoder().decode(fromBase64(json.signedMeterData)).replace('"RV":1234.567', '"RV":1230.567');
     assert.throws(() => verifyOCMF(EVTalerSignedMeterValue.create(toBase64(new TextEncoder().encode(changed)), 'OCMF', json.signingMethod, json.publicKey), key), /The OCMF signature is invalid!/);

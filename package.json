@@ -19,7 +19,7 @@
   "author": "GraphDefined GmbH <achim.friedland@graphdefined.com>",
   "license": "AGPL-3.0-only",
   "dependencies": {
-    "@open-charging-cloud/wwcp-poi": "^0.5.0",
+    "@open-charging-cloud/wwcp-poi": "^0.6.0",
     "@vanaheimr/cose": "^0.15.0",
     "leaflet": "^1.9.4",
     "qrcode-generator": "^2.0.4"

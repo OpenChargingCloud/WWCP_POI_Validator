@@ -22,16 +22,16 @@
         }
       ]
     },
-    "validFrom": "2026-11-16T20:30:16.355Z",
-    "validUntil": "2026-11-16T21:30:16.355Z",
+    "validFrom": "2026-11-27T01:28:05.882Z",
+    "validUntil": "2026-11-27T02:28:05.882Z",
     "sequence": 2,
-    "previous": "4b32075ca1d100697b5c00a64cf91b663c1264eaea15d104c7422b11997e8a6e",
-    "after": "5b459ff84130484da405eb7b419c89abfca89bdba1bc4972c6c801264b4fc454",
+    "previous": "026ccab3c40976eff60dfff5095a03629eabca4b55d18d91b66dde7b7d1621d7",
+    "after": "957b3091b5a1ae37befaaf6f180889979fa885bce953fbfd2a0df05c2a8816d8",
     "role": "chargingStationOperator",
     "signer": "DE*GEF",
-    "signedAt": "2026-11-16T20:30:16.355Z",
+    "signedAt": "2026-11-27T01:28:05.882Z",
     "algorithm": "ES256",
-    "keyId": "8c0c6670e6e6745b83fe76f132c20d17c29dd5fef0dd206191b3058b7081e873",
-    "value": "5DIRq3SfBPLBVt7joV3HJNVK83WDqmJl33u1S9zXsWA6tz4zBvOAt9BoXh8o9tegD3LCQXXah/D9PDUa6a3YKA=="
+    "keyId": "8f852d4b3d6604a06ad8a0e5238558f8be60bb39af716c1223ecee2e2a91f64f",
+    "value": "ooFiCIJkeRWdvW85sd31z+ax9XlbBA7wSUVO2XNfoP/AaKzy1k2GygW8qFX+fnFliPzxbI+DWwCTMvO2Co9yZg=="
   }
 ]

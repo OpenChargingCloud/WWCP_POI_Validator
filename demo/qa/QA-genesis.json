@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-11-16T20:30:07.651Z",
+  "timestamp": "2026-11-27T01:27:56.093Z",
   "commit": {
-    "@id": "b444c6e0e157ea9f56fec121b0e90cf6ab27a46b9e8d78798afc16b01d029098",
+    "@id": "72bc5352d5ca91c893b549ffa72e802a0a667a9cbfb9604fb022e513f059386a",
     "roamingNetworkId": "QA",
     "revision": 0,
     "eTags": [
@@ -9,29 +9,29 @@
         "json",
         "sha256",
         "hex",
-        "81a9f56099d6570b5859c481c44fa860bb959aaa6831daff5efbf89e758171f4"
+        "4fb78b6663beab8a9c2328a36a1ca40e9b7b222b9947141ca6c9c4ca09836184"
       ],
       [
         "cbor",
         "sha256",
         "hex",
-        "1436a333c01eb8f993b007fc5ff38e95bed2ea0fc92c27aecf534aade4d1f236"
+        "76da28acdf719a79f0c65903b9b4f39b02fe729acc86aca071d75603633eed67"
       ],
       [
         "effectiveTree",
         "sha256",
         "hex",
-        "d334cf10b4016bfc6cb6f5ce1c3f562b24f5c9ca4406264723a9be15e8f4739c"
+        "b85aeadccfb9180516ad2a738c238c26ba0f7044f0aa93c08983b1fa6b0736af"
       ]
     ],
     "signatures": [
       {
         "role": "roamingNetworkOperator",
         "signer": "OCC",
-        "signedAt": "2026-11-16T20:30:07.540Z",
+        "signedAt": "2026-11-27T01:27:55.945Z",
         "algorithm": "ES256",
-        "keyId": "6a6ff3e7ba92f072bedfef920756c233b2325a5acfd6a53b19585cedacf36003",
-        "value": "CiroG3lpcuFuXsgiuhyQoG/dj0G2oEFynejoogrfrbx7Q3U0vFUGywPtIUBQY7xsYpxdJFa8jbQhyblTnXQycA=="
+        "keyId": "2d73b59e5fbf318cdd41cc5d3eb4756ba9e43b1d889883240b42b02368c25d8b",
+        "value": "Imr+FvNjW/ot6qmI7b/j+wDCK74ZOF/seoFaWXn+lvKXQWM0qNVeIfZ5jcn9UCJ+BlDltEPQVNYMnwN1ba1NUA=="
       }
     ]
   },
@@ -54,19 +54,19 @@
         "roamingNetworkOperatorId": "OCC",
         "identityKeys": [
           {
-            "@id": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
-            "key": "pAECIAMhWEIBEoSWSkH0yN0X+J4eLgFloofiomcf/5cFLeYsh4XMg52qCkkwQ4/vta6fudmyOQ6jCP32mOYQ8fvbHFLZKrTzbCciWEIAw6/U3j/puwsbkDJ5B9GYgQYmFVqnSsg4FI6rt0MLoWAITZ7S3wkjHi7b3XLqxm8tfjX5v6MGgznqMqt7Xs5ncNM=",
+            "@id": "b3aa34da7c8e19898d65048eca430cb26af47a25dcd5fbc96f5fa02d8723b03e",
+            "key": "pAECIAMhWEIA8dN1yfqMa82WHd4ZUhL5pkjiO8UYZXwCV4LvHnkdV4c7EtEWrND82vkEJVPLuVAas5rw7133c7n610jToFvrWKAiWEIBPnpTeEETMRvpO5Foy6lY3ibGOcfScjWBikgtBce507UaV1opNFSeiF29dnXSV8vY1U6vmHVoaaoNMeap3mHwPuc=",
             "holder": "AlphaOrg"
           }
         ],
         "minConsensus": 1,
-        "signedAt": "2026-11-16T20:30:07.059Z",
-        "validUntil": "2027-11-16T20:30:07.059Z",
+        "signedAt": "2026-11-27T01:27:55.401Z",
+        "validUntil": "2027-11-27T01:27:55.401Z",
         "signatures": [
           {
             "algorithm": "ES512",
-            "keyId": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
-            "value": "AKia6+v458oNGilNLfo49QSQqgPQk8T8qSSbLFg1nokjsHkfO8ycDnC4E938+JcVmvbgE+JocWU39QbQQJ9jeJY5AMvCk6O4pPAXdV0bF1/pazZDhfAuZ8HeoSVo1O4JGFFwb6OOVgAdWw7dZf3mWILjbZw5jbqdJ26cyXcTTW8KWD73"
+            "keyId": "b3aa34da7c8e19898d65048eca430cb26af47a25dcd5fbc96f5fa02d8723b03e",
+            "value": "APy0Lof0gcq17MkbcEKlieqsx2bmgCCeWYbfhMO+H2k8KcxC5lmoq/G0+oAZusMIW3jKda1HUP0RkbkQZypJxpLkAGokArQz3Y/iA1IFZBjJTNPGwmktr3bxE6zd8ZP/UlcYwvSlpUmL3i2G10jag/CFt1WTWcv9RXB/5jYoZ22NwVp7"
           }
         ]
       },
@@ -74,53 +74,53 @@
         {
           "roamingNetworkOperatorId": "OCC",
           "signingKey": {
-            "@id": "6a6ff3e7ba92f072bedfef920756c233b2325a5acfd6a53b19585cedacf36003",
-            "key": "pAECIAEhWCACkk6N+wcanjvBRXkpRu85JNL4Iymiw3k4onu8saTyHiJYIGkfz4ye1iJaofdvhJE+hV3ha+A7Qe9wx1kLqwupbIQR",
-            "notAfter": "2027-11-16T20:30:07.059Z",
+            "@id": "2d73b59e5fbf318cdd41cc5d3eb4756ba9e43b1d889883240b42b02368c25d8b",
+            "key": "pAECIAEhWCAQDV3ZmtUmuO59mOSh3qRmZBVWh6bJ74ESSMDPXrLliSJYILYwAlW/NJfPg8T67xOf8Ajq5kqTRN146T7NCm2f1X5p",
+            "notAfter": "2027-11-27T01:27:55.401Z",
             "holder": "AlphaOrg",
             "usages": [
               "party"
             ]
           },
-          "signedAt": "2026-11-16T20:30:07.059Z",
+          "signedAt": "2026-11-27T01:27:55.401Z",
           "algorithm": "ES512",
-          "keyId": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
-          "value": "AIUQ/0rMiJVXutWAuk2UhGfMqFWTnsFgvzYcSqCpIGi8QqFR2k2Qil5Bmzy2zFtvN1roaXjDHwxCR/ER2xJmvXCGAQ80KZYsj5K00fO7c6WKhUWNZnP+T6hFhim251BUqZpmF5+J2noKGqgqhiscH0CwSJFRgL8WYEGjVf/CSZuxuWJ+"
+          "keyId": "b3aa34da7c8e19898d65048eca430cb26af47a25dcd5fbc96f5fa02d8723b03e",
+          "value": "AHvw9It3VsQPofKWMQkgEGmV7e0gr9DNO6g5yqd4cNINwUAkn/6BBKFDwCQPV06mQi8+XWCg16g8Mwa0mQVIPPgEAQqD/5oSvI6DSSI3ynopbCG2+GjsmM1Asyv2EjHO8N3eWJ0Y916/D17FpEz2ZPnHaJWYYM/29ZRQROkr2WjBRjA+"
         }
       ],
       "identityKeys": [
         {
-          "@id": "6cc0a19dee108f51c098f473bef8c117812b21d015e2ee22237f02d00ae177c9",
-          "key": "pAECIAMhWEIBEoSWSkH0yN0X+J4eLgFloofiomcf/5cFLeYsh4XMg52qCkkwQ4/vta6fudmyOQ6jCP32mOYQ8fvbHFLZKrTzbCciWEIAw6/U3j/puwsbkDJ5B9GYgQYmFVqnSsg4FI6rt0MLoWAITZ7S3wkjHi7b3XLqxm8tfjX5v6MGgznqMqt7Xs5ncNM=",
+          "@id": "b3aa34da7c8e19898d65048eca430cb26af47a25dcd5fbc96f5fa02d8723b03e",
+          "key": "pAECIAMhWEIA8dN1yfqMa82WHd4ZUhL5pkjiO8UYZXwCV4LvHnkdV4c7EtEWrND82vkEJVPLuVAas5rw7133c7n610jToFvrWKAiWEIBPnpTeEETMRvpO5Foy6lY3ibGOcfScjWBikgtBce507UaV1opNFSeiF29dnXSV8vY1U6vmHVoaaoNMeap3mHwPuc=",
           "holder": "AlphaOrg"
         }
       ],
-      "created": "2026-11-16T20:30:07.345Z",
-      "lastChange": "2026-11-16T20:30:07.345Z"
+      "created": "2026-11-27T01:27:55.718Z",
+      "lastChange": "2026-11-27T01:27:55.718Z"
     },
     "urls": [
       "https://alpha.example/RNs/QA"
     ],
-    "created": "2026-11-16T20:30:07.385Z",
-    "lastChange": "2026-11-16T20:30:07.385Z",
+    "created": "2026-11-27T01:27:55.768Z",
+    "lastChange": "2026-11-27T01:27:55.768Z",
     "eTags": [
       [
         "json",
         "sha256",
         "base64",
-        "gan1YJnWVwtYWcSBxE+oYLuVmqpoMdr/Xvv4nnWBcfQ="
+        "T7eLZmO+q4qcIyijahykDpt7IiuZRxQcpsnEygmDYYQ="
       ],
       [
         "cbor",
         "sha256",
         "base64",
-        "FDajM8AeuPmTsAf8X/OOlb7S6g/JLCeuz1NKreTR8jY="
+        "dtoorN9xmnnwxlkDubTzmwL+cprMhqygcddWA2M+7Wc="
       ],
       [
         "effectiveTree",
         "sha256",
         "base64",
-        "0zTPELQBa/xstvXOHD9WKyT1ycpEBiZHI6m+Fej0c5w="
+        "uFrq3M+5GAUWrSpzjCOMJroPcETwqpPAiYOx+msHNq8="
       ]
     ]
   }
