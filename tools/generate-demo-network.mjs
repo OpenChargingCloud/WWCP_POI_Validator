@@ -850,8 +850,12 @@ checkpoint(statementsAfter);
                         // Where drivers ask it for offers: the POI_API base of the roaming network at its own server.
                         offersURL: `https://poi.highway-hpc.example/RNs/${RN_ID}/` };
     // A pool naming EV Taler names the secure dynamic QR code of its stations too, here on their displays: an EV Taler
-    // session names the one-time password its EVSE gives right then (EVTaler.md, decision D8).
-    const secureDynamicQRCode = { channels: [ 'Display' ], type: 'SecureDynamicQRCode' };
+    // session names the one-time password its EVSE gives right then (EVTaler.md, decision D8). The stations of its first
+    // charging park give the code over Bluetooth Low Energy and NFC as well, and read RFID cards.
+    const secureDynamicQRCode = (channels) => ({ channels, type: 'SecureDynamicQRCode' });
+    const authenticationModes = (index) => index === 0
+                                               ? [ { cardTypes: [ 'MifareDESFire' ], type: 'RFID' }, secureDynamicQRCode([ 'BLE', 'Display', 'NFC' ]) ]
+                                               : [ secureDynamicQRCode([ 'Display' ]) ];
     const along     = versions.at(-1).content.chargingStationOperators.find(item => item['@id'] === LATECOMER.id).chargingPools.filter((pool, index) => index % 2 === 0);
     commit(`${LATECOMER.name} takes EV Taler at its charging parks along the A4`,
            [ { kind: 'UpdateProperty', entityType: 'ChargingStationOperator', entityId: LATECOMER.id, propertyName: 'evTaler', oldValue: null, newValue: merchant },
@@ -859,9 +863,9 @@ checkpoint(statementsAfter);
              // which comes before it for the stations there.
              { kind: 'UpdateProperty', entityType: 'ChargingStationOperator', entityId: LATECOMER.id,   propertyName: 'webPaymentURL', oldValue: null, newValue: 'https://pay.highway-hpc.example/' },
              { kind: 'UpdateProperty', entityType: 'ChargingPool',            entityId: along[0]['@id'], propertyName: 'webPaymentURL', oldValue: null, newValue: `https://pay.highway-hpc.example/parks/${along[0]['@id'].split('*').at(-1)}` },
-             ...along.flatMap(pool => [
+             ...along.flatMap((pool, index) => [
                  { kind: 'UpdateProperty', entityType: 'ChargingPool', entityId: pool['@id'], propertyName: 'paymentOptions',      oldValue: null, newValue: [ 'CreditCard', 'EVTaler' ] },
-                 { kind: 'UpdateProperty', entityType: 'ChargingPool', entityId: pool['@id'], propertyName: 'authenticationModes', oldValue: null, newValue: [ secureDynamicQRCode ] },
+                 { kind: 'UpdateProperty', entityType: 'ChargingPool', entityId: pool['@id'], propertyName: 'authenticationModes', oldValue: null, newValue: authenticationModes(index) },
              ]) ],
            [ LATECOMER.paymentsKey, LATECOMER.infrastructureKey ], { minutes: 60 });
 }

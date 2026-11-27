@@ -37,7 +37,9 @@ epochs and price statements fit together.
 - **Network** — any version, effective (as proofs and apps see it) or as stored; a map of the charging pools; for each
   entity where its values come from (its own or a template, 9.2), the tariffs an EVSE takes and whether it is paid
   with EV Taler and where an app asks for offers for it (`offersURL`), the EV Taler merchant of an operator, the web
-  payment page that applies (`webPaymentURL`: of a station its own, else that of its pool, else the operator's), the
+  payment page that applies (`webPaymentURL`: of a station its own, else that of its pool, else the operator's), how
+  drivers authenticate at a pool, a station and an EVSE (`authenticationModes` of the pool, with the channels its
+  stations give the URL of their secure dynamic QR code over: BLE, display, NFC), the
   groups it is a member of, its runtime status, the commits
   that changed it, and its path through the effective tree up to the root the commit names — the audit paths a proof of
   it would give.
@@ -48,7 +50,8 @@ epochs and price statements fit together.
   with EV Taler (the merchant the proof gives, where it is asked for offers, the EV Taler tariff of each EVSE and the
   exchanges in its currency,
   [concepts/EVTaler.md](https://github.com/OpenChargingCloud/WWCP_POI/blob/master/concepts/EVTaler.md));
-  the web payment page of the station; price statements; the evidence of a charging session; the file an app kept of a session paid with EV Taler (WWCP_POI
+  the web payment page of the station, how drivers authenticate at it and over which channels it gives the one-time
+  password an EV Taler session names; price statements; the evidence of a charging session; the file an app kept of a session paid with EV Taler (WWCP_POI
   example A16: its station as the session began, its steps one after the other, the settlement statement of the operator
   with both signed meter values, and what was refunded); proofs of commits and price statements
   in checkpoints; attestations; the archive; the **QI-Digital** papers of meters (example A14): digital calibration
@@ -94,7 +97,7 @@ epochs and price statements fit together.
    - **Thuringia**, a generated test network of medium size: seven charging station operators, 195 charging pools,
      417 stations and 834 EVSEs on a map; change sets of several owners, a key rotation, a removed pool, a latecomer
      that takes **EV Taler** at its charging parks along the A4 (its merchant, changed with a key for payments, two
-     exchanges, of which the one in euros pays, its offers URL, and the secure dynamic QR code of its stations) and names its web payment page, with one of its own for its first charging park; four witnessed checkpoints, price statements and station proofs.
+     exchanges, of which the one in euros pays, its offers URL, and the secure dynamic QR code of its stations, on their display, at its first charging park over Bluetooth Low Energy and NFC as well) and names its web payment page, with one of its own for its first charging park; four witnessed checkpoints, price statements and station proofs.
      Signed with test keys of fixed seeds.
    - **An app: charging sessions and trust transitions**, of the test network `CHARGY-POI-DEMO` WWCP_POI.TS keeps among
      its test vectors (public test keys only). 18 sessions: the meter and its key from the proof of the station, now and
@@ -264,7 +267,10 @@ npm --prefix "D:\Coding\OpenChargingCloud\WWCP_POI_Validator" test
   attestation and QI-Digital document; a day later the station proofs of the QA demo are refused, their attestations
   expired; with the ML-DSA trust anchor of epoch 2, the QA history is anchored at checkpoint 0 of epoch 2, and with a
   trust anchor no checkpoint carries it is refused; the proof of a station along the A4 says how its EVSEs are paid with
-  EV Taler, where offers are asked for and which web payment page applies.
+  EV Taler, where offers are asked for, which web payment page applies and over which channels it gives its secure
+  dynamic QR code.
+- `tests/authentication.test.js`: the authentication modes of a pool, each with what its type has, and the channels
+  of its secure dynamic QR code.
 - `tests/evTaler.test.js`: the session of example A16 verifies from the file alone, with the trust anchor of the demo
   and with the ML-DSA one; a settlement statement changed after it was signed, a step at less than its price and a
   station proof nothing verifies are refused, each at its part; without a settlement statement the steps verify; a
@@ -311,6 +317,7 @@ of its release:
 | `src/sessions.js` | charging sessions as an app checks them: their readings, trust context, meter key, historical evidence, prices |
 | `src/transitions.js` | trust transitions, verified from the trust anchor of the settings, a later one from the one it continues |
 | `src/evTaler.js` | the file an app kept of a session paid with EV Taler: its station, its steps and its settlement statement in the order an app checks them, and the OCMF verifier the library asks for |
+| `src/authentication.js` | the authentication modes of a charging pool, and the channels its stations give the URL of their secure dynamic QR code over |
 | `src/payments.js` | the web payment page that applies to a station, a pool and their operator, and where an EV Taler merchant is asked for offers |
 | `src/keyStatements.js` | the key statements of the operator one after the other, followed from the trust anchor of the settings |
 | `src/journal.js` | what an app keeps of the versions it observed: its journal, and what it refuses |

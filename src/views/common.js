@@ -6,6 +6,7 @@ import { etagToText, paymentOptionName } from '@open-charging-cloud/wwcp-poi';
 
 import { badge, formatTime, h, i18n, shortId, statusIcon } from '../dom.js';
 import { PARTY_LABELS } from '../keys.js';
+import { SECURE_DYNAMIC_QR_CODE, channelText } from '../authentication.js';
 import { offersSessionsURL } from '../payments.js';
 
 
@@ -195,6 +196,43 @@ export function evTalerMerchant(merchant) {
                                                                           h('div', 'muted small', 'An app asks here for a session at an EVSE, and gets its steps as offers: POST ', h('code', null, offersSessionsURL(merchant.offersURL, '{EVSE_Id}')), ' (EVTaler.md 6).'))
                                                                     : h('span', 'muted', 'It names no offers URL: an app learns no place to ask it for offers from these data.'))),
         table);
+
+}
+
+/**
+ * The channels the stations of a charging pool give the URL of their secure dynamic QR code over (`secureDynamicQRCodeOf`),
+ * one line each; that the pool names none where it names the mode without any.
+ */
+export function secureDynamicQRCodeChannels(code) {
+    return code.channels.length
+               ? h('ul', 'statements', ...code.channels.map(channel => h('li', null, badge(channel, 'ok'), ' ', h('span', 'muted', channelText(channel)))))
+               : h('div', 'muted', 'It names no channel: these data do not say how its stations give the code.');
+}
+
+/**
+ * The authentication modes of a charging pool (`authenticationModesOf`), one line each with what its type has; that it
+ * names none otherwise.
+ */
+export function authenticationModes(modes) {
+
+    if (modes.length === 0)
+        return h('p', 'muted', 'It names none: these data do not say how a driver authenticates here.');
+
+    return h('ul', 'statements', ...modes.map(mode => {
+
+        const details = [
+            mode.cardTypes.length ? `cards: ${mode.cardTypes.join(', ')}` : undefined,
+            mode.brands.length    ? `brands: ${mode.brands.map(brand => i18n(brand.name) ? `${i18n(brand.name)} (${brand.id})` : brand.id).join(', ')}` : undefined,
+            mode.number           ? `number ${mode.number}` : undefined,
+            mode.stationCode      ? `station code ${mode.stationCode}` : undefined,
+        ].filter(Boolean);
+
+        return h('li', null,
+            badge(mode.type, mode.type === SECURE_DYNAMIC_QR_CODE ? 'ok' : 'info'),
+            details.length ? h('span', 'muted', ` ${details.join(' · ')}`) : null,
+            mode.type === SECURE_DYNAMIC_QR_CODE ? secureDynamicQRCodeChannels(mode) : null);
+
+    }));
 
 }
 

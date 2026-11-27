@@ -1,7 +1,7 @@
 {
   "@context": "https://open.charging.cloud/contexts/wwcp/roamingNetwork/proof/v1",
   "hashAlgorithm": "sha256",
-  "commitId": "d6d872cfbc16cb1d1b6c7dc2489ba8ba069b7134f67a35c456946a1e11a67a01",
+  "commitId": "5dab98be9a75501576b21c69e47f5e9ae0dbc8828bee9ece6d57e5dc19d3a0ff",
   "revision": 27,
   "roamingNetwork": {
     "@id": "TH",
@@ -139,7 +139,7 @@
           "@auditPath": [
             "c91189ce6d47599c8d45b0f97e649dfc36a523ea36d51e00145d1c700635a9f4",
             "254876dff6329f507d28c80b02883e514420418eef1e7d102013325c3e38588d",
-            "aa0d9ebde9f5d7bf97ba541d3a1839de381a876a949287d6078242c4e6250913"
+            "f9385cfd5d074caac4bfa0dab429981d2d22e4b93e905f2f162dc97c3727df0e"
           ],
           "@entity": {
             "@id": "DE*XAA",
@@ -307,13 +307,13 @@
   "attestations": [
     {
       "roamingNetworkId": "TH",
-      "commitId": "d6d872cfbc16cb1d1b6c7dc2489ba8ba069b7134f67a35c456946a1e11a67a01",
+      "commitId": "5dab98be9a75501576b21c69e47f5e9ae0dbc8828bee9ece6d57e5dc19d3a0ff",
       "revision": 27,
       "eTag": [
         "effectiveTree",
         "sha256",
         "hex",
-        "2e3f03aafdf477148f073eccf72d200041a650627a0835a96ec0c860573ef34d"
+        "682436ed657e71994b337d41fbe01ee5e6431a91e78b8368e68f691f372cfb60"
       ],
       "role": "roamingNetworkOperator",
       "signer": "THNO",
@@ -321,17 +321,17 @@
       "validUntil": "2026-09-24T14:14:34.200Z",
       "algorithm": "ES256",
       "keyId": "0b5a6fc3bb3ff0d07b75895466c933c99065b45ffc24d9a5e539b4b18f4dbbc4",
-      "value": "E0PA/EY6psRvG9ZyTCMqP58i3UWSK45shY/ggUJs47VvX0AaLVzkMZFnvQHPhih6C++k1HWqkDEZFvLNGEgLbw=="
+      "value": "ntqP/BFyAclZStJWQxNxStuO1Srq7v9WLs6pW4W3fvxP14+p6aPrir5rHWlESF4EiBnNuNYZsUlGq3DKQsnN9A=="
     },
     {
       "roamingNetworkId": "TH",
-      "commitId": "d6d872cfbc16cb1d1b6c7dc2489ba8ba069b7134f67a35c456946a1e11a67a01",
+      "commitId": "5dab98be9a75501576b21c69e47f5e9ae0dbc8828bee9ece6d57e5dc19d3a0ff",
       "revision": 27,
       "eTag": [
         "effectiveTree",
         "sha256",
         "hex",
-        "2e3f03aafdf477148f073eccf72d200041a650627a0835a96ec0c860573ef34d"
+        "682436ed657e71994b337d41fbe01ee5e6431a91e78b8368e68f691f372cfb60"
       ],
       "role": "roamingNetworkOperator",
       "signer": "THNO",
@@ -339,17 +339,17 @@
       "validUntil": "2026-09-24T14:14:34.200Z",
       "algorithm": "ES256",
       "keyId": "45cc7c4c3bfbd2985a9f9384998b41b0caecceecf4f521a2f0d856a5e776ed14",
-      "value": "2iyG8FXVr+8ax/xFJLGK2hAzUb31FbJ4uSZXJDQ01jyNO6Yhj8PtI/nY+Egko48DnGFFCsj9RGQvPqz9Aazs9g=="
+      "value": "rdo8DrxZuXmfZ9DwsXqD3axM1pJzBCBUwSx43Ily35k5o0wbulos3/y6cKFOkKpa1365aJ2sqCwd1aLvwkmvMw=="
     },
     {
       "roamingNetworkId": "TH",
-      "commitId": "d6d872cfbc16cb1d1b6c7dc2489ba8ba069b7134f67a35c456946a1e11a67a01",
+      "commitId": "5dab98be9a75501576b21c69e47f5e9ae0dbc8828bee9ece6d57e5dc19d3a0ff",
       "revision": 27,
       "eTag": [
         "effectiveTree",
         "sha256",
         "hex",
-        "2e3f03aafdf477148f073eccf72d200041a650627a0835a96ec0c860573ef34d"
+        "682436ed657e71994b337d41fbe01ee5e6431a91e78b8368e68f691f372cfb60"
       ],
       "role": "roamingNetworkOperator",
       "signer": "THNO",
@@ -357,7 +357,7 @@
       "validUntil": "2026-09-24T14:14:34.200Z",
       "algorithm": "ES256",
       "keyId": "dffa220da4a30fc3cc51f13896900a42155df4143f3981d84706ef09de6b69b1",
-      "value": "s88b2pNYzuRCGOTRElNQz0JK2n3+YNIKFjELdOxN9KtXUCjY57a65sphpQz7w2sDNFOixf+a0nB94FH5JfbI1w=="
+      "value": "WLtMqa1x/Kmx0mmx0Gg/W/FtAgjeRxOByqwt6TA8fU5mllXq0l5x/PDvWfrWFEE6VC6vf0a7Lnw/38lF1ZxUKQ=="
     }
   ]
 }

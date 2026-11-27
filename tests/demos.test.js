@@ -73,6 +73,14 @@ test('QA: the roaming network of the WWCP_POI examples A1 to A16 verifies', asyn
     assert.deepEqual(webPaymentPage('QA-proof-station-DE_GEF_S6.json'),   { url: 'https://pay.gef.example/',         type: 'ChargingStationOperator', id: 'DE*GEF' });
     assert.equal(webPaymentPage('QA-DE-GEF-E1-1-proof.json'), undefined);
 
+    // The one-time password an EV Taler session names: the stations of Jena Paradies give it on their display, as the
+    // pool says since it takes EV Taler; a pool that does not take it names no secure dynamic QR code.
+    const proof = (name) => report.proofs.find(result => result.document.name === name);
+    assert.deepEqual(proof('QA-DE-GEF-E1-1-evTaler-proof.json').secureDynamicQRCode, { poolId: 'DE*GEF*P1', channels: [ 'Display' ] });
+    assert.ok(proof('QA-DE-GEF-E1-1-evTaler-proof.json').authenticationModes.some(mode => mode.type === 'SecureDynamicQRCode'));
+    assert.equal(proof('QA-DE-GEF-E1-1-proof.json').secureDynamicQRCode, undefined);
+    assert.equal(proof('QA-proof-station-DE_GEF_S6.json').secureDynamicQRCode, undefined);
+
 });
 
 test('QA: a day after the recording, the station proofs are refused, as their attestations expired', async () => {
@@ -188,6 +196,12 @@ test('Thuringia: the latecomer takes EV Taler along the A4, and the proof of its
     assert.deepEqual(highway.evTaler.evses.map(({ evseId, tariff, exchanges }) => [ evseId, String(tariff['@id']), exchanges.map(exchange => paymentOptionName(exchange)[0][1]) ]),
                      [ [ 'DE*XAG*E1*1', 'DE*XAG*T_HPC', [ 'EV Taler (Thuringia Test Exchange, EUR)' ] ],
                        [ 'DE*XAG*E1*2', 'DE*XAG*T_HPC', [ 'EV Taler (Thuringia Test Exchange, EUR)' ] ] ]);
+
+    // The one-time password a session names: the stations of its first charging park give it over all three channels,
+    // and read RFID cards; the stations of the operators without a merchant give none.
+    assert.deepEqual(highway.secureDynamicQRCode, { poolId: 'DE*XAG*P1', channels: [ 'BLE', 'Display', 'NFC' ] });
+    assert.deepEqual(highway.authenticationModes.map(mode => [ mode.type, mode.cardTypes ]), [ [ 'RFID', [ 'MifareDESFire' ] ], [ 'SecureDynamicQRCode', [] ] ]);
+    assert.equal(proofOf('DE*XAB').secureDynamicQRCode, undefined);
 
     // The operators without a merchant: nothing to say.
     assert.equal(proofOf('DE*XAB').evTaler, undefined);

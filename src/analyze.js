@@ -27,6 +27,7 @@ import { analyzeSessions } from './sessions.js';
 import { analyzeTransitions } from './transitions.js';
 import { analyzeKeyStatements } from './keyStatements.js';
 import { webPaymentPageOf } from './payments.js';
+import { authenticationModesOf, secureDynamicQRCodeOf } from './authentication.js';
 import { analyzeEVTalerEvidence } from './evTaler.js';
 import { observeVersions } from './journal.js';
 import { plural, yieldToBrowser } from './dom.js';
@@ -1343,6 +1344,11 @@ export async function analyze(pool, settings, onProgress = () => {}) {
 
             // Where a driver pays ad hoc at it: its own web payment page, else that of its pool, else the operator's.
             result.webPaymentPage = webPaymentPageOf(station);
+
+            // How a driver authenticates at it, as its pool says it, and over which channels it gives the URL of its
+            // secure dynamic QR code, whose one-time password every EV Taler session names.
+            result.authenticationModes = authenticationModesOf(station.chargingPool);
+            result.secureDynamicQRCode = secureDynamicQRCodeOf(station.chargingPool);
 
         }
 

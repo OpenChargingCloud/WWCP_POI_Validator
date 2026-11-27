@@ -11,8 +11,9 @@ import { etagToText, evTalerExchangesAt, evTalerMerchantOf, evTalerTariffOf, get
 import { badge, button, facts, formatTime, h, i18n, jsonText, jsonView, plural, section, shortId } from '../dom.js';
 import { ARRAY_TYPES, entityAt, entityHistory, entityLabel, entityTree, merklePath, provenance } from '../entities.js';
 import { PARTY_LABELS } from '../keys.js';
+import { authenticationModesOf, channelText, secureDynamicQRCodeOf } from '../authentication.js';
 import { offersSessionsURL, webPaymentPageOf } from '../payments.js';
-import { changeChip, emptyState, evTalerMerchant, evTalerName, headKey, linkButton, versionSelect, webPaymentPage } from './common.js';
+import { authenticationModes, changeChip, emptyState, evTalerMerchant, evTalerName, headKey, linkButton, versionSelect, webPaymentPage } from './common.js';
 import { priceSummary } from './history.js';
 import { QI_DIGITAL_KINDS, papersOf } from './qidigital.js';
 
@@ -437,6 +438,7 @@ function evTalerOfEvse(effectiveContent, path, evse) {
     const exchanges = evTalerExchangesAt(station, id);
     const options  = isArray(pool?.['paymentOptions']) ? pool['paymentOptions'].map(String) : [];
     const merchant = evTalerMerchantOf(operator['evTaler']);
+    const code     = secureDynamicQRCodeOf(pool);
 
     return h('div', null,
         h('h3', null, 'EV Taler'),
@@ -447,6 +449,13 @@ function evTalerOfEvse(effectiveContent, path, evse) {
             ? (typeof merchant !== 'string' && merchant.offersURL !== undefined
                    ? h('p', null, 'An app asks for a session here, and gets its steps as offers: POST ', h('code', null, offersSessionsURL(merchant.offersURL, id)))
                    : h('p', 'muted', 'Its operator names no offers URL: these data say no place to ask for offers for it.'))
+            : null,
+        exchanges.length
+            ? (code !== undefined && code.channels.length
+                   ? h('p', null, 'The session names the one-time password of this EVSE, which its station gives ', code.channels.map(channelText).join('; '), '.')
+                   : h('p', 'muted', code !== undefined
+                                         ? 'Its pool names the secure dynamic QR code without a channel: these data do not say how its station gives the one-time password a session names.'
+                                         : 'Its pool does not name the secure dynamic QR code: these data do not say that its station gives the one-time password a session names.'))
             : h('p', 'muted', options.some(option => option.toLowerCase() === 'evtaler')
                                   ? 'Its pool names the payment option EVTaler, but it has no EV Taler tariff, or no exchange of its operator is in the currency of that tariff.'
                                   : 'Not with EV Taler: its pool does not name the payment option EVTaler, though its operator is an EV Taler merchant.'),
@@ -477,6 +486,28 @@ function webPaymentSection(effectiveContent, node) {
         webPaymentPage(page, node.type),
         h('p', 'note', 'Where an EV driver pays ad hoc, without an e-mobility provider, and starts a session: for a charging station its own comes first, then that of its pool, then the operator\'s, each with what its templates give. ' +
                        'It is not the URL in the dynamic QR code of a station, which is of one EVSE and never part of these data. Whoever changes it redirects payments: only a signing key that may sign payments does.'));
+
+}
+
+/**
+ * How drivers authenticate at a pool, a station or an EVSE in this version: the authentication modes of the pool as it is
+ * effective, with what its templates give it, which are those of its stations and EVSEs as well; none outside a pool.
+ */
+function authenticationSection(effectiveContent, node) {
+
+    if (![ 'ChargingPool', 'ChargingStation', 'EVSE' ].includes(node.type) || node.path[0]?.array !== 'chargingStationOperators')
+        return null;
+
+    const pool  = entityAt(effectiveContent, node.path.slice(0, 2));
+    const modes = authenticationModesOf(pool);
+
+    return h('div', null,
+        h('h3', null, 'How drivers authenticate'),
+        node.type === 'ChargingPool' ? null : h('p', 'muted', 'As its charging pool ', h('code', null, String(pool?.['@id'])), ' says it:'),
+        authenticationModes(modes),
+        h('p', 'note', 'The authentication modes of a charging pool are those of all its stations, each type once, united with what its templates give. ' +
+                       'SecureDynamicQRCode: its stations give a URL with a time-based one-time password, as the WebPaymentsCtrlr of OCPP 2.1 makes it, over the channels named; whoever names the password stands at the EVSE. ' +
+                       'Every EV Taler session names it, so a pool paid with EV Taler has to name this mode (EVTaler.md, decision D8). The URL itself is of one EVSE at one moment, and never part of these data.'));
 
 }
 
@@ -617,6 +648,7 @@ function entityDetail(report, version, node, mode, runtime, actions, onSelect) {
         origin ? h('p', 'note', 'The effective member takes, of every property a template may give, its own value, else the one of the first of its templates giving one; arrays are united (9.2). Proofs and apps see the effective member.') : null,
 
         node.type === 'EVSE' && mode === 'effective' ? h('div', null, h('h3', null, 'Charging tariffs it takes'), tariffsOfEvse(effective, node.path, json) ?? h('p', 'muted', 'none')) : null,
+        mode === 'effective' ? authenticationSection(effective, node) : null,
         mode === 'effective' ? webPaymentSection(effective, node) : null,
         node.type === 'EVSE' && mode === 'effective' ? evTalerOfEvse(effective, node.path, json) : null,
         node.type === 'ChargingStationOperator' && json['evTaler'] !== undefined ? merchantSection(json['evTaler']) : null,

@@ -8,7 +8,7 @@ import { CHILD_ARRAYS, etagToText, get, isArray, isObject } from '@open-charging
 
 import { badge, button, facts, formatBytes, formatTime, h, i18n, jsonText, jsonView, plural, section, shortId } from '../dom.js';
 import { offersSessionsURL } from '../payments.js';
-import { emptyState, evTalerMerchant, evTalerName, linkButton, webPaymentPage } from './common.js';
+import { authenticationModes, emptyState, evTalerMerchant, evTalerName, linkButton, secureDynamicQRCodeChannels, webPaymentPage } from './common.js';
 import { priceSummary } from './history.js';
 import { qiDigitalCard } from './qidigital.js';
 
@@ -208,7 +208,7 @@ function documentKeysPart(result) {
 }
 
 /** How the EVSEs of a verified station are paid for with EV Taler: the merchant its proof gives, and each EVSE's tariff. */
-function evTalerSection(evTaler) {
+function evTalerSection(evTaler, code) {
 
     const offersURL = evTaler.merchant?.offersURL;
 
@@ -224,6 +224,14 @@ function evTalerSection(evTaler) {
         h('h4', null, 'EV Taler'),
         evTaler.merchant ? evTalerMerchant(evTaler.merchant) : null,
         table,
+        evTaler.evses.some(({ exchanges }) => exchanges.length > 0)
+            ? h('div', null,
+                  h('p', null, 'Every session names the one-time password its EVSE gives right then. ',
+                      code !== undefined ? `The station gives it in the URL of its secure dynamic QR code, as its pool ${code.poolId} says:` : null),
+                  code !== undefined
+                      ? secureDynamicQRCodeChannels(code)
+                      : h('p', 'muted', 'Its pool does not name the secure dynamic QR code: the proof does not say that this station gives one.'))
+            : null,
         h('p', 'note', 'The proof gives the merchant of the operator completely, with its keys: an app knows offline, checked against the trust anchor, which merchant may take the money for this station (EVTaler.md 4.2). ' +
                        'An EVSE is paid with EV Taler where its pool names the payment option EVTaler: by its tariff of the type AD_HOC_PAYMENT, or else the one without a type, unless that one names payment means other than EV_TALER, ' +
                        'with the exchanges in the currency of that tariff (4.3). Nothing here takes or makes a payment.'));
@@ -305,7 +313,12 @@ function proofCard(report, result, actions) {
         station ? h('h4', null, 'EVSEs, as they are at runtime') : null,
         station ? evseTable(station, result.prices) : null,
 
-        result.evTaler ? evTalerSection(result.evTaler) : null,
+        station ? h('div', null,
+            h('h4', null, 'How drivers authenticate'),
+            authenticationModes(result.authenticationModes ?? []),
+            h('p', 'note', 'The authentication modes of its charging pool, as the proof gives it. SecureDynamicQRCode: the station gives a URL with a time-based one-time password over the channels named; ' +
+                           'the URL itself is of one EVSE at one moment, and never part of a proof.')) : null,
+        result.evTaler ? evTalerSection(result.evTaler, result.secureDynamicQRCode) : null,
 
         station && versionsOf(station) ? h('h4', null, 'Devices: models, versions, serial numbers') : null,
         station ? versionsOf(station) : null,
