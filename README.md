@@ -275,6 +275,10 @@ npm --prefix "D:\Coding\OpenChargingCloud\WWCP_POI_Validator" test
   and with the ML-DSA one; a settlement statement changed after it was signed, a step at less than its price and a
   station proof nothing verifies are refused, each at its part; without a settlement statement the steps verify; a
   signed meter value in OCMF verifies with its key only as it was signed.
+- `tests/ocmf.test.js`: signed meter values in OCMF on every curve the page verifies, with values signed for the
+  test: a key on another curve than the signature names, a signature in hexadecimal or Base64, of several readings
+  the last one of energy, in kWh or Wh, of the register of the energy taken from the grid; a reading that is not
+  good is refused.
 - `tests/payments.test.js`: the web payment page of a station, its pool and their operator, in that order, and the URL
   an app asks an EV Taler merchant for offers at.
 - `tests/tampering.test.js`: one document of the Thuringia demo changed after it was signed, as *Edit and verify again*
@@ -316,7 +320,8 @@ of its release:
 | `src/analyze.js` | the analysis with WWCP_POI.TS: trust, history, checkpoints, epochs, proofs, prices, evidence, archive |
 | `src/sessions.js` | charging sessions as an app checks them: their readings, trust context, meter key, historical evidence, prices |
 | `src/transitions.js` | trust transitions, verified from the trust anchor of the settings, a later one from the one it continues |
-| `src/evTaler.js` | the file an app kept of a session paid with EV Taler: its station, its steps and its settlement statement in the order an app checks them, and the OCMF verifier the library asks for |
+| `src/evTaler.js` | the file an app kept of a session paid with EV Taler: its station, its steps and its settlement statement in the order an app checks them |
+| `src/ocmf.js` | signed meter values in OCMF: ECDSA with SHA-256 on secp256r1, secp384r1, secp256k1, brainpoolP256r1 and brainpoolP384r1, and the last good reading of energy of a value |
 | `src/authentication.js` | the authentication modes of a charging pool, and the channels its stations give the URL of their secure dynamic QR code over |
 | `src/payments.js` | the web payment page that applies to a station, a pool and their operator, and where an EV Taler merchant is asked for offers |
 | `src/keyStatements.js` | the key statements of the operator one after the other, followed from the trust anchor of the settings |

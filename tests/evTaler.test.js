@@ -7,9 +7,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { EVTalerSignedMeterValue, fromBase64, toBase64 } from '@open-charging-cloud/wwcp-poi';
-
-import { verifyOCMF } from '../src/evTaler.js';
 import { analyzeDemo, readDemo, replaceOnce, summaryOf } from './helpers.js';
 
 
@@ -109,27 +106,5 @@ test('EV Taler, A16: without its settlement statement the steps verify, and the 
     assert.deepEqual(session.steps.map(step => step.ok), [ true, true ]);
     assert.deepEqual(summaryOf(report).errors, []);
     assert.match(summaryOf(report).warnings.join('\n'), /holds no settlement statement/);
-
-});
-
-test('OCMF: a signed meter value verifies with its key, and not after its reading was changed', () => {
-
-    const evidence = JSON.parse(readDemo('qa').files.get(FILE));
-    const json     = evidence.settlement.meterValues[0];
-    const key      = { id: 'key', key: fromBase64(json.publicKey), json: {} };
-    const value    = EVTalerSignedMeterValue.parse(json);
-    const reading  = verifyOCMF(value, key);
-
-    assert.equal(reading.meterSerialNumber, 'DCM-2026-001-1');
-    assert.equal(reading.energy.toString(), '1234.567');
-    assert.equal(reading.timestamp, Date.parse('2026-11-27T01:29:11.000Z'));
-
-    const changed = new TextDecoder().decode(fromBase64(json.signedMeterData)).replace('"RV":1234.567', '"RV":1230.567');
-    assert.throws(() => verifyOCMF(EVTalerSignedMeterValue.create(toBase64(new TextEncoder().encode(changed)), 'OCMF', json.signingMethod, json.publicKey), key), /The OCMF signature is invalid!/);
-
-    // With the key of another meter, and in another format.
-    const other = { ...key, key: fromBase64(json.publicKey).map((byte, index, bytes) => index === bytes.length - 1 ? byte ^ 1 : byte) };
-    assert.throws(() => verifyOCMF(value, other), /The OCMF signature is invalid!/);
-    assert.throws(() => verifyOCMF(EVTalerSignedMeterValue.create(json.signedMeterData, 'EDL', json.signingMethod, json.publicKey), key), /in OCMF only/);
 
 });
